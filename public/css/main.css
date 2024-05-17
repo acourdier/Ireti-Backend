@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-medium-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-medium-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-semibold-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-semibold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-bold-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-extrabold-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-extrabold-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins-black-webfont.woff2') format('woff2'),
+        url('../fonts/poppins-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+:root {
+    --greenclr: #2F7630;
+}
+
+body {
+    font-family: 'poppins';
+}
+
+.mycontainer {
+    max-width: 1222px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semi {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-ebold {
+    font-weight: 800;
+}
+
+.font-black {
+    font-weight: 900;
+}
+
+textarea {
+    resize: none;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.ex-small {
+    font-size: 11px;
+}
+
+.green-bg {
+    background: var(--greenclr);
+}
+
+.green-text {
+    color: var(--greenclr);
+}
+
+.navbar-toggler {
+    box-shadow: none;
+    border: none;
+    padding: 0 !important;
+    margin: 0 !important
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.navbar-brand {
+    max-width: 200px;
+    width: 100%;
+}
+
+.navbar-brand img {
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.focus-none:focus {
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+.nowrap {
+    text-wrap: nowrap !important;
+}
+
+.opacity-hover {
+    transition: all 0.3s;
+}
+
+.opacity-hover:hover {
+    opacity: 0.9;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.dashtbl{
+    min-width: 768px;
+}
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--greenclr);
+    border-radius: 50px;
+    border: 2px solid #fff;
+}
+
+input:focus,
+select:focus {
+    box-shadow: none !important;
+}
+
+@media screen and (max-width:992px) {
+    .navbar-brand {
+        max-width: 160px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .navbar-brand {
+        max-width: 130px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .navbar-brand {
+        max-width: 110px;
+    }
+    .ftsize{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .mbl-small {
+        font-size: 13px;
+    }
+
+    .mbl-padding {
+        padding: 8px 15px !important;
+    }
+
+    .mycontainer {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .navbar-brand {
+        max-width: 100px;
+        margin-right: 5px !important;
+    }
+
+    .mbl-small {
+        font-size: 12px;
+    }
+
+    .navbar .mycontainer {
+        padding: 0 10px;
+    }
+
+    .mbl-padding {
+        padding: 6px 12px !important;
+    }
+
+
+}
