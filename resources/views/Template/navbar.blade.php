@@ -1,7 +1,7 @@
 <section>
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="mycontainer d-flex flex-wrap justify-content-between px-sm-4 py-2">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{route('/')}}">
                 <img src="{{asset('img/logo.svg')}}" alt="logo">
             </a>
             <div class="d-flex">
@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse w-auto" id="mynavbar">
                 <ul class="navbar-nav my-3 my-sm-0 d-flex align-items-lg-center ms-auto">
                     <li class="nav-item px-md-2">
-                        <a href="{{route('index')}}" class="nav-link  green-text font-medium">Home</a>
+                        <a href="{{route('/')}}" class="{{ request()->routeIs('/') ? 'green-text' : ' text-black' }} nav-link font-medium">Home</a>
                     </li>
                     <li class="nav-item px-md-2">
-                        <a href="{{route('about')}}" class="nav-link text-black font-medium">About us</a>
+                        <a href="{{route('about')}}" class="{{ request()->routeIs('about') ? 'green-text' : ' text-black' }} nav-link font-medium">About us</a>
                     </li>
                     <li class="nav-item px-md-2 position-relative">
                         <a class="nav-link text-black font-medium services-btn pointer">
@@ -51,7 +51,7 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-2">
-                        <a href="{{route('platform')}}" class="nav-link text-black font-medium">Our platform</a>
+                        <a href="{{route('platform')}}" class="{{ request()->routeIs('platform') ? 'green-text' : ' text-black' }} nav-link font-medium">Our platform</a>
                     </li>
                 </ul>
                 <div class="d-none d-lg-flex align-items-center">

@@ -18,7 +18,7 @@
                             <h4>Notifications</h4>
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
-                                    <img src="/img/profile.svg" alt="user" class="notimg">
+                                    <img src="{{asset('img/profile.svg')}}" alt="user" class="notimg">
                                     <div class="ms-3">
                                         <p class="mb-0 small"><span class="font-semi fs-6">Lex Murphy</span>
                                             requested access to UNIX directory tree hierarchy</p>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
-                                    <img src="/img/teammember1.svg" alt="user" class="notimg">
+                                    <img src="{{asset('img/teammember1.svg')}}" alt="user" class="notimg">
                                     <div class="ms-3">
                                         <p class="mb-0 small"><span class="font-semi fs-6">Ray Arnold</span> left 6 comments on Isla Nublar SOC2
                                             compliance report
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
-                                    <img src="/img/teammember2.svg" alt="user" class="notimg">
+                                    <img src="{{asset('img/teammember2.svg')}}" alt="user" class="notimg">
                                     <div class="ms-3">
                                         <p class="mb-0 small"><span class="font-semi fs-6">Denise Nedry</span> replied to Anna Srzand</p>
                                         <div class="border-start border-4">
@@ -65,12 +65,12 @@
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
-                                    <img src="/img/profile.svg" alt="user" class="notimg">
+                                    <img src="{{asset('img/profile.svg')}}" alt="user" class="notimg">
                                     <div class="ms-3">
                                         <p class="mb-0 small"><span class="font-semi fs-6">John Hammond</span> attached a file to Isla Nublar SOC2
                                             compliance report </p>
                                         <div class=" d-flex align-items-center">
-                                            <img src="/img/FileIcon.svg" alt="">
+                                            <img src="{{asset('img/FileIcon.svg')}}" alt="">
                                             <p class="ms-2 my-3 small">
                                                 EY_review.pdf
                                             </p>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
-                                    <img src="/img/teammember1.svg" alt="user" class="notimg">
+                                    <img src="{{asset('img/teammember1.svg')}}" alt="user" class="notimg">
                                     <div class="ms-3">
                                         <p class="mb-0 small"><span class="font-semi fs-6">Denise Nedry</span> commented on Isla Nublar SOC2 compliance
                                             report</p>
