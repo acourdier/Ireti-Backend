@@ -6,7 +6,7 @@
                     Company
                 </h2>
                 <div class="mt-3">
-                    <a href="{{route('index')}}" class="text-decoration-none text-black my-2 d-block">Home</a>
+                    <a href="{{route('/')}}" class="text-decoration-none text-black my-2 d-block">Home</a>
                     <a href="#" class="text-decoration-none text-black my-2 d-block">Terms</a>
                     <a href="{{route('about')}}" class="text-decoration-none text-black my-2 d-block">About Us</a>
                 </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="row justify-content-center mt-5">
-            <a class="d-flex justify-content-center" href="index.html">
+            <a class="d-flex justify-content-center" href="{{route('/')}}">
                 <img src="{{asset('img/logo.svg')}}" alt="logo" class="img-fluid">
             </a>
             <p class="mb-0 text-center mt-2">
