@@ -41,44 +41,15 @@
                             id="cpass">
                     </div>
                     <div class="col-md-6 my-2">
-                        <label for="gender" class="font-medium fs-5">Gender:</label>
-                        <input type="text" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="gender">
-                    </div>
-                    <div class="col-md-6 my-2">
                         <label for="city" class="font-medium fs-5">City:</label>
-                        <select name="city" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="city">
-                            <option value="">Select City</option>
-                            <option value="new-york">New York</option>
-                            <option value="london">London</option>
-                            <option selected disabled hidden>Select City</option>
-                            <option value="tokyo">Tokyo</option>
-                            <option value="paris">Paris</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6 my-2">
-                        <label for="timezone" class="font-medium fs-5">Time Zone:</label>
-                        <select name="timezone" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="timezone">
-                            <option value="" selected disabled hidden>Select Time Zone</option>
-                            <option value="est">Eastern Standard Time (EST)</option>
-                            <option value="gmt">Greenwich Mean Time (GMT)</option>
-                            <option value="jst">Japan Standard Time (JST)</option>
-                            <option value="cest">Central European Summer Time (CEST)</option>
-                        </select>
+                        <input type="text" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
+                        id="city">
                     </div>
 
                     <div class="col-md-6 my-2">
                         <label for="country" class="font-medium fs-5">Country:</label>
-                        <select name="country" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="country">
-                            <option value="" selected disabled hidden>Select Country</option>
-                            <option value="us">United States</option>
-                            <option value="uk">United Kingdom</option>
-                            <option value="jp">Japan</option>
-                            <option value="fr">France</option>
-                        </select>
+                        <input type="text" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
+                        id="country">
                     </div>
 
                     <div class="mt-5 col-6 col-sm-5 col-md-4 col-xl-3">

@@ -325,14 +325,14 @@
                         <div class="row mt-3">
                             <div class="col-md-1 col-sm-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                    <input type="radio" class="form-check-input" id="check1" name="option1"
                                         value="something" checked>
                                     <label class="form-check-label fw-bold" for="check1">Yes</label>
                                 </div>
                             </div>
                             <div class="col-md-1 col-sm-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                    <input type="radio" class="form-check-input" id="check2" name="option1"
                                         value="something">
                                     <label class="form-check-label fw-bold" for="check2">No</label>
                                 </div>
@@ -357,14 +357,14 @@
                         <div class="row mt-3">
                             <div class="col-md-1 col-sm-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option1"
+                                    <input type="radio" class="form-check-input" id="check3" name="option2"
                                         value="something" checked>
                                     <label class="form-check-label fw-bold" for="check3">Yes</label>
                                 </div>
                             </div>
                             <div class="col-md-1 col-sm-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check4" name="option2"
+                                    <input type="radio" class="form-check-input" id="check4" name="option2"
                                         value="something">
                                     <label class="form-check-label fw-bold" for="check4">No</label>
                                 </div>
