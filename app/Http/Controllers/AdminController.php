@@ -6,28 +6,19 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function bank(){
-        return view('Admin.bank');
+    public function orders(){
+        return view('Admin.orders');
     }
-    public function beneficiaries(){
-        return view('Admin.beneficiaries');
+    public function clients(){
+        return view('Admin.clients');
     }
     public function dashboard(){
         return view('Admin.dashboard');
     }
-    public function investment(){
-        return view('Admin.investment');
+    public function payments(){
+        return view('Admin.payments');
     }
     public function notifications(){
         return view('Admin.notifications');
-    }
-    public function orderdetail(){
-        return view('Admin.orderdetail');
-    }
-    public function products(){
-        return view('Admin.products');
-    }
-    public function profile(){
-        return view('Admin.profile');
     }
 }

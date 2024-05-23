@@ -11,10 +11,8 @@
         <div class="mycontainer py-5">
             <div class="row justify-content-center align-items-center py-5">
                 <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
-                    <h1 class="font-black green-text display-5">We Are Ireti Capital</h1>
-                    <p >We drive Liquidity and Value across Emerging
-                        markets thanks to our in-house market
-                        making solution.</p>
+                    <h1 class="font-black green-text display-5">We are Ireti Capital</h1>
+                    <p >We drive Liquidity and Value across Emerging markets thanks to our in-house market making solution.</p>
                     <div class="mt-4">
                         <a href="{{route('signup')}}"
                             class="green-bg text-white text-uppercase text-decoration-none me-3 hero-btn opacity-hover font-bold fs-5">Get
@@ -35,8 +33,7 @@
                     <h2 class="font-black display-5 green-text d-none d-md-block">Our Global<br>
                         Presence</h2>
                     <h2 class="font-black fs-1 green-text d-md-none">Our Global Presence</h2>
-                    <p>With offices in Europe and Africa, we are strategically located to tackle the lack of Liquidity
-                        in certain geographic zones and serve our clients.</p>
+                    <p>With offices in Europe and Africa, we are strategically located to tackle the lack of Liquidity in certain geographic zones and serve our clients.</p>
                 </div>
                 <div class="col-sm-8 col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="500">
                     <img src="{{asset('img/global-presence.svg')}}" alt="global-presence" class="w-100">

@@ -14,10 +14,7 @@
                 <div class="col-12">
                     <h1 class="font-black display-4 green-text text-center" data-aos="fade-right" data-aos-delay="300">
                         About Us</h1>
-                    <p class=" text-center mt-4 fs-5 lh-base" data-aos="fade-up" data-aos-delay="500">At Ireti capital,
-                        our journey is rooted in a vision to transform
-                        Emerging economies. Our team is dedicated to empowering businesses and NGOs to expand their
-                        presence in Emerging countries through secure, reliable, and fast liquidity services.</p>
+                    <p class=" text-center mt-4 fs-5 lh-base" data-aos="fade-up" data-aos-delay="500">At Ireti capital, our journey is rooted in a vision to transform Emerging economies. Our team is dedicated to empowering businesses and NGOs to expand their presence in Emerging countries through secure, reliable, and fast liquidity services.</p>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 Route::controller(WebController::class)->group(function(){
     Route::get('/','index')->name('/');
@@ -17,14 +18,24 @@ Route::controller(WebController::class)->group(function(){
 
 Route::prefix('admin')->group(function(){
     Route::controller(AdminController::class)->group(function(){
-        Route::get('bank','bank')->name('admin.bank');
-        Route::get('beneficiaries','beneficiaries')->name('admin.beneficiaries');
+        Route::get('orders','orders')->name('admin.orders');
+        Route::get('clients','clients')->name('admin.clients');
         Route::get('dashboard','dashboard')->name('admin.dashboard');
-        Route::get('investment','investment')->name('admin.investment');
+        Route::get('payments','payments')->name('admin.payments');
         Route::get('notifications','notifications')->name('admin.notifications');
-        Route::get('orderdetail','orderdetail')->name('admin.orderdetail');
-        Route::get('products','products')->name('admin.products');
-        Route::get('profile','profile')->name('admin.profile');
+    });
+});
+
+Route::prefix('user')->group(function(){
+    Route::controller(UserController::class)->group(function(){
+        Route::get('bank','bank')->name('user.bank');
+        Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
+        Route::get('dashboard','dashboard')->name('user.dashboard');
+        Route::get('investment','investment')->name('user.investment');
+        Route::get('notifications','notifications')->name('user.notifications');
+        Route::get('orderdetail','orderdetail')->name('user.orderdetail');
+        Route::get('products','products')->name('user.products');
+        Route::get('profile','profile')->name('user.profile');
     });
 });
 

@@ -16,46 +16,30 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.products')}}" class="{{ request()->routeIs('admin.products') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                    <a href="{{route('admin.orders')}}" class="{{ request()->routeIs('admin.orders') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.products') ? asset('img/boxg.svg') : asset('img/box.svg') }}" alt="" class="sicon">
-                            Products
+                            <img src="{{ request()->routeIs('admin.orders') ? asset('img/boxg.svg') : asset('img/box.svg') }}" alt="" class="sicon">
+                            My Orders
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.investment')}}" class="{{ request()->routeIs('admin.investment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                    <a href="{{route('admin.clients')}}" class="{{ request()->routeIs('admin.clients') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.investment') ? asset('img/growg.svg') : asset('img/grow.svg') }}" alt="" class="sicon">
-                            Investment
+                            <img src="{{ request()->routeIs('admin.clients') ? asset('img/growg.svg') : asset('img/grow.svg') }}" alt="" class="sicon">
+                            My Clients
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.profile')}}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                    <a href="{{route('admin.payments')}}" class="{{ request()->routeIs('admin.payments') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.profile') ? asset('img/userg.svg') : asset('img/user.svg') }}" alt="" class="sicon">
-                            Profile
+                            <img src="{{ request()->routeIs('admin.payments') ? asset('img/userg.svg') : asset('img/user.svg') }}" alt="" class="sicon">
+                            Payments
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href="{{route('admin.bank')}}" class="{{ request()->routeIs('admin.bank') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
-                        <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.bank') ? asset('img/bankg.svg') : asset('img/bank.svg') }}" alt="" class="sicon">
-                            Bank Account
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('admin.beneficiaries')}}" class="{{ request()->routeIs('admin.beneficiaries') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
-                        <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.beneficiaries') ? asset('img/moneyg.svg') : asset('img/money.svg') }}" alt="" class="sicon">
-                            Beneficiaries
-                        </div>
-                    </a>
-                </li>
-
+            
             </ul>
         </div>
     </div>

@@ -83,6 +83,29 @@
     width: 50px;
     height: 50px;
 }
+.tbl-user {
+    max-width: 46px;
+    width: 100%;
+}
+.tbl-800 {
+    min-width: 900px;
+}
+.no-bg {
+    background: #f7e0e3;
+}
+.yes-bg {
+    background: #e2f4ec;
+}
+.status-btn {
+    width: 100px;
+}
+#preview {
+    max-width: 200px;
+    object-fit: cover;
+}
+.swal2-confirm.swal2-styled {
+    background: linear-gradient(to bottom, #00A343, #006526) !important;
+}
 @media screen and (max-width: 768px) {
     .back-img img {
         max-width: 221px;

@@ -3,20 +3,20 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Bank</title>
+    <title>Profile</title>
 </head>
 
 <body>
     <div class="section">
         <div class="maindiv">
-            @include('../Template.sidebar')
+            @include('../Template.usersidebar')
             <div class="rightmain">
-                @include('../Template.adminnav')
+                @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <form action="#">
                             <div class="row px-3 px-md-5">
-                                <h4>Bank Account</h4>
+                                <h4>Profile</h4>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Account Name</label>
@@ -31,14 +31,20 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="bic">BIC</label>
-                                        <input type="text" id="bic" class="form-control">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="currency">Currency of the account</label>
-                                        <input type="text" id="currency" class="form-control">
+                                        <label for="number">Phone Number</label>
+                                        <input type="tel" id="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-3">
+                                        <label for="contact">Dedicated Contact Number</label>
+                                        <input type="tel" id="contact" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
