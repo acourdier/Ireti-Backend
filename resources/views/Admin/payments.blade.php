@@ -20,11 +20,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="font-semi">Customer Name</th>
-                                            <th class="font-semi">Email</th>
+                                            <th class="font-semi">Name/Business</th>
+                                            <th class="font-semi">Date</th>
+                                            <th class="font-semi">Amount</th>
                                             <th class="font-semi">Status</th>
-                                            <th class="font-semi">Active Date</th>
-                                            <th class="font-semi">Spent</th>
                                             <th class="font-semi">Action</th>
                                         </tr>
                                     </thead>
@@ -32,64 +31,31 @@
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('img/user.png') }}" alt=""
-                                                        class="me-2 rounded-3 tbl-user">
-                                                    <span>Eddie Rivera</span>
+                                                    <img src="{{ asset('img/finance.png') }}" alt="finance"
+                                                    class="me-2 rounded-3 ">
+                                                    <span>Financial Capital</span>
                                                 </div>
                                             </td>
-                                            <td class="text-secondary align-middle">eddie.rivera@example.com</td>
-                                            <td class="text-secondary align-middle">Approved</td>
                                             <td class="text-secondary align-middle">July 20, 2023</td>
                                             <td class="text-secondary align-middle">$600.00</td>
-                                            <td class="text-secondary align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-eye text-secondary pointer"></i></a>
-                                                </div>
+                                            <td class="text-secondary align-middle">Approved</td>
+                                            <td class=" align-middle">
+                                                    <a href="#" class="lgreen px-3 rounded-2 py-2"><i class="fa-solid fa-ellipsis-vertical text-black"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('img/user.png') }}" alt=""
-                                                        class="me-2 rounded-3 tbl-user">
-                                                    <span>Eddie Rivera</span>
+                                                    <img src="{{ asset('img/finance.png') }}" alt="finance"
+                                                    class="me-2 rounded-3 ">
+                                                    <span>Financial Capital</span>
                                                 </div>
                                             </td>
-                                            <td class="text-secondary align-middle">eddie.rivera@example.com</td>
-                                            <td class="text-secondary align-middle">Approved</td>
                                             <td class="text-secondary align-middle">July 20, 2023</td>
                                             <td class="text-secondary align-middle">$600.00</td>
-                                            <td class="text-secondary align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-eye text-secondary pointer"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('img/user.png') }}" alt=""
-                                                        class="me-2 rounded-3 tbl-user">
-                                                    <span>Eddie Rivera</span>
-                                                </div>
-                                            </td>
-                                            <td class="text-secondary align-middle">eddie.rivera@example.com</td>
                                             <td class="text-secondary align-middle">Approved</td>
-                                            <td class="text-secondary align-middle">July 20, 2023</td>
-                                            <td class="text-secondary align-middle">$600.00</td>
-                                            <td class="text-secondary align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                    <a href="#"><i
-                                                            class="fa-solid fa-eye text-secondary pointer"></i></a>
-                                                </div>
+                                            <td class=" align-middle">
+                                                    <a href="#" class="lgreen px-3 rounded-2 py-2"><i class="fa-solid fa-ellipsis-vertical text-black"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -9,7 +9,7 @@
             <ul>
                 <li>
                     <a href="{{route('admin.dashboard')}}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
-                        <div class="d-flex align-iten-center ms-2 ">
+                        <div class="d-flex align-items-center ms-2 ">
                             <img src="{{ request()->routeIs('admin.dashboard') ? asset('img/gridg.svg') : asset('img/grid.svg') }}" alt="" class="sicon">
                             <p class="mb-0 ">Dashboard</p>
                         </div>
@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <a href="{{route('admin.orders')}}" class="{{ request()->routeIs('admin.orders') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
-                        <div class="d-flex align-iten-center ms-2">
+                        <div class="d-flex align-items-center ms-2">
                             <img src="{{ request()->routeIs('admin.orders') ? asset('img/boxg.svg') : asset('img/box.svg') }}" alt="" class="sicon">
                             My Orders
                         </div>
@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <a href="{{route('admin.clients')}}" class="{{ request()->routeIs('admin.clients') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
-                        <div class="d-flex align-iten-center ms-2">
+                        <div class="d-flex align-items-center ms-2">
                             <img src="{{ request()->routeIs('admin.clients') ? asset('img/growg.svg') : asset('img/grow.svg') }}" alt="" class="sicon">
                             My Clients
                         </div>
@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <a href="{{route('admin.payments')}}" class="{{ request()->routeIs('admin.payments') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
-                        <div class="d-flex align-iten-center ms-2">
+                        <div class="d-flex align-items-center ms-2">
                             <img src="{{ request()->routeIs('admin.payments') ? asset('img/userg.svg') : asset('img/user.svg') }}" alt="" class="sicon">
                             Payments
                         </div>
