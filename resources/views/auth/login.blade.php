@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-6 bg-white h-100">
-                    <form action="/Admin/dashboard.html" class="h-100">
+                    <form method="POST" action="{{ route('login') }}" class="h-100">
+                        @csrf
                         <div class="flex-log justify-content-center py-4 ">
                             <div class="row">
                                 <div class="mb-3 col-lg-8 mx-auto">
@@ -33,17 +34,25 @@
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4 rounded-pill d-flex gap-2">
                                         <label for=""><img src="{{asset('img/codicon_mail.svg')}}" alt="codicon_mail"></label>
-                                        <input type="email" name="" id="" class="py-0 border-0 focus-none"
-                                            placeholder="Email">
+                                        <input id="email" type="email" class="py-0 border-0 w-100 focus-none @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     </div>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-lg-8 mx-auto">
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4  rounded-pill d-flex gap-2">
                                         <label for=""><img src="{{asset('img/bx_bxs-lock-alt.svg')}}" alt="bx_bxs"></label>
-                                        <input type="password" name="" id="" class="py-0 border-0 focus-none"
-                                            placeholder="Password">
+                                        <input id="password" type="password" class="py-0 border-0 w-100 focus-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                     </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-lg-8 mx-auto">
                                     <div>
@@ -59,7 +68,6 @@
             </div>
         </div>
     </section>
-    @include('Template.footer')
     @include('Template.jslinks')
 </body>
 
