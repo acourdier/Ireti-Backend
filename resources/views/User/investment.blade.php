@@ -28,8 +28,8 @@
                                         <label for="name">Fund type</label>
                                         <select name="opn" id="name" class="form-control">
                                             <option value="opt" selected disabled>Select Fund type</option>
-                                            <option value="option1">option1</option>
-                                            <option value="option2">option2</option>
+                                            <option value="Listed Funds">Listed Funds</option>
+                                            <option value="Non Listed Fund">Non Listed Fund</option>
                                         </select>
                                     </div>
                                 </div>
@@ -38,8 +38,9 @@
                                         <label for="yield">Target yield</label>
                                         <select name="opn" id="yield" class="form-control">
                                             <option value="opt" selected disabled>Select Target yield</option>
-                                            <option value="option1">option1</option>
-                                            <option value="option2">option2</option>
+                                            <option value="0-5%">0-5%</option>
+                                            <option value="5-10%">5-10%</option>
+                                            <option value="10%+">10%+</option>
                                         </select>
                                     </div>
                                 </div>
