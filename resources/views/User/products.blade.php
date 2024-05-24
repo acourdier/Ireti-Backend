@@ -67,9 +67,12 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="Option1">Option 1</option>
-                                                    <option value="Option2">Option 2</option>
-                                                    <option value="Option3">Option 3</option>
+                                                    <option value="Clinker">Clinker</option>
+                                                    <option value="Cocoa">Cocoa</option>
+                                                    <option value="Coffee">Coffee</option>
+                                                    <option value="Cotton">Cotton</option>
+                                                    <option value="Used Cooking Oil">Used Cooking Oil</option>
+                                                    <option value="Wheat">Wheat</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -99,8 +102,12 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="unit">Unit of Measure</label>
-                                                <input type="text" id="unit" class="form-control">
+                                                <label for="unit">Unit of Measurement</label>
+                                                <select name="unit" id="unit" class="form-control">
+                                                    <option value="Gram">Gram</option>
+                                                    <option value="Kg">Kg</option>
+                                                    <option value="Ton">Ton</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -127,12 +134,8 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="underlying">Select underlying commodity</label>
-                                                <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="Option1">Option 1</option>
-                                                    <option value="Option2">Option 2</option>
-                                                    <option value="Option3">Option 3</option>
-                                                </select>
+                                                <label for="product">Product</label>
+                                                <input type="text" id="product" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -161,7 +164,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="unit">Unit of Measure</label>
+                                                <label for="unit">Unit of Measurement</label>
                                                 <input type="text" id="unit" class="form-control">
                                             </div>
                                         </div>
