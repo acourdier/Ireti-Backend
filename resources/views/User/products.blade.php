@@ -9,9 +9,9 @@
 <body>
     <div class="section">
         <div class="maindiv">
-            @include('../Template.sidebar')
+            @include('../Template.usersidebar')
             <div class="rightmain">
-                @include('../Template.adminnav')
+                @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
                         <form action="orderdetail.html">

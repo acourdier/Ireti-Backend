@@ -52,7 +52,6 @@
                                             id="">
                                     </div>
                                 </div>
-                                <p class="mt-2 text-center">Forgot Password</p>
                             </div>
                         </div>
                     </form>
