@@ -26,6 +26,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('dashboard','dashboard')->name('admin.dashboard');
             Route::get('payments','payments')->name('admin.payments');
             Route::get('notifications','notifications')->name('admin.notifications');
+            Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
         });
     });
 });

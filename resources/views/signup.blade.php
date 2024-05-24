@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="cpass" class="font-medium fs-5">Confirm Password:</label>
-                        <input type="password" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
+                        <input type="password" name="password_confirmation" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
                             id="cpass">
                     </div>
                     <div class="col-md-6 my-2">
