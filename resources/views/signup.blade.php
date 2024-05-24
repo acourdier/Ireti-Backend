@@ -11,8 +11,13 @@
     <section class="py-4">
         <div class="mycontainer">
             <h1 class="display-5 font-bold text-center">Sign Up</h1>
-            <form action="onlineInquiry.html">
+            <form action="{{route('createuser')}}" method="POST">
+                @csrf
                 <div class="row justify-content-center">
+                    <div class="col-12 my-2">
+                        <label for="role" class="font-medium fs-5">Role:</label>
+                        <input type="number" value="1" readonly name="role" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="role">
+                    </div>
                     <div class="col-12 my-2">
                         <label for="fname" class="font-medium fs-5">Full Name:</label>
                         <input type="text" name="fname" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="fname">

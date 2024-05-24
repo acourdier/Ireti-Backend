@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('city');
+            $table->integer('role');
             $table->string('country');
             $table->rememberToken();
             $table->timestamps();

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -32,5 +32,13 @@ class WebController extends Controller
     }
     public function signup(){
         return view('signup');
+    }
+    public function createuser(Request $Request){
+        $Request->validate([
+            '*'=>'required'
+        ]);
+        $user = $Request->all();
+        User::create($user);
+        return redirect()->route('login');
     }
 }
