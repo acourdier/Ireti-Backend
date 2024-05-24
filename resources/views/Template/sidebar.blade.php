@@ -47,11 +47,16 @@
         </div>
     </div>
     <div class="lgout">
-        <a href="{{ route('login') }}" class="text-decoration-none d-block lnk text-black">
+        <a hhref="{{ route('logout') }}" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();"
+            class="text-decoration-none d-block lnk text-black">
             <div class="log">
-                <img src="{{ asset('img/logout.svg') }}" alt="logout" class="sicon">
+                <img src="{{asset('img/logout.svg')}}" alt="logout" class="sicon">
                 Logout
             </div>
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </div>
 </div>
