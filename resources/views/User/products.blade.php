@@ -134,8 +134,14 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="product">Product</label>
-                                                <input type="text" id="product" class="form-control">
+                                                <select name="underlying" id="underlying" class="form-control">
+                                                    <option value="Fuel">Fuel</option>
+                                                    <option value="Fuel Oil">Fuel Oil</option>
+                                                    <option value="LPG">LPG</option>
+                                                    <option value="Lubricants">Lubricants</option>
+                                                    <option value="Gasoline">Gasoline</option>
+                                                    <option value="Kerosene">Kerosene</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
