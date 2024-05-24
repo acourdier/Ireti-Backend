@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,7 +10,13 @@ class AdminController extends Controller
         return view('Admin.orders');
     }
     public function clients(){
-        return view('Admin.clients');
+        $data = User::where('role', 1)->orderBy('id', 'desc')->get();
+        return view('Admin.clients', ['users' => $data]);
+    }
+    public function Deleteuser($id){
+        $data =User::find($id);
+        $data->delete();
+        return redirect()->route('admin.clients');
     }
     public function dashboard(){
         return view('Admin.dashboard');
