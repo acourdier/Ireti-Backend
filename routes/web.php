@@ -35,6 +35,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::prefix('user')->group(function(){
         Route::controller(UserController::class)->group(function(){
             Route::get('bank','bank')->name('user.bank');
+            Route::post('addbank','addbank')->name('user.addbank');
             Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
             Route::get('dashboard','dashboard')->name('user.dashboard');
             Route::get('investment','investment')->name('user.investment');

@@ -14,31 +14,33 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid">
-                        <form action="#">
+                        <form action="{{route('user.addbank')}}" method="POST">
+                            @csrf
+                            
                             <div class="row px-3 px-md-5">
                                 <h4>Bank Account</h4>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Account Name</label>
-                                        <input type="text" id="name" class="form-control">
+                                        <input type="text" value="{{$account['accountname']}}" name="accountname" id="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="account">Account Number</label>
-                                        <input type="text" id="account" class="form-control">
+                                        <input type="text" value="{{ $account ['accountnumber'] }}" name="accountnumber" id="account" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="bic">BIC</label>
-                                        <input type="text" id="bic" class="form-control">
+                                        <input type="text" value="{{ $account ['bic'] }}" name="bic" id="bic" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <input type="text" id="currency" class="form-control">
+                                        <input type="text" value="{{ $account ['currency'] }}" name="currency" id="currency" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
