@@ -68,4 +68,18 @@ class UserController extends Controller
         $profile = User::where('id', $userId)->first();
         return view('User.profile', ['profile' => $profile]);
     }
+    public function updateprofile(Request $request){
+        $user = auth()->user();    
+        if ($user instanceof User) {
+            $validatedData = $request->validate([
+                '*' => 'required'
+            ]);
+            $user->update($validatedData);
+            return redirect()->route('user.profile');
+        }
+    }
+
+
+    
+    
 }

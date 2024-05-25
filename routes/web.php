@@ -44,6 +44,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::get('products','products')->name('user.products');
             Route::get('profile','profile')->name('user.profile');
+            Route::post('updateprofile','updateprofile')->name('user.updateprofile');
+
         });
     });
 });

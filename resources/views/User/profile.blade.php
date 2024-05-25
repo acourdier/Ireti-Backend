@@ -14,7 +14,8 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid">
-                        <form action="#">
+                        <form action="{{route('user.updateprofile')}}" method="POST">
+                            @csrf
                             <div class="row px-3 px-md-5">
                                 <h4>Profile</h4>
                                 <div class="col-12 my-2 d-none">
