@@ -40,6 +40,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('dashboard','dashboard')->name('user.dashboard');
             Route::get('investment','investment')->name('user.investment');
             Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');
+            Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('admin.Deleteinvestment');
             Route::post('createinvestment','createinvestment')->name('user.createinvestment');
             Route::get('notifications','notifications')->name('user.notifications');
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');

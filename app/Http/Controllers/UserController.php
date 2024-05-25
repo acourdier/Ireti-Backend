@@ -38,7 +38,11 @@ class UserController extends Controller
         Investment:: create($investment);
         return redirect()->route('user.investment');
     }
-
+    public function Deleteinvestment($id){
+        $data =Investment::find($id);
+        $data->delete();
+        return redirect()->route('user.investment');
+    }
 
     public function profile(){
         $userId = auth()->id();

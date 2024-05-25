@@ -42,7 +42,7 @@
                                             <td class="text-secondary align-middle">{{$investment['currency']}}</td>
                                             <td class="text-secondary align-middle">
                                                 <div class="d-flex align-items-center">
-                                                    <a href="#"><i
+                                                    <a href="{{ 'Deleteinvestment/' . $investment['id'] }}"><i
                                                             class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
                                                 </div>
                                             </td>
