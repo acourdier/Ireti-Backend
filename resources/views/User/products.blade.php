@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
                         <h4>Products</h4>
-                        <div class="col-12">
+                        <div class="col-12 px-3 px-md-5">
                             <div class="mt-3">
                                 <label for="selectOption">Fund type</label>
                                 <select id="selectOption" class="form-control">
@@ -27,7 +27,11 @@
                         </div>
                         <form action="orderdetail.html" id="OrderForm">
                             <div class="row px-3 px-md-5">
-                                <input type="text" name="selectOption" id="OrderType" value="fx" class="d-none">  
+                                <div class="col-12">
+                                    <div class="mt-3">
+                                        <input type="text" name="selectOption" id="OrderType" value="fx" class="form-control">  
+                                    </div>
+                                </div>
                                 <div id="fx" class="product-fields">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -237,7 +241,6 @@
                 field.style.display = 'none';
             });
             var selectedOption = selectOption.value;
-            // alert(selectedOption)
             document.getElementById('OrderType').value = selectedOption;
             var selectedProductField = document.getElementById(selectedOption);
             if (selectedProductField) {
