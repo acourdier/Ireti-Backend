@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Investment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,6 +17,16 @@ class UserController extends Controller
     }
     public function investment(){
         return view('User.investment');
+    }
+    public function createinvestment(Request $Request){
+        $Request->validate([
+            '*'=>'required'
+        ]);
+        $investment = $Request->all();
+        $userId = auth()->id();
+        $investment['userid'] = $userId;
+        Investment:: create($investment);
+        return redirect()->route('user.investment');
     }
     public function notifications(){
         return view('User.notifications');

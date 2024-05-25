@@ -14,7 +14,8 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
-                        <form action="#">
+                        <form action="{{route('user.createinvestment')}}" method="POST">
+                            @csrf
                             <div class="row px-3 px-md-5">
                                 <h4>Alternative Investment</h4>
                                 <div class="col-12">
@@ -26,7 +27,7 @@
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Fund type</label>
-                                        <select name="opn" id="name" class="form-control">
+                                        <select name="fund" id="name" class="form-control">
                                             <option value="opt" selected disabled>Select Fund type</option>
                                             <option value="Listed Funds">Listed Funds</option>
                                             <option value="Non Listed Fund">Non Listed Fund</option>
@@ -36,7 +37,7 @@
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="yield">Target yield</label>
-                                        <select name="opn" id="yield" class="form-control">
+                                        <select name="yeild" id="yield" class="form-control">
                                             <option value="opt" selected disabled>Select Target yield</option>
                                             <option value="0-5%">0-5%</option>
                                             <option value="5-10%">5-10%</option>
@@ -47,26 +48,26 @@
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="exposure">Geographical exposure</label>
-                                        <input type="text" id="exposure" class="form-control">
+                                        <input type="text" name="geographical" id="exposure" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Amount wish to invest (in USD)</label>
-                                        <input type="text" id="currency" class="form-control">
+                                        <input type="text" name="currency" id="currency" class="form-control">
                                     </div>
                                 </div>
                                 <h5 class="mt-3">Book Call Meeting</h5>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="Date">Date</label>
-                                        <input type="date" id="Date" class="form-control">
+                                        <input type="date" name="date" id="Date" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="Time">Time</label>
-                                        <input type="time" id="Time" class="form-control">
+                                        <input type="time" name="time" id="Time" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
