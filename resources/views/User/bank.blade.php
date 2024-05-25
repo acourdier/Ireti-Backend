@@ -22,25 +22,25 @@
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Account Name</label>
-                                        <input type="text" value="{{$account['accountname']}}" name="accountname" id="name" class="form-control">
+                                        <input type="text" value="{{$account->accountname ?? ''}}" name="accountname" id="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="account">Account Number</label>
-                                        <input type="text" value="{{ $account ['accountnumber'] }}" name="accountnumber" id="account" class="form-control">
+                                        <input type="text" value="{{ $account->accountnumber ?? '' }}" name="accountnumber" id="account" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="bic">BIC</label>
-                                        <input type="text" value="{{ $account ['bic'] }}" name="bic" id="bic" class="form-control">
+                                        <input type="text" value="{{ $account->bic ?? '' }}" name="bic" id="bic" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <input type="text" value="{{ $account ['currency'] }}" name="currency" id="currency" class="form-control">
+                                        <input type="text" value="{{ $account->currency ?? '' }}" name="currency" id="currency" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">

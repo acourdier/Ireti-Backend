@@ -10,6 +10,9 @@ class UserController extends Controller
     public function bank(){
         $userId = auth()->id();
         $account = BankAccount::where('userid', $userId)->first();
+        if (is_null($account)) {
+            return view('User.bank'); 
+        }
         return view('User.bank', ['account' => $account]);
     }
     
