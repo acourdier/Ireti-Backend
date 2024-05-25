@@ -35,13 +35,18 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::prefix('user')->group(function(){
         Route::controller(UserController::class)->group(function(){
             Route::get('bank','bank')->name('user.bank');
+            Route::post('addbank','addbank')->name('user.addbank');
             Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
             Route::get('dashboard','dashboard')->name('user.dashboard');
             Route::get('investment','investment')->name('user.investment');
+            Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');
+            Route::post('createinvestment','createinvestment')->name('user.createinvestment');
             Route::get('notifications','notifications')->name('user.notifications');
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::get('products','products')->name('user.products');
             Route::get('profile','profile')->name('user.profile');
+            Route::post('updateprofile','updateprofile')->name('user.updateprofile');
+
         });
     });
 });

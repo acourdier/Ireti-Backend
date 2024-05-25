@@ -29,9 +29,9 @@
                 </li>
                 <li>
                     <a href="{{route('user.investment')}}"
-                        class="{{ request()->routeIs('user.investment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        class="{{ request()->routeIs('user.investment' ,'user.makeinvestment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('user.investment') ? asset('img/growg.svg') : asset('img/grow.svg') }}"
+                            <img src="{{ request()->routeIs('user.investment' ,'user.makeinvestment') ? asset('img/growg.svg') : asset('img/grow.svg') }}"
                                 alt="" class="sicon">
                             Investment
                         </div>

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'country',
     ];
 
+    
     /**
      * The attributes that should be hidden for serialization.
      *
