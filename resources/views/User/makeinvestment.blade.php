@@ -54,7 +54,7 @@
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Amount wish to invest (in USD)</label>
-                                        <input type="text" name="currency" id="currency" class="form-control">
+                                        <input type="number" name="currency" id="currency" class="form-control">
                                     </div>
                                 </div>
                                 <h5 class="mt-3">Book Call Meeting</h5>
