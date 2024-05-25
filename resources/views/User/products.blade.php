@@ -25,7 +25,8 @@
                                 </select>
                             </div>
                         </div>
-                        <form action="orderdetail.html" id="OrderForm">
+                        <form action="{{route('user.submitorder')}}" method="POST" id="OrderForm">
+                            @csrf
                             <div class="row px-3 px-md-5">
                                 <div class="col-12">
                                     <div class="mt-3">
@@ -43,7 +44,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="text" name="amountb" id="amountb" class="form-control">
+                                                <input type="number" name="amountb" id="amountb" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -55,13 +56,13 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="text" name="amountts" id="amounts" class="form-control">
+                                                <input type="number" name="amountts" id="amounts" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="text" name="targetp" id="targetp" class="form-control">
+                                                <input type="number" name="targetp" id="targetp" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -72,6 +73,7 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Clinker">Clinker</option>
                                                     <option value="Cocoa">Cocoa</option>
                                                     <option value="Coffee">Coffee</option>
@@ -109,6 +111,7 @@
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
                                                 <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
                                                     <option value="Ton">Ton</option>
@@ -141,6 +144,7 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Fuel">Fuel</option>
                                                     <option value="Fuel Oil">Fuel Oil</option>
                                                     <option value="LPG">LPG</option>
@@ -178,6 +182,7 @@
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
                                                 <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
                                                     <option value="Ton">Ton</option>
