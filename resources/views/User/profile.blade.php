@@ -17,34 +17,50 @@
                         <form action="#">
                             <div class="row px-3 px-md-5">
                                 <h4>Profile</h4>
-                                <div class="col-12">
+                                <div class="col-12 my-2 d-none">
+                                    <label for="role" class="font-medium fs-5">Role:</label>
+                                    <input type="number" value="1" readonly name="role" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="role">
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mt-3">
-                                        <label for="name">Account Name</label>
-                                        <input type="text" id="name" class="form-control">
+                                        <label for="fname">Full Name</label>
+                                        <input type="text" name="fname" value="{{$profile['fname']}}" id="fname" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <div class="mt-3">
-                                        <label for="account">Account Number</label>
-                                        <input type="text" id="account" class="form-control">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" value="{{$profile['username']}}"  id="username" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="email">Email</label>
-                                        <input type="email" id="email" class="form-control">
+                                        <input type="email" name="email" value="{{$profile['email']}}" id="email" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-md-6">
                                     <div class="mt-3">
-                                        <label for="number">Phone Number</label>
-                                        <input type="tel" id="number" class="form-control">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" name="phone" value="{{$profile['phone']}}" id="phone" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <label for="city">City</label>
+                                        <input type="text" name="city" value="{{$profile['city']}}" id="city" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <label for="country">Country</label>
+                                        <input type="text" name="country" value="{{$profile['country']}}" id="country" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
-                                        <label for="contact">Dedicated Contact Number</label>
-                                        <input type="tel" id="contact" class="form-control">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" value="{{$profile['password']}}" id="password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">

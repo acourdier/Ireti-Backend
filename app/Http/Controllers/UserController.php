@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Investment;
 use App\Models\BankAccount;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,7 +17,6 @@ class UserController extends Controller
         return view('User.bank', ['account' => $account]);
     }
     
-
     public function addbank(Request $request) {
         $request->validate([
             '*' => 'required'
@@ -64,6 +64,8 @@ class UserController extends Controller
         return view('User.products');
     }
     public function profile(){
-        return view('User.profile');
+        $userId = auth()->id();
+        $profile = User::where('id', $userId)->first();
+        return view('User.profile', ['profile' => $profile]);
     }
 }
