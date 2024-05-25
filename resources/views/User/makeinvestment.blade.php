@@ -74,7 +74,7 @@
                                     <div class="mt-3 d-flex justify-content-end">
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Validate Order
+                                            Invest
                                         </button>
                                     </div>
                                 </div>
