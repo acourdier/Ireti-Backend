@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Investment</title>
+    <title>Make Investment</title>
 </head>
 
 <body>
@@ -13,73 +13,43 @@
             <div class="rightmain">
                 @include('../Template.usernav')
                 <div class="rightbottom">
-                    <div class="container-fluid pb-5">
-                        <form action="{{route('user.createinvestment')}}" method="POST">
-                            @csrf
-                            <div class="row px-3 px-md-5">
-                                <h4>Alternative Investment</h4>
-                                <div class="col-12">
-                                    <p class="mb-0 ftsize">Ireti Capital network can provide information and find attractive investment
-                                        opportunities that can match your needs. If you wish to diversify your portfolio
-                                        asset allocation, enhance your treasury optimization or be exposed to different
-                                        Geographical area, we could have the right solution with our partners.</p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3">
-                                        <label for="name">Fund type</label>
-                                        <select name="fund" id="name" class="form-control">
-                                            <option value="opt" selected disabled>Select Fund type</option>
-                                            <option value="Listed Funds">Listed Funds</option>
-                                            <option value="Non Listed Fund">Non Listed Fund</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3">
-                                        <label for="yield">Target yield</label>
-                                        <select name="yeild" id="yield" class="form-control">
-                                            <option value="opt" selected disabled>Select Target yield</option>
-                                            <option value="0-5%">0-5%</option>
-                                            <option value="5-10%">5-10%</option>
-                                            <option value="10%+">10%+</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="mt-3">
-                                        <label for="exposure">Geographical exposure</label>
-                                        <input type="text" name="geographical" id="exposure" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="mt-3">
-                                        <label for="currency">Amount wish to invest (in USD)</label>
-                                        <input type="text" name="currency" id="currency" class="form-control">
-                                    </div>
-                                </div>
-                                <h5 class="mt-3">Book Call Meeting</h5>
-                                <div class="col-sm-6">
-                                    <div class="mt-3">
-                                        <label for="Date">Date</label>
-                                        <input type="date" name="date" id="Date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="mt-3">
-                                        <label for="Time">Time</label>
-                                        <input type="time" name="time" id="Time" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit"
-                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Validate Order
-                                        </button>
-                                    </div>
-                                </div>
+                    <div class="container-fluid">
+                        <div class="row px-3 ">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="font-bold">My Investments</h4>
+                                <a href="{{route('user.makeinvestment')}}"
+                                    class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
+                                    Make Investment
+                                </a>
                             </div>
-                        </form>
+                            <div class="table-responsive tbl-800 mt-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-semi align-middle">Fund type</th>
+                                            <th class="font-semi align-middle">Target yield</th>
+                                            <th class="font-semi align-middle">Geographical Exposure</th>
+                                            <th class="font-semi align-middle">Amount</th>
+                                            <th class="font-semi align-middle">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-black align-middle">Listed Funds</td>
+                                            <td class="text-secondary align-middle">0-5%</td>
+                                            <td class="text-secondary align-middle">Geographical Exposure</td>
+                                            <td class="text-secondary align-middle">$4500</td>
+                                            <td class="text-secondary align-middle">
+                                                <div class="d-flex align-items-center">
+                                                    <a href="#"><i
+                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="ftr text-center">

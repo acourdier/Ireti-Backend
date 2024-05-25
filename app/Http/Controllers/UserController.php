@@ -44,6 +44,9 @@ class UserController extends Controller
     public function investment(){
         return view('User.investment');
     }
+    public function makeinvestment(){
+        return view('User.makeinvestment');
+    }
     public function createinvestment(Request $Request){
         $Request->validate([
             '*'=>'required'
