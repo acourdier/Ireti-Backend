@@ -29,7 +29,7 @@
                             <div class="row px-3 px-md-5">
                                 <div class="col-12">
                                     <div class="mt-3">
-                                        <input type="text" name="selectOption" id="OrderType" value="fx" class="form-control">  
+                                        <input type="text" readonly name="FundType" id="OrderType" value="fx" class="form-control">  
                                     </div>
                                 </div>
                                 <div id="fx" class="product-fields">
@@ -96,7 +96,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="cell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -165,7 +165,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="cell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
