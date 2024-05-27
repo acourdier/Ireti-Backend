@@ -1,13 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function orders(){
-        return view('Admin.orders');
+        
+        $data =Order::leftjoin('users','orders.userid','=','users.id')
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->get();
+
+
+        // $data = Order::orderBy('id', 'desc')->get();
+        return view('Admin.orders', ['orders' => $data]);
     }
     public function clients(){
         $data = User::where('role', 1)->orderBy('id', 'desc')->get();
