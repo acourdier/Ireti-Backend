@@ -1,7 +1,7 @@
 <div class="leftmain bg-white">
     <div>
         <div class="logo">
-            <a href="{{route('admin.dashboard')}}">
+            <a href="{{route('user.dashboard')}}">
                 <img src="{{asset('img/logo.svg')}}" alt="logo" class="w-100">
             </a>
         </div>
@@ -59,9 +59,9 @@
                 </li>
                 <li>
                     <a href="{{route('user.beneficiaries')}}"
-                        class="{{ request()->routeIs('user.beneficiaries') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        class="{{ request()->routeIs('user.beneficiaries', 'user.addbeneficiaries') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('user.beneficiaries') ? asset('img/moneyg.svg') : asset('img/money.svg') }}"
+                            <img src="{{ request()->routeIs('user.beneficiaries', 'user.addbeneficiaries') ? asset('img/moneyg.svg') : asset('img/money.svg') }}"
                                 alt="" class="sicon">
                             Beneficiaries
                         </div>

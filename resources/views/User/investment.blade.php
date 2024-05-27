@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
                                 <h4 class="font-bold">My Investments</h4>
                                 <a href="{{route('user.makeinvestment')}}"
                                     class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">

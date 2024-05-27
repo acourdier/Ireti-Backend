@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Investment;
 use App\Models\BankAccount;
+use App\Models\Beneficiaries;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class UserController extends Controller
 
 
     public function investment(){
-        $data = Investment::orderBy('id', 'desc')->get();
+        $userId = auth()->id();
+        $data = Investment::where('userid', $userId)->orderBy('id', 'desc')->get();
         return view('User.investment', ['investments' => $data]);
     }
     public function makeinvestment(){
@@ -99,9 +101,23 @@ class UserController extends Controller
 
     
     public function beneficiaries(){
-        return view('User.beneficiaries');
+        $userId = auth()->id();
+        $beneficiaries = Beneficiaries::where('userid', $userId)->get();
+        return view('User.beneficiaries', ['beneficiaries' => $beneficiaries]);
     }
-    
+    public function addbeneficiaries(){
+        return view('User.addbeneficiaries');
+    }
+    public function createbeneficiaries(Request $Request){
+        $Request->validate([
+            '*'=>'required'
+        ]);
+        $beneficiaries = $Request->all();
+        $userId = auth()->id();
+        $beneficiaries['userid'] = $userId;
+        Beneficiaries:: create($beneficiaries);
+        return redirect()->route('user.beneficiaries');
+    }
 
     public function notifications(){
         return view('User.notifications');
