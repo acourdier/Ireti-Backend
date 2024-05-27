@@ -36,14 +36,15 @@
                                             <td>{{$investment['fund']}}</td>
                                             <td>{{$investment['yeild']}}</td>
                                             <td>{{$investment['geographical']}}</td>
-                                            <td>{{$investment['currency']}}</td>
+                                            <td>{{$investment['amount']}}</td>
                                             <td>
-                                                <button class="{{ $investment['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
-                                                    {{$investment['filled']}}
+                                                <button
+                                                    class="{{ $investment['status'] === 'Pending' ? 'btnyellow' : ($investment['status'] === 'Accepted' ? 'btngreen' : 'btnred') }}">
+                                                    {{$investment['status']}}
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="">
+                                                <a href="{{ 'editinvestment/' . $investment['id'] }}">
                                                     <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                 </a>
                                             </td>

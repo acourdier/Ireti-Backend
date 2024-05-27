@@ -37,6 +37,21 @@ class AdminController extends Controller
         ->orderBy('id', 'desc')->get();
         return view('Admin.investment', ['investments' => $data]);
     }
+    public function editinvestment($id){
+        $data['investment'] =Investment::find($id);
+        return view('Admin.editinvestment',$data);
+    }
+    public function updateinvestment(Request $request){
+        $request->validate([
+        'status' => 'required',
+        ]);
+        $order = Investment::find($request->id);
+    
+        if ($order) {
+            $order->update(['status' => $request->status]);
+        }
+        return redirect()->route('admin.investment');
+    }
 
     public function clients(){
         $data = User::where('role', 1)->orderBy('id', 'desc')->get();
