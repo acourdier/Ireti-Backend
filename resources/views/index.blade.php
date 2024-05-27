@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-bold fs-2 green-text">Liquidity provider</h2>
-                    <p>Experience the next level of trading with Ireti Capital's bespoke liquidity solutions. We bring liquidity to the forefront, ensuring you have the tools and resources needed to thrive in the ever-evolving Commodities and foreign exchange markets.</p>
+                    <p>Experience the next level of trading with Ireti Capital's bespoke liquidity solutions. We bring liquidity to the forefront, ensuring you have the tools and resources needed to thrive in the ever-evolving commodities and foreign exchange markets.</p>
                     <div class="mt-4">
                         <a href="{{route('liquidityProvider')}}" class="green-bg text-white  text-decoration-none me-3 px-4 py-3 rounded-3 opacity-hover font-bold fs-6">Learn More</a>
                     </div>

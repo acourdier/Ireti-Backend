@@ -61,7 +61,7 @@
                         <div class="approach-model rounded-circle">
                             <img src="{{asset('img/approcach4.svg')}}" alt="approach1" class="img-fluid cirimg">
                         </div>
-                        <h3 class="fs-4 mt-3 green-text font-semi">Expertise</h3>
+                        <h3 class="fs-4 mt-3 green-text font-semi">Sourcing</h3>
                         <p class="text-center">
                             Thanks to an audit of our clients' situation and needs
                         </p>

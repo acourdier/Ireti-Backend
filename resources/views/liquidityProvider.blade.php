@@ -15,7 +15,7 @@
                     <h1 class="font-bold text-black  display-4 text-center" data-aos="fade-right" data-aos-delay="300">Liquidity Provider</h1>
                     <p class=" text-center text-center mt-3 fs-5" data-aos="fade-up" data-aos-delay="500">As a liquidity in both Commodity and Forex markets, Ireti
                         Capital plays a pivotal role in enhancing overall market functionality of Emerging Markets. Our
-                        commitments to enhance to transparency and reliability contributes to a more stable environment,
+                        commitments to enhance transparency and reliability contributes to a more stable environment,
                         encouraging active participation and promoting fair market conditions
                     </p>
                 </div>
