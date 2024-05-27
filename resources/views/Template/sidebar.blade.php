@@ -26,6 +26,16 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('admin.investment')}}"
+                        class="{{ request()->routeIs('admin.investment' ,'admin.makeinvestment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        <div class="d-flex align-iten-center ms-2">
+                            <img src="{{ request()->routeIs('admin.investment' ,'admin.makeinvestment') ? asset('img/growg.svg') : asset('img/grow.svg') }}"
+                                alt="" class="sicon">
+                            Investment
+                        </div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.clients') }}"
                         class="{{ request()->routeIs('admin.clients') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-items-center ms-2">

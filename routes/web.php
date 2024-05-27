@@ -25,6 +25,10 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('editorders/{id}','editorders')->name('admin.editorders');
             Route::post('updateorder','updateorder')->name('admin.updateorder');
 
+            Route::get('investment','investment')->name('admin.investment');
+            Route::get('editinvestment/{id}','editinvestment')->name('admin.editinvestment');
+            Route::post('updateinvestment','updateinvestment')->name('admin.updateinvestment');
+
             Route::get('clients','clients')->name('admin.clients');
             Route::get('dashboard','dashboard')->name('admin.dashboard');
             Route::get('payments','payments')->name('admin.payments');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Investment;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,6 +29,13 @@ class AdminController extends Controller
             $order->update(['filled' => $request->filled]);
         }
         return redirect()->route('admin.orders');
+    }
+
+    public function investment(){
+        $data =Investment::leftjoin('users','investments.userid','=','users.id')
+        ->select('users.fname','investments.*')
+        ->orderBy('id', 'desc')->get();
+        return view('Admin.investment', ['investments' => $data]);
     }
 
     public function clients(){
