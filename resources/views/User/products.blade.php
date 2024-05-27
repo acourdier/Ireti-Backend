@@ -19,7 +19,7 @@
                             <div class="mt-3">
                                 <label for="selectOption">Fund type</label>
                                 <select id="selectOption" class="form-control">
-                                    <option value="fx">FX</option>
+                                    <option value="FX">FX</option>
                                     <option value="commodities">Soft Commodities</option>
                                     <option value="oil">Oil and oil Derivatives</option>
                                 </select>
@@ -28,12 +28,12 @@
 
                         <div class="row px-3 px-md-5">
                      
-                            <div id="fx" class="product-fields">
+                            <div id="FX" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <input type="text" readonly name="FundType" id="OrderType" value="fx"
+                                            <input type="text" readonly name="FundType" id="OrderType" value="FX"
                                                 class="form-control d-none">
                                         </div>
                                     </div>
@@ -303,11 +303,11 @@
         var selectOption = document.getElementById('selectOption');
         var productFields = document.querySelectorAll('.product-fields');
         productFields.forEach(function(field) {
-            if (field.id !== 'fx') {
+            if (field.id !== 'FX') {
                 field.style.display = 'none';
             }
         });
-        var selectedProductField = document.getElementById('fx');
+        var selectedProductField = document.getElementById('FX');
         if (selectedProductField) {
             selectedProductField.style.display = 'block';
         }

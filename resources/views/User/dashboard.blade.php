@@ -67,33 +67,29 @@
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th>Buy</th>
-                                                <th>Sell</th>
-                                                <th>Order Date</th>
-                                                <th>Executed Date</th>
                                                 <th>Price Target</th>
+                                                <th>Order Date</th>
                                                 <th>Filled</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($orders as $order)                                                
                                             <tr class="align-middle">
                                                 <td>
                                                     <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
+                                                        <p class="mb-0 font-semi">{{$order['FundType']}}</p>
+                                                        <p class="mb-0">{{$order['underlying']}}</p>
                                                     </div>
                                                 </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
+                                                <td>{{$order['targetp']}}</td>
+                                                <td>{{$order['created_at']}}</td>
                                                 <td>
                                                     <button class="btnred">
-                                                        No
+                                                        {{$order['filled']}}
                                                     </button>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
