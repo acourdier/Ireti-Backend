@@ -94,42 +94,6 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
-                                                    </div>
-                                                </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
-                                                <td>
-                                                    <button class="btngreen">
-                                                        Yes
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
-                                                    </div>
-                                                </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
-                                                <td>
-                                                    <button class="btngreen">
-                                                        Yes
-                                                    </button>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

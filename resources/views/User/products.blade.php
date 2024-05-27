@@ -75,6 +75,11 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="mt-3 d-flex justify-content-end">
                                             <button type="submit"
                                                 class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
@@ -149,8 +154,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" required name="targetpu" id="targetpu"
+                                                <label for="targetp">Price Target per Unit</label>
+                                                <input type="text" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -166,6 +171,11 @@
                                                 <label for="details">Additional Details</label>
                                                 <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -242,8 +252,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" required name="targetpu" id="targetpu"
+                                                <label for="targetp">Price Target per Unit</label>
+                                                <input type="text" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -258,6 +268,11 @@
                                             <div class="mt-3">
                                                 <label for="details">Additional Details</label>
                                                 <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <input type="text" name="filled" value="No" id="" readonly class="d-none" >
                                             </div>
                                         </div>
                                         <div class="col-12">

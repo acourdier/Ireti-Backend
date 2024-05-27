@@ -22,7 +22,7 @@ class Order extends Model
         'buysell',
         'quantity',
         'unit',
-        'targetpu',
+        'filled',
         'Incoterm',
         'details'
     ];
