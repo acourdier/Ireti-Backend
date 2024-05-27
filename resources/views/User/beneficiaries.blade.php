@@ -25,7 +25,7 @@
                             <div class="col-md-8">
                                 <div class="mt-3">
                                     <label for="name">Bank Account Details</label>
-                                    <select name="opn" id="name" class="form-control">
+                                    <select name="opn" id="name" class="form-control" onchange="showDetails()">
                                         <option value="opt" selected disabled>Select by name</option>
                                         @foreach ($beneficiaries as $beneficiary)
                                         <option value="{{$beneficiary['accountname']}}">{{$beneficiary['accountname']}}
@@ -34,8 +34,10 @@
                                     </select>
                                 </div>
                             </div>
+
                             @foreach ($beneficiaries as $beneficiary)
-                            <div class="col-md-8 border-bottom border-2 py-5">
+                            <div class="col-md-8 border-bottom border-2 py-5 beneficiary-details"
+                                id="details-{{$beneficiary['accountname']}}">
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi small mb-0">Account name</p>
                                     <p class="mb-0 small">{{$beneficiary['accountname']}}</p>
@@ -64,6 +66,19 @@
         </div>
     </div>
     @include('../Template.jslinks')
+    <script>
+        function showDetails() {
+            var selectedValue = document.getElementById('name').value;
+            var beneficiaryDetails = document.querySelectorAll('.beneficiary-details');
+            beneficiaryDetails.forEach(function(element) {
+                if (selectedValue === 'opt' || selectedValue === element.id.split('-')[1]) {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
