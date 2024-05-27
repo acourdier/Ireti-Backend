@@ -83,7 +83,7 @@
                                 </div>
                                 <div>
                                     <label for="regNmber" class="form-label fw-bold mb-2">Registration #</label>
-                                    <input type="number" id="regNmber" class="form-control mb-3">
+                                    <input type="text" id="regNmber" class="form-control mb-3">
                                 </div>
                                 <div>
                                     <label for="regDate" class="form-label fw-bold mb-2">Date of Registration</label>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div>
                                     <label for="vat" class="form-label fw-bold mb-2">VAT / TIN ID</label>
-                                    <input type="number" id="vat" class="form-control mb-3">
+                                    <input type="text" id="vat" class="form-control mb-3">
                                 </div>
                                 <div>
                                     <label for="companylink" class="form-label fw-bold mb-2">Company Link in a Public
@@ -244,17 +244,17 @@
                                 <div>
                                     <label for="regAuthority" class="form-label fw-bold mb-2">Regulatory
                                         Authority</label>
-                                    <input type="number" id="regAuthority" class="form-control mb-3">
+                                    <input type="text" id="regAuthority" class="form-control mb-3">
                                 </div>
                                 <div>
                                     <label for="regAuthCountry" class="form-label fw-bold mb-2">Regulatory Authority
                                         Country</label>
-                                    <input type="number" id="regAuthCountry" class="form-control mb-3">
+                                    <input type="text" id="regAuthCountry" class="form-control mb-3">
                                 </div>
                                 <div>
                                     <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration
                                         #</label>
-                                    <input type="number" id="regAuthNmbr" class="form-control mb-3">
+                                    <input type="text" id="regAuthNmbr" class="form-control mb-3">
                                 </div>
                             </div>
                         </div>
