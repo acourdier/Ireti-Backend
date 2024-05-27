@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
                         <h4>Products</h4>
-                        <div class="col-12">
+                        <div class="col-12 px-3 px-md-5">
                             <div class="mt-3">
                                 <label for="selectOption">Fund type</label>
                                 <select id="selectOption" class="form-control">
@@ -25,9 +25,14 @@
                                 </select>
                             </div>
                         </div>
-                        <form action="orderdetail.html" id="OrderForm">
+                        <form action="{{route('user.submitorder')}}" method="POST" id="OrderForm">
+                            @csrf
                             <div class="row px-3 px-md-5">
-                                <input type="text" name="selectOption" id="OrderType" value="fx" class="d-none">  
+                                <div class="col-12">
+                                    <div class="mt-3">
+                                        <input type="text" readonly name="FundType" id="OrderType" value="fx" class="form-control">  
+                                    </div>
+                                </div>
                                 <div id="fx" class="product-fields">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -39,7 +44,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="text" name="amountb" id="amountb" class="form-control">
+                                                <input type="number" name="amountb" id="amountb" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -51,13 +56,13 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="text" name="amountts" id="amounts" class="form-control">
+                                                <input type="number" name="amountts" id="amounts" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="text" name="targetp" id="targetp" class="form-control">
+                                                <input type="number" name="targetp" id="targetp" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -68,6 +73,7 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Clinker">Clinker</option>
                                                     <option value="Cocoa">Cocoa</option>
                                                     <option value="Coffee">Coffee</option>
@@ -92,7 +98,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="cell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -105,6 +111,7 @@
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
                                                 <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
                                                     <option value="Ton">Ton</option>
@@ -137,6 +144,7 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Fuel">Fuel</option>
                                                     <option value="Fuel Oil">Fuel Oil</option>
                                                     <option value="LPG">LPG</option>
@@ -161,7 +169,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="cell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -174,6 +182,7 @@
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
                                                 <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
                                                     <option value="Ton">Ton</option>
@@ -237,7 +246,6 @@
                 field.style.display = 'none';
             });
             var selectedOption = selectOption.value;
-            // alert(selectedOption)
             document.getElementById('OrderType').value = selectedOption;
             var selectedProductField = document.getElementById(selectedOption);
             if (selectedProductField) {

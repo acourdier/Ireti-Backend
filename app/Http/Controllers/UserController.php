@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Investment;
 use App\Models\BankAccount;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,20 @@ class UserController extends Controller
     public function dashboard(){
         return view('User.dashboard');
     }
-
+    
     
     public function products(){
         return view('User.products');
+    }
+    public function submitorder(Request $Request){
+        $Request->validate([
+            'FundType'=>'required',
+        ]);
+        $order = $Request->all();
+        $userId = auth()->id();
+        $order['userid'] = $userId;
+        Order:: create($order);
+        return redirect()->route('user.products');
     }
     public function orderdetail(){
         return view('User.orderdetail');

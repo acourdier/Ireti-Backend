@@ -43,8 +43,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('admin.Deleteinvestment');
             Route::post('createinvestment','createinvestment')->name('user.createinvestment');
             Route::get('notifications','notifications')->name('user.notifications');
+
+
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::get('products','products')->name('user.products');
+            Route::post('submitorder','submitorder')->name('user.submitorder');
+
+
             Route::get('profile','profile')->name('user.profile');
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
 
