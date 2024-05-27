@@ -34,7 +34,8 @@ class UserController extends Controller
 
 
     public function investment(){
-        $data = Investment::orderBy('id', 'desc')->get();
+        $userId = auth()->id();
+        $data = Investment::where('userid', $userId)->orderBy('id', 'desc')->get();
         return view('User.investment', ['investments' => $data]);
     }
     public function makeinvestment(){
@@ -100,7 +101,9 @@ class UserController extends Controller
 
     
     public function beneficiaries(){
-        return view('User.beneficiaries');
+        $userId = auth()->id();
+        $beneficiaries = Beneficiaries::where('userid', $userId)->get();
+        return view('User.beneficiaries', ['beneficiaries' => $beneficiaries]);
     }
     public function addbeneficiaries(){
         return view('User.addbeneficiaries');

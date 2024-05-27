@@ -32,42 +32,26 @@
                                     </select>
                                 </div>
                             </div>
+                            @foreach ($beneficiaries as $beneficiary)
                             <div class="col-md-8 border-bottom border-2 py-5">
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi small mb-0">Account name</p>
-                                    <p class="mb-0 small">Acme Crop</p>
+                                    <p class="mb-0 small">{{$beneficiary['accountname']}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font small font-semi mb-0">Account number</p>
-                                    <p class="mb-0 small">2223330079595665</p>
+                                    <p class="mb-0 small">{{$beneficiary['accountnumber']}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi mb-0 small">BIC</p>
-                                    <p class="mb-0 small">RATNOVAAPIS</p>
+                                    <p class="mb-0 small">{{$beneficiary['bic']}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi small mb-0">Currency</p>
-                                    <p class="mb-0 small">US$</p>
+                                    <p class="mb-0 small">{{$beneficiary['currency']}}</p>
                                 </div>
                             </div>
-                            <div class="col-md-8 border-bottom border-2 py-5">
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi small mb-0">Account name</p>
-                                    <p class="mb-0 small">Acme Crop</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font small font-semi mb-0">Account number</p>
-                                    <p class="mb-0 small">2223330079595665</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">BIC</p>
-                                    <p class="mb-0 small">RATNOVAAPIS</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi small mb-0">Currency</p>
-                                    <p class="mb-0 small">US$</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
