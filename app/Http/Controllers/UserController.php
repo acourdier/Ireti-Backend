@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function dashboard(){
-        return view('User.dashboard');
+        $userId = auth()->id();
+        $data = Order::where('userid', $userId)->orderBy('id', 'desc')->get();
+        return view('User.dashboard', ['orders' => $data]);
     }
     
     

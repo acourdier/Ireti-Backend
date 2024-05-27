@@ -22,6 +22,9 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::prefix('admin')->group(function(){
         Route::controller(AdminController::class)->group(function(){
             Route::get('orders','orders')->name('admin.orders');
+            Route::get('editorders/{id}','editorders')->name('admin.editorders');
+            Route::post('updateorder','updateorder')->name('admin.updateorder');
+
             Route::get('clients','clients')->name('admin.clients');
             Route::get('dashboard','dashboard')->name('admin.dashboard');
             Route::get('payments','payments')->name('admin.payments');

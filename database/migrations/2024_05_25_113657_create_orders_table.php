@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('buysell')->nullable();
             $table->string('quantity')->nullable();
             $table->string('unit')->nullable();
-            $table->string('targetpu')->nullable();
+            $table->string('filled')->nullable();
             $table->string('Incoterm')->nullable();
             $table->text('details')->nullable();
             $table->timestamps();

@@ -20,38 +20,38 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="font-semi align-middle">Products</th>
-                                            <th class="font-semi align-middle">Buy</th>
-                                            <th class="font-semi align-middle">Sell</th>
-                                            <th class="font-semi align-middle">Date of live order</th>
-                                            <th class="font-semi align-middle">Executed Date</th>
-                                            <th class="font-semi align-middle">Price Target</th>
-                                            <th class="font-semi align-middle">Filled</th>
+                                            <th>User ID</th>
+                                            <th>Product</th>
+                                            <th>Price Target</th>
+                                            <th>Order Date</th>
+                                            <th>Order Filled</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-black align-middle">Soft Commidities</td>
-                                            <td class="text-secondary align-middle">$2500</td>
-                                            <td class="text-secondary align-middle">$3200</td>
-                                            <td class="text-secondary align-middle">March 20, 2024</td>
-                                            <td class="text-secondary align-middle">March 26, 2024</td>
-                                            <td class="text-secondary align-middle">$4500</td>
-                                            <td class="text-secondary align-middle">
-                                                <button class="no-bg border-0 status-btn px-4 rounded-3 text-danger font-medium py-2">No</button>
+                                        @foreach ($orders as $order)
+                                        <tr class="align-middle">
+                                            <td>{{$order['fname']}}</td>
+                                            <td>
+                                                <div>
+                                                    <p class="mb-0 font-semi">{{$order['FundType']}}</p>
+                                                    <p class="mb-0">{{$order['underlying']}}</p>
+                                                </div>
+                                            </td>
+                                            <td>{{$order['targetp']}}</td>
+                                            <td>{{$order['created_at']}}</td>
+                                            <td>
+                                                <button class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                    {{$order['filled']}}
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a href="{{ 'editorders/' . $order['id'] }}">
+                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="text-black align-middle">Soft Commidities</td>
-                                            <td class="text-secondary align-middle">$2500</td>
-                                            <td class="text-secondary align-middle">$3200</td>
-                                            <td class="text-secondary align-middle">March 20, 2024</td>
-                                            <td class="text-secondary align-middle">March 26, 2024</td>
-                                            <td class="text-secondary align-middle">$4500</td>
-                                            <td class="text-secondary align-middle">
-                                                <button class="yes-bg border-0 status-btn px-4 rounded-3 text-success font-medium py-2">Yes</button>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -64,6 +64,7 @@
             </div>
         </div>
     </div>
+
     @include('../Template.jslinks')
 </body>
 

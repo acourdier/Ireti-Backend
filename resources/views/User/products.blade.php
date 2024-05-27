@@ -19,7 +19,7 @@
                             <div class="mt-3">
                                 <label for="selectOption">Fund type</label>
                                 <select id="selectOption" class="form-control">
-                                    <option value="fx">FX</option>
+                                    <option value="FX">FX</option>
                                     <option value="commodities">Soft Commodities</option>
                                     <option value="oil">Oil and oil Derivatives</option>
                                 </select>
@@ -28,12 +28,12 @@
 
                         <div class="row px-3 px-md-5">
                      
-                            <div id="fx" class="product-fields">
+                            <div id="FX" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <input type="text" readonly name="FundType" id="OrderType" value="fx"
+                                            <input type="text" readonly name="FundType" id="OrderType" value="FX"
                                                 class="form-control d-none">
                                         </div>
                                     </div>
@@ -41,37 +41,42 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
-                                                <input type="text" name="currencytb" id="currency"
+                                                <input type="text" required name="currencytb" id="currency"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="number" name="amountb" id="amountb"
+                                                <input type="number" required name="amountb" id="amountb"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
-                                                <input type="text" name="currencyts" id="currencys"
+                                                <input type="text" required name="currencyts" id="currencys"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="number" name="amountts" id="amounts"
+                                                <input type="number" required name="amountts" id="amounts"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="number" name="targetp" id="targetp"
+                                                <input type="number" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -111,28 +116,28 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="country">Country of Origin</label>
-                                                <input type="text" name="country" id="country"
+                                                <input type="text" required name="country" id="country"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="grade">Grade</label>
-                                                <input type="text" name="grade" id="grade"
+                                                <input type="text" required name="grade" id="grade"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="buysell" id="cell"
+                                                <input type="text" required name="buysell" id="cell"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="quantity">Quantity</label>
-                                                <input type="text" name="quantity" id="quantity"
+                                                <input type="text" required name="quantity" id="quantity"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -149,23 +154,28 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" name="targetpu" id="targetpu"
+                                                <label for="targetp">Price Target per Unit</label>
+                                                <input type="text" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="Incoterm">Incoterm</label>
-                                                <input type="text" name="Incoterm" id="Incoterm"
+                                                <input type="text" required name="Incoterm" id="Incoterm"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="details">Additional Details</label>
-                                                <textarea id="details" name="details" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -204,28 +214,28 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="country">Country of Origin</label>
-                                                <input type="text" name="country" id="country"
+                                                <input type="text" required name="country" id="country"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="grade">Grade</label>
-                                                <input type="text" name="grade" id="grade"
+                                                <input type="text" required name="grade" id="grade"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="buysell" id="cell"
+                                                <input type="text" required name="buysell" id="cell"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="quantity">Quantity</label>
-                                                <input type="text" name="quantity" id="quantity"
+                                                <input type="text" required name="quantity" id="quantity"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -242,22 +252,27 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" name="targetpu" id="targetpu"
+                                                <label for="targetp">Price Target per Unit</label>
+                                                <input type="text" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="Incoterm">Incoterm</label>
-                                                <input type="text" name="Incoterm" id="Incoterm"
+                                                <input type="text" required name="Incoterm" id="Incoterm"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="details">Additional Details</label>
-                                                <textarea id="details" name="details" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <input type="text" name="filled" value="No" id="" readonly class="d-none" >
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -288,11 +303,11 @@
         var selectOption = document.getElementById('selectOption');
         var productFields = document.querySelectorAll('.product-fields');
         productFields.forEach(function(field) {
-            if (field.id !== 'fx') {
+            if (field.id !== 'FX') {
                 field.style.display = 'none';
             }
         });
-        var selectedProductField = document.getElementById('fx');
+        var selectedProductField = document.getElementById('FX');
         if (selectedProductField) {
             selectedProductField.style.display = 'block';
         }

@@ -2,7 +2,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center w-100">
         <div class="d-flex ms-3 justify-content-start align-items-center h-100">
             <p class="mb-0 font-semi">Welcome Back</p>
-            <p class="mb-0 ms-3 small d-none d-lg-block">Hi Gabriel</p>
+            <p class="mb-0 ms-3 small d-none d-lg-block">Hi {{ Auth::user()->fname }}</p>
         </div>
         <div class="d-flex me-3 justify-content-end align-items-center">
             <div class="d-flex justify-content-between align-items-center">
@@ -20,8 +20,8 @@
             </div>
             <div class="d-none d-md-flex justify-content-between align-items-center">
                 <div>
-                    <p class="mb-0 fw-bold small">Gabriel </p>
-                    <p class="mb-0 small">admin</p>
+                    <p class="mb-0 fw-bold small">{{ Auth::user()->fname }} </p>
+                    <p class="mb-0 small">Admin</p>
                 </div>
             </div>
         </div>

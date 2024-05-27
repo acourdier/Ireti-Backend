@@ -1,14 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function orders(){
-        return view('Admin.orders');
+        $data =Order::leftjoin('users','orders.userid','=','users.id')
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->get();
+        return view('Admin.orders', ['orders' => $data]);
     }
+    public function editorders($id){
+        $data['orders'] =Order::find($id);
+        return view('Admin.editorders',$data);
+    }
+    public function updateorder(Request $request){
+        $request->validate([
+        'filled' => 'required',
+        ]);
+        $order = Order::find($request->id);
+    
+        if ($order) {
+            $order->update(['filled' => $request->filled]);
+        }
+        return redirect()->route('admin.orders');
+    }
+
     public function clients(){
         $data = User::where('role', 1)->orderBy('id', 'desc')->get();
         return view('Admin.clients', ['users' => $data]);
