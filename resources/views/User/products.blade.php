@@ -25,49 +25,74 @@
                                 </select>
                             </div>
                         </div>
-                        <form action="{{route('user.submitorder')}}" method="POST" id="OrderForm">
-                            @csrf
-                            <div class="row px-3 px-md-5">
-                                <div class="col-12">
-                                    <div class="mt-3">
-                                        <input type="text" readonly name="FundType" id="OrderType" value="fx" class="form-control">  
+
+                        <div class="row px-3 px-md-5">
+                     
+                            <div id="fx" class="product-fields">
+                                <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
+                                    @csrf
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" readonly name="FundType" id="OrderType" value="fx"
+                                                class="form-control d-none">
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="fx" class="product-fields">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
-                                                <input type="text" name="currencytb" id="currency" class="form-control">
+                                                <input type="text" name="currencytb" id="currency"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="number" name="amountb" id="amountb" class="form-control">
+                                                <input type="number" name="amountb" id="amountb"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
-                                                <input type="text" name="currencyts" id="currencys" class="form-control">
+                                                <input type="text" name="currencyts" id="currencys"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="number" name="amountts" id="amounts" class="form-control">
+                                                <input type="number" name="amountts" id="amounts"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="number" name="targetp" id="targetp" class="form-control">
+                                                <input type="number" name="targetp" id="targetp"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="commodities" class="product-fields">
+                                    <div class="col-12">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Validate Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="commodities" class="product-fields">
+                                <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
+                                    @csrf
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <input type="text" readonly name="FundType"  value="Soft Commodities"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
@@ -86,25 +111,29 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="country">Country of Origin</label>
-                                                <input type="text" name="country" id="country" class="form-control">
+                                                <input type="text" name="country" id="country"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="grade">Grade</label>
-                                                <input type="text" name="grade" id="grade" class="form-control">
+                                                <input type="text" name="grade" id="grade"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="buysell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="quantity">Quantity</label>
-                                                <input type="text" name="quantity" id="quantity" class="form-control">
+                                                <input type="text" name="quantity" id="quantity"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -121,13 +150,15 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" name="targetpu" id="targetpu" class="form-control">
+                                                <input type="text" name="targetpu" id="targetpu"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="Incoterm">Incoterm</label>
-                                                <input type="text" name="Incoterm" id="Incoterm" class="form-control">
+                                                <input type="text" name="Incoterm" id="Incoterm"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -137,8 +168,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="oil" class="product-fields">
+                                    <div class="col-12">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Validate Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                            <div id="oil" class="product-fields">
+                                <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
+                                    @csrf
+                                    <div class="mt-3">
+                                        <input type="text" readonly name="FundType" class="d-none" value="Oil and oil Derivatives"
+                                            class="form-control">
+                                    </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
@@ -157,25 +204,29 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="country">Country of Origin</label>
-                                                <input type="text" name="country" id="country" class="form-control">
+                                                <input type="text" name="country" id="country"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="grade">Grade</label>
-                                                <input type="text" name="grade" id="grade" class="form-control">
+                                                <input type="text" name="grade" id="grade"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" name="buysell" id="cell" class="form-control">
+                                                <input type="text" name="buysell" id="cell"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="quantity">Quantity</label>
-                                                <input type="text" name="quantity" id="quantity" class="form-control">
+                                                <input type="text" name="quantity" id="quantity"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -192,13 +243,15 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="targetpu">Price Target per Unit</label>
-                                                <input type="text" name="targetpu" id="targetpu" class="form-control">
+                                                <input type="text" name="targetpu" id="targetpu"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="Incoterm">Incoterm</label>
-                                                <input type="text" name="Incoterm" id="Incoterm" class="form-control">
+                                                <input type="text" name="Incoterm" id="Incoterm"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -207,16 +260,19 @@
                                                 <textarea id="details" name="details" cols="30" rows="5" class="form-control"></textarea>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="mt-3 d-flex justify-content-end">
+                                                <button type="submit"
+                                                    class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                    Validate Order
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Validate Order
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
+
+                        </div>
                         </form>
 
 
@@ -231,7 +287,7 @@
     <script>
         var selectOption = document.getElementById('selectOption');
         var productFields = document.querySelectorAll('.product-fields');
-        productFields.forEach(function (field) {
+        productFields.forEach(function(field) {
             if (field.id !== 'fx') {
                 field.style.display = 'none';
             }
@@ -240,9 +296,9 @@
         if (selectedProductField) {
             selectedProductField.style.display = 'block';
         }
-        selectOption.addEventListener('change', function () {
+        selectOption.addEventListener('change', function() {
             document.getElementById('OrderForm').reset()
-            productFields.forEach(function (field) {
+            productFields.forEach(function(field) {
                 field.style.display = 'none';
             });
             var selectedOption = selectOption.value;
@@ -253,7 +309,7 @@
             }
         });
     </script>
-   @include('../Template.jslinks')
+    @include('../Template.jslinks')
 </body>
 
 </html>
