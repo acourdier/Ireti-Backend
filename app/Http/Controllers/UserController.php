@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Investment;
 use App\Models\BankAccount;
+use App\Models\Beneficiaries;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -103,6 +104,16 @@ class UserController extends Controller
     }
     public function addbeneficiaries(){
         return view('User.addbeneficiaries');
+    }
+    public function createbeneficiaries(Request $Request){
+        $Request->validate([
+            '*'=>'required'
+        ]);
+        $beneficiaries = $Request->all();
+        $userId = auth()->id();
+        $beneficiaries['userid'] = $userId;
+        Beneficiaries:: create($beneficiaries);
+        return redirect()->route('user.beneficiaries');
     }
 
     public function notifications(){

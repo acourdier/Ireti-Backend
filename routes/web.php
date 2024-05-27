@@ -41,6 +41,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
             Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
             Route::get('addbeneficiaries','addbeneficiaries')->name('user.addbeneficiaries');
+            Route::post('createbeneficiaries','createbeneficiaries')->name('user.createbeneficiaries');
 
             Route::get('investment','investment')->name('user.investment');
             Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');

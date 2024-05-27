@@ -14,7 +14,7 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid">
-                        <form action="" method="POST">
+                        <form action="{{route('user.createbeneficiaries')}}" method="POST">
                             @csrf
                             
                             <div class="row px-3 px-md-5">
