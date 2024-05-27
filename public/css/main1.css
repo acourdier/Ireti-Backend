@@ -121,7 +121,8 @@ nav .green-text {
     color: #E80000;
     font-weight: 500;
     background-color: #F4E2D4;
-    padding: 5px 20px;
+    padding: 5px 10px;
+    text-align: center;
     border-radius: 5px;
 }
 .btngreen{
@@ -130,7 +131,18 @@ nav .green-text {
     color: #04B76B;
     font-weight: 500;
     background-color: #DFF5DE;
-    padding: 5px 20px;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+.btnyellow{
+    width: 100px;
+    border: none;
+    color: #FFB400;
+    font-weight: 500;
+    background-color: #FFF3D6;
+    padding: 5px 10px;
+    text-align: center;
     border-radius: 5px;
 }
 .sicon{

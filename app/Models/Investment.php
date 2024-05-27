@@ -13,7 +13,8 @@ class Investment extends Model
         'fund',
         'yeild',
         'geographical',
-        'currency',
+        'amount',
+        'status',
         'date',
         'time',
     ];

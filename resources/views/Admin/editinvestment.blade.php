@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Edit Investment</title>
 </head>
 
 <body>
@@ -15,16 +15,17 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Order</h4>
-                            <form action="{{route('admin.updateorder')}}" method="post">
+                            <h4 class="font-bold">Update Investment</h4>
+                            <form action="{{route('admin.updateinvestment')}}" method="post">
                                 @csrf
                                 <div class="col-md-6">
-                                    <input type="text" name="id" class="d-none" value="{{$orders['id']}}">
+                                    <input type="text" name="id" class="d-none" value="{{$investment['id']}}">
                                     <div class="col-12">
-                                        <label for="status">Order Filled</label>
-                                        <select name="filled"  id="status" class="form-control">
-                                            <option {{ $orders['filled']=='YES' ? 'selected' : '' }}>YES</option>
-                                            <option {{ $orders['filled']=='No' ? 'selected' : '' }}>No</option>
+                                        <label for="status">Update Status</label>
+                                        <select name="status"  id="status" class="form-control">
+                                            <option {{ $investment['status']=='Pending' ? 'selected' : '' }}>Pending</option>
+                                            <option {{ $investment['status']=='Accepted' ? 'selected' : '' }}>Accepted</option>
+                                            <option {{ $investment['status']=='Declined' ? 'selected' : '' }}>Declined</option>
                                         </select>
                                     </div>
                                     <div class="mt-5">

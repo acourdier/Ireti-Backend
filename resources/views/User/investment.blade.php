@@ -30,16 +30,24 @@
                                             <th class="font-semi align-middle">Target yield</th>
                                             <th class="font-semi align-middle">Geographical Exposure</th>
                                             <th class="font-semi align-middle">Amount</th>
+                                            <th class="font-semi align-middle">Status</th>
                                             <th class="font-semi align-middle">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($investments as $investment)                                            
+                                        @foreach ($investments as $investment)
                                         <tr>
                                             <td class="text-black align-middle">{{$investment['fund']}}</td>
                                             <td class="text-secondary align-middle">{{$investment['yeild']}}</td>
                                             <td class="text-secondary align-middle">{{$investment['geographical']}}</td>
-                                            <td class="text-secondary align-middle">{{$investment['currency']}}</td>
+                                            <td class="text-secondary align-middle">{{$investment['amount']}}</td>
+                                            <td class="text-secondary align-middle">
+                                                <button
+                                                    class="{{ $investment['status'] === 'Pending' ? 'btnyellow' : ($investment['status'] === 'Accepted' ? 'btngreen' : 'btnred') }}">
+                                                    {{$investment['status']}}
+                                                </button>
+
+                                            </td>
                                             <td class="text-secondary align-middle">
                                                 <div class="d-flex align-items-center">
                                                     <a href="{{ 'Deleteinvestment/' . $investment['id'] }}"><i

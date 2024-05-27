@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('fund');
             $table->string('yeild');
             $table->string('geographical');
-            $table->integer('currency');
+            $table->integer('amount');
+            $table->string('status');
             $table->string('date');
             $table->string('time');
             $table->timestamps();

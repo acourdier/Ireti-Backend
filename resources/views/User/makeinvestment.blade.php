@@ -34,6 +34,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="yield">Target yield</label>
@@ -53,8 +54,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="currency">Amount wish to invest (in USD)</label>
-                                        <input type="number" name="currency" id="currency" class="form-control">
+                                        <label for="amount">Amount wish to invest (in USD)</label>
+                                        <input type="number" name="amount" id="amount" class="form-control">
                                     </div>
                                 </div>
                                 <h5 class="mt-3">Book Call Meeting</h5>
@@ -69,6 +70,9 @@
                                         <label for="Time">Time</label>
                                         <input type="time" name="time" id="Time" class="form-control">
                                     </div>
+                                </div>
+                                <div class="col-12 d-none">
+                                    <input type="text" value="Pending" name="status" readonly>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
