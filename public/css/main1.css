@@ -116,6 +116,7 @@ nav .green-text {
     background-color: #F0F9F0;
 }
 .btnred{
+    width: 100px;
     border: none;
     color: #E80000;
     font-weight: 500;
@@ -124,6 +125,7 @@ nav .green-text {
     border-radius: 5px;
 }
 .btngreen{
+    width: 100px;
     border: none;
     color: #04B76B;
     font-weight: 500;
