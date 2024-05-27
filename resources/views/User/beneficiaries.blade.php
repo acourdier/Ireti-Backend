@@ -27,8 +27,10 @@
                                     <label for="name">Bank Account Details</label>
                                     <select name="opn" id="name" class="form-control">
                                         <option value="opt" selected disabled>Select by name</option>
-                                        <option value="option1">option1</option>
-                                        <option value="option2">option2</option>
+                                        @foreach ($beneficiaries as $beneficiary)
+                                        <option value="{{$beneficiary['accountname']}}">{{$beneficiary['accountname']}}
+                                        </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
