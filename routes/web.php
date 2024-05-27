@@ -34,25 +34,30 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::prefix('user')->group(function(){
         Route::controller(UserController::class)->group(function(){
+            Route::get('dashboard','dashboard')->name('user.dashboard');
+
             Route::get('bank','bank')->name('user.bank');
             Route::post('addbank','addbank')->name('user.addbank');
+
             Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
-            Route::get('dashboard','dashboard')->name('user.dashboard');
+            Route::get('addbeneficiaries','addbeneficiaries')->name('user.addbeneficiaries');
+
             Route::get('investment','investment')->name('user.investment');
             Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');
             Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('admin.Deleteinvestment');
             Route::post('createinvestment','createinvestment')->name('user.createinvestment');
-            Route::get('notifications','notifications')->name('user.notifications');
 
-
+            
+            
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::get('products','products')->name('user.products');
             Route::post('submitorder','submitorder')->name('user.submitorder');
-
+            
 
             Route::get('profile','profile')->name('user.profile');
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
-
+            
+            Route::get('notifications','notifications')->name('user.notifications');
         });
     });
 });

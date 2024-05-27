@@ -101,7 +101,9 @@ class UserController extends Controller
     public function beneficiaries(){
         return view('User.beneficiaries');
     }
-    
+    public function addbeneficiaries(){
+        return view('User.addbeneficiaries');
+    }
 
     public function notifications(){
         return view('User.notifications');

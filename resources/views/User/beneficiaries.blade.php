@@ -15,7 +15,13 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 px-md-5">
-                            <h4>Beneficiaries</h4>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <h4 class="font-bold">Beneficiaries</h4>
+                                <a href="{{route('user.addbeneficiaries')}}"
+                                    class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
+                                    Add Beneficiaries
+                                </a>
+                            </div>
                             <div class="col-md-8">
                                 <div class="mt-3">
                                     <label for="name">Bank Account Details</label>
