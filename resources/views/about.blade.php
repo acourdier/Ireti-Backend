@@ -87,7 +87,7 @@
                         <p class="text-center text-sm-start">Prior to co-founding Ireti Capital in 2023, Gabriel spent
                             over 8 years working at Goldman Sachs in London, New York and Paris in the equity division.
                             As an Executive Director, he was responsible, among other things, for overseeing Goldman
-                            Sachs equity trading venue and providing clients within the european Union a solution to
+                            Sachs equity trading venue and providing clients within the European Union a solution to
                             their execution and liquidity needs. Gabriel holds a Master of Science degree in Financial
                             Markets & Investment from the SKEMA Business School.</p>
 
