@@ -6,10 +6,10 @@
             </a>
             <div class="d-flex">
                 <div class="d-flex d-lg-none align-items-center me-sm-2">
-                    <a href="{{route('login')}}"
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         class="green-text mbl-small text-decoration-none py-2 rounded-pill opacity-hover font-medium me-2">Sign
                         In</a>
-                    <a href="{{route('signup')}}"
+                    <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal1"
                         class="green-bg mbl-small text-white text-decoration-none me-2 px-4 py-2 mbl-padding rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
