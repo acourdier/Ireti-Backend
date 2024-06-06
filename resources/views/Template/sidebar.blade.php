@@ -46,9 +46,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.payments') }}"
-                        class="{{ request()->routeIs('admin.payments') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        class="{{ request()->routeIs('admin.payments','admin.addpayment','admin.editpayment') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.payments') ? asset('img/bankg.svg') : asset('img/bank.svg') }}" alt="" class="sicon">
+                            <img src="{{ request()->routeIs('admin.payments','admin.addpayment','admin.editpayment') ? asset('img/bankg.svg') : asset('img/bank.svg') }}" alt="" class="sicon">
                             Payments
                         </div>
                     </a>
