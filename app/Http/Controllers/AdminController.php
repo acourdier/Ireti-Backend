@@ -73,6 +73,12 @@ class AdminController extends Controller
     }
     public function editpayment(){
         return view('Admin.editpayment');
+    } 
+    public function underlaying(){
+        return view('Admin.underlaying');
+    }
+    public function currency(){
+        return view('Admin.currency');
     }
     public function notifications(){
         return view('Admin.notifications');
