@@ -27,14 +27,14 @@
                         <div class="flex-log justify-content-center py-4 ">
                             <div class="row">
                                 <div class="mb-3 col-lg-8 mx-auto">
-                                    <h3 class="text-start fw-bold">Hello Again!</h3>
-                                    <p class="text-start">Welcome back</p>
+                                    <h3 class="text-start fw-bold">Welcome back</h3>
+                                    <p class="text-start">Login Here</p>
                                 </div>
                                 <div class="mb-3 col-lg-8 mx-auto">
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4 rounded-pill d-flex gap-2">
                                         <label for=""><img src="{{asset('img/codicon_mail.svg')}}" alt="codicon_mail"></label>
-                                        <input id="email" type="email" class="py-0 border-0 w-100 focus-none @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" placeholder="Email" type="email" class="py-0 border-0 w-100 focus-none @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     </div>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4  rounded-pill d-flex gap-2">
                                         <label for=""><img src="{{asset('img/bx_bxs-lock-alt.svg')}}" alt="bx_bxs"></label>
-                                        <input id="password" type="password" class="py-0 border-0 w-100 focus-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <input id="password" placeholder="Password" type="password" class="py-0 border-0 w-100 focus-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                     </div>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
