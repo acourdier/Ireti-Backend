@@ -32,6 +32,10 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('clients','clients')->name('admin.clients');
             Route::get('dashboard','dashboard')->name('admin.dashboard');
             Route::get('payments','payments')->name('admin.payments');
+            Route::get('addpayment','addpayment')->name('admin.addpayment');
+            Route::get('editpayment','editpayment')->name('admin.editpayment');
+            Route::get('underlaying','underlaying')->name('admin.underlaying');
+            Route::get('currency','currency')->name('admin.currency');
             Route::get('notifications','notifications')->name('admin.notifications');
             Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
         });

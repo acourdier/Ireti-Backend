@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Payments</title>
 </head>
 
 <body>
@@ -15,13 +15,20 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Payments</h4>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <h4 class="font-bold">Payments</h4>
+                                <a href="{{route('admin.addpayment')}}"
+                                    class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
+                                    Add Payments
+                                </a>
+                            </div>
                             <div class="table-responsive tbl-800 mt-3">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="font-semi">Name/Business</th>
-                                            <th class="font-semi">Date</th>
+                                            <th class="font-semi">Customer Name</th>
+                                            <th class="font-semi">Beneficiary Name</th>
+                                            <th class="font-semi">Beneficiary Account</th>
                                             <th class="font-semi">Amount</th>
                                             <th class="font-semi">Status</th>
                                             <th class="font-semi">Action</th>
@@ -29,33 +36,51 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('img/finance.png') }}" alt="finance"
-                                                    class="me-2 rounded-3 ">
-                                                    <span>Financial Capital</span>
-                                                </div>
-                                            </td>
-                                            <td class="text-secondary align-middle">July 20, 2023</td>
+                                            <td class="text-secondary align-middle">Alexander</td>
+                                            <td class="text-secondary align-middle">John Doe</td>
+                                            <td class="text-secondary align-middle">000000000000</td>
                                             <td class="text-secondary align-middle">$600.00</td>
-                                            <td class="text-secondary align-middle">Approved</td>
                                             <td class=" align-middle">
-                                                    <a href="#" class="lgreen px-3 rounded-2 py-2"><i class="fa-solid fa-ellipsis-vertical text-black"></i></a>
+                                                <button class="btngreen">
+                                                    Approved
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('admin.editpayment')}}">
+                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('img/finance.png') }}" alt="finance"
-                                                    class="me-2 rounded-3 ">
-                                                    <span>Financial Capital</span>
-                                                </div>
-                                            </td>
-                                            <td class="text-secondary align-middle">July 20, 2023</td>
+                                            <td class="text-secondary align-middle">Alexander</td>
+                                            <td class="text-secondary align-middle">John Doe</td>
+                                            <td class="text-secondary align-middle">000000000000</td>
                                             <td class="text-secondary align-middle">$600.00</td>
-                                            <td class="text-secondary align-middle">Approved</td>
                                             <td class=" align-middle">
-                                                    <a href="#" class="lgreen px-3 rounded-2 py-2"><i class="fa-solid fa-ellipsis-vertical text-black"></i></a>
+                                                <button class="btnyellow">
+                                                    Pending
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('admin.editpayment')}}">
+                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-secondary align-middle">Alexander</td>
+                                            <td class="text-secondary align-middle">John Doe</td>
+                                            <td class="text-secondary align-middle">000000000000</td>
+                                            <td class="text-secondary align-middle">$600.00</td>
+                                            <td class=" align-middle">
+                                                <button class="btnred">
+                                                    Cancelled
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('admin.editpayment')}}">
+                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

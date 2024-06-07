@@ -17,6 +17,24 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.currency') }}"
+                        class="{{ request()->routeIs('admin.currency') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        <div class="d-flex align-items-center ms-2">
+                            <img src="{{ request()->routeIs('admin.currency') ? asset('img/currencyg.svg') : asset('img/currency.svg') }}" alt="" class="sicon">
+                            Currencies
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.underlaying') }}"
+                        class="{{ request()->routeIs('admin.underlaying') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        <div class="d-flex align-items-center ms-2">
+                            <img src="{{ request()->routeIs('admin.underlaying') ? asset('img/inventoryg.svg') : asset('img/inventory.svg') }}" alt="" class="sicon">
+                            Underlaying
+                        </div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.orders') }}"
                         class="{{ request()->routeIs('admin.orders') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
@@ -46,9 +64,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.payments') }}"
-                        class="{{ request()->routeIs('admin.payments') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        class="{{ request()->routeIs('admin.payments','admin.addpayment','admin.editpayment') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.payments') ? asset('img/bankg.svg') : asset('img/bank.svg') }}" alt="" class="sicon">
+                            <img src="{{ request()->routeIs('admin.payments','admin.addpayment','admin.editpayment') ? asset('img/bankg.svg') : asset('img/bank.svg') }}" alt="" class="sicon">
                             Payments
                         </div>
                     </a>

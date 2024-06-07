@@ -17,7 +17,7 @@
                         <h4>Products</h4>
                         <div class="col-12 px-3 px-md-5">
                             <div class="mt-3">
-                                <label for="selectOption">Fund type</label>
+                                <label for="selectOption">Product type</label>
                                 <select id="selectOption" class="form-control">
                                     <option value="FX">FX</option>
                                     <option value="commodities">Soft Commodities</option>
