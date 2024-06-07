@@ -12,7 +12,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(253, 0, 0, 0.8);
         z-index: 9998;
         display: flex;
         justify-content: center;
@@ -24,8 +23,8 @@
     }
 
     .animated-loader {
-        width: 100px; /* Adjust based on your image size */
-        height: 100px; /* Adjust based on your image size */
+        width: 200px; /* Adjust based on your image size */
+        height: 200px; /* Adjust based on your image size */
         animation: rotate 2s linear infinite;
     }
 
