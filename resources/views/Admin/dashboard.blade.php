@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    @include('Template.Loader')
     <div class="section">
         <div class="maindiv">
             @include('../Template.sidebar')

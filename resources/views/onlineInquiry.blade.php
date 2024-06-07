@@ -10,7 +10,7 @@
     @include('Template.navbar')
     <section class="py-5">
         <div class="mycontainer">
-            <form action="signin.html">
+            <form action="{{route('/')}}">
                 <h2 class="display-4 fw-bold text-center text-black">Online Inquiry</h2>
                 <div class="mt-5">
                     <p class="fw-bold mb-2 fs-5">IRETI CAPITAL</p>
@@ -604,7 +604,7 @@
 
                         </div>
                         <div class="mt-3 text-center">
-                            <button type="button" id="myButton"
+                            <button type="submit" id="myButton"
                                 class="bg-green ps-5 pe-5 pt-3 pb-3 rounded-3 text-white border-0">Done</button>
                         </div>
                     </div>
