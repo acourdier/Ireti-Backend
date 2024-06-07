@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    {{-- @include('Template.Loader') --}}
     <section class="logins">
         <div class="container-fluid">
             <div class="row align-items-center p-0 vertical-log">
