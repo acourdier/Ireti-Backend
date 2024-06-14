@@ -16,7 +16,10 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(isset(auth()->user()->role) && auth()->user()->role == 1){
-            return $next($request);
+            if(isset(auth()->user()->status) && auth()->user()->status == 1){
+                return $next($request);
+            }
+            return redirect()->route('onlineInquiry')->with('userId', auth()->user()->id);
         }
         return redirect()->route('/');
     }

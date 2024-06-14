@@ -15,8 +15,6 @@ class UserController extends Controller
         $data = Order::where('userid', $userId)->orderBy('id', 'desc')->get();
         return view('User.dashboard', ['orders' => $data]);
     }
-    
-    
     public function products(){
         return view('User.products');
     }
@@ -33,7 +31,6 @@ class UserController extends Controller
     public function orderdetail(){
         return view('User.orderdetail');
     }
-
 
     public function investment(){
         $userId = auth()->id();

@@ -10,6 +10,11 @@
     {{-- @include('Template.Loader') --}}
     <section class="logins">
         <div class="container-fluid">
+            @if (session('success'))
+            <script>
+                swal("Thank you!", "{{session('success')}}", "success");
+            </script>
+            @endif
             <div class="row align-items-center p-0 vertical-log">
                 <div class="col-md-7 col-6 green-bg h-100 d-sm-block d-none">
                     <div class="d-flex flex-column justify-content-center h-100 position-relative px-lg-5 p-3">

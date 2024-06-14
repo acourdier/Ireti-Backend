@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Investment;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -63,24 +64,53 @@ class AdminController extends Controller
         return redirect()->route('admin.clients');
     }
     public function dashboard(){
-        return view('Admin.dashboard');
+        return view('admin.dashboard');
     }
     public function payments(){
-        return view('Admin.payments');
+        return view('admin.payments');
     }
     public function addpayment(){
-        return view('Admin.addpayment');
+        return view('admin.addpayment');
     }
     public function editpayment(){
-        return view('Admin.editpayment');
+        return view('admin.editpayment');
     } 
     public function underlaying(){
-        return view('Admin.underlaying');
+        return view('admin.underlaying');
     }
     public function currency(){
-        return view('Admin.currency');
+        $data = Currency::orderBy('id', 'desc')->get();
+        return view('admin.currency', ['currencies' => $data]);
+    }
+    public function addCurrency(){
+        return view('admin.addCurrency');
+    }
+    public function saveCurrency(Request $request){
+        $currency = $request->all();
+        Currency:: create($currency);
+        return redirect()->route('admin.currency');
     }
     public function notifications(){
-        return view('Admin.notifications');
+        return view('admin.notifications');
+    }
+    public function deleteCurrency($id){
+        $data =Currency::find($id);
+        $data->delete();
+        return redirect()->route('admin.currency');
+    }
+    public function editCurrency($id){
+        $data['currency'] =Currency::find($id);
+        return view('admin.currency',$data);
+    }
+    public function updateCurrency($id){
+        $request->validate([
+            'currency' => 'required',
+            ]);
+        $currency = Currency::find($request->id);
+        
+        if ($currency) {
+            $currency->update(['currency' => $request->currency]);
+        }
+        return redirect()->route('admin.currency');
     }
 }

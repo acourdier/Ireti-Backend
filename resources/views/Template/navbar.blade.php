@@ -55,10 +55,10 @@
                     </li>
                 </ul>
                 <div class="d-none d-lg-flex align-items-center">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <a href="/login" 
                         class="green-text text-decoration-none px-2 py-2 rounded-pill opacity-hover font-medium me-3">Sign
                         In</a>
-                    <a href="signup" 
+                    <a href="/signup"   
                         class="green-bg  text-white text-decoration-none me-3 px-4 py-2 rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
