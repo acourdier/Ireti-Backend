@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <form action="" method="POST">
+                            <form action="{{route('admin.updateCommodity')}}" method="POST">
                                 @csrf
                                 <div class="Add Currency">
                                     <h4>Add Commodities</h4>

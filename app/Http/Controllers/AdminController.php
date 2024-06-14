@@ -129,4 +129,11 @@ class AdminController extends Controller
         $data['Commodity'] =UnderLaying::find($id);
         return view('Admin.editCommodity',$data);
     }
+    public function updateCommodity(Request $request){
+        $Commodity = UnderLaying::find($request->id);
+        if ($Commodity) {
+            $Commodity->update($request->all());
+        }
+        return redirect()->route('admin.underlaying');
+    }
 }
