@@ -43,7 +43,7 @@
                                                     <div class="d-flex align-items-center">
                                                         <a href="{{ 'deleteCurrency/' . $currency['id'] }}"><i
                                                                 class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                        <a href="{{ 'editcurrency/' . $currency['id'] }}">
+                                                        <a href="{{ 'editCurrency/' . $currency['id'] }}">
                                                             <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                         </a>
                                                     </div>

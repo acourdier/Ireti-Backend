@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
+use App\Models\UnderLaying;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -74,9 +75,7 @@ class AdminController extends Controller
     public function editpayment(){
         return view('Admin.editpayment');
     } 
-    public function underlaying(){
-        return view('Admin.underlaying');
-    }
+
     public function currency(){
         $data = Currency::orderBy('id', 'desc')->get();
         return view('Admin.currency', ['currencies' => $data]);
@@ -99,17 +98,42 @@ class AdminController extends Controller
     }
     public function editCurrency($id){
         $data['currency'] =Currency::find($id);
-        return view('Admin.currency',$data);
+        return view('Admin.editCurrency',$data);
     }
-    public function updateCurrency($id){
-        $request->validate([
-            'currency' => 'required',
-            ]);
+    public function updateCurrency(Request $request){
         $currency = Currency::find($request->id);
-        
         if ($currency) {
-            $currency->update(['currency' => $request->currency]);
+            $currency->update($request->all());
         }
         return redirect()->route('admin.currency');
+    }
+
+    public function underlaying(){
+        $data = UnderLaying::orderBy('id', 'desc')->get();
+        return view('Admin.underlaying', ['UnderLayings' => $data]);
+    }
+    public function addCommodity(){
+        return view('Admin.addCommodity');
+    }
+    public function saveCommodity(Request $request){
+        $underlaying = $request->all();
+        UnderLaying:: create($underlaying);
+        return redirect()->route('admin.underlaying');
+    }
+    public function deleteCommodity($id){
+        $data =UnderLaying::find($id);
+        $data->delete();
+        return redirect()->route('admin.underlaying');
+    }
+    public function editCommodity($id){
+        $data['Commodity'] =UnderLaying::find($id);
+        return view('Admin.editCommodity',$data);
+    }
+    public function updateCommodity(Request $request){
+        $Commodity = UnderLaying::find($request->id);
+        if ($Commodity) {
+            $Commodity->update($request->all());
+        }
+        return redirect()->route('admin.underlaying');
     }
 }

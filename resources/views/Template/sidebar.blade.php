@@ -18,18 +18,18 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.currency') }}"
-                        class="{{ request()->routeIs('admin.currency') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        class="{{ request()->routeIs('admin.currency' ,'admin.addCurrency','admin.editCurrency') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.currency') ? asset('img/currencyg.svg') : asset('img/currency.svg') }}" alt="" class="sicon">
+                            <img src="{{ request()->routeIs('admin.currency','admin.addCurrency','admin.editCurrency') ? asset('img/currencyg.svg') : asset('img/currency.svg') }}" alt="" class="sicon">
                             Currencies
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.underlaying') }}"
-                        class="{{ request()->routeIs('admin.underlaying') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        class="{{ request()->routeIs('admin.underlaying','admin.addCommodity','admin.editCommodity') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.underlaying') ? asset('img/inventoryg.svg') : asset('img/inventory.svg') }}" alt="" class="sicon">
+                            <img src="{{ request()->routeIs('admin.underlaying','admin.addCommodity','admin.editCommodity') ? asset('img/inventoryg.svg') : asset('img/inventory.svg') }}" alt="" class="sicon">
                             Underlaying
                         </div>
                     </a>
