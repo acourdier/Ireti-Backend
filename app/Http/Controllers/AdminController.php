@@ -99,16 +99,12 @@ class AdminController extends Controller
     }
     public function editCurrency($id){
         $data['currency'] =Currency::find($id);
-        return view('Admin.currency',$data);
+        return view('Admin.editCurrency',$data);
     }
-    public function updateCurrency($id){
-        $request->validate([
-            'currency' => 'required',
-            ]);
+    public function updateCurrency(Request $request){
         $currency = Currency::find($request->id);
-        
         if ($currency) {
-            $currency->update(['currency' => $request->currency]);
+            $currency->update($request->all());
         }
         return redirect()->route('admin.currency');
     }
