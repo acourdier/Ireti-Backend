@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     public function orders(){
@@ -64,26 +63,26 @@ class AdminController extends Controller
         return redirect()->route('admin.clients');
     }
     public function dashboard(){
-        return view('admin.dashboard');
+        return view('Admin.dashboard');
     }
     public function payments(){
-        return view('admin.payments');
+        return view('Admin.payments');
     }
     public function addpayment(){
-        return view('admin.addpayment');
+        return view('Admin.addpayment');
     }
     public function editpayment(){
-        return view('admin.editpayment');
+        return view('Admin.editpayment');
     } 
     public function underlaying(){
-        return view('admin.underlaying');
+        return view('Admin.underlaying');
     }
     public function currency(){
         $data = Currency::orderBy('id', 'desc')->get();
-        return view('admin.currency', ['currencies' => $data]);
+        return view('Admin.currency', ['currencies' => $data]);
     }
     public function addCurrency(){
-        return view('admin.addCurrency');
+        return view('Admin.addCurrency');
     }
     public function saveCurrency(Request $request){
         $currency = $request->all();
@@ -91,7 +90,7 @@ class AdminController extends Controller
         return redirect()->route('admin.currency');
     }
     public function notifications(){
-        return view('admin.notifications');
+        return view('Admin.notifications');
     }
     public function deleteCurrency($id){
         $data =Currency::find($id);
@@ -100,7 +99,7 @@ class AdminController extends Controller
     }
     public function editCurrency($id){
         $data['currency'] =Currency::find($id);
-        return view('admin.currency',$data);
+        return view('Admin.currency',$data);
     }
     public function updateCurrency($id){
         $request->validate([
