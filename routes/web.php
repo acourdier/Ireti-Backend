@@ -14,9 +14,11 @@ Route::controller(WebController::class)->group(function(){
     Route::get('NgoFlowOptimization','NgoFlowOptimization')->name('NgoFlowOptimization');
     Route::get('onlineInquiry','onlineInquiry')->name('onlineInquiry');
     Route::get('platform','platform')->name('platform');
-    Route::get('login','login')->name('login');
     Route::get('signup','signup')->name('signup');
     Route::post('createuser','createuser')->name('createuser');
+    Route::get('onlineInquiry','onlineInquiry')->name('onlineInquiry');
+    Route::post('saveInquiry','saveInquiry')->name('saveInquiry');
+
 });
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::prefix('admin')->group(function(){
@@ -38,9 +40,15 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('currency','currency')->name('admin.currency');
             Route::get('notifications','notifications')->name('admin.notifications');
             Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
+            Route::get('addCurrency','addCurrency')->name('admin.addCurrency');
+            Route::post('saveCurrency','saveCurrency')->name('admin.saveCurrency');
+            Route::get('editCurrency/{id}','editCurrency')->name('admin.editCurrency');
+            Route::post('updateCurrency','updateCurrency')->name('admin.updateCurrency');
+            Route::get('deleteCurrency/{id}','deleteCurrency')->name('admin.deleteCurrency');
         });
     });
 });
+
 
 Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::prefix('user')->group(function(){
@@ -56,25 +64,27 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
             Route::get('investment','investment')->name('user.investment');
             Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');
-            Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('admin.Deleteinvestment');
+            Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('user.Deleteinvestment');
             Route::post('createinvestment','createinvestment')->name('user.createinvestment');
-
-            
             
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::get('products','products')->name('user.products');
             Route::post('submitorder','submitorder')->name('user.submitorder');
-            
 
             Route::get('profile','profile')->name('user.profile');
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
             
             Route::get('notifications','notifications')->name('user.notifications');
+            // Route::get('login','login')->name('login');
         });
     });
 });
 
-
+Route::group(['middleware' => ['UserMiddleware']], function () {
+        Route::controller(WebController::class)->group(function(){
+            Route::get('login','login')->name('login');
+        });
+});
 
 Auth::routes();
 

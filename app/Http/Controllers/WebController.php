@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Director;
+use App\Models\Owner;
+use App\Models\Ubo;
 use Illuminate\Http\Request;
+use App\Mail\InquiryMail;
+use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
@@ -22,7 +27,8 @@ class WebController extends Controller
         return view('NgoFlowOptimization');
     }
     public function onlineInquiry(){
-        return view('onlineInquiry');
+        $userId = session('userId');
+        return view('onlineInquiry', compact('userId'));
     }
     public function platform(){
         return view('platform');
@@ -34,11 +40,158 @@ class WebController extends Controller
         return view('signup');
     }
     public function createuser(Request $Request){
-        $Request->validate([
-            '*'=>'required'
-        ]);
-        $user = $Request->all();
-        User::create($user);
-        return redirect()->route('login');
+        $user = User::create($Request->all());
+        // $requestMail = $Request->all();
+        // $to_email = "mehakamir151@gmail.com";
+        // Mail::to($to_email)->send(new InquiryMail($requestMail));
+        return redirect()->route('onlineInquiry')->with('userId', $user->id);
     }
+    public function saveInquiry(Request $request){
+        $user = User::find($request->id);
+    
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+    
+        if ($request->hasFile('idFile')) {
+            $photo1 = $request->file('idFile');
+            $photo_name1 = time() . "-" . $photo1->getClientOriginalName();
+            $photo_destination = public_path('uploads');
+            $photo1->move($photo_destination, $photo_name1);
+            $user->idFile = $photo_name1;
+        }
+    
+        if ($request->hasFile('billFile')) {
+            $photo2 = $request->file('billFile');
+            $photo2_name = time() . "-" . $photo2->getClientOriginalName();
+            $photo2_destination = public_path('uploads');
+            $photo2->move($photo2_destination, $photo2_name);
+            $user->billFile = $photo2_name;
+        }
+    
+        if ($request->hasFile('incorporationFile')) {
+            $photo3 = $request->file('incorporationFile');
+            $photo3_name = time() . "-" . $photo3->getClientOriginalName();
+            $photo3_destination = public_path('uploads');
+            $photo3->move($photo3_destination, $photo3_name);
+            $user->incorporationFile = $photo3_name;
+        }
+    
+        if ($request->hasFile('memorandumFile')) {
+            $photo4 = $request->file('memorandumFile');
+            $photo4_name = time() . "-" . $photo4->getClientOriginalName();
+            $photo4_destination = public_path('uploads');
+            $photo4->move($photo4_destination, $photo4_name);
+            $user->memorandumFile = $photo4_name;
+        }
+    
+        if ($request->hasFile('resolutionFile')) {
+            $photo5 = $request->file('resolutionFile');
+            $photo5_name = time() . "-" . $photo5->getClientOriginalName();
+            $photo5_destination = public_path('uploads');
+            $photo5->move($photo5_destination, $photo5_name);
+            $user->resolutionFile = $photo5_name;
+        }
+    
+        $user->fill($request->except([
+            'idFile', 
+            'billFile', 
+            'incorporationFile', 
+            'memorandumFile', 
+            'resolutionFile'
+        ]));
+    
+        $user->save();
+        $userid = $user->id;
+
+        $dirNames = $request->input('dirName');
+        $dirCountries = $request->input('dirCountry');
+        $dirAddresses = $request->input('dirAddress');
+        $dirCities = $request->input('dirCity');
+        $dirPostcodes = $request->input('dirPostcode');
+        $dirDOBs = $request->input('dirDOB');
+        $dirPassports = $request->input('dirPassport');
+        $dirExps = $request->input('dirExp');
+        $dirNationalities = $request->input('dirNationality');
+    
+        if (is_array($dirNames)) {
+            foreach ($dirNames as $index => $dirName) {
+                Director::create([
+                    'userid' => $userid,
+                    'dirName' => $dirName,
+                    'dirCountry' => $dirCountries[$index],
+                    'dirAddress' => $dirAddresses[$index],
+                    'dirCity' => $dirCities[$index],
+                    'dirPostcode' => $dirPostcodes[$index],
+                    'dirDOB' => $dirDOBs[$index],
+                    'dirPassport' => $dirPassports[$index],
+                    'dirExp' => $dirExps[$index],
+                    'dirNationality' => $dirNationalities[$index],
+                ]);
+            }
+        }
+
+        $ownerNames = $request->input('ownerName');
+        $ownerCountries = $request->input('ownerCountry');
+        $ownerAddresses = $request->input('ownerAddress');
+        $ownerCities = $request->input('ownerCity');
+        $ownerPostcodes = $request->input('ownerPostcode');
+        $ownerDOBs = $request->input('ownerDOB');
+        $ownerPassports = $request->input('ownerPassport');
+        $ownerExps = $request->input('ownerExp');
+        $ownerNationalities = $request->input('ownerNationality');
+        $ownerShares = $request->input('ownerShare');
+        if (is_array($ownerNames)) {
+            foreach ($ownerNames as $index => $ownerName) {
+                Owner::create([
+                    'userid' => $userid,
+                    'ownerName' => $ownerName,
+                    'ownerCountry' => $ownerCountries[$index],
+                    'ownerAddress' => $ownerAddresses[$index],
+                    'ownerCity' => $ownerCities[$index],
+                    'ownerPostcode' => $ownerPostcodes[$index],
+                    'ownerDOB' => $ownerDOBs[$index],
+                    'ownerPassport' => $ownerPassports[$index],
+                    'ownerExp' => $ownerExps[$index],
+                    'ownerNationality' => $ownerNationalities[$index],
+                    'ownerShare' => $ownerShares[$index],
+                ]);
+            }
+        }
+
+        $uboNames = $request->input('uboName');
+        $uboCountries = $request->input('uboCountry');
+        $uboAddresses = $request->input('uboAddress');
+        $uboCities = $request->input('uboCity');
+        $uboPostcodes = $request->input('uboPostcode');
+        $uboDOBs = $request->input('uboDOB');
+        $uboPassports = $request->input('uboPassport');
+        $uboExps = $request->input('uboExp');
+        $uboNationalities = $request->input('uboNationality');
+        $uboShares = $request->input('uboShare');
+        if (is_array($uboNames)) {
+            foreach ($uboNames as $index => $uboName) {
+                ubo::create([
+                    'userid' => $userid,
+                    'uboName' => $uboName,
+                    'uboCountry' => $uboCountries[$index],
+                    'uboAddress' => $uboAddresses[$index],
+                    'uboCity' => $uboCities[$index],
+                    'uboPostcode' => $uboPostcodes[$index],
+                    'uboDOB' => $uboDOBs[$index],
+                    'uboPassport' => $uboPassports[$index],
+                    'uboExp' => $uboExps[$index],
+                    'uboNationality' => $uboNationalities[$index],
+                    'uboShare' => $uboShares[$index],
+                ]);
+            }
+        }
+   
+        $requestMail = $request->all();
+        $to_email = "mehakamir151@gmail.com";
+        Mail::to($to_email)->send(new InquiryMail($requestMail));
+        return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
+    }
+    
+    
 }
