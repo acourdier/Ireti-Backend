@@ -82,17 +82,3 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-            <h1 class="font-black green-text">Coming Soon!</h1>
-            <p class="mt-3">We are working hard to bring you something amazing. Stay tuned for updates and be the first to experience what's coming next!</p>
-            <p class="mt-3">Thank you for your patience and excitement. We can't wait to share it with you!</p>
-          </div>
-      </div>
-    </div>
-  </div>
