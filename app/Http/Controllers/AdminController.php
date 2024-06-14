@@ -120,4 +120,9 @@ class AdminController extends Controller
         UnderLaying:: create($underlaying);
         return redirect()->route('admin.underlaying');
     }
+    public function deleteCommodity($id){
+        $data =UnderLaying::find($id);
+        $data->delete();
+        return redirect()->route('admin.underlaying');
+    }
 }
