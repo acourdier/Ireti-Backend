@@ -10,7 +10,6 @@
     @include('Template.navbar')
     <section class="py-5">
         <div class="mycontainer">
-        
             <form  action="{{route('saveInquiry')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 class="display-4 fw-bold text-center text-black">Online Inquiry</h2>

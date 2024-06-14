@@ -11,7 +11,7 @@
     <section class="py-4">
         <div class="mycontainer">
             <h1 class="display-5 font-bold text-center">Sign Up</h1>
-            <form action="{{route('createuser')}}" method="POST">
+            <form action="{{route('onlineInquiry')}}">
                 @csrf
                 <div class="row justify-content-center">
                     <div class="col-12 my-2 d-none">
