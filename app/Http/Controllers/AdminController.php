@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     public function orders(){
