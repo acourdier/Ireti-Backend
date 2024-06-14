@@ -33,10 +33,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                        $i = 1;
+                                        @endphp
+                                        @foreach ($UnderLayings as $UnderLaying)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Soft Commodities</td>
-                                            <td>Wheat</td>
+                                            <td>{{$i++}}</td>
+                                            <td>{{$UnderLaying['Type']}}</td>
+                                            <td>{{$UnderLaying['underlaying']}}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <a href=""><i
@@ -47,6 +51,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

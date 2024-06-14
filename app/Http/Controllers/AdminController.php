@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
+use App\Models\UnderLaying;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -74,9 +75,7 @@ class AdminController extends Controller
     public function editpayment(){
         return view('Admin.editpayment');
     } 
-    public function underlaying(){
-        return view('Admin.underlaying');
-    }
+
     public function currency(){
         $data = Currency::orderBy('id', 'desc')->get();
         return view('Admin.currency', ['currencies' => $data]);
@@ -109,7 +108,16 @@ class AdminController extends Controller
         return redirect()->route('admin.currency');
     }
 
+    public function underlaying(){
+        $data = UnderLaying::orderBy('id', 'desc')->get();
+        return view('Admin.underlaying', ['UnderLayings' => $data]);
+    }
     public function addCommodity(){
         return view('Admin.addCommodity');
+    }
+    public function saveCommodity(Request $request){
+        $underlaying = $request->all();
+        UnderLaying:: create($underlaying);
+        return redirect()->route('admin.underlaying');
     }
 }
