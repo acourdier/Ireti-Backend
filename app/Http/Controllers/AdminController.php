@@ -108,4 +108,8 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.currency');
     }
+
+    public function addCommodity(){
+        return view('Admin.addCommodity');
+    }
 }
