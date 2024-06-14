@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    
     <div class="section">
         <div class="maindiv">
             @include('../Template.sidebar')
