@@ -45,7 +45,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <a href="{{ 'deleteCommodity/' . $UnderLaying['id'] }}"><i
                                                             class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                    <a href="">
+                                                    <a href="{{ 'editCommodity/' . $UnderLaying['id'] }}">
                                                         <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
