@@ -110,7 +110,8 @@ class UserController extends Controller
         return view('User.beneficiaries', ['beneficiaries' => $beneficiaries]);
     }
     public function addbeneficiaries(){
-        return view('User.addbeneficiaries');
+        $currency = Currency::orderBy('id', 'desc')->get();
+        return view('User.addbeneficiaries',['currencies' => $currency]);
     }
     public function createbeneficiaries(Request $Request){
         $Request->validate([
@@ -120,7 +121,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
-        return redirect()->route('user.beneficiaries');
+        return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
 
     public function notifications(){
