@@ -41,8 +41,11 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
-                                                <input type="text" required name="currencytb" id="currency"
-                                                    class="form-control">
+                                                <select name="currencytb" required  id="currencytb" class="form-control">
+                                                    @foreach ($currencies as $currency)
+                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -101,6 +104,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
+
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
                                                     <option value="choose" selected disabled hidden>choose</option>
