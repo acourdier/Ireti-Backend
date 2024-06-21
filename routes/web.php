@@ -45,6 +45,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('editCurrency/{id}','editCurrency')->name('admin.editCurrency');
             Route::post('updateCurrency','updateCurrency')->name('admin.updateCurrency');
             Route::get('deleteCurrency/{id}','deleteCurrency')->name('admin.deleteCurrency');
+            Route::get('approveUser/{id}','approveUser')->name('admin.approveUser');
+            Route::get('rejectUser/{id}','rejectUser')->name('admin.rejectUser');
         });
     });
 });
@@ -81,9 +83,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 });
 
 Route::group(['middleware' => ['UserMiddleware']], function () {
-        Route::controller(WebController::class)->group(function(){
-            Route::get('login','login')->name('login');
-        });
+    Route::controller(WebController::class)->group(function(){
+         Route::get('login','login')->name('login');
+    });
 });
 
 Auth::routes();

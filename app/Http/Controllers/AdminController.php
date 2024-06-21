@@ -54,7 +54,7 @@ class AdminController extends Controller
     }
 
     public function clients(){
-        $data = User::where('role', 1)->orderBy('id', 'desc')->get();
+        $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
         return view('Admin.clients', ['users' => $data]);
     }
     public function Deleteuser($id){
@@ -111,5 +111,24 @@ class AdminController extends Controller
             $currency->update(['currency' => $request->currency]);
         }
         return redirect()->route('admin.currency');
+    }
+    public function approveUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->status = 2;
+            $user->save();
+        }
+        return redirect()->back()->with('message', 'User approved successfully.');
+    }
+
+    public function rejectUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->status = 3;  // Set status to 3 for rejection
+            $user->save();
+        }
+        return redirect()->back()->with('message', 'User rejected successfully.');
     }
 }

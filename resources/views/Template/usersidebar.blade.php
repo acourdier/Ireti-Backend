@@ -72,9 +72,9 @@
         </div>
     </div>
     <div class="lgout">
-        <a hhref="{{ route('logout') }}" onclick="event.preventDefault();
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();"
-            class="text-decoration-none d-block lnk text-black">
+            class="text-decoration-none pointer d-block lnk text-black">
             <div class="log">
                 <img src="{{asset('img/logout.svg')}}" alt="logout" class="sicon">
                 Logout
