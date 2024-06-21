@@ -132,7 +132,8 @@ class AdminController extends Controller
 
 
     public function payments(){
-        return view('Admin.payments');
+        $data = Payment::orderBy('id', 'desc')->get();
+        return view('Admin.payments', ['payments' => $data]);
     }
     public function addpayment(){
         return view('Admin.addpayment');
