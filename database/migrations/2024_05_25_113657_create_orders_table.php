@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('userid');
+            $table->integer('status');
             $table->string('FundType');
             $table->string('currencytb')->nullable();
             $table->string('amountb')->nullable();

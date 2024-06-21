@@ -14,9 +14,9 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid">
-                        <div class="row px-3 ">
+                        <div class="row px-3 px-md-5 ">
                             <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                <h4 class="font-bold">My Investments</h4>
+                                <h4>My Investments</h4>
                                 <a href="{{route('user.makeinvestment')}}"
                                     class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
                                     Make Investment

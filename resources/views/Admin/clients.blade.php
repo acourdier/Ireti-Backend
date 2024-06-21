@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">My Clients</h4>
+                            <h4>My Clients</h4>
                             <div class="table-responsive tbl-800 mt-3">
                                 <table class="table">
                                     <thead>

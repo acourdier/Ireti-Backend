@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function orders(){
-        $data =Order::leftjoin('users','orders.userid','=','users.id')
+        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
         ->orderBy('id', 'desc')->get();
         return view('Admin.orders', ['orders' => $data]);

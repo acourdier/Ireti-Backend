@@ -14,8 +14,8 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
-                        <h4>Products</h4>
                         <div class="col-12 px-3 px-md-5">
+                            <h4>Products</h4>
                             <div class="mt-3">
                                 <label for="selectOption">Product type</label>
                                 <select id="selectOption" class="form-control">
@@ -31,6 +31,12 @@
                             <div id="FX" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <input type="text" readonly name="FundType" id="OrderType" value="FX"
@@ -41,8 +47,11 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
-                                                <input type="text" required name="currencytb" id="currency"
-                                                    class="form-control">
+                                                <select name="currencytb" required  id="currencytb" class="form-control">
+                                                    @foreach ($currencies as $currency)
+                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -55,8 +64,11 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
-                                                <input type="text" required name="currencyts" id="currencys"
-                                                    class="form-control">
+                                                <select name="currencyts" required  id="currencyts" class="form-control">
+                                                    @foreach ($currencies as $currency)
+                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -92,6 +104,12 @@
                             <div id="commodities" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <input type="text" readonly name="FundType"  value="Soft Commodities"
@@ -101,15 +119,12 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
+
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="choose" selected disabled hidden>choose</option>
-                                                    <option value="Clinker">Clinker</option>
-                                                    <option value="Cocoa">Cocoa</option>
-                                                    <option value="Coffee">Coffee</option>
-                                                    <option value="Cotton">Cotton</option>
-                                                    <option value="Used Cooking Oil">Used Cooking Oil</option>
-                                                    <option value="Wheat">Wheat</option>
+                                                    @foreach ($softs as $soft)
+                                                        <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -192,6 +207,12 @@
                             <div id="oil" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="mt-3">
                                         <input type="text" readonly name="FundType" class="d-none" value="Oil and oil Derivatives"
                                             class="form-control">
@@ -201,13 +222,9 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="choose" selected disabled hidden>choose</option>
-                                                    <option value="Fuel">Fuel</option>
-                                                    <option value="Fuel Oil">Fuel Oil</option>
-                                                    <option value="LPG">LPG</option>
-                                                    <option value="Lubricants">Lubricants</option>
-                                                    <option value="Gasoline">Gasoline</option>
-                                                    <option value="Kerosene">Kerosene</option>
+                                                    @foreach ($oils as $oil)
+                                                        <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
