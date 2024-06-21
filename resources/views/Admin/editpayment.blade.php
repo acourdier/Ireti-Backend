@@ -16,7 +16,7 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4 class="font-bold">Edit Payments</h4>
-                            <form action="" method="post">
+                            <form action="{{route('admin.updatepayment')}}" method="POST">
                                 @csrf
                                 <input type="text" name="id" class="d-none" value="{{$payment['id']}}">
                                 <div class="row">

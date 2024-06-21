@@ -152,4 +152,11 @@ class AdminController extends Controller
         $data['payment'] =Payment::find($id);
         return view('Admin.editpayment',$data);
     } 
+    public function updatepayment(Request $request){
+        $payment = Payment::find($request->id);
+        if ($payment) {
+            $payment->update($request->all());
+        }
+        return redirect()->route('admin.payments');
+    }
 }

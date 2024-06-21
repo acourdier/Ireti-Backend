@@ -62,6 +62,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::post('savepayment','savepayment')->name('admin.savepayment');
             Route::get('deletePayment/{id}','deletePayment')->name('admin.deletePayment');
             Route::get('editpayment/{id}','editpayment')->name('admin.editpayment');
+            Route::post('updatepayment','updatepayment')->name('admin.updatepayment');
+
 
         });
     });
