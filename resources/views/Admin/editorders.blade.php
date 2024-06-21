@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Order</h4>
+                            <h4>Order</h4>
                             <form action="{{route('admin.updateorder')}}" method="post">
                                 @csrf
                                 <div class="col-md-6">

@@ -15,21 +15,43 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">My Orders</h4>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <h4>Underlying Commodities</h4>
+                                <a href="{{route('admin.addCommodity')}}"
+                                    class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
+                                    Add Commodity
+                                </a>
+                            </div>
                             <div class="table-responsive tbl-800 mt-3">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>User ID</th>
-                                            <th>Fund type</th>
-                                            <th>Target yield</th>
-                                            <th>Geographical Exposure</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
+                                            <th>Sr</th>
+                                            <th>Product Type</th>
+                                            <th>Underlying Commodity</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                        $i = 1;
+                                        @endphp
+                                        @foreach ($UnderLayings as $UnderLaying)
+                                        <tr>
+                                            <td>{{$i++}}</td>
+                                            <td>{{$UnderLaying['Type']}}</td>
+                                            <td>{{$UnderLaying['underlaying']}}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <a href="{{ 'deleteCommodity/' . $UnderLaying['id'] }}"><i
+                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                    <a href="{{ 'editCommodity/' . $UnderLaying['id'] }}">
+                                                        <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

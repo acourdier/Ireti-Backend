@@ -16,7 +16,7 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                <h4 class="font-bold">Currency</h4>
+                                <h4>Currency</h4>
                                 <a href="{{ route('admin.addCurrency') }}"
                                     class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
                                     Add Currency
@@ -43,7 +43,7 @@
                                                     <div class="d-flex align-items-center">
                                                         <a href="{{ 'deleteCurrency/' . $currency['id'] }}"><i
                                                                 class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                        <a href="{{ 'editcurrency/' . $currency['id'] }}">
+                                                        <a href="{{ 'editCurrency/' . $currency['id'] }}">
                                                             <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                         </a>
                                                     </div>

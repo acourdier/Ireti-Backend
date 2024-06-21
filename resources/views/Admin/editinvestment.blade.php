@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Update Investment</h4>
+                            <h4>Update Investment</h4>
                             <form action="{{route('admin.updateinvestment')}}" method="post">
                                 @csrf
                                 <div class="col-md-6">

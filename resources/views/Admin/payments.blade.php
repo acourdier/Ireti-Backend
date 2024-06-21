@@ -16,7 +16,7 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                <h4 class="font-bold">Payments</h4>
+                                <h4>Payments</h4>
                                 <a href="{{route('admin.addpayment')}}"
                                     class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
                                     Add Payments
@@ -35,54 +35,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($payments as $payment)                                            
                                         <tr>
-                                            <td class="text-secondary align-middle">Alexander</td>
-                                            <td class="text-secondary align-middle">John Doe</td>
-                                            <td class="text-secondary align-middle">000000000000</td>
-                                            <td class="text-secondary align-middle">$600.00</td>
+                                            <td class="text-secondary align-middle">{{$payment['customer']}}</td>
+                                            <td class="text-secondary align-middle">{{$payment['Beneficiary']}}</td>
+                                            <td class="text-secondary align-middle">{{$payment['baccount']}}</td>
+                                            <td class="text-secondary align-middle">{{$payment['amount']}}</td>
                                             <td class=" align-middle">
-                                                <button class="btngreen">
-                                                    Approved
+                                                <button class=" 
+                                                @if ($payment['status'] == 'Accepted') btngreen
+                                                    @elseif($payment['status'] == 'Pending') btnyellow
+                                                    @elseif($payment['status'] == 'Declined') btnred
+                                                @endif">
+                                                    {{$payment['status']}}
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="{{route('admin.editpayment')}}">
-                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
-                                                </a>
+                                                <div class="d-flex align-items-center">
+                                                    <a href="{{ 'deletePayment/' . $payment['id'] }}"><i
+                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                    <a href="{{ 'editpayment/' . $payment['id'] }}">
+                                                        <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="text-secondary align-middle">Alexander</td>
-                                            <td class="text-secondary align-middle">John Doe</td>
-                                            <td class="text-secondary align-middle">000000000000</td>
-                                            <td class="text-secondary align-middle">$600.00</td>
-                                            <td class=" align-middle">
-                                                <button class="btnyellow">
-                                                    Pending
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('admin.editpayment')}}">
-                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-secondary align-middle">Alexander</td>
-                                            <td class="text-secondary align-middle">John Doe</td>
-                                            <td class="text-secondary align-middle">000000000000</td>
-                                            <td class="text-secondary align-middle">$600.00</td>
-                                            <td class=" align-middle">
-                                                <button class="btnred">
-                                                    Cancelled
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('admin.editpayment')}}">
-                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

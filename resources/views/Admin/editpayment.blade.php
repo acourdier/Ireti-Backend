@@ -15,35 +15,36 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Edit Payments</h4>
-                            <form action="" method="post">
+                            <h4>Edit Payments</h4>
+                            <form action="{{route('admin.updatepayment')}}" method="POST">
                                 @csrf
+                                <input type="text" name="id" class="d-none" value="{{$payment['id']}}">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <input type="text" required name="customer" id="customer"
+                                            <input type="text" value="{{ $payment['customer'] }}" required name="customer" id="customer"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="Beneficiary">Beneficiary Name</label>
-                                            <input type="text" required name="Beneficiary" id="Beneficiary"
+                                            <input type="text" value="{{ $payment['Beneficiary'] }}" required name="Beneficiary" id="Beneficiary"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="baccount">Beneficiary Account</label>
-                                            <input type="text" required name="baccount" id="baccount"
+                                            <input type="text" value="{{ $payment['baccount'] }}" required name="baccount" id="baccount"
                                                 class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="amount">Amount</label>
-                                            <input type="number" required name="amount" id="amount"
+                                            <input type="number" value="{{ $payment['amount'] }}" required name="amount" id="amount"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -51,9 +52,9 @@
                                         <div class="mt-3">
                                             <label for="status">Status</label>
                                             <select name="status"  id="status" class="form-control">
-                                                <option value="Pending">Pending</option>
-                                                <option value="Accepted">Accepted</option>
-                                                <option value="Declined">Declined</option>
+                                                <option {{ $payment['status']=='Pending' ? 'selected' : '' }}>Pending</option>
+                                                <option {{ $payment['status']=='Accepted' ? 'selected' : '' }}>Accepted</option>
+                                                <option {{ $payment['status']=='Declined' ? 'selected' : '' }}>Declined</option>
                                             </select>
                                         </div>
                                     </div>

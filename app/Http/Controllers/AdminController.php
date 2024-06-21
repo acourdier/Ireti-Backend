@@ -6,11 +6,13 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
+use App\Models\UnderLaying;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function orders(){
-        $data =Order::leftjoin('users','orders.userid','=','users.id')
+        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
         ->orderBy('id', 'desc')->get();
         return view('Admin.orders', ['orders' => $data]);
@@ -65,18 +67,8 @@ class AdminController extends Controller
     public function dashboard(){
         return view('Admin.dashboard');
     }
-    public function payments(){
-        return view('Admin.payments');
-    }
-    public function addpayment(){
-        return view('Admin.addpayment');
-    }
-    public function editpayment(){
-        return view('Admin.editpayment');
-    } 
-    public function underlaying(){
-        return view('Admin.underlaying');
-    }
+
+
     public function currency(){
         $data = Currency::orderBy('id', 'desc')->get();
         return view('Admin.currency', ['currencies' => $data]);
@@ -99,16 +91,12 @@ class AdminController extends Controller
     }
     public function editCurrency($id){
         $data['currency'] =Currency::find($id);
-        return view('Admin.currency',$data);
+        return view('Admin.editCurrency',$data);
     }
-    public function updateCurrency($id){
-        $request->validate([
-            'currency' => 'required',
-            ]);
+    public function updateCurrency(Request $request){
         $currency = Currency::find($request->id);
-        
         if ($currency) {
-            $currency->update(['currency' => $request->currency]);
+            $currency->update($request->all());
         }
         return redirect()->route('admin.currency');
     }
@@ -130,5 +118,63 @@ class AdminController extends Controller
             $user->save();
         }
         return redirect()->back()->with('message', 'User rejected successfully.');
+
+    public function underlaying(){
+        $data = UnderLaying::orderBy('id', 'desc')->get();
+        return view('Admin.underlaying', ['UnderLayings' => $data]);
+    }
+    public function addCommodity(){
+        return view('Admin.addCommodity');
+    }
+    public function saveCommodity(Request $request){
+        $underlaying = $request->all();
+        UnderLaying:: create($underlaying);
+        return redirect()->route('admin.underlaying');
+    }
+    public function deleteCommodity($id){
+        $data =UnderLaying::find($id);
+        $data->delete();
+        return redirect()->route('admin.underlaying');
+    }
+    public function editCommodity($id){
+        $data['Commodity'] =UnderLaying::find($id);
+        return view('Admin.editCommodity',$data);
+    }
+    public function updateCommodity(Request $request){
+        $Commodity = UnderLaying::find($request->id);
+        if ($Commodity) {
+            $Commodity->update($request->all());
+        }
+        return redirect()->route('admin.underlaying');
+    }
+
+
+    public function payments(){
+        $data = Payment::orderBy('id', 'desc')->get();
+        return view('Admin.payments', ['payments' => $data]);
+    }
+    public function addpayment(){
+        return view('Admin.addpayment');
+    }
+    public function savepayment(Request $request){
+        $payments = $request->all();
+        Payment:: create($payments);
+        return redirect()->route('admin.payments');
+    }
+    public function deletePayment($id){
+        $data =Payment::find($id);
+        $data->delete();
+        return redirect()->route('admin.payments');
+    }
+    public function editpayment($id){
+        $data['payment'] =Payment::find($id);
+        return view('Admin.editpayment',$data);
+    } 
+    public function updatepayment(Request $request){
+        $payment = Payment::find($request->id);
+        if ($payment) {
+            $payment->update($request->all());
+        }
+        return redirect()->route('admin.payments');
     }
 }

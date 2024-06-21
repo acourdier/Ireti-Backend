@@ -5,6 +5,8 @@ use App\Models\Investment;
 use App\Models\BankAccount;
 use App\Models\Beneficiaries;
 use App\Models\Order;
+use App\Models\UnderLaying;
+use App\Models\Currency;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,10 @@ class UserController extends Controller
         return view('User.dashboard', ['orders' => $data]);
     }
     public function products(){
-        return view('User.products');
+        $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
+        $soft = UnderLaying::where('Type', 'Soft Commodities')->orderBy('id', 'desc')->get();
+        $currency = Currency::orderBy('id', 'desc')->get();
+        return view('User.products',['oils' => $oil,'softs' => $soft,'currencies' => $currency]);
     }
     public function submitorder(Request $Request){
         $Request->validate([
@@ -26,7 +31,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $order['userid'] = $userId;
         Order:: create($order);
-        return redirect()->route('user.products');
+        return redirect()->route('user.orderdetail');
     }
     public function orderdetail(){
         return view('User.orderdetail');

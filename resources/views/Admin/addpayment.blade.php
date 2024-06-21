@@ -15,8 +15,8 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4 class="font-bold">Add Payments</h4>
-                            <form action="" method="post">
+                            <h4>Add Payments</h4>
+                            <form action="{{route('admin.savepayment')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
