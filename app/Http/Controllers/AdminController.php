@@ -143,7 +143,13 @@ class AdminController extends Controller
         Payment:: create($payments);
         return redirect()->route('admin.payments');
     }
-    public function editpayment(){
-        return view('Admin.editpayment');
+    public function deletePayment($id){
+        $data =Payment::find($id);
+        $data->delete();
+        return redirect()->route('admin.payments');
+    }
+    public function editpayment($id){
+        $data['payment'] =Payment::find($id);
+        return view('Admin.editpayment',$data);
     } 
 }

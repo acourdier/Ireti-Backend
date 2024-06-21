@@ -60,8 +60,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('payments','payments')->name('admin.payments');
             Route::get('addpayment','addpayment')->name('admin.addpayment');
             Route::post('savepayment','savepayment')->name('admin.savepayment');
-
-            Route::get('editpayment','editpayment')->name('admin.editpayment');
+            Route::get('deletePayment/{id}','deletePayment')->name('admin.deletePayment');
+            Route::get('editpayment/{id}','editpayment')->name('admin.editpayment');
 
         });
     });

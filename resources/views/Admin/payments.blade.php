@@ -51,9 +51,13 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="{{route('admin.editpayment')}}">
-                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
-                                                </a>
+                                                <div class="d-flex align-items-center">
+                                                    <a href="{{ 'deletePayment/' . $payment['id'] }}"><i
+                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                    <a href="{{ 'editpayment/' . $payment['id'] }}">
+                                                        <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
