@@ -31,6 +31,12 @@
                             <div id="FX" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <input type="text" readonly name="FundType" id="OrderType" value="FX"
@@ -98,6 +104,12 @@
                             <div id="commodities" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <input type="text" readonly name="FundType"  value="Soft Commodities"
@@ -195,6 +207,12 @@
                             <div id="oil" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
                                     <div class="mt-3">
                                         <input type="text" readonly name="FundType" class="d-none" value="Oil and oil Derivatives"
                                             class="form-control">

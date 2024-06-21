@@ -31,7 +31,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $order['userid'] = $userId;
         Order:: create($order);
-        return redirect()->route('user.products');
+        return redirect()->route('user.orderdetail');
     }
     public function orderdetail(){
         return view('User.orderdetail');
