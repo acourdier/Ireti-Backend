@@ -33,6 +33,67 @@ class AdminController extends Controller
         return redirect()->route('admin.orders');
     }
 
+
+    public function currency(){
+        $data = Currency::orderBy('id', 'desc')->get();
+        return view('Admin.currency', ['currencies' => $data]);
+    }
+    public function addCurrency(){
+        return view('Admin.addCurrency');
+    }
+    public function saveCurrency(Request $request){
+        $currency = $request->all();
+        Currency:: create($currency);
+        return redirect()->route('admin.currency')->with ('success','Currency Added Successfully');
+    }
+    public function deleteCurrency($id){
+        $data =Currency::find($id);
+        $data->delete();
+        return redirect()->route('admin.currency')->with ('Delete','Currency Deleted Successfully');
+    }
+    public function editCurrency($id){
+        $data['currency'] =Currency::find($id);
+        return view('Admin.editCurrency',$data);
+    }
+    public function updateCurrency(Request $request){
+        $currency = Currency::find($request->id);
+        if ($currency) {
+            $currency->update($request->all());
+        }
+        return redirect()->route('admin.currency')->with ('update','Currency Updated Successfully');
+    }
+
+
+    public function underlaying(){
+        $data = UnderLaying::orderBy('id', 'desc')->get();
+        return view('Admin.underlaying', ['UnderLayings' => $data]);
+    }
+    public function addCommodity(){
+        return view('Admin.addCommodity');
+    }
+    public function saveCommodity(Request $request){
+        $underlaying = $request->all();
+        UnderLaying:: create($underlaying);
+        return redirect()->route('admin.underlaying')->with ('success','Commodity Added Successfully');
+    }
+    public function deleteCommodity($id){
+        $data =UnderLaying::find($id);
+        $data->delete();
+        return redirect()->route('admin.underlaying')->with ('Delete','Commodity Deleted Successfully');
+    }
+    public function editCommodity($id){
+        $data['Commodity'] =UnderLaying::find($id);
+        return view('Admin.editCommodity',$data);
+    }
+    public function updateCommodity(Request $request){
+        $Commodity = UnderLaying::find($request->id);
+        if ($Commodity) {
+            $Commodity->update($request->all());
+        }
+        return redirect()->route('admin.underlaying')->with ('update','Commodity Updated Successfully');
+    }
+
+
     public function investment(){
         $data =Investment::leftjoin('users','investments.userid','=','users.id')
         ->select('users.fname','investments.*')
@@ -52,8 +113,9 @@ class AdminController extends Controller
         if ($order) {
             $order->update(['status' => $request->status]);
         }
-        return redirect()->route('admin.investment');
+        return redirect()->route('admin.investment')->with ('update','Investment Updated Successfully');
     }
+
 
     public function clients(){
         $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
@@ -69,81 +131,26 @@ class AdminController extends Controller
     }
 
 
-    public function currency(){
-        $data = Currency::orderBy('id', 'desc')->get();
-        return view('Admin.currency', ['currencies' => $data]);
-    }
-    public function addCurrency(){
-        return view('Admin.addCurrency');
-    }
-    public function saveCurrency(Request $request){
-        $currency = $request->all();
-        Currency:: create($currency);
-        return redirect()->route('admin.currency');
-    }
     public function notifications(){
         return view('Admin.notifications');
     }
-    public function deleteCurrency($id){
-        $data =Currency::find($id);
-        $data->delete();
-        return redirect()->route('admin.currency');
-    }
-    public function editCurrency($id){
-        $data['currency'] =Currency::find($id);
-        return view('Admin.editCurrency',$data);
-    }
-    public function updateCurrency(Request $request){
-        $currency = Currency::find($request->id);
-        if ($currency) {
-            $currency->update($request->all());
-        }
-        return redirect()->route('admin.currency');
-    }
+
+
     public function approveUser($id){
         $user = User::find($id);
         if ($user) {
             $user->status = 2;
             $user->save();
         }
-        return redirect()->back()->with('message', 'User approved successfully.');
+        return redirect()->back()->with('success', 'User approved successfully.');
     }
     public function rejectUser($id){
         $user = User::find($id);
         if ($user) {
-            $user->status = 3;  // Set status to 3 for rejection
+            $user->status = 3;
             $user->save();
         }
-        return redirect()->back()->with('message', 'User rejected successfully.');
-    }
-
-    public function underlaying(){
-        $data = UnderLaying::orderBy('id', 'desc')->get();
-        return view('Admin.underlaying', ['UnderLayings' => $data]);
-    }
-    public function addCommodity(){
-        return view('Admin.addCommodity');
-    }
-    public function saveCommodity(Request $request){
-        $underlaying = $request->all();
-        UnderLaying:: create($underlaying);
-        return redirect()->route('admin.underlaying');
-    }
-    public function deleteCommodity($id){
-        $data =UnderLaying::find($id);
-        $data->delete();
-        return redirect()->route('admin.underlaying');
-    }
-    public function editCommodity($id){
-        $data['Commodity'] =UnderLaying::find($id);
-        return view('Admin.editCommodity',$data);
-    }
-    public function updateCommodity(Request $request){
-        $Commodity = UnderLaying::find($request->id);
-        if ($Commodity) {
-            $Commodity->update($request->all());
-        }
-        return redirect()->route('admin.underlaying');
+        return redirect()->back()->with('reject', 'User rejected successfully.');
     }
 
 
@@ -157,12 +164,12 @@ class AdminController extends Controller
     public function savepayment(Request $request){
         $payments = $request->all();
         Payment:: create($payments);
-        return redirect()->route('admin.payments');
+        return redirect()->route('admin.payments')->with ('success','Payment Added Successfully');
     }
     public function deletePayment($id){
         $data =Payment::find($id);
         $data->delete();
-        return redirect()->route('admin.payments');
+        return redirect()->route('admin.payments')->with ('Delete','Payment Deleted Successfully');
     }
     public function editpayment($id){
         $data['payment'] =Payment::find($id);
@@ -173,6 +180,6 @@ class AdminController extends Controller
         if ($payment) {
             $payment->update($request->all());
         }
-        return redirect()->route('admin.payments');
+        return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
     }
 }
