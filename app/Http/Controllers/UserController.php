@@ -22,9 +22,13 @@ class UserController extends Controller
         $countfilledorders = Order::where('filled', 'YES')
         ->where('userid', $userId)
         ->count();
+
+        $sumfilledorders = Order::where('status', 1)
+        ->where('userid', $userId)
+        ->sum('quantity');
         
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
-        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
+        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
