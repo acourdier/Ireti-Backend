@@ -23,7 +23,7 @@ class UserController extends Controller
         ->where('userid', $userId)
         ->count();
         
-        $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->get();
+        $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
     }
     public function products(){

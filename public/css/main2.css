@@ -106,6 +106,16 @@
 .swal2-confirm.swal2-styled {
     background: linear-gradient(to bottom, #00A343, #006526) !important;
 }
+.pagination .active{
+    padding: 0px;
+    border-radius: 0px;
+    border: none;
+    --bs-pagination-active-border-color:#00A73F !important;
+    --bs-pagination-active-bg:#00A73F !important;
+}
+.pagination{
+    --bs-pagination-color:#00A73F !important;
+}
 @media screen and (max-width: 768px) {
     .back-img img {
         max-width: 221px;

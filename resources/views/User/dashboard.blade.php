@@ -93,6 +93,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="mt-2 d-flex justify-content-end">
+                                    {{ $orders->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
