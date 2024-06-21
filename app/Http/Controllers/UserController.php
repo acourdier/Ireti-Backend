@@ -73,7 +73,7 @@ class UserController extends Controller
                 '*' => 'required'
             ]);
             $user->update($validatedData);
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile')->with ('update','Profile Updated Successfully');
         }
     }
 
