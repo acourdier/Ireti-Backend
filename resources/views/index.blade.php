@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     @include('Template.csslinks')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Home</title>
 </head>
 
 <body>
     @include('Template.navbar')
     <div>
-        @if (session('error'))
-    <script>
-        swal("Ooops!", "{{session('error')}}", "error");
-    </script>
+    @if (session('error'))
+        <script>
+            swal("Ooops!", "{{session('error')}}", "error");
+        </script>
     @endif
     <section class="bg-grey">
         <div class="mycontainer py-5">

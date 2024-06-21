@@ -11,3 +11,5 @@
 <link rel="stylesheet" href="{{asset('css/main1.css')}}">
 <link rel="stylesheet" href="{{asset('css/main2.css')}}">
 @include('Template.Loader')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
