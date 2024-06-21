@@ -14,8 +14,8 @@
                 @include('../Template.usernav')
                 <div class="rightbottom">
                     <div class="container-fluid pb-5">
-                        <h4>Products</h4>
                         <div class="col-12 px-3 px-md-5">
+                            <h4>Products</h4>
                             <div class="mt-3">
                                 <label for="selectOption">Product type</label>
                                 <select id="selectOption" class="form-control">
@@ -58,8 +58,11 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
-                                                <input type="text" required name="currencyts" id="currencys"
-                                                    class="form-control">
+                                                <select name="currencyts" required  id="currencyts" class="form-control">
+                                                    @foreach ($currencies as $currency)
+                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
