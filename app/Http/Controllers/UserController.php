@@ -30,11 +30,12 @@ class UserController extends Controller
         $order = $Request->all();
         $userId = auth()->id();
         $order['userid'] = $userId;
-        Order:: create($order);
-        return redirect()->route('user.orderdetail');
+        $orderData = Order::create($order);
+        return redirect()->route('user.orderdetail')->with('orderData', $orderData);
     }
     public function orderdetail(){
-        return view('User.orderdetail');
+        $orderData = session('orderData');
+        return view('user.orderdetail', compact('orderData'));
     }
 
     public function investment(){
@@ -77,7 +78,6 @@ class UserController extends Controller
         }
     }
 
-    
     public function bank(){
         $userId = auth()->id();
         $account = BankAccount::where('userid', $userId)->first();
@@ -125,6 +125,14 @@ class UserController extends Controller
 
     public function notifications(){
         return view('User.notifications');
+    }
+    public function validateOrder($id){
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = 1;
+            $order->save();
+        }
+        return redirect()->route('user.products')->with('success', 'Product validate successfully.');
     }
     
 }
