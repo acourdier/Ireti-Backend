@@ -12,6 +12,21 @@
             @include('../Template.usersidebar')
             <div class="rightmain">
                 @include('../Template.usernav')
+                                @if (session('success'))
+                <script>
+                    swal("Good job!", "{{ session('success') }}", "success");
+                </script>
+                @endif
+                @if (session('Delete'))
+                <script>
+                    swal("Good job!", "{{ session('Delete') }}", "success");
+                </script>
+                @endif
+                @if (session('update'))
+                <script>
+                    swal("Good job!", "{{ session('update') }}", "success");
+                </script>
+                @endif
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <form action="{{route('user.addbank')}}" method="POST">
@@ -40,7 +55,14 @@
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <input type="text" value="{{ $account->currency ?? '' }}" name="currency" id="currency" class="form-control">
+                                        <select name="currency" required  id="currency" class="form-control">
+                                            @foreach ($currencies as $currency)
+                                            <option value="{{ $currency['currency'] }}" 
+                                                    {{ isset($account->currency) && $currency['currency'] == $account->currency ? 'selected' : '' }}>
+                                                {{ $currency['currency'] }}
+                                            </option>
+                                        @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
