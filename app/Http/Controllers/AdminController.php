@@ -151,10 +151,13 @@ class AdminController extends Controller
         $countfilledorders = Order::where('filled', 'YES')
         ->count();
 
+        $sumfilledorders = Order::where('status', 1)
+        ->sum('quantity');
+
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
         ->orderBy('id', 'desc')->paginate(5);
-        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
+        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
 
     public function notifications(){
