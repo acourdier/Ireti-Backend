@@ -23,9 +23,8 @@ Route::controller(WebController::class)->group(function(){
 Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::prefix('admin')->group(function(){
         Route::controller(AdminController::class)->group(function(){
-            Route::get('orders','orders')->name('admin.orders');
-            Route::get('editorders/{id}','editorders')->name('admin.editorders');
-            Route::post('updateorder','updateorder')->name('admin.updateorder');
+
+
 
             Route::get('investment','investment')->name('admin.investment');
             Route::get('editinvestment/{id}','editinvestment')->name('admin.editinvestment');
@@ -33,18 +32,19 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
             Route::get('clients','clients')->name('admin.clients');
             Route::get('dashboard','dashboard')->name('admin.dashboard');
-            Route::get('payments','payments')->name('admin.payments');
-            Route::get('addpayment','addpayment')->name('admin.addpayment');
-            Route::get('editpayment','editpayment')->name('admin.editpayment');
-            Route::get('underlaying','underlaying')->name('admin.underlaying');
-            Route::get('currency','currency')->name('admin.currency');
             Route::get('notifications','notifications')->name('admin.notifications');
             Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
+            
+            
+            Route::get('currency','currency')->name('admin.currency');
             Route::get('addCurrency','addCurrency')->name('admin.addCurrency');
             Route::post('saveCurrency','saveCurrency')->name('admin.saveCurrency');
             Route::get('editCurrency/{id}','editCurrency')->name('admin.editCurrency');
             Route::post('updateCurrency','updateCurrency')->name('admin.updateCurrency');
             Route::get('deleteCurrency/{id}','deleteCurrency')->name('admin.deleteCurrency');
+
+
+            Route::get('underlaying','underlaying')->name('admin.underlaying');
             Route::get('addCommodity','addCommodity')->name('admin.addCommodity');
             Route::post('saveCommodity','saveCommodity')->name('admin.saveCommodity');
             Route::get('deleteCommodity/{id}','deleteCommodity')->name('admin.deleteCommodity');
@@ -52,7 +52,17 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::post('updateCommodity','updateCommodity')->name('admin.updateCommodity');
 
 
+            Route::get('orders','orders')->name('admin.orders');
+            Route::get('editorders/{id}','editorders')->name('admin.editorders');
+            Route::post('updateorder','updateorder')->name('admin.updateorder');
 
+
+            Route::get('payments','payments')->name('admin.payments');
+            Route::get('addpayment','addpayment')->name('admin.addpayment');
+            Route::post('savepayment','savepayment')->name('admin.savepayment');
+            Route::get('deletePayment/{id}','deletePayment')->name('admin.deletePayment');
+            Route::get('editpayment/{id}','editpayment')->name('admin.editpayment');
+            Route::post('updatepayment','updatepayment')->name('admin.updatepayment');
 
 
         });
@@ -85,7 +95,6 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
             
             Route::get('notifications','notifications')->name('user.notifications');
-            // Route::get('login','login')->name('login');
         });
     });
 });

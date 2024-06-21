@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Investment;
 use App\Models\Currency;
 use App\Models\UnderLaying;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -66,15 +67,7 @@ class AdminController extends Controller
     public function dashboard(){
         return view('Admin.dashboard');
     }
-    public function payments(){
-        return view('Admin.payments');
-    }
-    public function addpayment(){
-        return view('Admin.addpayment');
-    }
-    public function editpayment(){
-        return view('Admin.editpayment');
-    } 
+
 
     public function currency(){
         $data = Currency::orderBy('id', 'desc')->get();
@@ -135,5 +128,35 @@ class AdminController extends Controller
             $Commodity->update($request->all());
         }
         return redirect()->route('admin.underlaying');
+    }
+
+
+    public function payments(){
+        $data = Payment::orderBy('id', 'desc')->get();
+        return view('Admin.payments', ['payments' => $data]);
+    }
+    public function addpayment(){
+        return view('Admin.addpayment');
+    }
+    public function savepayment(Request $request){
+        $payments = $request->all();
+        Payment:: create($payments);
+        return redirect()->route('admin.payments');
+    }
+    public function deletePayment($id){
+        $data =Payment::find($id);
+        $data->delete();
+        return redirect()->route('admin.payments');
+    }
+    public function editpayment($id){
+        $data['payment'] =Payment::find($id);
+        return view('Admin.editpayment',$data);
+    } 
+    public function updatepayment(Request $request){
+        $payment = Payment::find($request->id);
+        if ($payment) {
+            $payment->update($request->all());
+        }
+        return redirect()->route('admin.payments');
     }
 }
