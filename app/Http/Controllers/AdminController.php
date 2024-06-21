@@ -153,7 +153,7 @@ class AdminController extends Controller
 
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
-        ->orderBy('id', 'desc')->get();
+        ->orderBy('id', 'desc')->paginate(5);
         return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
     }
 

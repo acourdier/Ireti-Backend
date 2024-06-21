@@ -125,9 +125,11 @@
                                     <p class="font-semi small mb-0  mt-3">Do you wish to validate this order ?</p>
                                     <div class="d-flex align-items-center  mt-3">
                                         <a href="{{ 'validateOrder/' . $orderData->id }}" class="px-3 py-1 me-2 border-0 rounded-3 green text-white font-semi text-decoration-none">Yes</a>
-                                        <button class=" px-3 py-1 ms-2  border-0 rounded-3 bg-secondary text-white font-semi">
-                                            No
-                                        </button>
+                                        <a href="{{route('user.products')}}">
+                                            <button class=" px-3 py-1 ms-2  border-0 rounded-3 bg-secondary text-white font-semi">
+                                                No
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

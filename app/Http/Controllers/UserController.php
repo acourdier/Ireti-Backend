@@ -23,7 +23,7 @@ class UserController extends Controller
         ->where('userid', $userId)
         ->count();
         
-        $data = Order::where('userid', $userId)->orderBy('id', 'desc')->get();
+        $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
     }
     public function products(){
@@ -44,7 +44,7 @@ class UserController extends Controller
     }
     public function orderdetail(){
         $orderData = session('orderData');
-        return view('user.orderdetail', compact('orderData'));
+        return view('User.orderdetail', compact('orderData'));
     }
 
     public function investment(){
