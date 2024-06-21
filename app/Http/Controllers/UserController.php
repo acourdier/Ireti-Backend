@@ -53,12 +53,12 @@ class UserController extends Controller
         $userId = auth()->id();
         $investment['userid'] = $userId;
         Investment:: create($investment);
-        return redirect()->route('user.investment');
+        return redirect()->route('user.investment')->with('success', 'Investment Added successfully.');
     }
     public function Deleteinvestment($id){
         $data =Investment::find($id);
         $data->delete();
-        return redirect()->route('user.investment');
+        return redirect()->route('user.investment')->with ('Delete','Investment Deleted Successfully');
     }
 
     public function profile(){
@@ -73,7 +73,7 @@ class UserController extends Controller
                 '*' => 'required'
             ]);
             $user->update($validatedData);
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile')->with ('update','Profile Updated Successfully');
         }
     }
 
@@ -81,10 +81,11 @@ class UserController extends Controller
     public function bank(){
         $userId = auth()->id();
         $account = BankAccount::where('userid', $userId)->first();
+        $currencies = Currency::orderBy('id', 'desc')->get();
         if (is_null($account)) {
-            return view('User.bank'); 
+            return view('User.bank',['account' => $account,'currencies' => $currencies]); 
         }
-        return view('User.bank', ['account' => $account]);
+        return view('User.bank', ['account' => $account,'currencies' => $currencies]);
     }  
     public function addbank(Request $request) {
         $request->validate([
@@ -110,7 +111,8 @@ class UserController extends Controller
         return view('User.beneficiaries', ['beneficiaries' => $beneficiaries]);
     }
     public function addbeneficiaries(){
-        return view('User.addbeneficiaries');
+        $currency = Currency::orderBy('id', 'desc')->get();
+        return view('User.addbeneficiaries',['currencies' => $currency]);
     }
     public function createbeneficiaries(Request $Request){
         $Request->validate([
@@ -120,7 +122,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
-        return redirect()->route('user.beneficiaries');
+        return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
 
     public function notifications(){
