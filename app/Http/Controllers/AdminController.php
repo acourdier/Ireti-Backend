@@ -100,8 +100,7 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.currency');
     }
-    public function approveUser($id)
-    {
+    public function approveUser($id){
         $user = User::find($id);
         if ($user) {
             $user->status = 2;
@@ -109,15 +108,14 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('message', 'User approved successfully.');
     }
-
-    public function rejectUser($id)
-    {
+    public function rejectUser($id){
         $user = User::find($id);
         if ($user) {
             $user->status = 3;  // Set status to 3 for rejection
             $user->save();
         }
         return redirect()->back()->with('message', 'User rejected successfully.');
+    }
 
     public function underlaying(){
         $data = UnderLaying::orderBy('id', 'desc')->get();
