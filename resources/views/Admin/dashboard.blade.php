@@ -20,7 +20,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Live Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">5</span>MTM</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
@@ -34,7 +34,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Filled Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">2,985.670.00</span>USD</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
-                                <p class="mb-0 font-bold mb-3 fs-3 ">Yearly View</p>
+                                <h4>Yearly View</h4>
                                 <div class="col-12 d-flex justify-content-center">
                                     <canvas id="myChart"></canvas>
                                 </div>
@@ -62,75 +62,37 @@
                         </div>
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
-                                <p class="mb-0 font-bold mb-3 fs-3 ">My Orders</p>
+                                <h4>Total Orders</h4>
                                 <div class="table-responsive">
                                     <table class="table dashtbl">
                                         <thead>
                                             <tr>
+                                                <th>User ID</th>
                                                 <th>Product</th>
-                                                <th>Buy</th>
-                                                <th>Sell</th>
-                                                <th>Order Date</th>
-                                                <th>Executed Date</th>
                                                 <th>Price Target</th>
-                                                <th>Filled</th>
+                                                <th>Order Date</th>
+                                                <th>Order Filled</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($orders as $order)
                                             <tr class="align-middle">
+                                                <td>{{$order['fname']}}</td>
                                                 <td>
                                                     <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
+                                                        <p class="mb-0 font-semi">{{$order['FundType']}}</p>
+                                                        <p class="mb-0">{{$order['underlying']}}</p>
                                                     </div>
                                                 </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
+                                                <td>{{$order['targetp']}}</td>
+                                                <td>{{$order['created_at']}}</td>
                                                 <td>
-                                                    <button class="btnred">
-                                                        No
+                                                    <button class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                        {{$order['filled']}}
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
-                                                    </div>
-                                                </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
-                                                <td>
-                                                    <button class="btngreen">
-                                                        Yes
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    <div>
-                                                        <p class="mb-0 font-semi">Soft Commodities</p>
-                                                        <p class="mb-0">Cooking oil</p>
-                                                    </div>
-                                                </td>
-                                                <td>$2500</td>
-                                                <td>$3200</td>
-                                                <td>20 March 2024</td>
-                                                <td>26 March 2024</td>
-                                                <td>$4500</td>
-                                                <td>
-                                                    <button class="btngreen">
-                                                        Yes
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

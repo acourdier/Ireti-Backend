@@ -126,16 +126,6 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->route('admin.clients');
     }
-    public function dashboard(){
-        return view('Admin.dashboard');
-    }
-
-
-    public function notifications(){
-        return view('Admin.notifications');
-    }
-
-
     public function approveUser($id){
         $user = User::find($id);
         if ($user) {
@@ -152,6 +142,27 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('reject', 'User rejected successfully.');
     }
+
+
+    public function dashboard(){
+        $counttotalorders = Order::where('status', 1)
+        ->count();
+
+        $countfilledorders = Order::where('filled', 'YES')
+        ->count();
+
+        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->get();
+        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
+    }
+
+    public function notifications(){
+        return view('Admin.notifications');
+    }
+
+
+
 
 
     public function payments(){

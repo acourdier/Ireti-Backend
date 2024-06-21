@@ -19,7 +19,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Live Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">5</span>MTM</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
@@ -33,7 +33,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Filled Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">2,985.670.00</span>USD</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
-                                <p class="mb-0 font-bold mb-3 fs-3 ">Yearly View</p>
+                                <h4>Yearly View</h4>
                                 <div class="col-12 d-flex justify-content-center">
                                     <canvas id="myChart"></canvas>
                                 </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
-                                <p class="mb-0 font-bold mb-3 fs-3 ">My Orders</p>
+                                <h4>My Orders</h4>
                                 <div class="table-responsive">
                                     <table class="table dashtbl">
                                         <thead>
@@ -69,11 +69,11 @@
                                                 <th>Product</th>
                                                 <th>Price Target</th>
                                                 <th>Order Date</th>
-                                                <th>Filled</th>
+                                                <th>Order Filled</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($orders as $order)                                                
+                                            @foreach ($orders as $order)
                                             <tr class="align-middle">
                                                 <td>
                                                     <div>

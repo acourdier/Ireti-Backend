@@ -14,8 +14,17 @@ class UserController extends Controller
 {
     public function dashboard(){
         $userId = auth()->id();
+
+        $counttotalorders = Order::where('status', 1)
+        ->where('userid', $userId)
+        ->count();
+
+        $countfilledorders = Order::where('filled', 'YES')
+        ->where('userid', $userId)
+        ->count();
+        
         $data = Order::where('userid', $userId)->orderBy('id', 'desc')->get();
-        return view('User.dashboard', ['orders' => $data]);
+        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders]);
     }
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
