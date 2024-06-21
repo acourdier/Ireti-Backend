@@ -30,7 +30,7 @@ class AdminController extends Controller
         if ($order) {
             $order->update(['filled' => $request->filled]);
         }
-        return redirect()->route('admin.orders');
+        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
     }
 
 
