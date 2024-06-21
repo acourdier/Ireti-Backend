@@ -7,6 +7,11 @@
 </head>
 
 <body>
+    @if (session('success'))
+    <script>
+        swal("Good Job!", "{{session('success')}}", "success");
+    </script>
+@endif
     <div class="section">
         <div class="maindiv">
             @include('../Template.usersidebar')
@@ -119,7 +124,6 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
-
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
                                                     @foreach ($softs as $soft)

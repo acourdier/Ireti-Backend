@@ -65,8 +65,6 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('deletePayment/{id}','deletePayment')->name('admin.deletePayment');
             Route::get('editpayment/{id}','editpayment')->name('admin.editpayment');
             Route::post('updatepayment','updatepayment')->name('admin.updatepayment');
-
-
         });
     });
 });
@@ -97,6 +95,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
             
             Route::get('notifications','notifications')->name('user.notifications');
+            Route::get('validateOrder/{id}','validateOrder')->name('admin.validateOrder');
         });
     });
 });
