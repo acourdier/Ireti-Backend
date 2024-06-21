@@ -107,13 +107,9 @@
 
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="choose" selected disabled hidden>choose</option>
-                                                    <option value="Clinker">Clinker</option>
-                                                    <option value="Cocoa">Cocoa</option>
-                                                    <option value="Coffee">Coffee</option>
-                                                    <option value="Cotton">Cotton</option>
-                                                    <option value="Used Cooking Oil">Used Cooking Oil</option>
-                                                    <option value="Wheat">Wheat</option>
+                                                    @foreach ($softs as $soft)
+                                                        <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -205,13 +201,9 @@
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
-                                                    <option value="choose" selected disabled hidden>choose</option>
-                                                    <option value="Fuel">Fuel</option>
-                                                    <option value="Fuel Oil">Fuel Oil</option>
-                                                    <option value="LPG">LPG</option>
-                                                    <option value="Lubricants">Lubricants</option>
-                                                    <option value="Gasoline">Gasoline</option>
-                                                    <option value="Kerosene">Kerosene</option>
+                                                    @foreach ($oils as $oil)
+                                                        <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
