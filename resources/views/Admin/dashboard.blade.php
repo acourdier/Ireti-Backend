@@ -62,7 +62,7 @@
                         </div>
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
-                                <h4>My Orders</h4>
+                                <h4>Total Orders</h4>
                                 <div class="table-responsive">
                                     <table class="table dashtbl">
                                         <thead>
