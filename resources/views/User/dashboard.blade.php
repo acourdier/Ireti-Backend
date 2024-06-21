@@ -19,7 +19,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Live Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">5</span>MTM</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
@@ -33,7 +33,7 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Filled Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">2,985.670.00</span>USD</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">

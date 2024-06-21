@@ -145,12 +145,10 @@ class AdminController extends Controller
 
 
     public function dashboard(){
-        $counttotalorders = Order::leftJoin('users','orders.userid','=','users.id')
-        ->where('orders.status', 1)
+        $counttotalorders = Order::where('status', 1)
         ->count();
 
-        $countfilledorders = Order::leftJoin('users','orders.userid','=','users.id')
-        ->where('orders.filled', 'YES')
+        $countfilledorders = Order::where('filled', 'YES')
         ->count();
 
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
