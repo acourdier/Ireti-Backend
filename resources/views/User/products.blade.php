@@ -348,47 +348,25 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const targetPrice = document.getElementById('targetprice');
-            const sellAmount = document.getElementById('sellamount');
             
             const buyAmount = document.getElementById('buyamount');
             buyAmount.addEventListener('input', function() {
                 sellAmount.readOnly = buyAmount.value ? true : false;
                 sellAmount.value = targetPrice.value && buyAmount.value * targetPrice.value
             });
+            
+            const sellAmount = document.getElementById('sellamount');
             sellAmount.addEventListener('input', function() {
-                buyAmount.readOnly = true;
-                if(targetPrice.value)
-                buyAmount.value = sellAmount.value / targetPrice.value
-                if(!sellAmount.value)
-                buyAmount.readOnly = false;
+                buyAmount.readOnly = sellAmount.value ? true : false;
+                buyAmount.value = targetPrice.value && sellAmount.value / targetPrice.value
             });
             targetPrice.addEventListener('input', function() {
-                if(buyAmount.value)
-                sellAmount.value = buyAmount.value * targetPrice.value
+                if(buyAmount.value){
+                    sellAmount.value = buyAmount.value * targetPrice.value
+                }
                 else
                 buyAmount.value = sellAmount.value / targetPrice.value
             });
-    
-            function calculate() {
-                const targetPriceValue = parseFloat(targetPrice.value);
-                const sellAmountValue = parseFloat(sellAmount.value);
-                const buyAmountValue = parseFloat(buyAmount.value);
-    
-                if (targetPrice.value && sellAmount.value) {
-                    buyAmount.value = (sellAmountValue / targetPriceValue ).toFixed(2);
-                    buyAmount.readOnly = true;
-                    sellAmount.readOnly = false;
-                }
-                else if(targetPrice.value && buyAmount.value) {
-                    sellAmount.value = (buyAmountValue * targetPriceValue ).toFixed(2);
-                    buyAmount.readOnly = false;
-                    sellAmount.readOnly = true;
-                }
-                 else{
-                    buyAmount.readOnly = false;
-                    sellAmount.readOnly = false;
-                }
-            }
         });
     </script>
     @include('../Template.jslinks')
