@@ -62,7 +62,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="number" required name="amountb" id="amountb"
+                                                <input type="number" id="buyamount" required name="amountb" id="amountb"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -79,14 +79,14 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="number" required name="amountts" id="amounts"
+                                                <input type="number" id="sellamount" required name="amountts" id="amounts"
                                                     class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="number" required name="targetp" id="targetp"
+                                                <input type="number" id="targetprice" required name="targetp" id="targetp"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -342,6 +342,38 @@
             var selectedProductField = document.getElementById(selectedOption);
             if (selectedProductField) {
                 selectedProductField.style.display = 'block';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const targetPrice = document.getElementById('targetprice');
+            const sellAmount = document.getElementById('sellamount');
+            const buyAmount = document.getElementById('buyamount');
+    
+            targetPrice.addEventListener('input', calculate);
+            sellAmount.addEventListener('input', calculate);
+            buyAmount.addEventListener('input', calculate);
+    
+            function calculate() {
+                const targetPriceValue = parseFloat(targetPrice.value);
+                const sellAmountValue = parseFloat(sellAmount.value);
+                const buyAmountValue = parseFloat(buyAmount.value);
+    
+                if (targetPrice.value && sellAmount.value) {
+                    buyAmount.value = (sellAmountValue / targetPriceValue ).toFixed(2);
+                    buyAmount.readOnly = true;
+                    sellAmount.readOnly = false;
+                }
+                else if(targetPrice.value && buyAmount.value) {
+                    sellAmount.value = (buyAmountValue * targetPriceValue ).toFixed(2);
+                    buyAmount.readOnly = false;
+                    sellAmount.readOnly = true;
+                }
+                 else{
+                    buyAmount.readOnly = false;
+                    sellAmount.readOnly = false;
+                }
             }
         });
     </script>
