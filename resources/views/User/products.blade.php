@@ -349,11 +349,25 @@
         document.addEventListener('DOMContentLoaded', function () {
             const targetPrice = document.getElementById('targetprice');
             const sellAmount = document.getElementById('sellamount');
+            
             const buyAmount = document.getElementById('buyamount');
-    
-            targetPrice.addEventListener('input', calculate);
-            sellAmount.addEventListener('input', calculate);
-            buyAmount.addEventListener('input', calculate);
+            buyAmount.addEventListener('input', function() {
+                sellAmount.readOnly = buyAmount.value ? true : false;
+                sellAmount.value = targetPrice.value && buyAmount.value * targetPrice.value
+            });
+            sellAmount.addEventListener('input', function() {
+                buyAmount.readOnly = true;
+                if(targetPrice.value)
+                buyAmount.value = sellAmount.value / targetPrice.value
+                if(!sellAmount.value)
+                buyAmount.readOnly = false;
+            });
+            targetPrice.addEventListener('input', function() {
+                if(buyAmount.value)
+                sellAmount.value = buyAmount.value * targetPrice.value
+                else
+                buyAmount.value = sellAmount.value / targetPrice.value
+            });
     
             function calculate() {
                 const targetPriceValue = parseFloat(targetPrice.value);
