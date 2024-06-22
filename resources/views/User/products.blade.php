@@ -347,7 +347,6 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const targetPrice = document.getElementById('targetprice');
             
             const buyAmount = document.getElementById('buyamount');
             buyAmount.addEventListener('input', function() {
@@ -360,6 +359,8 @@
                 buyAmount.readOnly = sellAmount.value ? true : false;
                 buyAmount.value = targetPrice.value && sellAmount.value / targetPrice.value
             });
+            
+            const targetPrice = document.getElementById('targetprice');
             targetPrice.addEventListener('input', function() {
                 if(buyAmount.value){
                     sellAmount.value = buyAmount.value * targetPrice.value
