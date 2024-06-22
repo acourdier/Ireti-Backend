@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function dashboard(){
         $userId = auth()->id();
 
@@ -30,6 +31,11 @@ class UserController extends Controller
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
+    public function notifications(){
+        return view('User.notifications');
+    }
+
+
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
         $soft = UnderLaying::where('Type', 'Soft Commodities')->orderBy('id', 'desc')->get();
@@ -50,6 +56,15 @@ class UserController extends Controller
         $orderData = session('orderData');
         return view('User.orderdetail', compact('orderData'));
     }
+    public function validateOrder($id){
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = 1;
+            $order->save();
+        }
+        return redirect()->route('user.products')->with('success', 'Product validate successfully.');
+    }
+
 
     public function investment(){
         $userId = auth()->id();
@@ -75,6 +90,7 @@ class UserController extends Controller
         return redirect()->route('user.investment')->with ('Delete','Investment Deleted Successfully');
     }
 
+
     public function profile(){
         $userId = auth()->id();
         $profile = User::where('id', $userId)->first();
@@ -90,6 +106,7 @@ class UserController extends Controller
             return redirect()->route('user.profile')->with ('update','Profile Updated Successfully');
         }
     }
+
 
     public function bank(){
         $userId = auth()->id();
@@ -137,17 +154,5 @@ class UserController extends Controller
         Beneficiaries:: create($beneficiaries);
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
-
-    public function notifications(){
-        return view('User.notifications');
-    }
-    public function validateOrder($id){
-        $order = Order::find($id);
-        if ($order) {
-            $order->status = 1;
-            $order->save();
-        }
-        return redirect()->route('user.products')->with('success', 'Product validate successfully.');
-    }
-    
+   
 }

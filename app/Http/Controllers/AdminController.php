@@ -11,26 +11,24 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
-    public function orders(){
+
+    public function dashboard(){
+        $counttotalorders = Order::where('status', 1)
+        ->count();
+
+        $countfilledorders = Order::where('filled', 'YES')
+        ->count();
+
+        $sumfilledorders = Order::where('status', 1)
+        ->sum('quantity');
+
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
-        ->orderBy('id', 'desc')->get();
-        return view('Admin.orders', ['orders' => $data]);
+        ->orderBy('id', 'desc')->paginate(5);
+        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
-    public function editorders($id){
-        $data['orders'] =Order::find($id);
-        return view('Admin.editorders',$data);
-    }
-    public function updateorder(Request $request){
-        $request->validate([
-        'filled' => 'required',
-        ]);
-        $order = Order::find($request->id);
-    
-        if ($order) {
-            $order->update(['filled' => $request->filled]);
-        }
-        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
+    public function notifications(){
+        return view('Admin.notifications');
     }
 
 
@@ -93,6 +91,29 @@ class AdminController extends Controller
         return redirect()->route('admin.underlaying')->with ('update','Commodity Updated Successfully');
     }
 
+    
+    public function orders(){
+        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->get();
+        return view('Admin.orders', ['orders' => $data]);
+    }
+    public function editorders($id){
+        $data['orders'] =Order::find($id);
+        return view('Admin.editorders',$data);
+    }
+    public function updateorder(Request $request){
+        $request->validate([
+        'filled' => 'required',
+        ]);
+        $order = Order::find($request->id);
+    
+        if ($order) {
+            $order->update(['filled' => $request->filled]);
+        }
+        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
+    }
+
 
     public function investment(){
         $data =Investment::leftjoin('users','investments.userid','=','users.id')
@@ -144,30 +165,6 @@ class AdminController extends Controller
     }
 
 
-    public function dashboard(){
-        $counttotalorders = Order::where('status', 1)
-        ->count();
-
-        $countfilledorders = Order::where('filled', 'YES')
-        ->count();
-
-        $sumfilledorders = Order::where('status', 1)
-        ->sum('quantity');
-
-        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
-        ->select('users.fname','orders.*')
-        ->orderBy('id', 'desc')->paginate(5);
-        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
-    }
-
-    public function notifications(){
-        return view('Admin.notifications');
-    }
-
-
-
-
-
     public function payments(){
         $data = Payment::orderBy('id', 'desc')->get();
         return view('Admin.payments', ['payments' => $data]);
@@ -196,4 +193,5 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
     }
+    
 }
