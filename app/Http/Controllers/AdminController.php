@@ -166,7 +166,7 @@ class AdminController extends Controller
             Mail::to($to_email)
                 ->send($mail);
         }
-        return redirect()->route('admin.orders');
+        return redirect()->route('admin.orders')->with('update', 'Email Sent Successfully');
     }
     
 
@@ -210,7 +210,29 @@ class AdminController extends Controller
     
         return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }
+    public function investmentemail(Request $request){
+        $order = Investment::find($request->id);
+        $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
+            ->select('users.fname', 'users.email', 'investments.*')
+            ->where('investments.id', $order->id) 
+            ->first();
+        
+        if ($data) {
+            $username = $data->fname;
+            $email = $data->email;
+            $status = $data->status;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $requestMail['status'] = $status;
+            $to_email = $email;
+            $mail = new ConfirmInvest($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
+
+        }
     
+        return redirect()->route('admin.investment')->with('update', 'Email Sent Successfully');
+    }
 
 
     public function clients(){

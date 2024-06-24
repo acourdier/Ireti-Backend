@@ -55,6 +55,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
             Route::get('investment','investment')->name('admin.investment');
             Route::get('editinvestment/{id}','editinvestment')->name('admin.editinvestment');
+            Route::get('investmentemail/{id}','investmentemail')->name('admin.investmentemail');
             Route::post('updateinvestment','updateinvestment')->name('admin.updateinvestment');
 
 

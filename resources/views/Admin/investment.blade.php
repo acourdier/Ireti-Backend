@@ -62,6 +62,9 @@
                                                 <a href="{{ 'editinvestment/' . $investment['id'] }}">
                                                     <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                 </a>
+                                                <a href="{{ 'investmentemail/' . $investment['id'] }}">
+                                                    <i class="fa-regular text-muted fa-envelope"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
