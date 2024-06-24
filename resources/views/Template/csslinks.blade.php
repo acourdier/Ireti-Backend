@@ -12,4 +12,3 @@
 <link rel="stylesheet" href="{{asset('css/main2.css')}}">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@include('Template.Loader')
