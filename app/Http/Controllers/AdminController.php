@@ -150,19 +150,20 @@ class AdminController extends Controller
         ->where('orders.id', $order->id) 
         ->first();
     
-    if ($data) {
-        $username = $data->fname;
-        $email = $data->email;
-        $requestMail = $request->all();
-        $requestMail['username'] = $username;
-        $to_email = $email;
-        $mail = new OrderFilled($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
-
-    }
+        if ($data) {
+            $username = $data->fname;
+            $email = $data->email;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = $email;
+            $mail = new OrderFilled($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
+        }
         return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
     }
+
+    
 
 
     public function investment(){
