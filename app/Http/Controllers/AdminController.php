@@ -10,9 +10,8 @@ use App\Models\UnderLaying;
 use App\Models\Payment;
 use App\Models\notification;
 use Illuminate\Http\Request;
-use App\Mail\InvestmentMail;
-use App\Mail\OrderMail;
 use App\Mail\ConfirmInvest;
+use App\Mail\OrderFilled;
 use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
@@ -146,6 +145,22 @@ class AdminController extends Controller
         if ($order) {
             $order->update(['filled' => $request->filled]);
         }
+        $data = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
+        ->select('users.fname', 'users.email', 'orders.*')
+        ->where('orders.id', $order->id) 
+        ->first();
+    
+    if ($data) {
+        $username = $data->fname;
+        $email = $data->email;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = $email;
+        $mail = new OrderFilled($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
+
+    }
         return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
     }
 
