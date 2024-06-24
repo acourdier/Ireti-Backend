@@ -62,7 +62,10 @@
                                             </td>
                                             <td>
                                                 <a href="{{ 'editorders/' . $order['id'] }}">
-                                                    <i class="fa-solid text-muted fa-pen-to-square"></i>
+                                                    <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                </a>
+                                                <a href="{{ 'orderemail/' . $order['id'] }}">
+                                                    <i class="fa-regular text-muted fa-envelope"></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -43,6 +43,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('addCommodity','addCommodity')->name('admin.addCommodity');
             Route::post('saveCommodity','saveCommodity')->name('admin.saveCommodity');
             Route::get('editCommodity/{id}','editCommodity')->name('admin.editCommodity');
+            Route::get('orderemail/{id}','orderemail')->name('admin.orderemail');
             Route::post('updateCommodity','updateCommodity')->name('admin.updateCommodity');
             Route::get('deleteCommodity/{id}','deleteCommodity')->name('admin.deleteCommodity');
 

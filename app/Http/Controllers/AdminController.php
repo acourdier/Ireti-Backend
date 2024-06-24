@@ -145,6 +145,10 @@ class AdminController extends Controller
         if ($order) {
             $order->update(['filled' => $request->filled]);
         }
+        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
+    }
+    public function orderemail(Request $request){
+        $order = Order::find($request->id);
         $data = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
         ->select('users.fname', 'users.email', 'orders.*')
         ->where('orders.id', $order->id) 
@@ -153,16 +157,17 @@ class AdminController extends Controller
         if ($data) {
             $username = $data->fname;
             $email = $data->email;
+            $filled = $data->filled;
             $requestMail = $request->all();
             $requestMail['username'] = $username;
+            $requestMail['filled'] = $filled;
             $to_email = $email;
             $mail = new OrderFilled($requestMail);
             Mail::to($to_email)
                 ->send($mail);
         }
-        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
+        return redirect()->route('admin.orders');
     }
-
     
 
 
