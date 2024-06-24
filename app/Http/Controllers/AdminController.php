@@ -46,6 +46,13 @@ class AdminController extends Controller
     public function saveCurrency(Request $request){
         $currency = $request->all();
         Currency:: create($currency);
+
+        $userid = auth()->user()->id;
+        $msg = "Added a new Currency";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('admin.currency')->with ('success','Currency Added Successfully');
     }
     public function deleteCurrency($id){
@@ -62,6 +69,13 @@ class AdminController extends Controller
         if ($currency) {
             $currency->update($request->all());
         }
+
+        $userid = auth()->user()->id;
+        $msg = "Updated a Currency";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('admin.currency')->with ('update','Currency Updated Successfully');
     }
 
@@ -76,6 +90,13 @@ class AdminController extends Controller
     public function saveCommodity(Request $request){
         $underlaying = $request->all();
         UnderLaying:: create($underlaying);
+
+        $userid = auth()->user()->id;
+        $msg = "Added a new Commodity";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('admin.underlaying')->with ('success','Commodity Added Successfully');
     }
     public function deleteCommodity($id){
@@ -92,6 +113,12 @@ class AdminController extends Controller
         if ($Commodity) {
             $Commodity->update($request->all());
         }
+        $userid = auth()->user()->id;
+        $msg = "Updated a Commodity";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('admin.underlaying')->with ('update','Commodity Updated Successfully');
     }
 
