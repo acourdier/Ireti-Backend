@@ -41,9 +41,6 @@ class WebController extends Controller
     }
     public function createuser(Request $Request){
         $user = User::create($Request->all());
-        // $requestMail = $Request->all();
-        // $to_email = "mehakamir151@gmail.com";
-        // Mail::to($to_email)->send(new InquiryMail($requestMail));
         return redirect()->route('onlineInquiry')->with('userId', $user->id);
     }
     public function saveInquiry(Request $request){
@@ -188,8 +185,12 @@ class WebController extends Controller
         }
    
         $requestMail = $request->all();
-        $to_email = "mehakamir151@gmail.com";
-        Mail::to($to_email)->send(new InquiryMail($requestMail));
+        $to_email = "shakaibishfaq@gmail.com";
+        $to_email1 = "mehakamir187@gmail.com";
+        $mail = new InquiryMail($requestMail);
+        Mail::to($to_email)
+            ->cc($to_email1)
+            ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
     
