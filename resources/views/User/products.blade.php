@@ -346,29 +346,48 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            const buyAmount = document.getElementById('buyamount');
-            buyAmount.addEventListener('input', function() {
-                sellAmount.readOnly = buyAmount.value ? true : false;
-                sellAmount.value = targetPrice.value && buyAmount.value * targetPrice.value
-            });
-            
-            const sellAmount = document.getElementById('sellamount');
-            sellAmount.addEventListener('input', function() {
-                buyAmount.readOnly = sellAmount.value ? true : false;
-                buyAmount.value = targetPrice.value && sellAmount.value / targetPrice.value
-            });
-            
-            const targetPrice = document.getElementById('targetprice');
-            targetPrice.addEventListener('input', function() {
-                if(buyAmount.value){
-                    sellAmount.value = buyAmount.value * targetPrice.value
-                }
-                else
-                buyAmount.value = sellAmount.value / targetPrice.value
-            });
-        });
+        const buyAmount = document.getElementById('buyamount');
+        const sellAmount = document.getElementById('sellamount');
+        const targetPrice = document.getElementById('targetprice');
+
+        let debounceTimer;
+
+        function debounce(func, delay) {
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
+
+        buyAmount.addEventListener('input', debounce(function() {
+            if (buyAmount.value) {
+                sellAmount.readOnly = true;
+                sellAmount.value = targetPrice.value ? (buyAmount.value * targetPrice.value).toFixed(2) : '';
+            } else {
+                sellAmount.readOnly = false;
+                sellAmount.value = '';
+            }
+        }, 300));
+
+        sellAmount.addEventListener('input', debounce(function() {
+            if (sellAmount.value) {
+                buyAmount.readOnly = true;
+                buyAmount.value = targetPrice.value ? (sellAmount.value / targetPrice.value).toFixed(2) : '';
+            } else {
+                buyAmount.readOnly = false;
+                buyAmount.value = '';
+            }
+        }, 300));
+
+        targetPrice.addEventListener('input', debounce(function() {
+            if (buyAmount.value) {
+                sellAmount.value = (buyAmount.value * targetPrice.value).toFixed(2);
+            } else if (sellAmount.value) {
+                buyAmount.value = (sellAmount.value / targetPrice.value).toFixed(2);
+            }
+        }, 500));
     </script>
     @include('../Template.jslinks')
 </body>
