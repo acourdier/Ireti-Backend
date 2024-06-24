@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
+use App\Models\notification;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,7 +33,19 @@ class UserController extends Controller
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
     public function notifications(){
-        return view('User.notifications');
+        $userId = auth()->id();
+
+        $data = Notification::leftJoin('users', 'notifications.userid', '=', 'users.id')
+            ->select('users.fname', 'notifications.*')
+            ->where(function ($query) use ($userId) {
+                $query->where('notifications.userid', $userId)
+                      ->orWhere('users.role', 0);
+            })
+            ->orderBy('notifications.id', 'desc')
+            ->get();
+        
+        return view('User.notifications', ['notifications' => $data]);
+        
     }
 
 
@@ -62,6 +75,12 @@ class UserController extends Controller
             $order->status = 1;
             $order->save();
         }
+        $userid = auth()->user()->id;
+        $msg = "Added a new Order";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('user.products')->with('success', 'Product validate successfully.');
     }
 
@@ -82,6 +101,14 @@ class UserController extends Controller
         $userId = auth()->id();
         $investment['userid'] = $userId;
         Investment:: create($investment);
+
+        $userid = auth()->user()->id;
+        $msg = "Added a new Investment";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
+
         return redirect()->route('user.investment')->with('success', 'Investment Added successfully.');
     }
     public function Deleteinvestment($id){
@@ -103,6 +130,12 @@ class UserController extends Controller
                 '*' => 'required'
             ]);
             $user->update($validatedData);
+            $userid = auth()->user()->id;
+            $msg = "updated Profile successfully";
+            notification::create([
+            'message' => $msg,
+            'userid' => $userid,
+            ]);
             return redirect()->route('user.profile')->with ('update','Profile Updated Successfully');
         }
     }
@@ -125,12 +158,25 @@ class UserController extends Controller
             $existingAccount = BankAccount::where('userid', $userId)->first();
             if ($existingAccount) {
             $existingAccount->update($request->all());
+
+            $userid = auth()->user()->id;
+            $msg = "Updated Bank Account successfully";
+            notification::create([
+            'message' => $msg,
+            'userid' => $userid,
+            ]);
             return redirect()->route('user.bank')->with('success', 'Bank account updated successfully.');
         }
         $bank = $request->all();
         $bank['userid'] = $userId;
         BankAccount::create($bank);
-        
+        $userid = auth()->user()->id;
+        $msg = "Added a new Bank Account";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
+
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
 
@@ -152,6 +198,13 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
+
+        $userid = auth()->user()->id;
+        $msg = "Added a new Beneficiary";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
    
