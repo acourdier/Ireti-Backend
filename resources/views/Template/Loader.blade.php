@@ -1,4 +1,3 @@
-<!-- resources/views/partials/loader.blade.php -->
 <div id="loader-wrapper">
     <div id="loader">
         <img src="{{ asset('img/loader.png') }}" alt="Loading..." class="animated-loader">
@@ -7,15 +6,15 @@
 
 <style>
     #loader-wrapper {
-        display: none; /* Initially hide the loader */
+        display: none;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 9998;
-        width: 80px; /* Adjust based on your loader image size */
-        height: 80px; /* Adjust based on your loader image size */
-        background-color: transparent; /* Set a background color if needed */
+        width: 35px; 
+        height: 50px; 
+        background-color: transparent;
     }
 
     #loader {
@@ -24,12 +23,12 @@
         align-items: center;
         width: 100%;
         height: 100%;
-        animation: rotate 2s linear infinite; /* Adjust animation duration */
+        animation: rotate 2s linear infinite;
     }
 
     .animated-loader {
-        width: 100%; /* Adjust based on your loader image size */
-        height: 100%; /* Adjust based on your loader image size */
+        width: 35px; 
+        height: 50px; 
     }
 
     @keyframes rotate {
@@ -43,13 +42,11 @@
 </style>
 
 <script>
-    // JavaScript to show loader while page is loading
     document.addEventListener('DOMContentLoaded', function() {
         var loader = document.getElementById('loader-wrapper');
-        loader.style.display = 'flex'; // Show loader initially
+        loader.style.display = 'flex';
     });
 
-    // Hide loader when all resources (including images) have loaded
     window.addEventListener('load', function() {
         var loader = document.getElementById('loader-wrapper');
         loader.style.display = 'none';
