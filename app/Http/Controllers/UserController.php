@@ -33,7 +33,9 @@ class UserController extends Controller
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
     public function notifications(){
-        return view('User.notifications');
+        $userId = auth()->id();
+        $data = notification::where('userid', $userId)->orderBy('id', 'desc')->get();
+        return view('User.notifications', ['notifications' => $data]);
     }
 
 
