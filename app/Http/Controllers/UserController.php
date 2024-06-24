@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
+use App\Mail\InvestmentMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
 
@@ -104,6 +106,16 @@ class UserController extends Controller
 
         $userid = auth()->user()->id;
         $msg = "Added a new Investment";
+
+        $username=auth()->user()->fname;
+        $requestMail = $Request->all();
+        $requestMail['username'] = $username;
+
+        $to_email = auth()->user()->email;
+        $mail = new InvestmentMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
+            
         notification::create([
         'message' => $msg,
         'userid' => $userid,
