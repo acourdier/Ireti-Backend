@@ -191,22 +191,21 @@ class AdminController extends Controller
             $order->update(['status' => $request->status]);
         }
     
-        $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
-            ->select('users.fname', 'users.email', 'investments.*')
-            ->where('investments.id', $order->id) 
-            ->first();
+        // $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
+        //     ->select('users.fname', 'users.email', 'investments.*')
+        //     ->where('investments.id', $order->id) 
+        //     ->first();
         
-        if ($data) {
-            $username = $data->fname;
-            $email = $data->email;
-            $requestMail = $request->all();
-            $requestMail['username'] = $username;
-            $to_email = $email;
-            $mail = new ConfirmInvest($requestMail);
-            Mail::to($to_email)
-                ->send($mail);
-
-        }
+        // if ($data) {
+        //     $username = $data->fname;
+        //     $email = $data->email;
+        //     $requestMail = $request->all();
+        //     $requestMail['username'] = $username;
+        //     $to_email = $email;
+        //     $mail = new ConfirmInvest($requestMail);
+        //     Mail::to($to_email)
+        //         ->send($mail);
+        // }
     
         return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }

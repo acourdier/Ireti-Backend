@@ -56,17 +56,30 @@
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
                                             <td>
-                                                <button class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                <button
+                                                    class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
                                                     {{$order['filled']}}
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="{{ 'editorders/' . $order['id'] }}">
-                                                    <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
-                                                </a>
-                                                <a href="{{ 'orderemail/' . $order['id'] }}">
-                                                    <i class="fa-regular text-muted fa-envelope"></i>
-                                                </a>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{ 'editorders/' . $order['id'] }}">
+                                                                <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                Edit
+                                                            </a>
+                                                        </li>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ 'orderemail/' . $order['id'] }}">
+                                                                <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                                Send Email
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
