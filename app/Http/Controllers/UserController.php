@@ -9,6 +9,7 @@ use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
 use App\Mail\InvestmentMail;
+use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -65,6 +66,21 @@ class UserController extends Controller
         $userId = auth()->id();
         $order['userid'] = $userId;
         $orderData = Order::create($order);
+
+        $userid = auth()->user()->id;
+        $msg = "Added a new Order";
+        notification::create([
+        'message' => $msg,
+        'userid' => $userid,
+        ]);
+
+        $username=auth()->user()->fname;
+        $requestMail = $Request->all();
+        $requestMail['username'] = $username;
+        $to_email = auth()->user()->email;
+        $mail = new OrderMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
         return redirect()->route('user.orderdetail')->with('orderData', $orderData);
     }
     public function orderdetail(){
@@ -77,12 +93,8 @@ class UserController extends Controller
             $order->status = 1;
             $order->save();
         }
-        $userid = auth()->user()->id;
-        $msg = "Added a new Order";
-        notification::create([
-        'message' => $msg,
-        'userid' => $userid,
-        ]);
+
+
         return redirect()->route('user.products')->with('success', 'Product validate successfully.');
     }
 
@@ -110,7 +122,6 @@ class UserController extends Controller
         $username=auth()->user()->fname;
         $requestMail = $Request->all();
         $requestMail['username'] = $username;
-
         $to_email = auth()->user()->email;
         $mail = new InvestmentMail($requestMail);
         Mail::to($to_email)
