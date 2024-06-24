@@ -7,7 +7,6 @@
 </head>
 
 <body>
-    {{-- @include('Template.Loader') --}}
     <section class="logins">
         <div class="container-fluid">
             @if (session('success'))

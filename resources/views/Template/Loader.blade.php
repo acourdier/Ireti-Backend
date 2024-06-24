@@ -1,7 +1,7 @@
 <!-- resources/views/partials/loader.blade.php -->
 <div id="loader-wrapper" style="display: none;">
     <div id="loader">
-        <img src="{{ asset('images/your-image.png') }}" alt="Loading..." class="animated-loader">
+        <img src="{{ asset('img/loader.png') }}" alt="Loading..." class="animated-loader">
     </div>
 </div>
 
