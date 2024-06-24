@@ -34,8 +34,18 @@ class UserController extends Controller
     }
     public function notifications(){
         $userId = auth()->id();
-        $data = notification::where('userid', $userId)->orderBy('id', 'desc')->get();
+
+        $data = Notification::leftJoin('users', 'notifications.userid', '=', 'users.id')
+            ->select('users.fname', 'notifications.*')
+            ->where(function ($query) use ($userId) {
+                $query->where('notifications.userid', $userId)
+                      ->orWhere('users.role', 0);
+            })
+            ->orderBy('notifications.id', 'desc')
+            ->get();
+        
         return view('User.notifications', ['notifications' => $data]);
+        
     }
 
 
