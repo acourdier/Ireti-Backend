@@ -66,7 +66,7 @@ class UserController extends Controller
             $order->save();
         }
         $userid = auth()->user()->id;
-        $msg = "A new Order has been added";
+        $msg = "Added a new Order";
         notification::create([
         'message' => $msg,
         'userid' => $userid,
@@ -93,7 +93,7 @@ class UserController extends Controller
         Investment:: create($investment);
 
         $userid = auth()->user()->id;
-        $msg = "A new investment has been added";
+        $msg = "Added a new Investment";
         notification::create([
         'message' => $msg,
         'userid' => $userid,
@@ -121,7 +121,7 @@ class UserController extends Controller
             ]);
             $user->update($validatedData);
             $userid = auth()->user()->id;
-            $msg = "Profile updated successfully";
+            $msg = "updated Profile successfully";
             notification::create([
             'message' => $msg,
             'userid' => $userid,
@@ -150,7 +150,7 @@ class UserController extends Controller
             $existingAccount->update($request->all());
 
             $userid = auth()->user()->id;
-            $msg = "Bank Account updated successfully";
+            $msg = "Updated Bank Account successfully";
             notification::create([
             'message' => $msg,
             'userid' => $userid,
@@ -161,7 +161,7 @@ class UserController extends Controller
         $bank['userid'] = $userId;
         BankAccount::create($bank);
         $userid = auth()->user()->id;
-        $msg = "A new Bank account has been added";
+        $msg = "Added a new Bank Account";
         notification::create([
         'message' => $msg,
         'userid' => $userid,
@@ -190,7 +190,7 @@ class UserController extends Controller
         Beneficiaries:: create($beneficiaries);
 
         $userid = auth()->user()->id;
-        $msg = "A new Beneficiary has been added";
+        $msg = "Added a new Beneficiary";
         notification::create([
         'message' => $msg,
         'userid' => $userid,
