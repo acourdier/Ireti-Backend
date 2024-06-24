@@ -8,6 +8,7 @@ use App\Models\Investment;
 use App\Models\Currency;
 use App\Models\UnderLaying;
 use App\Models\Payment;
+use App\Models\notification;
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -28,7 +29,10 @@ class AdminController extends Controller
         return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
     public function notifications(){
-        return view('Admin.notifications');
+        $data = notification::leftjoin('users','notifications.userid','=','users.id')
+        ->select('users.fname','notifications.*')
+        ->orderBy('id', 'desc')->get();
+        return view('Admin.notifications', ['notifications' => $data]);
     }
 
 
