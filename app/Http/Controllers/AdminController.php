@@ -10,6 +10,10 @@ use App\Models\UnderLaying;
 use App\Models\Payment;
 use App\Models\notification;
 use Illuminate\Http\Request;
+use App\Mail\InvestmentMail;
+use App\Mail\OrderMail;
+use App\Mail\ConfirmInvest;
+use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
 
@@ -158,15 +162,34 @@ class AdminController extends Controller
     }
     public function updateinvestment(Request $request){
         $request->validate([
-        'status' => 'required',
+            'status' => 'required',
         ]);
-        $order = Investment::find($request->id);
+            $order = Investment::find($request->id);
     
         if ($order) {
             $order->update(['status' => $request->status]);
         }
-        return redirect()->route('admin.investment')->with ('update','Investment Updated Successfully');
+    
+        $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
+            ->select('users.fname', 'users.email', 'investments.*')
+            ->where('investments.id', $order->id) 
+            ->first();
+        
+        if ($data) {
+            $username = $data->fname;
+            $email = $data->email;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = $email;
+            $mail = new ConfirmInvest($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
+
+        }
+    
+        return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }
+    
 
 
     public function clients(){
