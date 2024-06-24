@@ -34,7 +34,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-11 bg-white p-4 mailshadow rounded-4">
                     <h1 class="fs-3">{{ Auth::user()->fname }} has sent an inquiry" </h1>
-                    {{ $requestMail['username'] }} your Order {{$requestMail['filled'] }} is by {{ Auth::user()->fname }}
+                    {{ $requestMail['username'] }} your Order is @if ($requestMail['filled'] == 'YES')
+                    Filled
+                    @else
+                    Not filled
+                    @endif by {{ Auth::user()->fname }}
                 </div>
             </div>
     </section>
