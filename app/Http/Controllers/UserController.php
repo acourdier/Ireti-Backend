@@ -13,6 +13,7 @@ use App\Mail\OrderMail;
 use App\Mail\ProfileMail;
 use App\Mail\BankAccountMail;
 use App\Mail\BankAccountUpdate;
+use App\Mail\BenficiaryMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -250,6 +251,14 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
+        
+        $username=auth()->user()->fname;
+        $requestMail = $Request->all();
+        $requestMail['username'] = $username;
+        $to_email = auth()->user()->email;
+        $mail = new BenficiaryMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
 
         $userid = auth()->user()->id;
         $msg = "Added a new Beneficiary";
