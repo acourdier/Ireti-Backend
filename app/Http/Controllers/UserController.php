@@ -12,6 +12,7 @@ use App\Mail\InvestmentMail;
 use App\Mail\OrderMail;
 use App\Mail\ProfileMail;
 use App\Mail\BankAccountMail;
+use App\Mail\BankAccountUpdate;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -195,6 +196,13 @@ class UserController extends Controller
             if ($existingAccount) {
             $existingAccount->update($request->all());
 
+            $username=auth()->user()->fname;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = auth()->user()->email;
+            $mail = new BankAccountUpdate($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
             $userid = auth()->user()->id;
             $msg = "Updated Bank Account successfully";
             notification::create([
