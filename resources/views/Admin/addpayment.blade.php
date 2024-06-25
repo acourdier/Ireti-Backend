@@ -22,22 +22,43 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <select name="customer" id="customer" class="form-control">
+                                            <select name="customer" id="customer" onchange="fetchBeneficiary()" class="form-control">
+                                                <option value="" selected hidden disbaled>Choose customer</option>
                                                 @foreach ($users as $user)
-                                                <option {{ $user['fname']}}>{{ $user['fname']}}</option>
+                                                <option value="{{ $user['id']}}">{{ $user['fname']}}</option>
                                                 @endforeach
                                             </select>
+                                            <script>
+                                                async function fetchBeneficiary() {
+                                                    const id = document.getElementById('customer').value;
+                                                    let Beneficiary = document.getElementById('Beneficiary')
+                                                    Beneficiary.innerHTML = '';
+                                                    try {
+                                                        const response = await fetch(`/admin/getBeneficiary/${id}`);
+                                                        if (!response.ok) {
+                                                        throw new Error('Network response was not ok');
+                                                        }
+                                                        const data = await response.json();
+                                                        for (let beneficiary of data) {
+                                                            console.log(beneficiary);
+                                                            Beneficiary.insertAdjacentHTML("beforeend",`<option value="${beneficiary.id}">${beneficiary.accountname}</option>`)
+                                                        }
+                                                        // Process the data further as needed
+                                                    } catch (error) {
+                                                        console.error('There was a problem with the fetch operation:', error);
+                                                    }
+                                                }
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
-                                            <label for="Beneficiary">Beneficiary Name</label>
+                                            <label for="Beneficiary">Beneficiary</label>
                                             <select name="Beneficiary" id="Beneficiary" class="form-control">
-                                                @foreach ($Beneficiaries as $Beneficiary)
-                                                <option {{ $Beneficiary['accountname']}}>{{ $Beneficiary['accountname']}}</option>
-                                                @endforeach
+                                                
                                             </select>
                                         </div>
+
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">

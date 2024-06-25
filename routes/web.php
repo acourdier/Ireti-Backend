@@ -65,6 +65,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('viewuser/{id}','viewuser')->name('admin.viewuser');
             Route::get('approveUser/{id}','approveUser')->name('admin.approveUser');
 
+            Route::get('getBeneficiary/{id}','getBeneficiary')->name('admin.getBeneficiary');
 
             Route::get('payments','payments')->name('admin.payments');
             Route::get('addpayment','addpayment')->name('admin.addpayment');

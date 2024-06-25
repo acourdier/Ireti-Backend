@@ -280,8 +280,11 @@ class AdminController extends Controller
     }
     public function addpayment(){
         $users = User::where('status',2)->orderBy('id', 'desc')->get();
-        $Beneficiaries = Beneficiaries::get();
-        return view('Admin.addpayment',['users'=>$users, 'Beneficiaries'=>$Beneficiaries]);
+        return view('Admin.addpayment',['users'=>$users]);
+    }
+    public function getBeneficiary($id){
+        $Beneficiaries = Beneficiaries::where('userid',$id)->get();
+        return response()->json($Beneficiaries,200);
     }
     public function savepayment(Request $request){
         $userid=auth()->user()->id;
