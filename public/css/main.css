@@ -181,7 +181,12 @@ input:focus,
 select:focus {
     box-shadow: none !important;
 }
-
+.swal-text {
+    text-align: center !important
+}
+.table-responsive {
+    min-height: 300px !important;
+}
 @media screen and (max-width:992px) {
     .navbar-brand {
         max-width: 160px;
