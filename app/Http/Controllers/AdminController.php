@@ -9,6 +9,10 @@ use App\Models\Currency;
 use App\Models\UnderLaying;
 use App\Models\Payment;
 use App\Models\notification;
+use App\Models\Director;
+use App\Models\Owner;
+use App\Models\Ubo;
+
 use Illuminate\Http\Request;
 class AdminController extends Controller
 {
@@ -194,7 +198,13 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('reject', 'User rejected successfully.');
     }
-
+    public function viewuser($id){
+        $data['user'] =User::find($id);
+        $data['directors'] =Director::where('userid',$id)->get();
+        $data['owners'] =Owner::where('userid',$id)->get();
+        $data['ubos'] =Ubo::where('userid',$id)->get();
+        return view('Admin.viewuser',$data);
+    }
 
     public function payments(){
         $data = Payment::orderBy('id', 'desc')->get();

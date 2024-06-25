@@ -149,8 +149,7 @@
                                     <input type="text" id="regState" class="form-control mb-3" value="{{old('regState')}}" name="regState" required>
                                 </div>
                                 <div>
-                                    <label for="regPostCode" class="form-label fw-bold mb-2">Registered
-                                        Postcode</label>
+                                    <label for="regPostCode" class="form-label fw-bold mb-2">Registered Postcode</label>
                                     <input type="text" id="regPostCode" class="form-control mb-3" value="{{old('regPostCode')}}" name="regPostCode" required>
                                 </div>
                                 <div class="d-flex align-items-center mt-4 mb-2">
@@ -253,8 +252,7 @@
                                     <input type="text" id="regAuthCountry" class="form-control mb-3" value="{{old('regAuthCountry')}}" name="regAuthCountry">
                                 </div>
                                 <div>
-                                    <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration
-                                        #</label>
+                                    <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration #</label>
                                     <input type="text" id="regAuthNmbr" class="form-control mb-3" value="{{old('regAuthNmbr')}}" name="regAuthNmbr">
                                 </div>
                             </div>

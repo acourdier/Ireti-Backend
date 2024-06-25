@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('emp')->nullable();
             $table->string('incorporationCountry')->nullable();
             $table->string('regAdd')->nullable();
+            $table->string('regCity')->nullable();
             $table->string('regState')->nullable();
             $table->string('regPostCode')->nullable();
             $table->string('opCountry')->nullable();
