@@ -22,15 +22,21 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <input type="text" required name="customer" id="customer"
-                                                class="form-control">
+                                            <select name="customer" id="customer" class="form-control">
+                                                @foreach ($users as $user)
+                                                <option {{ $user['fname']}}>{{ $user['fname']}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="Beneficiary">Beneficiary Name</label>
-                                            <input type="text" required name="Beneficiary" id="Beneficiary"
-                                                class="form-control">
+                                            <select name="Beneficiary" id="Beneficiary" class="form-control">
+                                                @foreach ($Beneficiaries as $Beneficiary)
+                                                <option {{ $Beneficiary['accountname']}}>{{ $Beneficiary['accountname']}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">

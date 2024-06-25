@@ -37,43 +37,47 @@
                                     Make Investment
                                 </a>
                             </div>
-                            <div class="table-responsive tbl-800 mt-3">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="font-semi align-middle">Fund type</th>
-                                            <th class="font-semi align-middle">Target yield</th>
-                                            <th class="font-semi align-middle">Geographical Exposure</th>
-                                            <th class="font-semi align-middle">Amount</th>
-                                            <th class="font-semi align-middle">Status</th>
-                                            <th class="font-semi align-middle">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($investments as $investment)
-                                        <tr>
-                                            <td class="text-black align-middle">{{$investment['fund']}}</td>
-                                            <td class="text-secondary align-middle">{{$investment['yeild']}}</td>
-                                            <td class="text-secondary align-middle">{{$investment['geographical']}}</td>
-                                            <td class="text-secondary align-middle">{{$investment['amount']}}</td>
-                                            <td class="text-secondary align-middle">
-                                                <button
-                                                    class="{{ $investment['status'] === 'Pending' ? 'btnyellow' : ($investment['status'] === 'Accepted' ? 'btngreen' : 'btnred') }}">
-                                                    {{$investment['status']}}
-                                                </button>
+                            @if ($investments->count() > 0)
+                                <div class="table-responsive tbl-800 mt-3">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-semi align-middle">Fund type</th>
+                                                <th class="font-semi align-middle">Target yield</th>
+                                                <th class="font-semi align-middle">Geographical Exposure</th>
+                                                <th class="font-semi align-middle">Amount</th>
+                                                <th class="font-semi align-middle">Status</th>
+                                                <th class="font-semi align-middle">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($investments as $investment)
+                                            <tr>
+                                                <td class="text-black align-middle">{{$investment['fund']}}</td>
+                                                <td class="text-secondary align-middle">{{$investment['yeild']}}</td>
+                                                <td class="text-secondary align-middle">{{$investment['geographical']}}</td>
+                                                <td class="text-secondary align-middle">{{$investment['amount']}}</td>
+                                                <td class="text-secondary align-middle">
+                                                    <button
+                                                        class="{{ $investment['status'] === 'Pending' ? 'btnyellow' : ($investment['status'] === 'Accepted' ? 'btngreen' : 'btnred') }}">
+                                                        {{$investment['status']}}
+                                                    </button>
 
-                                            </td>
-                                            <td class="text-secondary align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="{{ 'Deleteinvestment/' . $investment['id'] }}"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                                </td>
+                                                <td class="text-secondary align-middle">
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ 'Deleteinvestment/' . $investment['id'] }}"><i
+                                                                class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="text-danger">No investment available.</p>
+                              @endif
                         </div>
                     </div>
                 </div>

@@ -30,65 +30,69 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4>My Orders</h4>
-                            <div class="table-responsive tbl-800 mt-3">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>User ID</th>
-                                            <th>Product</th>
-                                            <th>Price Target</th>
-                                            <th>Order Date</th>
-                                            <th>Order Filled</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($orders as $order)
-                                        <tr class="align-middle">
-                                            <td>{{$order['fname']}}</td>
-                                            <td>
-                                                <div>
-                                                    <p class="mb-0 font-semi">{{$order['FundType']}}</p>
-                                                    <p class="mb-0">{{$order['underlying']}}</p>
-                                                </div>
-                                            </td>
-                                            <td>{{$order['targetp']}}</td>
-                                            <td>{{$order['created_at']}}</td>
-                                            <td>
-                                                <button
-                                                    class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
-                                                    {{$order['filled']}}
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <li>
-                                                            <a class="dropdown-item"
-                                                                href="{{ 'editorders/' . $order['id'] }}">
-                                                                <i
-                                                                    class="fa-solid text-muted me-2 fa-pen-to-square"></i>
-                                                                Edit
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item"
-                                                                href="{{ 'orderemail/' . $order['id'] }}">
-                                                                <i class="fa-regular text-muted me-2 fa-envelope"></i>
-                                                                Send Email
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h4>Orders</h4>
+                            @if ($orders->count() > 0)
+                                <div class="table-responsive tbl-800 mt-3">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>User ID</th>
+                                                <th>Product</th>
+                                                <th>Price Target</th>
+                                                <th>Order Date</th>
+                                                <th>Order Filled</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($orders as $order)
+                                            <tr class="align-middle">
+                                                <td>{{$order['fname']}}</td>
+                                                <td>
+                                                    <div>
+                                                        <p class="mb-0 font-semi">{{$order['FundType']}}</p>
+                                                        <p class="mb-0">{{$order['underlying']}}</p>
+                                                    </div>
+                                                </td>
+                                                <td>{{$order['targetp']}}</td>
+                                                <td>{{$order['created_at']}}</td>
+                                                <td>
+                                                    <button
+                                                        class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                        {{$order['filled']}}
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'editorders/' . $order['id'] }}">
+                                                                    <i
+                                                                        class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                    Edit
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'orderemail/' . $order['id'] }}">
+                                                                    <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                                    Send Email
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="text-danger">No orders available.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,10 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Mail\InvestmentMail;
 use App\Mail\OrderMail;
+use App\Mail\ProfileMail;
+use App\Mail\BankAccountMail;
+use App\Mail\BankAccountUpdate;
+use App\Mail\BenficiaryMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -155,6 +159,17 @@ class UserController extends Controller
             $user->update($validatedData);
             $userid = auth()->user()->id;
             $msg = "updated Profile successfully";
+
+
+    
+            $username=auth()->user()->fname;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = auth()->user()->email;
+            $mail = new ProfileMail($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
+            
             notification::create([
             'message' => $msg,
             'userid' => $userid,
@@ -182,6 +197,13 @@ class UserController extends Controller
             if ($existingAccount) {
             $existingAccount->update($request->all());
 
+            $username=auth()->user()->fname;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = auth()->user()->email;
+            $mail = new BankAccountUpdate($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
             $userid = auth()->user()->id;
             $msg = "Updated Bank Account successfully";
             notification::create([
@@ -199,6 +221,14 @@ class UserController extends Controller
         'message' => $msg,
         'userid' => $userid,
         ]);
+
+        $username=auth()->user()->fname;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = auth()->user()->email;
+        $mail = new BankAccountMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
 
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
@@ -221,6 +251,14 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
+        
+        $username=auth()->user()->fname;
+        $requestMail = $Request->all();
+        $requestMail['username'] = $username;
+        $to_email = auth()->user()->email;
+        $mail = new BenficiaryMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
 
         $userid = auth()->user()->id;
         $msg = "Added a new Beneficiary";

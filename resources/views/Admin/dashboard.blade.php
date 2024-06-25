@@ -14,7 +14,7 @@
             <div class="rightmain">
                 @include('../Template.adminnav')
                 <div class="rightbottom">
-                    <div class="container-fluid px-3 px-md-5 pb-5">
+                    <div class="container-fluid px-3 px-md-4 pb-5">
                         <div class="row">
                             <div class="col-lg-6 col-xxl-3 mt-3">
                                 <div class="lgreen p-4 rounded-4 h-100">
