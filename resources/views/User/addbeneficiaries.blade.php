@@ -16,7 +16,7 @@
                     <div class="container-fluid">
                         <form action="{{route('user.createbeneficiaries')}}" method="POST">
                             @csrf
-                            
+
                             <div class="row px-3 px-md-5">
                                 <h4>Add Beneficiaries</h4>
                                 <div class="col-12">
@@ -40,16 +40,17 @@
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <select name="currency" required  id="currency" class="form-control">
+                                        <select name="currency" required id="currency" class="form-control">
                                             @foreach ($currencies as $currency)
-                                                <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                            <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Save
                                         </button>
                                     </div>

@@ -9,7 +9,7 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         class="green-text mbl-small text-decoration-none py-2 rounded-pill opacity-hover font-medium me-2">Sign
                         In</a>
-                    <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                    <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal1"
                         class="green-bg mbl-small text-white text-decoration-none me-2 px-4 py-2 mbl-padding rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
@@ -21,10 +21,13 @@
             <div class="collapse navbar-collapse w-auto" id="mynavbar">
                 <ul class="navbar-nav my-3 my-sm-0 d-flex align-items-lg-center ms-auto">
                     <li class="nav-item px-md-2">
-                        <a href="{{route('/')}}" class="{{ request()->routeIs('/') ? 'green-text' : ' text-black' }} nav-link font-medium">Home</a>
+                        <a href="{{route('/')}}"
+                            class="{{ request()->routeIs('/') ? 'green-text' : ' text-black' }} nav-link font-medium">Home</a>
                     </li>
                     <li class="nav-item px-md-2">
-                        <a href="{{route('about')}}" class="{{ request()->routeIs('about') ? 'green-text' : ' text-black' }} nav-link font-medium">About us</a>
+                        <a href="{{route('about')}}"
+                            class="{{ request()->routeIs('about') ? 'green-text' : ' text-black' }} nav-link font-medium">About
+                            us</a>
                     </li>
                     <li class="nav-item px-md-2 position-relative">
                         <a class="nav-link text-black font-medium services-btn pointer">
@@ -51,14 +54,16 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-2">
-                        <a href="{{route('platform')}}" class="{{ request()->routeIs('platform') ? 'green-text' : ' text-black' }} nav-link font-medium">Our platform</a>
+                        <a href="{{route('platform')}}"
+                            class="{{ request()->routeIs('platform') ? 'green-text' : ' text-black' }} nav-link font-medium">Our
+                            platform</a>
                     </li>
                 </ul>
                 <div class="d-none d-lg-flex align-items-center">
-                    <a href="/login" 
+                    <a href="/login"
                         class="green-text text-decoration-none px-2 py-2 rounded-pill opacity-hover font-medium me-3">Sign
                         In</a>
-                    <a href="/signup"   
+                    <a href="/signup"
                         class="green-bg  text-white text-decoration-none me-3 px-4 py-2 rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
@@ -66,19 +71,20 @@
         </div>
     </nav>
 </section>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h1 class="font-black green-text">Coming Soon!</h1>
+                <p class="mt-3">We are working hard to bring you something amazing. Stay tuned for updates and be the
+                    first to experience what's coming next!</p>
+                <p class="mt-3">Thank you for your patience and excitement. We can't wait to share it with you!</p>
+            </div>
         </div>
-        <div class="modal-body text-center">
-            <h1 class="font-black green-text">Coming Soon!</h1>
-            <p class="mt-3">We are working hard to bring you something amazing. Stay tuned for updates and be the first to experience what's coming next!</p>
-            <p class="mt-3">Thank you for your patience and excitement. We can't wait to share it with you!</p>
-          </div>
-      </div>
     </div>
-  </div>
+</div>

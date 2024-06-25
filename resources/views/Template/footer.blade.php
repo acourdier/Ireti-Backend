@@ -17,11 +17,14 @@
                     Services
                 </h2>
                 <div class="mt-3">
-                    <a href="{{route('liquidityProvider')}}" class="text-decoration-none text-black my-2 d-block">Liquidity
+                    <a href="{{route('liquidityProvider')}}"
+                        class="text-decoration-none text-black my-2 d-block">Liquidity
                         provider</a>
-                    <a href="{{route('fxMmanagement')}}" class="text-decoration-none text-black my-2 d-block">FX Management
+                    <a href="{{route('fxMmanagement')}}" class="text-decoration-none text-black my-2 d-block">FX
+                        Management
                         Consulting</a>
-                    <a href="{{route('NgoFlowOptimization')}}" class="text-decoration-none text-black my-2 d-block">NGO flow
+                    <a href="{{route('NgoFlowOptimization')}}" class="text-decoration-none text-black my-2 d-block">NGO
+                        flow
                         optimization</a>
                 </div>
             </div>

@@ -23,44 +23,48 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <input type="text" value="{{ $payment['customer'] }}" required name="customer" id="customer"
-                                                class="form-control">
+                                            <input type="text" value="{{ $payment['customer'] }}" required
+                                                name="customer" id="customer" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="Beneficiary">Beneficiary Name</label>
-                                            <input type="text" value="{{ $payment['Beneficiary'] }}" required name="Beneficiary" id="Beneficiary"
-                                                class="form-control">
+                                            <input type="text" value="{{ $payment['Beneficiary'] }}" required
+                                                name="Beneficiary" id="Beneficiary" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="baccount">Beneficiary Account</label>
-                                            <input type="text" value="{{ $payment['baccount'] }}" required name="baccount" id="baccount"
-                                                class="form-control">
+                                            <input type="text" value="{{ $payment['baccount'] }}" required
+                                                name="baccount" id="baccount" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="amount">Amount</label>
-                                            <input type="number" value="{{ $payment['amount'] }}" required name="amount" id="amount"
-                                                class="form-control">
+                                            <input type="number" value="{{ $payment['amount'] }}" required name="amount"
+                                                id="amount" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="status">Status</label>
-                                            <select name="status"  id="status" class="form-control">
-                                                <option {{ $payment['status']=='Pending' ? 'selected' : '' }}>Pending</option>
-                                                <option {{ $payment['status']=='Accepted' ? 'selected' : '' }}>Accepted</option>
-                                                <option {{ $payment['status']=='Declined' ? 'selected' : '' }}>Declined</option>
+                                            <select name="status" id="status" class="form-control">
+                                                <option {{ $payment['status']=='Pending' ? 'selected' : '' }}>Pending
+                                                </option>
+                                                <option {{ $payment['status']=='Accepted' ? 'selected' : '' }}>Accepted
+                                                </option>
+                                                <option {{ $payment['status']=='Declined' ? 'selected' : '' }}>Declined
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Update Payment
                                             </button>
                                         </div>

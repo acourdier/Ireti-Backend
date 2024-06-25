@@ -19,7 +19,8 @@
                             <div class="row px-3 px-md-5">
                                 <h4>Alternative Investment</h4>
                                 <div class="col-12">
-                                    <p class="mb-0 ftsize">Ireti Capital network can provide information and find attractive investment
+                                    <p class="mb-0 ftsize">Ireti Capital network can provide information and find
+                                        attractive investment
                                         opportunities that can match your needs. If you wish to diversify your portfolio
                                         asset allocation, enhance your treasury optimization or be exposed to different
                                         Geographical area, we could have the right solution with our partners.</p>

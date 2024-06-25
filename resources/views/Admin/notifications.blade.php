@@ -20,13 +20,14 @@
                             <div class="col-12 mt-3">
                                 <div class="d-flex align-content-start">
                                     <div class="">
-                                        <p class="mb-0 small"><span class="font-semi fs-6">{{$notification['fname']}}</span>
+                                        <p class="mb-0 small"><span
+                                                class="font-semi fs-6">{{$notification['fname']}}</span>
                                             {{$notification['message']}}</p>
                                         <p class="mb-0 gray small font-semi">{{$notification['created_at']}}</p>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>

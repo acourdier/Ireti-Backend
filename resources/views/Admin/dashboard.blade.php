@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    
+
     <div class="section">
         <div class="maindiv">
             @include('../Template.sidebar')
@@ -87,7 +87,8 @@
                                                 <td>{{$order['targetp']}}</td>
                                                 <td>{{$order['created_at']}}</td>
                                                 <td>
-                                                    <button class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                    <button
+                                                        class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
                                                         {{$order['filled']}}
                                                     </button>
                                                 </td>

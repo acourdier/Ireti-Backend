@@ -39,25 +39,32 @@
                                 <div class="mb-3 col-lg-8 mx-auto">
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4 rounded-pill d-flex gap-2">
-                                        <label for=""><img src="{{asset('img/codicon_mail.svg')}}" alt="codicon_mail"></label>
-                                        <input id="email" placeholder="Email" type="email" class="py-0 border-0 w-100 focus-none @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <label for=""><img src="{{asset('img/codicon_mail.svg')}}"
+                                                alt="codicon_mail"></label>
+                                        <input id="email" placeholder="Email" type="email"
+                                            class="py-0 border-0 w-100 focus-none @error('email') is-invalid @enderror"
+                                            name="email" value="{{ old('email') }}" required autocomplete="email"
+                                            autofocus>
                                     </div>
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-lg-8 mx-auto">
                                     <div
                                         class="bg-white form-control border focus-none w-100 py-3 ps-4  rounded-pill d-flex gap-2">
-                                        <label for=""><img src="{{asset('img/bx_bxs-lock-alt.svg')}}" alt="bx_bxs"></label>
-                                        <input id="password" placeholder="Password" type="password" class="py-0 border-0 w-100 focus-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <label for=""><img src="{{asset('img/bx_bxs-lock-alt.svg')}}"
+                                                alt="bx_bxs"></label>
+                                        <input id="password" placeholder="Password" type="password"
+                                            class="py-0 border-0 w-100 focus-none @error('password') is-invalid @enderror"
+                                            name="password" required autocomplete="current-password">
                                     </div>
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-lg-8 mx-auto">

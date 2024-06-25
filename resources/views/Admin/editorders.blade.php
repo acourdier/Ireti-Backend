@@ -22,13 +22,14 @@
                                     <input type="text" name="id" class="d-none" value="{{$orders['id']}}">
                                     <div class="col-12">
                                         <label for="status">Order Filled</label>
-                                        <select name="filled"  id="status" class="form-control">
+                                        <select name="filled" id="status" class="form-control">
                                             <option {{ $orders['filled']=='YES' ? 'selected' : '' }}>YES</option>
                                             <option {{ $orders['filled']=='No' ? 'selected' : '' }}>No</option>
                                         </select>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="submit" value="Change Status" class="form-control green text-white font-semi">
+                                        <input type="submit" value="Change Status"
+                                            class="form-control green text-white font-semi">
                                     </div>
                                 </div>
                             </form>
