@@ -43,7 +43,7 @@
                                                             console.log(beneficiary);
                                                             Beneficiary.insertAdjacentHTML("beforeend",`<option value="${beneficiary.id}">${beneficiary.accountname}</option>`)
                                                         }
-                                                        // Process the data further as needed
+                                                        
                                                     } catch (error) {
                                                         console.error('There was a problem with the fetch operation:', error);
                                                     }
