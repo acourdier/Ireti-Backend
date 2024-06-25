@@ -62,13 +62,6 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
-                                            <label for="baccount">Beneficiary Account</label>
-                                            <input type="text" required name="baccount" id="baccount"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-3">
                                             <label for="amount">Amount</label>
                                             <input type="number" required name="amount" id="amount"
                                                 class="form-control">
