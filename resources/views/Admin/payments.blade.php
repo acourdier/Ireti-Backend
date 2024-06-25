@@ -72,6 +72,10 @@
                                                     <a href="{{ 'editpayment/' . $payment['id'] }}">
                                                         <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                     </a>
+                                                    <a href="{{ 'paymentemail/' . $payment['id'] }}">
+                                                        <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                        Send Email
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
