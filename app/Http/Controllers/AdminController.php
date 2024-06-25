@@ -16,6 +16,8 @@ use App\Models\Ubo;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmInvest;
 use App\Mail\OrderFilled;
+use App\Mail\PaymentMail;
+use App\Mail\PaymentUpdate;
 use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
@@ -281,6 +283,17 @@ class AdminController extends Controller
     public function savepayment(Request $request){
         $payments = $request->all();
         Payment:: create($payments);
+
+        $username=auth()->user()->fname;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = "shakaibishfaq1@gmail.com";
+        $to_email1 = "mehakamir187@gmail.com";
+        $mail = new PaymentMail($requestMail);
+        Mail::to($to_email)
+            ->cc($to_email1)
+            ->send($mail);
+
         return redirect()->route('admin.payments')->with ('success','Payment Added Successfully');
     }
     public function deletePayment($id){
@@ -297,6 +310,16 @@ class AdminController extends Controller
         if ($payment) {
             $payment->update($request->all());
         }
+
+        $username=auth()->user()->fname;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = "shakaibishfaq1@gmail.com";
+        $to_email1 = "mehakamir187@gmail.com";
+        $mail = new PaymentUpdate($requestMail);
+        Mail::to($to_email)
+            ->cc($to_email1)
+            ->send($mail);
         return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
     }
     
