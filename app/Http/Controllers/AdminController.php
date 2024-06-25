@@ -281,9 +281,11 @@ class AdminController extends Controller
         return view('Admin.addpayment');
     }
     public function savepayment(Request $request){
+        $userid=auth()->user()->id;
+        $request['userid'] = $userid;
         $payments = $request->all();
         Payment:: create($payments);
-
+        
         $username=auth()->user()->fname;
         $requestMail = $request->all();
         $requestMail['username'] = $username;
@@ -310,17 +312,32 @@ class AdminController extends Controller
         if ($payment) {
             $payment->update($request->all());
         }
-
-        $username=auth()->user()->fname;
-        $requestMail = $request->all();
-        $requestMail['username'] = $username;
-        $to_email = "shakaibishfaq1@gmail.com";
-        $to_email1 = "mehakamir187@gmail.com";
-        $mail = new PaymentUpdate($requestMail);
-        Mail::to($to_email)
-            ->cc($to_email1)
-            ->send($mail);
         return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
+    }
+    public function paymentemail(Request $request){
+        $payment = Payment::find($request->id);
+        $data = Payment::leftJoin('users', 'payments.userid', '=', 'users.id')
+        ->select('users.fname', 'users.email', 'payments.*')
+        ->where('payments.id', $payment->id) 
+        ->first();
+
+        if ($data) {
+
+            $username=auth()->user()->fname;
+            $status = $data->status;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $requestMail['status'] = $status;
+            $to_email = "shakaibishfaq1@gmail.com";
+            $to_email1 = "mehakamir187@gmail.com";
+            $mail = new PaymentUpdate($requestMail);
+            Mail::to($to_email)
+                ->cc($to_email1)
+                ->send($mail);
+
+        }
+
+        return redirect()->route('admin.payments')->with ('update','Mail Sent Successfully');
     }
     
 }

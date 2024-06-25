@@ -66,13 +66,41 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <div class="d-flex align-items-center">
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{ 'deletePayment/' . $payment['id'] }}">
+                                                                <i class="fa-solid fa-trash text-secondary pointer me-2"></i>
+                                                                Delete
+                                                            </a>
+                                                        </li>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ 'editpayment/' . $payment['id'] }}">
+                                                                <i class="fa-solid me-2 text-muted fa-pen-to-square"></i>
+                                                                Edit
+                                                            </a>
+                                                        </li>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ 'paymentemail/' . $payment['id'] }}">
+                                                                <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                                Send Email
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                {{-- <div class="d-flex align-items-center">
                                                     <a href="{{ 'deletePayment/' . $payment['id'] }}"><i
                                                             class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
                                                     <a href="{{ 'editpayment/' . $payment['id'] }}">
                                                         <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                     </a>
-                                                </div>
+                                                    <a href="{{ 'paymentemail/' . $payment['id'] }}">
+                                                        <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                        Send Email
+                                                    </a>
+                                                </div> --}}
                                             </td>
                                         </tr>
                                         @endforeach
