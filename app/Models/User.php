@@ -41,6 +41,7 @@ class User extends Authenticatable
         'emp',
         'incorporationCountry',
         'regAdd',
+        'regCity',
         'regState',
         'regPostCode',
         'opCountry',
