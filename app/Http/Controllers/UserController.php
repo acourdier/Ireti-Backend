@@ -91,6 +91,11 @@ class UserController extends Controller
         $orderData = session('orderData');
         return view('User.orderdetail', compact('orderData'));
     }
+    public function orderdeatils($id){
+        $data['orderData'] =Order::find($id);
+        return view('User.orderdeatils',$data);
+    }
+    
     public function validateOrder($id){
         $order = Order::find($id);
         if ($order) {
