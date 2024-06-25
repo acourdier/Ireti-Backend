@@ -24,5 +24,28 @@ class AdminSeeder extends Seeder
             'country' => 'Pakistan',
 
         ]);
+        User::create([
+            'fname' => 'Sullivan Joubert',
+            'email' => 'Sullivan.joubert@ireticapital.com',
+            'phone'=>"03100000000",
+            'username' => 'Sullivan Joubert',
+            'password' => Hash::make('12345678'),
+            'city'=> 'sialkot',
+            'role' => '0',
+            'country' => 'Pakistan',
+
+        ]);
+        User::create([
+            'fname' => 'Gabriel Olugbenga',
+            'email' => 'Gabriel.olugbenga@ireticapital.com',
+            'phone'=>"03200000000",
+            'username' => 'Gabriel Olugbenga',
+            'password' => Hash::make('12345678'),
+            'city'=> 'sialkot',
+            'role' => '0',
+            'country' => 'Pakistan',
+
+        ]);
     }
+
 }
