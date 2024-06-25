@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Mail\InvestmentMail;
 use App\Mail\OrderMail;
 use App\Mail\ProfileMail;
+use App\Mail\BankAccountMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -211,6 +212,14 @@ class UserController extends Controller
         'message' => $msg,
         'userid' => $userid,
         ]);
+
+        $username=auth()->user()->fname;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = auth()->user()->email;
+        $mail = new BankAccountMail($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
 
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
