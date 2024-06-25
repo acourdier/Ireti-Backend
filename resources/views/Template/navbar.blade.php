@@ -6,10 +6,10 @@
             </a>
             <div class="d-flex">
                 <div class="d-flex d-lg-none align-items-center me-sm-2">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <a href="{{route('login')}}"
                         class="green-text mbl-small text-decoration-none py-2 rounded-pill opacity-hover font-medium me-2">Sign
                         In</a>
-                    <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                    <a href="{{route('signup')}}"
                         class="green-bg mbl-small text-white text-decoration-none me-2 px-4 py-2 mbl-padding rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
@@ -60,10 +60,10 @@
                     </li>
                 </ul>
                 <div class="d-none d-lg-flex align-items-center">
-                    <a href="/login"
+                    <a href="{{route('login')}}"
                         class="green-text text-decoration-none px-2 py-2 rounded-pill opacity-hover font-medium me-3">Sign
                         In</a>
-                    <a href="/signup"
+                    <a href="{{route('signup')}}"
                         class="green-bg  text-white text-decoration-none me-3 px-4 py-2 rounded-pill opacity-hover font-medium">Sign
                         Up</a>
                 </div>
@@ -71,20 +71,3 @@
         </div>
     </nav>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <h1 class="font-black green-text">Coming Soon!</h1>
-                <p class="mt-3">We are working hard to bring you something amazing. Stay tuned for updates and be the
-                    first to experience what's coming next!</p>
-                <p class="mt-3">Thank you for your patience and excitement. We can't wait to share it with you!</p>
-            </div>
-        </div>
-    </div>
-</div>
