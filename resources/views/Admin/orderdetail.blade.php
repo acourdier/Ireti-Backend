@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Notifications</title>
+    <title>Order Details</title>
 </head>
 
 <body>
