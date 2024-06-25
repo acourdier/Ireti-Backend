@@ -10,6 +10,7 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Mail\InvestmentMail;
 use App\Mail\OrderMail;
+use App\Mail\ProfileMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -155,6 +156,17 @@ class UserController extends Controller
             $user->update($validatedData);
             $userid = auth()->user()->id;
             $msg = "updated Profile successfully";
+
+
+    
+            $username=auth()->user()->fname;
+            $requestMail = $request->all();
+            $requestMail['username'] = $username;
+            $to_email = auth()->user()->email;
+            $mail = new ProfileMail($requestMail);
+            Mail::to($to_email)
+                ->send($mail);
+            
             notification::create([
             'message' => $msg,
             'userid' => $userid,
