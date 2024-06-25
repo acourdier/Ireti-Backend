@@ -13,7 +13,7 @@
             <div class="rightmain">
                 @include('../Template.usernav')
                 <div class="rightbottom">
-                    <div class="container-fluid px-3 px-md-5 pb-5">
+                    <div class="container-fluid px-3 px-md-4 pb-5">
                         <div class="row">
                             <div class="col-lg-6 col-xxl-3 mt-3">
                                 <div class="lgreen p-4 rounded-4 h-100">
@@ -62,38 +62,42 @@
                         <div class="row justify-content-center p-3">
                             <div class="chardiv p-3 p-md-5">
                                 <h4>My Orders</h4>
-                                <div class="table-responsive">
-                                    <table class="table dashtbl">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Price Target</th>
-                                                <th>Order Date</th>
-                                                <th>Order Filled</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($orders as $order)
-                                            <tr class="align-middle">
-                                                <td>
-                                                    <div>
-                                                        <p class="mb-0 font-semi">{{$order['FundType']}}</p>
-                                                        <p class="mb-0">{{$order['underlying']}}</p>
-                                                    </div>
-                                                </td>
-                                                <td>{{$order['targetp']}}</td>
-                                                <td>{{$order['created_at']}}</td>
-                                                <td>
-                                                    <button
-                                                        class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
-                                                        {{$order['filled']}}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                @if ($orders->count() > 0)
+                                    <div class="table-responsive">
+                                        <table class="table dashtbl">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Price Target</th>
+                                                    <th>Order Date</th>
+                                                    <th>Order Filled</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($orders as $order)
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <div>
+                                                            <p class="mb-0 font-semi">{{$order['FundType']}}</p>
+                                                            <p class="mb-0">{{$order['underlying']}}</p>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{$order['targetp']}}</td>
+                                                    <td>{{$order['created_at']}}</td>
+                                                    <td>
+                                                        <button
+                                                            class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                            {{$order['filled']}}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                  <p class="text-danger">No orders available.</p>
+                                @endif
                                 <div class="mt-2 d-flex justify-content-end">
                                     {{ $orders->links() }}
                                 </div>

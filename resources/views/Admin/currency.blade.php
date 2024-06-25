@@ -37,6 +37,7 @@
                                     Add Currency
                                 </a>
                             </div>
+                            @if ($currencies->count() > 0)
                             <div class="table-responsive tbl-800 mt-3">
                                 <table class="table">
                                     <thead>
@@ -68,6 +69,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @else
+                                <p class="text-danger">No currencies available.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

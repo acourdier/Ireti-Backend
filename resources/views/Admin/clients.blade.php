@@ -26,60 +26,64 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4>My Clients</h4>
-                            <div class="table-responsive tbl-800 mt-3">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="font-semi">Customer Name</th>
-                                            <th class="font-semi">Email</th>
-                                            <th class="font-semi">Phone</th>
-                                            <th class="font-semi">Active Date</th>
-                                            <th class="font-semi">Status</th>
-                                            <th class="font-semi">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                        <tr>
-                                            <td class="text-secondary align-middle">{{$user['fname']}}</td>
-                                            <td class="text-secondary align-middle">{{$user['email']}}</td>
-                                            <td class="text-secondary align-middle">{{$user['phone']}}</td>
-                                            <td class="text-secondary align-middle">{{$user['created_at']}}</td>
-                                            <td class="text-secondary align-middle">
-                                                @php
-                                                if($user['status'] == 1) {
-                                                $status = "Pending";
-                                                $statusClass = "text-warning";
-                                                } elseif ($user['status'] == 2) {
-                                                $status = "Approved";
-                                                $statusClass = "text-success";
-                                                } else {
-                                                $status = "Rejected";
-                                                $statusClass = "text-danger";
-                                                }
-                                                @endphp
-                                                <span class="{{ $statusClass }}">{{ $status }}</span>
-                                            </td>
-                                            <td class="text-secondary align-middle">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="{{ 'Deleteuser/' . $user['id'] }}"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                    <a href="{{ 'viewuser/' . $user['id'] }}"><i
-                                                            class="fa-solid fa-eye text-secondary pointer me-3"></i></a>
-                                                    @if($user['status'] == 1)
-                                                    <a href="{{'approveUser/' . $user['id'] }}"
-                                                        class="bg-success px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Approve</a>
-                                                    <a href="{{'rejectUser/' . $user['id'] }}"
-                                                        class="bg-danger px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Reject</a>
-                                                    @endif
+                            @if ($users->count() > 0)
+                                <div class="table-responsive tbl-800 mt-3">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-semi">Customer Name</th>
+                                                <th class="font-semi">Email</th>
+                                                <th class="font-semi">Phone</th>
+                                                <th class="font-semi">Active Date</th>
+                                                <th class="font-semi">Status</th>
+                                                <th class="font-semi">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($users as $user)
+                                            <tr>
+                                                <td class="text-secondary align-middle">{{$user['fname']}}</td>
+                                                <td class="text-secondary align-middle">{{$user['email']}}</td>
+                                                <td class="text-secondary align-middle">{{$user['phone']}}</td>
+                                                <td class="text-secondary align-middle">{{$user['created_at']}}</td>
+                                                <td class="text-secondary align-middle">
+                                                    @php
+                                                    if($user['status'] == 1) {
+                                                    $status = "Pending";
+                                                    $statusClass = "text-warning";
+                                                    } elseif ($user['status'] == 2) {
+                                                    $status = "Approved";
+                                                    $statusClass = "text-success";
+                                                    } else {
+                                                    $status = "Rejected";
+                                                    $statusClass = "text-danger";
+                                                    }
+                                                    @endphp
+                                                    <span class="{{ $statusClass }}">{{ $status }}</span>
+                                                </td>
+                                                <td class="text-secondary align-middle">
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ 'Deleteuser/' . $user['id'] }}"><i
+                                                                class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                        <a href="{{ 'viewuser/' . $user['id'] }}"><i
+                                                                class="fa-solid fa-eye text-secondary pointer me-3"></i></a>
+                                                        @if($user['status'] == 1)
+                                                        <a href="{{'approveUser/' . $user['id'] }}"
+                                                            class="bg-success px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Approve</a>
+                                                        <a href="{{'rejectUser/' . $user['id'] }}"
+                                                            class="bg-danger px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Reject</a>
+                                                        @endif
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="text-danger">No clients available.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

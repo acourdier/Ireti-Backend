@@ -687,7 +687,7 @@
                                         </div>
                                         <div>
                                             <label for="dirExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="text" id="dirExp" class="form-control mb-3" name="dirExp[]">
+                                            <input type="date" id="dirExp" class="form-control mb-3" name="dirExp[]">
                                         </div>
                                         <div>
                                             <label for="dirNationality" class="form-label fw-bold mb-2">Nationality</label>
@@ -736,7 +736,7 @@
                                         </div>
                                         <div>
                                             <label for="ownerExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="text" id="ownerExp" class="form-control mb-3" name="ownerExp[]">
+                                            <input type="date" id="ownerExp" class="form-control mb-3" name="ownerExp[]">
                                         </div>
                                         <div>
                                             <label for="ownerNationality" class="form-label fw-bold mb-2">Nationality</label>
@@ -789,7 +789,7 @@
                                         </div>
                                         <div>
                                             <label for="uboExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="text" id="uboExp" class="form-control mb-3" name="uboExp[]">
+                                            <input type="date" id="uboExp" class="form-control mb-3" name="uboExp[]">
                                         </div>
                                         <div>
                                             <label for="uboNationality" class="form-label fw-bold mb-2">Nationality</label>
