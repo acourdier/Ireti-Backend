@@ -22,12 +22,14 @@
                                     <h4>Update Currency</h4>
                                     <div class="col-12 my-2">
                                         <label for="currency" class="font-medium fs-5">Currency:</label>
-                                        <input type="text" name="currency" value="{{ $currency['currency'] }}" class="form-control" id="currency">
+                                        <input type="text" name="currency" value="{{ $currency['currency'] }}"
+                                            class="form-control" id="currency">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Save
                                         </button>
                                     </div>

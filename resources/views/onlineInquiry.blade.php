@@ -10,7 +10,7 @@
     @include('Template.navbar')
     <section class="py-5">
         <div class="mycontainer">
-            <form  action="{{route('saveInquiry')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('saveInquiry')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 class="display-4 fw-bold text-center text-black">Online Inquiry</h2>
                 <div class="mt-5">
@@ -45,19 +45,23 @@
                                 <input type="number" name="id" class="d-none" value="{{ session('userId') }}" readonly>
                                 <div>
                                     <label for="inputtext" class="form-label fw-bold mb-2">Full Name</label>
-                                    <input type="text" id="inputtext" class="form-control mb-3" name="in_fullname" value="{{old('name')}}" required>
+                                    <input type="text" id="inputtext" class="form-control mb-3" name="in_fullname"
+                                        value="{{old('name')}}" required>
                                 </div>
                                 <div>
                                     <label for="position" class="form-label fw-bold mb-2">Position</label>
-                                    <input type="text" id="position" class="form-control mb-3" name="in_position" value="{{old('in_position')}}" required>
+                                    <input type="text" id="position" class="form-control mb-3" name="in_position"
+                                        value="{{old('in_position')}}" required>
                                 </div>
                                 <div>
                                     <label for="inputEmail" class="form-label fw-bold mb-2">Email</label>
-                                    <input type="email" id="inputEmail" class="form-control mb-3" name="in_email" value="{{old('in_email')}}" required>
+                                    <input type="email" id="inputEmail" class="form-control mb-3" name="in_email"
+                                        value="{{old('in_email')}}" required>
                                 </div>
                                 <div>
                                     <label for="inputPhone" class="form-label fw-bold mb-2">Phone Number</label>
-                                    <input type="tel" id="inputPhone" class="form-control mb-3" name="in_phone" value="{{old('in_phone')}}" required>
+                                    <input type="tel" id="inputPhone" class="form-control mb-3" name="in_phone"
+                                        value="{{old('in_phone')}}" required>
                                 </div>
                             </div>
                         </div>
@@ -76,44 +80,54 @@
                             <div class="accordion-body">
                                 <div>
                                     <label for="legalname" class="form-label fw-bold mb-2">Legal Name</label>
-                                    <input type="text" id="legalname" class="form-control mb-3" value="{{old('legalname')}}" name="legalname" required>
+                                    <input type="text" id="legalname" class="form-control mb-3"
+                                        value="{{old('legalname')}}" name="legalname" required>
                                 </div>
                                 <div>
                                     <label for="tradingname" class="form-label fw-bold mb-2">DBA / Trading Name</label>
-                                    <input type="text" id="tradingname" class="form-control mb-3" value="{{old('tradingname')}}" name="tradingname" required>
+                                    <input type="text" id="tradingname" class="form-control mb-3"
+                                        value="{{old('tradingname')}}" name="tradingname" required>
                                 </div>
                                 <div>
                                     <label for="regNmber" class="form-label fw-bold mb-2">Registration #</label>
-                                    <input type="text" id="regNmber" class="form-control mb-3" value="{{old('regNmber')}}" name="regNmber" required>
+                                    <input type="text" id="regNmber" class="form-control mb-3"
+                                        value="{{old('regNmber')}}" name="regNmber" required>
                                 </div>
                                 <div>
                                     <label for="regDate" class="form-label fw-bold mb-2">Date of Registration</label>
-                                    <input type="date" id="regDate" class="form-control mb-3" value="{{old('regDate')}}" name="regDate" required>
+                                    <input type="date" id="regDate" class="form-control mb-3" value="{{old('regDate')}}"
+                                        name="regDate" required>
                                 </div>
                                 <div>
                                     <label for="vat" class="form-label fw-bold mb-2">VAT / TIN ID</label>
-                                    <input type="text" id="vat" class="form-control mb-3" value="{{old('vat')}}" name="vat" required>
+                                    <input type="text" id="vat" class="form-control mb-3" value="{{old('vat')}}"
+                                        name="vat" required>
                                 </div>
                                 <div>
                                     <label for="companylink" class="form-label fw-bold mb-2">Company Link in a Public
                                         registry </label>
-                                    <input type="url" id="companylink" class="form-control mb-3" value="{{old('companylink')}}" name="companylink" required>
+                                    <input type="url" id="companylink" class="form-control mb-3"
+                                        value="{{old('companylink')}}" name="companylink" required>
                                 </div>
                                 <div>
                                     <label for="corWeb" class="form-label fw-bold mb-2">Corporate Website</label>
-                                    <input type="text" id="corWeb" class="form-control mb-3" value="{{old('corWeb')}}" name="corWeb" required>
+                                    <input type="text" id="corWeb" class="form-control mb-3" value="{{old('corWeb')}}"
+                                        name="corWeb" required>
                                 </div>
                                 <div>
                                     <label for="companyEmail" class="form-label fw-bold mb-2">Company Email</label>
-                                    <input type="email" id="companyEmail" class="form-control mb-3" value="{{old('companyEmail')}}" name="companyEmail" required>
+                                    <input type="email" id="companyEmail" class="form-control mb-3"
+                                        value="{{old('companyEmail')}}" name="companyEmail" required>
                                 </div>
                                 <div>
                                     <label for="directors" class="form-label fw-bold mb-2">Number of Directors</label>
-                                    <input type="text" id="directors" class="form-control mb-3" value="{{old('directors')}}" name="directors" required>
+                                    <input type="text" id="directors" class="form-control mb-3"
+                                        value="{{old('directors')}}" name="directors" required>
                                 </div>
                                 <div>
                                     <label for="emp" class="form-label fw-bold mb-2">Number of Employees</label>
-                                    <input type="text" id="emp" class="form-control mb-3" value="{{old('emp')}}" name="emp" required>
+                                    <input type="text" id="emp" class="form-control mb-3" value="{{old('emp')}}"
+                                        name="emp" required>
                                 </div>
                             </div>
                         </div>
@@ -128,53 +142,63 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div>
                                     <label for="regCountry" class="form-label fw-bold mb-2">Incorporation
                                         Country</label>
-                                    <input type="text" id="incorporationCountry" class="form-control mb-3" name="incorporationCountry">
+                                    <input type="text" id="incorporationCountry" class="form-control mb-3"
+                                        name="incorporationCountry">
                                 </div>
                                 <div>
                                     <label for="regAdd" class="form-label fw-bold mb-2">Registered Address</label>
-                                    <input type="text" id="regAdd" class="form-control mb-3" value="{{old('regAdd')}}" name="regAdd" required>
+                                    <input type="text" id="regAdd" class="form-control mb-3" value="{{old('regAdd')}}"
+                                        name="regAdd" required>
                                 </div>
                                 <div>
                                     <label for="regCity" class="form-label fw-bold mb-2">Registered City</label>
-                                    <input type="text" id="regCity" class="form-control mb-3" value="{{old('regCity')}}" name="regCity" required>
+                                    <input type="text" id="regCity" class="form-control mb-3" value="{{old('regCity')}}"
+                                        name="regCity" required>
                                 </div>
                                 <div>
                                     <label for="regState" class="form-label fw-bold mb-2">County / State</label>
-                                    <input type="text" id="regState" class="form-control mb-3" value="{{old('regState')}}" name="regState" required>
+                                    <input type="text" id="regState" class="form-control mb-3"
+                                        value="{{old('regState')}}" name="regState" required>
                                 </div>
                                 <div>
                                     <label for="regPostCode" class="form-label fw-bold mb-2">Registered Postcode</label>
-                                    <input type="text" id="regPostCode" class="form-control mb-3" value="{{old('regPostCode')}}" name="regPostCode" required>
+                                    <input type="text" id="regPostCode" class="form-control mb-3"
+                                        value="{{old('regPostCode')}}" name="regPostCode" required>
                                 </div>
                                 <div class="d-flex align-items-center mt-4 mb-2">
-                                    <input type="checkbox" id="same" class="me-2"  onclick="copyAddress()" value="{{old('regPostCode')}}" >
+                                    <input type="checkbox" id="same" class="me-2" onclick="copyAddress()"
+                                        value="{{old('regPostCode')}}">
                                     <label for="same">Same as above</label>
                                 </div>
                                 <div>
                                     <label for="opCountry" class="form-label fw-bold mb-2">Operating Country </label>
-                                    <input type="text" id="opCountry" class="form-control mb-3" value="{{old('opCountry')}}" name="opCountry" required>
+                                    <input type="text" id="opCountry" class="form-control mb-3"
+                                        value="{{old('opCountry')}}" name="opCountry" required>
                                 </div>
                                 <div>
                                     <label for="opAdd" class="form-label fw-bold mb-2">Operating Address</label>
-                                    <input type="text" id="opAdd" class="form-control mb-3" value="{{old('opAdd')}}" name="opAdd" required>
+                                    <input type="text" id="opAdd" class="form-control mb-3" value="{{old('opAdd')}}"
+                                        name="opAdd" required>
                                 </div>
                                 <div>
                                     <label for="opCity" class="form-label fw-bold mb-2">Operating City</label>
-                                    <input type="text" id="opCity" class="form-control mb-3" value="{{old('opCity')}}" name="opCity" required>
+                                    <input type="text" id="opCity" class="form-control mb-3" value="{{old('opCity')}}"
+                                        name="opCity" required>
                                 </div>
                                 <div>
                                     <label for="opCountry" class="form-label fw-bold mb-2">County / State</label>
-                                    <input type="text" id="opState" class="form-control mb-3" value="{{old('opState')}}" name="opState" required>
+                                    <input type="text" id="opState" class="form-control mb-3" value="{{old('opState')}}"
+                                        name="opState" required>
                                 </div>
                                 <div>
                                     <label for="opPostCode" class="form-label fw-bold mb-2">Operating Postcode</label>
-                                    <input type="text" id="opPostCode" class="form-control mb-3" value="{{old('opPostCode')}}" name="opPostCode" required>
+                                    <input type="text" id="opPostCode" class="form-control mb-3"
+                                        value="{{old('opPostCode')}}" name="opPostCode" required>
                                 </div>
                             </div>
                         </div>
@@ -189,53 +213,58 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div>
                                     <label for="industry" class="form-label fw-bold mb-2">Industry</label>
-                                    <input type="text" id="industry" class="form-control mb-3" value="{{old('industry')}}" name="industry" required>
+                                    <input type="text" id="industry" class="form-control mb-3"
+                                        value="{{old('industry')}}" name="industry" required>
                                 </div>
                                 <div>
                                     <label for="serviceDes" class="form-label fw-bold mb-2">Product/Service
                                         Description</label>
-                                    <textarea rows="6" id="serviceDes" class="form-control mb-3" value="{{old('serviceDes')}}" name="serviceDes"
-                                        placeholder="Please describe in detail the product or service you offer, solutions provided by your services or services, and the scope of the product or service, the markets to sell the product and service, as well as the main business partners." required></textarea>
+                                    <textarea rows="6" id="serviceDes" class="form-control mb-3"
+                                        value="{{old('serviceDes')}}" name="serviceDes"
+                                        placeholder="Please describe in detail the product or service you offer, solutions provided by your services or services, and the scope of the product or service, the markets to sell the product and service, as well as the main business partners."
+                                        required></textarea>
                                 </div>
                                 <div>
                                     <label for="salesChannel" class="form-label fw-bold mb-2">Sales Channel</label>
-                                    <input type="text" id="salesChannel" class="form-control mb-3" value="{{old('salesChannel')}}" name="salesChannel" required>
+                                    <input type="text" id="salesChannel" class="form-control mb-3"
+                                        value="{{old('salesChannel')}}" name="salesChannel" required>
                                 </div>
                                 <div>
                                     <label for="web" class="form-label fw-bold mb-2">Website, if online</label>
-                                    <input type="text" id="web" class="form-control mb-3"
-                                        placeholder="URL 1" value="{{old('webURL1')}}" name="webURL1">
-                                    <input type="text" id="" class="form-control mb-3"
-                                        placeholder="URL 2" value="{{old('webURL2')}}" name="webURL2">
-                                    <input type="text" id="" class="form-control mb-3"
-                                        placeholder="URL 3" value="{{old('webURL3')}}" name="webURL3">
+                                    <input type="text" id="web" class="form-control mb-3" placeholder="URL 1"
+                                        value="{{old('webURL1')}}" name="webURL1">
+                                    <input type="text" id="" class="form-control mb-3" placeholder="URL 2"
+                                        value="{{old('webURL2')}}" name="webURL2">
+                                    <input type="text" id="" class="form-control mb-3" placeholder="URL 3"
+                                        value="{{old('webURL3')}}" name="webURL3">
                                 </div>
                                 <div>
                                     <label for="otherweb" class="form-label fw-bold mb-2">Please specify, if
                                         other</label>
-                                    <textarea rows="6" id="otherweb" class="form-control mb-3" placeholder="Please " name="other">{{old('other')}}</textarea>
+                                    <textarea rows="6" id="otherweb" class="form-control mb-3" placeholder="Please "
+                                        name="other">{{old('other')}}</textarea>
                                 </div>
                                 <div>
                                     <label for="businessYears" class="form-label fw-bold mb-2">Number of years in
                                         business</label>
-                                    <input type="number" id="businessYears" class="form-control mb-3" name="businessYears"  value="{{old('businessYears')}}">
+                                    <input type="number" id="businessYears" class="form-control mb-3"
+                                        name="businessYears" value="{{old('businessYears')}}">
                                 </div>
                                 <div>
                                     <label class="form-label fw-bold mb-2">Is License Required</label>
                                     <div class="d-flex mb-3">
                                         <div class="d-flex me-4">
-                                            <input type="radio" name="licence" id="yesLicence" class="me-1"
-                                                value="yes" required>
+                                            <input type="radio" name="licence" id="yesLicence" class="me-1" value="yes"
+                                                required>
                                             <label for="yesLicence">Yes</label>
                                         </div>
                                         <div class="d-flex">
-                                            <input type="radio" name="licence" id="noLicence" class="me-1"
-                                                value="no" required>
+                                            <input type="radio" name="licence" id="noLicence" class="me-1" value="no"
+                                                required>
                                             <label for="noLicence">No</label>
                                         </div>
                                     </div>
@@ -244,16 +273,20 @@
                                 <div>
                                     <label for="regAuthority" class="form-label fw-bold mb-2">Regulatory
                                         Authority</label>
-                                    <input type="text" id="regAuthority" class="form-control mb-3" value="{{old('regAuthority')}}" name="regAuthority">
+                                    <input type="text" id="regAuthority" class="form-control mb-3"
+                                        value="{{old('regAuthority')}}" name="regAuthority">
                                 </div>
                                 <div>
                                     <label for="regAuthCountry" class="form-label fw-bold mb-2">Regulatory Authority
                                         Country</label>
-                                    <input type="text" id="regAuthCountry" class="form-control mb-3" value="{{old('regAuthCountry')}}" name="regAuthCountry">
+                                    <input type="text" id="regAuthCountry" class="form-control mb-3"
+                                        value="{{old('regAuthCountry')}}" name="regAuthCountry">
                                 </div>
                                 <div>
-                                    <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration #</label>
-                                    <input type="text" id="regAuthNmbr" class="form-control mb-3" value="{{old('regAuthNmbr')}}" name="regAuthNmbr">
+                                    <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration
+                                        #</label>
+                                    <input type="text" id="regAuthNmbr" class="form-control mb-3"
+                                        value="{{old('regAuthNmbr')}}" name="regAuthNmbr">
                                 </div>
                             </div>
                         </div>
@@ -268,14 +301,13 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div>
                                     <div>
                                         <label for="numdirectors" class="form-label fw-bold mb-2">No. of
                                             Directors</label>
-                                        <input type="number" id="numdirectors" class="form-control mb-3" >
+                                        <input type="number" id="numdirectors" class="form-control mb-3">
                                     </div>
                                     <div class="director-main">
 
@@ -318,8 +350,7 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseSeven" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div>
                                     <div>
@@ -343,8 +374,7 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseEight" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="">
                                     <div>
@@ -385,7 +415,7 @@
                                         <label for="tradeRef" class="form-label fw-bold mb-2">Tradeshow: Which
                                             tradeshow? </label>
                                     </div>
-                                    <input type="text" class="form-control mb-3 tradeRef" >
+                                    <input type="text" class="form-control mb-3 tradeRef">
                                 </div>
                                 <input type="text" name="refDetails" value="" class="refDetails d-none ">
                             </div>
@@ -401,8 +431,7 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="collapseNine" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample">
+                        <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div>
                                     <label for="idcard" class="form-label fw-bold mb-2">Personal Documentation
@@ -432,20 +461,23 @@
                                         <label for="incorporation" class="form-label fw-bold mb-2">
                                             Certificate of Incorporation *
                                         </label>
-                                        <input type="file" id="incorporation" class="form-control mb-3" name="incorporationFile" required>
+                                        <input type="file" id="incorporation" class="form-control mb-3"
+                                            name="incorporationFile" required>
                                     </div>
                                     <div>
                                         <label for="memorandum" class="form-label fw-bold mb-2">
                                             Memorandum and/or Articles of Association *
                                         </label>
-                                        <input type="file" id="memorandum" class="form-control mb-3" name="memorandumFile" required>
+                                        <input type="file" id="memorandum" class="form-control mb-3"
+                                            name="memorandumFile" required>
                                     </div>
                                     <div>
                                         <label for="boardOfDirRes" class="form-label fw-bold mb-2">
                                             Resolution of the Board of Directors for to open a transaction account with
                                             IRETI CAPITAL
                                         </label>
-                                        <input type="file" id="boardOfDirRes" class="form-control mb-3" name="resolutionFile" required>
+                                        <input type="file" id="boardOfDirRes" class="form-control mb-3"
+                                            name="resolutionFile" required>
                                     </div>
                                 </div>
                             </div>
@@ -496,15 +528,13 @@
                         <div class="row align-items-center mt-3">
                             <div class="col-3 col-md-1 col-sm-2">
                                 <div class="">
-                                    <input type="radio" class="" id="check1" name="confirm1"
-                                        value="yes" checked>
+                                    <input type="radio" class="" id="check1" name="confirm1" value="yes" checked>
                                     <label class=" fw-bold" for="check1">Yes</label>
                                 </div>
                             </div>
                             <div class="col-3 col-md-1 col-sm-2">
                                 <div class="">
-                                    <input type="radio" class="" id="check2" name="confirm1"
-                                        value="no">
+                                    <input type="radio" class="" id="check2" name="confirm1" value="no">
                                     <label class=" fw-bold" for="check2">No</label>
                                 </div>
                             </div>
@@ -532,15 +562,13 @@
                         <div class="row align-items-center mt-3">
                             <div class="col-3 col-md-1 col-sm-2">
                                 <div class="">
-                                    <input type="radio" class="" id="check3" name="confirm2"
-                                        value="yes" checked>
+                                    <input type="radio" class="" id="check3" name="confirm2" value="yes" checked>
                                     <label class=" fw-bold" for="check3">Yes</label>
                                 </div>
                             </div>
                             <div class="col-3 col-md-1 col-sm-2">
                                 <div class="">
-                                    <input type="radio" class="" id="check4" name="confirm2"
-                                        value="no">
+                                    <input type="radio" class="" id="check4" name="confirm2" value="no">
                                     <label class=" fw-bold" for="check4">No</label>
                                 </div>
                             </div>
@@ -799,8 +827,8 @@
             }
         });
     </script>
-   <script>
-    function copyAddress() {
+    <script>
+        function copyAddress() {
         const isChecked = document.getElementById('same').checked;
 
         const fields = [
@@ -841,9 +869,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', setupFieldListeners);
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
         // Function to update refDetails based on selected radio button
         function updateRefDetails() {
             let refDetails = document.querySelector('.refDetails');
@@ -874,7 +902,7 @@
         document.querySelector('.onlinesearchRef').addEventListener('input', updateRefDetails);
         document.querySelector('.tradeRef').addEventListener('input', updateRefDetails);
     });
-</script>
+    </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@
             @include('../Template.usersidebar')
             <div class="rightmain">
                 @include('../Template.usernav')
-                                @if (session('success'))
+                @if (session('success'))
                 <script>
                     swal("Good job!", "{{ session('success') }}", "success");
                 </script>
@@ -31,43 +31,47 @@
                     <div class="container-fluid">
                         <form action="{{route('user.addbank')}}" method="POST">
                             @csrf
-                            
+
                             <div class="row px-3 px-md-5">
                                 <h4>Bank Account</h4>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Account Name</label>
-                                        <input type="text" value="{{$account->accountname ?? ''}}" name="accountname" id="name" class="form-control">
+                                        <input type="text" value="{{$account->accountname ?? ''}}" name="accountname"
+                                            id="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="account">Account Number</label>
-                                        <input type="text" value="{{ $account->accountnumber ?? '' }}" name="accountnumber" id="account" class="form-control">
+                                        <input type="text" value="{{ $account->accountnumber ?? '' }}"
+                                            name="accountnumber" id="account" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="bic">BIC</label>
-                                        <input type="text" value="{{ $account->bic ?? '' }}" name="bic" id="bic" class="form-control">
+                                        <input type="text" value="{{ $account->bic ?? '' }}" name="bic" id="bic"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <select name="currency" required  id="currency" class="form-control">
+                                        <select name="currency" required id="currency" class="form-control">
                                             @foreach ($currencies as $currency)
-                                            <option value="{{ $currency['currency'] }}" 
-                                                    {{ isset($account->currency) && $currency['currency'] == $account->currency ? 'selected' : '' }}>
+                                            <option value="{{ $currency['currency'] }}" {{ isset($account->currency) &&
+                                                $currency['currency'] == $account->currency ? 'selected' : '' }}>
                                                 {{ $currency['currency'] }}
                                             </option>
-                                        @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Save
                                         </button>
                                     </div>

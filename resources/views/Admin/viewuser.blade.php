@@ -52,7 +52,7 @@
                                         <h2 class="fw-bold fs-6">Country</h2>
                                         <p>{{$user['country']}}</p>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
 
                             <h4 class="fw-bold mt-4">Inquiry Details:</h4>
@@ -293,245 +293,252 @@
                                         <p>{{$user['dateAndPlace']}}</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-6">
                                     <div class="mt-2">
                                         <h2 class="fw-bold fs-6">Personal Documentation</h2>
-                                        <a class="text-black" href="<?php echo asset('uploads/' . $user['idFile']); ?>">File</a>
+                                        <a class="text-black"
+                                            href="<?php echo asset('uploads/' . $user['idFile']); ?>">File</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-2">
-                                        <h2 class="fw-bold fs-6">Proof of home address of Directors and the UBOs: latest Utility, Council Tax or
+                                        <h2 class="fw-bold fs-6">Proof of home address of Directors and the UBOs: latest
+                                            Utility, Council Tax or
                                             Telecommunication bill, or
                                             Bank statement, not older than 3 months.</h2>
-                                        <a class="text-black" href="<?php echo asset('uploads/' . $user['billFile']); ?>">File</a>
+                                        <a class="text-black"
+                                            href="<?php echo asset('uploads/' . $user['billFile']); ?>">File</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-2">
                                         <h2 class="fw-bold fs-6">Certificate of Incorporation</h2>
-                                        <a class="text-black" href="<?php echo asset('uploads/' . $user['incorporationFile']); ?>">File</a>
+                                        <a class="text-black"
+                                            href="<?php echo asset('uploads/' . $user['incorporationFile']); ?>">File</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-2">
                                         <h2 class="fw-bold fs-6"> Memorandum and/or Articles of Association</h2>
-                                        <a class="text-black" href="<?php echo asset('uploads/' . $user['memorandumFile']); ?>">File</a>
+                                        <a class="text-black"
+                                            href="<?php echo asset('uploads/' . $user['memorandumFile']); ?>">File</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-2">
-                                        <h2 class="fw-bold fs-6">Resolution of the Board of Directors for to open a transaction account with
+                                        <h2 class="fw-bold fs-6">Resolution of the Board of Directors for to open a
+                                            transaction account with
                                             IRETI CAPITAL</h2>
-                                        <a class="text-black" href="<?php echo asset('uploads/' . $user['resolutionFile']); ?>">File</a>
+                                        <a class="text-black"
+                                            href="<?php echo asset('uploads/' . $user['resolutionFile']); ?>">File</a>
                                     </div>
                                 </div>
-                               
+
                             </div>
 
                             <h4 class="fw-bold mt-4">Director Details:</h4>
                             @php
-                                $dnum = 1;
+                            $dnum = 1;
                             @endphp
                             @foreach ($directors as $director)
-                                <h5 class="fw-bold mt-3">Director {{$dnum++}}:</h5>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Full Name</h2>
-                                            <p>{{$director['dirName']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Country / State</h2>
-                                            <p>{{$director['dirCountry']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Address</h2>
-                                            <p>{{$director['dirAddress']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">City</h2>
-                                            <p>{{$director['dirCity']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Postcode</h2>
-                                            <p>{{$director['dirPostcode']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">DOB</h2>
-                                            <p>{{$director['dirDOB']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport #</h2>
-                                            <p>{{$director['dirPassport']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
-                                            <p>{{$director['dirExp']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Nationality</h2>
-                                            <p>{{$director['dirNationality']}}</p>
-                                        </div>
+                            <h5 class="fw-bold mt-3">Director {{$dnum++}}:</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Full Name</h2>
+                                        <p>{{$director['dirName']}}</p>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Country / State</h2>
+                                        <p>{{$director['dirCountry']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Address</h2>
+                                        <p>{{$director['dirAddress']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">City</h2>
+                                        <p>{{$director['dirCity']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Postcode</h2>
+                                        <p>{{$director['dirPostcode']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">DOB</h2>
+                                        <p>{{$director['dirDOB']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport #</h2>
+                                        <p>{{$director['dirPassport']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
+                                        <p>{{$director['dirExp']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Nationality</h2>
+                                        <p>{{$director['dirNationality']}}</p>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
 
                             <h4 class="fw-bold mt-4">Owner Details:</h4>
                             @php
-                                $onum = 1;
+                            $onum = 1;
                             @endphp
                             @foreach ($owners as $owner)
-                                <h5 class="fw-bold mt-3">Owner {{$onum++}}:</h5>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Full Name</h2>
-                                            <p>{{$owner['ownerName']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Country / State</h2>
-                                            <p>{{$owner['ownerCountry']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Address</h2>
-                                            <p>{{$owner['ownerAddress']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">City</h2>
-                                            <p>{{$owner['ownerCity']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Postcode</h2>
-                                            <p>{{$owner['ownerPostcode']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">DOB</h2>
-                                            <p>{{$owner['ownerDOB']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport #</h2>
-                                            <p>{{$owner['ownerPassport']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
-                                            <p>{{$owner['ownerExp']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Nationality</h2>
-                                            <p>{{$owner['ownerNationality']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Share %</h2>
-                                            <p>{{$owner['ownerShare']}}</p>
-                                        </div>
+                            <h5 class="fw-bold mt-3">Owner {{$onum++}}:</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Full Name</h2>
+                                        <p>{{$owner['ownerName']}}</p>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Country / State</h2>
+                                        <p>{{$owner['ownerCountry']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Address</h2>
+                                        <p>{{$owner['ownerAddress']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">City</h2>
+                                        <p>{{$owner['ownerCity']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Postcode</h2>
+                                        <p>{{$owner['ownerPostcode']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">DOB</h2>
+                                        <p>{{$owner['ownerDOB']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport #</h2>
+                                        <p>{{$owner['ownerPassport']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
+                                        <p>{{$owner['ownerExp']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Nationality</h2>
+                                        <p>{{$owner['ownerNationality']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Share %</h2>
+                                        <p>{{$owner['ownerShare']}}</p>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
 
                             <h4 class="fw-bold mt-4">UBO Details:</h4>
                             @php
-                                $unum = 1;
+                            $unum = 1;
                             @endphp
                             @foreach ($ubos as $ubo)
-                                <h5 class="fw-bold mt-3">UBO {{$unum++}}:</h5>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Full Name</h2>
-                                            <p>{{$ubo['uboName']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Country / State</h2>
-                                            <p>{{$ubo['uboCountry']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Address</h2>
-                                            <p>{{$ubo['uboAddress']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">City</h2>
-                                            <p>{{$ubo['uboCity']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Postcode</h2>
-                                            <p>{{$ubo['uboPostcode']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">DOB</h2>
-                                            <p>{{$ubo['uboDOB']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport #</h2>
-                                            <p>{{$ubo['uboPassport']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
-                                            <p>{{$ubo['uboExp']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Nationality</h2>
-                                            <p>{{$ubo['uboNationality']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-2">
-                                            <h2 class="fw-bold fs-6">Share %</h2>
-                                            <p>{{$ubo['uboShare']}}</p>
-                                        </div>
+                            <h5 class="fw-bold mt-3">UBO {{$unum++}}:</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Full Name</h2>
+                                        <p>{{$ubo['uboName']}}</p>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Country / State</h2>
+                                        <p>{{$ubo['uboCountry']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Address</h2>
+                                        <p>{{$ubo['uboAddress']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">City</h2>
+                                        <p>{{$ubo['uboCity']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Postcode</h2>
+                                        <p>{{$ubo['uboPostcode']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">DOB</h2>
+                                        <p>{{$ubo['uboDOB']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport #</h2>
+                                        <p>{{$ubo['uboPassport']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Passport Expiry Date</h2>
+                                        <p>{{$ubo['uboExp']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Nationality</h2>
+                                        <p>{{$ubo['uboNationality']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mt-2">
+                                        <h2 class="fw-bold fs-6">Share %</h2>
+                                        <p>{{$ubo['uboShare']}}</p>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>

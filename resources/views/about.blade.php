@@ -14,7 +14,10 @@
                 <div class="col-12">
                     <h1 class="font-black display-4 green-text text-center" data-aos="fade-right" data-aos-delay="300">
                         About Us</h1>
-                    <p class=" text-center mt-4 fs-5 lh-base" data-aos="fade-up" data-aos-delay="500">At Ireti capital, our journey is rooted in a vision to transform Emerging economies. Our team is dedicated to empowering businesses and NGOs to expand their presence in Emerging countries through secure, reliable, and fast liquidity services.</p>
+                    <p class=" text-center mt-4 fs-5 lh-base" data-aos="fade-up" data-aos-delay="500">At Ireti capital,
+                        our journey is rooted in a vision to transform Emerging economies. Our team is dedicated to
+                        empowering businesses and NGOs to expand their presence in Emerging countries through secure,
+                        reliable, and fast liquidity services.</p>
                 </div>
             </div>
         </div>
@@ -22,8 +25,10 @@
     <section class="bg-white py-5">
         <div class="mycontainer">
             <div class="row align-items-center py-4">
-                <h2 class="display-5 font-bold text-black text-center" data-aos="fade-right" data-aos-delay="300">Our Approach</h2>
-                <p class="text-center fs-5 text-black font-medium" data-aos="fade-right" data-aos-delay="500">We build our approach on 4 pillars</p>
+                <h2 class="display-5 font-bold text-black text-center" data-aos="fade-right" data-aos-delay="300">Our
+                    Approach</h2>
+                <p class="text-center fs-5 text-black font-medium" data-aos="fade-right" data-aos-delay="500">We build
+                    our approach on 4 pillars</p>
                 <div class="row align-items-start mt-5" data-aos="fade-up" data-aos-delay="300">
                     <div
                         class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center align-items-center flex-column">
@@ -93,7 +98,8 @@
 
                     </div>
                 </div>
-                <div class="d-flex flex-column-reverse flex-sm-row  mt-4 mt-sm-5" data-aos="fade-up" data-aos-delay="300">
+                <div class="d-flex flex-column-reverse flex-sm-row  mt-4 mt-sm-5" data-aos="fade-up"
+                    data-aos-delay="300">
                     <div class="mt-sm-5 me-sm-4">
                         <div
                             class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-sm-end mt-4">

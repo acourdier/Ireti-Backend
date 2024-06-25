@@ -22,14 +22,18 @@
                                     <input type="text" name="id" class="d-none" value="{{$investment['id']}}">
                                     <div class="col-12">
                                         <label for="status">Update Status</label>
-                                        <select name="status"  id="status" class="form-control">
-                                            <option {{ $investment['status']=='Pending' ? 'selected' : '' }}>Pending</option>
-                                            <option {{ $investment['status']=='Accepted' ? 'selected' : '' }}>Accepted</option>
-                                            <option {{ $investment['status']=='Declined' ? 'selected' : '' }}>Declined</option>
+                                        <select name="status" id="status" class="form-control">
+                                            <option {{ $investment['status']=='Pending' ? 'selected' : '' }}>Pending
+                                            </option>
+                                            <option {{ $investment['status']=='Accepted' ? 'selected' : '' }}>Accepted
+                                            </option>
+                                            <option {{ $investment['status']=='Declined' ? 'selected' : '' }}>Declined
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="submit" value="Change Status" class="form-control green text-white font-semi">
+                                        <input type="submit" value="Change Status"
+                                            class="form-control green text-white font-semi">
                                     </div>
                                 </div>
                             </form>

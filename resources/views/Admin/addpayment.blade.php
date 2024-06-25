@@ -50,7 +50,7 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="status">Status</label>
-                                            <select name="status"  id="status" class="form-control">
+                                            <select name="status" id="status" class="form-control">
                                                 <option value="Pending">Pending</option>
                                                 <option value="Accepted">Accepted</option>
                                                 <option value="Declined">Declined</option>
@@ -59,7 +59,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Add Payment
                                             </button>
                                         </div>

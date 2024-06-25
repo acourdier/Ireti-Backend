@@ -22,10 +22,10 @@
                                     <div class="row">
                                         <div class="col-6 my-2">
                                             <label for="Type" class="font-medium fs-5">Type:</label>
-                                           <select name="Type" id="Type" class="form-control">
-                                            <option value="Soft Commodities">Soft Commodities</option>
-                                            <option value="Oil and oil Derivatives">Oil and oil Derivatives</option>
-                                           </select>
+                                            <select name="Type" id="Type" class="form-control">
+                                                <option value="Soft Commodities">Soft Commodities</option>
+                                                <option value="Oil and oil Derivatives">Oil and oil Derivatives</option>
+                                            </select>
                                         </div>
                                         <div class="col-6 my-2">
                                             <label for="underlaying" class="font-medium fs-5">Underlaying:</label>
@@ -35,7 +35,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Save
                                         </button>
                                     </div>

@@ -63,17 +63,20 @@
                                             </td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                                    aria-expanded="false"></i>
+                                                    <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <li>
-                                                            <a class="dropdown-item" href="{{ 'editorders/' . $order['id'] }}">
-                                                                <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                            <a class="dropdown-item"
+                                                                href="{{ 'editorders/' . $order['id'] }}">
+                                                                <i
+                                                                    class="fa-solid text-muted me-2 fa-pen-to-square"></i>
                                                                 Edit
                                                             </a>
                                                         </li>
-                                                        <li> 
-                                                            <a class="dropdown-item" href="{{ 'orderemail/' . $order['id'] }}">
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ 'orderemail/' . $order['id'] }}">
                                                                 <i class="fa-regular text-muted me-2 fa-envelope"></i>
                                                                 Send Email
                                                             </a>

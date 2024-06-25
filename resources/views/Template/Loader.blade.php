@@ -12,11 +12,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 9998;
-        width: 35px; 
-        height: 50px; 
-        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0 ,0.5);
+        background-size: cover;
     }
-
+    
     #loader {
         display: flex;
         justify-content: center;
@@ -24,19 +25,21 @@
         width: 100%;
         height: 100%;
         animation: rotate 2s linear infinite;
-    }
 
+    }
+    
     .animated-loader {
-        width: 35px; 
-        height: 50px; 
+        width: 35px;
+        height: 50px;
     }
 
     @keyframes rotate {
         0% {
-            transform: rotate(0deg) translateX(100px) rotate(0deg); /* Starting position */
+            transform: rotate(0deg) translateX(100px) rotate(0deg);
         }
+
         100% {
-            transform: rotate(360deg) translateX(100px) rotate(-360deg); /* Ending position */
+            transform: rotate(360deg) translateX(100px) rotate(-360deg);
         }
     }
 </style>

@@ -35,53 +35,62 @@
                                 <h4>Profile</h4>
                                 <div class="col-12 my-2 d-none">
                                     <label for="role" class="font-medium fs-5">Role:</label>
-                                    <input type="number" value="1" readonly name="role" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="role">
+                                    <input type="number" value="1" readonly name="role"
+                                        class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="role">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="fname">Full Name</label>
-                                        <input type="text" name="fname" value="{{$profile['fname']}}" id="fname" class="form-control">
+                                        <input type="text" name="fname" value="{{$profile['fname']}}" id="fname"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="username">Username</label>
-                                        <input type="text" name="username" value="{{$profile['username']}}"  id="username" class="form-control">
+                                        <input type="text" name="username" value="{{$profile['username']}}"
+                                            id="username" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="email">Email</label>
-                                        <input type="email" name="email" value="{{$profile['email']}}" id="email" class="form-control">
+                                        <input type="email" name="email" value="{{$profile['email']}}" id="email"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="phone">Phone Number</label>
-                                        <input type="tel" name="phone" value="{{$profile['phone']}}" id="phone" class="form-control">
+                                        <input type="tel" name="phone" value="{{$profile['phone']}}" id="phone"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="city">City</label>
-                                        <input type="text" name="city" value="{{$profile['city']}}" id="city" class="form-control">
+                                        <input type="text" name="city" value="{{$profile['city']}}" id="city"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-3">
                                         <label for="country">Country</label>
-                                        <input type="text" name="country" value="{{$profile['country']}}" id="country" class="form-control">
+                                        <input type="text" name="country" value="{{$profile['country']}}" id="country"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" value="{{$profile['password']}}" id="password" class="form-control">
+                                        <input type="password" name="password" value="{{$profile['password']}}"
+                                            id="password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
-                                        <button type="submit" class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Save
                                         </button>
                                     </div>

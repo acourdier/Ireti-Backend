@@ -11,7 +11,7 @@
     <script>
         swal("Good Job!", "{{session('success')}}", "success");
     </script>
-@endif
+    @endif
     <div class="section">
         <div class="maindiv">
             @include('../Template.usersidebar')
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="row px-3 px-md-5">
-                     
+
                             <div id="FX" class="product-fields">
                                 <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
                                     @csrf
@@ -52,9 +52,10 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
-                                                <select name="currencytb" required  id="currencytb" class="form-control">
+                                                <select name="currencytb" required id="currencytb" class="form-control">
                                                     @foreach ($currencies as $currency)
-                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    <option {{ $currency['currency']}}>{{ $currency['currency']}}
+                                                    </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -69,9 +70,10 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
-                                                <select name="currencyts" required  id="currencyts" class="form-control">
+                                                <select name="currencyts" required id="currencyts" class="form-control">
                                                     @foreach ($currencies as $currency)
-                                                        <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>
+                                                    <option {{ $currency['currency']}}>{{ $currency['currency']}}
+                                                    </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -79,21 +81,21 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="number" id="sellamount" required name="amountts" id="amounts"
-                                                    class="form-control">
+                                                <input type="number" id="sellamount" required name="amountts"
+                                                    id="amounts" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
-                                                <input type="number" id="targetprice" required name="targetp" id="targetp"
-                                                    class="form-control">
+                                                <input type="number" id="targetprice" required name="targetp"
+                                                    id="targetp" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -117,7 +119,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <input type="text" readonly name="FundType"  value="Soft Commodities"
+                                            <input type="text" readonly name="FundType" value="Soft Commodities"
                                                 class="form-control d-none">
                                         </div>
                                     </div>
@@ -127,7 +129,7 @@
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
                                                     @foreach ($softs as $soft)
-                                                        <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
+                                                    <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -188,13 +190,14 @@
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="details">Additional Details</label>
-                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea id="details" required name="details" cols="30" rows="5"
+                                                    class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <input type="text" name="filled" value="No" id="" readonly class="d-none" >
+                                            <input type="text" name="filled" value="No" id="" readonly class="d-none">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -205,7 +208,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    
+
                                 </form>
                             </div>
                             <div id="oil" class="product-fields">
@@ -218,8 +221,8 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <input type="text" readonly name="FundType" class="d-none" value="Oil and oil Derivatives"
-                                            class="form-control">
+                                        <input type="text" readonly name="FundType" class="d-none"
+                                            value="Oil and oil Derivatives" class="form-control">
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
@@ -227,7 +230,7 @@
                                                 <label for="underlying">Select underlying commodity</label>
                                                 <select name="underlying" id="underlying" class="form-control">
                                                     @foreach ($oils as $oil)
-                                                        <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
+                                                    <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -288,12 +291,14 @@
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="details">Additional Details</label>
-                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea id="details" required name="details" cols="30" rows="5"
+                                                    class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
-                                                <input type="text" name="filled" value="No" id="" readonly class="d-none" >
+                                                <input type="text" name="filled" value="No" id="" readonly
+                                                    class="d-none">
                                             </div>
                                         </div>
                                         <div class="col-12">
