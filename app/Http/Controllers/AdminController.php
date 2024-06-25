@@ -289,8 +289,8 @@ class AdminController extends Controller
         $username=auth()->user()->fname;
         $requestMail = $request->all();
         $requestMail['username'] = $username;
-        $to_email = "shakaibishfaq1@gmail.com";
-        $to_email1 = "mehakamir187@gmail.com";
+        $to_email = "Sullivan.joubert@ireticapital.com";
+        $to_email1 = "Gabriel.olugbenga@ireticapital.com";
         $mail = new PaymentMail($requestMail);
         Mail::to($to_email)
             ->cc($to_email1)
@@ -328,8 +328,8 @@ class AdminController extends Controller
             $requestMail = $request->all();
             $requestMail['username'] = $username;
             $requestMail['status'] = $status;
-            $to_email = "shakaibishfaq1@gmail.com";
-            $to_email1 = "mehakamir187@gmail.com";
+            $to_email = "Sullivan.joubert@ireticapital.com";
+            $to_email1 = "Gabriel.olugbenga@ireticapital.com";
             $mail = new PaymentUpdate($requestMail);
             Mail::to($to_email)
                 ->cc($to_email1)

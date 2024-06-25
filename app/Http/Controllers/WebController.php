@@ -185,14 +185,13 @@ class WebController extends Controller
         }
    
         $requestMail = $request->all();
-        $to_email = "shakaibishfaq@gmail.com";
-        $to_email1 = "mehakamir187@gmail.com";
+        $to_email = "Sullivan.joubert@ireticapital.com";
+        $to_email1 = "Gabriel.olugbenga@ireticapital.com";
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
             ->cc($to_email1)
             ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
-    
-    
+
 }
