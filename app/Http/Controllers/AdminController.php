@@ -12,6 +12,7 @@ use App\Models\notification;
 use App\Models\Director;
 use App\Models\Owner;
 use App\Models\Ubo;
+use App\Models\Beneficiaries;
 
 use Illuminate\Http\Request;
 use App\Mail\ConfirmInvest;
@@ -278,7 +279,9 @@ class AdminController extends Controller
         return view('Admin.payments', ['payments' => $data]);
     }
     public function addpayment(){
-        return view('Admin.addpayment');
+        $users = User::where('status',2)->orderBy('id', 'desc')->get();
+        $Beneficiaries = Beneficiaries::get();
+        return view('Admin.addpayment',['users'=>$users, 'Beneficiaries'=>$Beneficiaries]);
     }
     public function savepayment(Request $request){
         $userid=auth()->user()->id;
