@@ -108,6 +108,10 @@
                                                 class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Validate Order
                                             </button>
+                                            <button type="reset"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Reset
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -434,7 +438,30 @@
             targetPrice.disabled = false;
         });
     </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const currencyBuy = document.getElementById('currencytb');
+    const currencySell = document.getElementById('currencyts');
+    const originalSellOptions = Array.from(currencySell.options);
 
+    currencyBuy.addEventListener('change', function () {
+        const selectedCurrency = this.value;
+
+        // Clear current options
+        while (currencySell.options.length > 0) {
+            currencySell.remove(0);
+        }
+
+        // Add options back except the selected one
+        originalSellOptions.forEach(option => {
+            if (option.value !== selectedCurrency) {
+                currencySell.add(new Option(option.text, option.value));
+            }
+        });
+    });
+});
+
+</script>
 
     @include('../Template.jslinks')
 </body>
