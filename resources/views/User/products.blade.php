@@ -87,12 +87,13 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="targetp">Target Price</label>
+                                                <label for="targetp">Target Price for conversion of  <span class="mb-0" id="rate"></span></label>
                                                 <input type="number" id="targetprice" required name="targetp"
                                                     id="targetp" class="form-control">
                                             </div>
                                         </div>
                                     </div>
+                                    <p id="rate"></p>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <input type="text" name="filled" value="No" id="" readonly class="d-none">
@@ -351,22 +352,52 @@
         });
     </script>
     <script>
+        const currencytb = document.getElementById('currencytb');
         const buyAmount = document.getElementById('buyamount');
+        const currencyts = document.getElementById('currencyts');
         const sellAmount = document.getElementById('sellamount');
         const targetPrice = document.getElementById('targetprice');
+        const rate = document.getElementById('rate');
 
-        let debounceTimer;
+        // Initially disable all inputs except currencytb
+        buyAmount.disabled = true;
+        currencyts.disabled = true;
+        sellAmount.disabled = true;
+        targetPrice.disabled = true;
 
-        function debounce(func, delay) {
-            return function() {
-                const context = this;
-                const args = arguments;
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => func.apply(context, args), delay);
-            };
-        }
+        // Enable all inputs when currencytb has input
+        currencytb.addEventListener('input', function() {
+            buyAmount.disabled = true;
+            currencyts.disabled = false;
+            sellAmount.disabled = true;
+            targetPrice.disabled = true;
+        });
 
-        buyAmount.addEventListener('input', debounce(function() {
+        currencyts.addEventListener('input', function() {
+            buyAmount.disabled = true;
+            currencytb.disabled = true;
+            currencyts.disabled = true;
+            sellAmount.disabled = true;
+            targetPrice.disabled = false;
+
+            let sell = currencyts.value;
+            let buy = currencytb.value;
+            let rate = sell + '/' + buy;
+            console.log(rate);
+            document.getElementById('rate').innerHTML = rate;
+
+
+
+
+        });
+
+        buyAmount.addEventListener('input', function() {
+            buyAmount.disabled = false;
+            currencytb.disabled = true;
+            currencyts.disabled = true;
+            sellAmount.disabled = true;
+            targetPrice.disabled = true;
+
             if (buyAmount.value) {
                 sellAmount.readOnly = true;
                 sellAmount.value = targetPrice.value ? (buyAmount.value * targetPrice.value).toFixed(2) : '';
@@ -374,9 +405,15 @@
                 sellAmount.readOnly = false;
                 sellAmount.value = '';
             }
-        }, 300));
+        });
 
-        sellAmount.addEventListener('input', debounce(function() {
+        sellAmount.addEventListener('input', function() {
+            buyAmount.disabled = true;
+            currencytb.disabled = true;
+            currencyts.disabled = true;
+            sellAmount.disabled = false;
+            targetPrice.disabled = true;
+
             if (sellAmount.value) {
                 buyAmount.readOnly = true;
                 buyAmount.value = targetPrice.value ? (sellAmount.value / targetPrice.value).toFixed(2) : '';
@@ -384,16 +421,23 @@
                 buyAmount.readOnly = false;
                 buyAmount.value = '';
             }
-        }, 300));
+        });
 
-        targetPrice.addEventListener('input', debounce(function() {
-            if (buyAmount.value) {
-                sellAmount.value = (buyAmount.value * targetPrice.value).toFixed(2);
-            } else if (sellAmount.value) {
-                buyAmount.value = (sellAmount.value / targetPrice.value).toFixed(2);
-            }
-        }, 500));
+        targetPrice.addEventListener('input', function() {
+            buyAmount.disabled = false;
+            currencytb.disabled = true;
+            currencyts.disabled = true;
+            sellAmount.disabled = false;
+            targetPrice.disabled = false;
+            // if (buyAmount.value) {
+            //     sellAmount.value = (buyAmount.value * targetPrice.value).toFixed(2);
+            // } else if (sellAmount.value) {
+            //     buyAmount.value = (sellAmount.value / targetPrice.value).toFixed(2);
+            // }
+        });
     </script>
+
+
     @include('../Template.jslinks')
 </body>
 
