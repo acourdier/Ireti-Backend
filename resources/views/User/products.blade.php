@@ -105,10 +105,10 @@
                                     <div class="col-12">
                                         <div class="mt-3 d-flex justify-content-end">
                                             <button type="submit"
-                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                class=" px-4 py-2 me-3 border-0 rounded-3 green text-white font-semi">
                                                 Validate Order
                                             </button>
-                                            <button type="reset"
+                                            <button type="reset" id="resetButton"
                                                 class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Reset
                                             </button>
@@ -365,6 +365,7 @@
         const sellAmount = document.getElementById('sellamount');
         const targetPrice = document.getElementById('targetprice');
         const rate = document.getElementById('rate');
+        const resetButton = document.getElementById('resetButton');
 
         // Initially disable all inputs except currencytb
         buyAmount.disabled = true;
@@ -392,10 +393,6 @@
             let rate = sell + '/' + buy;
             console.log(rate);
             document.getElementById('rate').innerHTML = rate;
-
-
-
-
         });
 
         buyAmount.addEventListener('input', function() {
@@ -438,8 +435,8 @@
             targetPrice.disabled = false;
         });
     </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
     const currencyBuy = document.getElementById('currencytb');
     const currencySell = document.getElementById('currencyts');
     const originalSellOptions = Array.from(currencySell.options);
@@ -461,7 +458,7 @@
     });
 });
 
-</script>
+    </script>
 
     @include('../Template.jslinks')
 </body>
