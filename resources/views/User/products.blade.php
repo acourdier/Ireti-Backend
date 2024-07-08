@@ -53,6 +53,7 @@
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
                                                 <select name="currencytb" required id="currencytb" class="form-control">
+                                                    <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option {{ $currency['currency']}}>{{ $currency['currency']}}
                                                     </option>
@@ -71,6 +72,7 @@
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
                                                 <select name="currencyts" required id="currencyts" class="form-control">
+                                                    <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option {{ $currency['currency']}}>{{ $currency['currency']}}
                                                     </option>
@@ -87,7 +89,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="targetp">Target Price for conversion of  <span class="mb-0" id="rate"></span></label>
+                                                <label for="targetp">Target Price for conversion of <span class="mb-0"
+                                                        id="rate"></span></label>
                                                 <input type="number" id="targetprice" required name="targetp"
                                                     id="targetp" class="form-control">
                                             </div>
@@ -429,11 +432,6 @@
             currencyts.disabled = true;
             sellAmount.disabled = false;
             targetPrice.disabled = false;
-            // if (buyAmount.value) {
-            //     sellAmount.value = (buyAmount.value * targetPrice.value).toFixed(2);
-            // } else if (sellAmount.value) {
-            //     buyAmount.value = (sellAmount.value / targetPrice.value).toFixed(2);
-            // }
         });
     </script>
 
