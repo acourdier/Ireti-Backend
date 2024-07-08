@@ -53,6 +53,7 @@
                                             <div class="mt-3">
                                                 <label for="currency">Currency Buy</label>
                                                 <select name="currencytb" required id="currencytb" class="form-control">
+                                                    <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option {{ $currency['currency']}}>{{ $currency['currency']}}
                                                     </option>
@@ -71,6 +72,7 @@
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
                                                 <select name="currencyts" required id="currencyts" class="form-control">
+                                                    <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option {{ $currency['currency']}}>{{ $currency['currency']}}
                                                     </option>
