@@ -61,7 +61,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <i class="fa-solid fa-ellipsis-vertical" id="dropdownMenuButton"
+                                                        <i class="fa-solid fa-ellipsis-vertical pointer" id="dropdownMenuButton"
                                                             data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <li>

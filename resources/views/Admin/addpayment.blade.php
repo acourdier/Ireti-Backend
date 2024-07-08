@@ -43,7 +43,7 @@
                                                             console.log(beneficiary);
                                                             Beneficiary.insertAdjacentHTML("beforeend",`<option value="${beneficiary.id}">${beneficiary.accountname}</option>`)
                                                         }
-                                                        // Process the data further as needed
+                                                        
                                                     } catch (error) {
                                                         console.error('There was a problem with the fetch operation:', error);
                                                     }
@@ -59,13 +59,6 @@
                                             </select>
                                         </div>
 
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mt-3">
-                                            <label for="baccount">Beneficiary Account</label>
-                                            <input type="text" required name="baccount" id="baccount"
-                                                class="form-control">
-                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">

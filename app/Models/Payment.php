@@ -12,7 +12,6 @@ class Payment extends Model
         'userid',
         'customer',
         'Beneficiary',
-        'baccount',
         'amount',
         'status',
     ];

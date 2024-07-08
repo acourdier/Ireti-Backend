@@ -71,6 +71,7 @@
                                                     <th>Price Target</th>
                                                     <th>Order Date</th>
                                                     <th>Order Filled</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,6 +90,12 @@
                                                             class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
                                                             {{$order['filled']}}
                                                         </button>
+                                                    </td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ 'orderdeatils/' . $order['id'] }}">
+                                                                <i class="fa-solid text-muted me-2 fa-eye"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

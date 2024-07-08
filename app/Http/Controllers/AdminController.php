@@ -154,6 +154,10 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
     }
+    public function orderdeatil($id){
+        $data['orderData'] =Order::find($id);
+        return view('Admin.orderdetail',$data);
+    }
     public function orderemail(Request $request){
         $order = Order::find($request->id);
         $data = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
