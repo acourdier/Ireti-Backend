@@ -460,6 +460,11 @@
 
     </script>
 
+<script>
+    document.getElementById('resetButton').addEventListener('click', function() {
+        location.reload();
+    });
+</script>
     @include('../Template.jslinks')
 </body>
 
