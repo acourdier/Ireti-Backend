@@ -375,18 +375,24 @@
 
         // Enable all inputs when currencytb has input
         currencytb.addEventListener('input', function() {
-            buyAmount.disabled = true;
-            currencyts.disabled = false;
+            buyAmount.disabled = false;
+            currencyts.disabled = true;
             sellAmount.disabled = true;
             targetPrice.disabled = true;
         });
+        buyAmount.addEventListener('input', function() {
+            currencytb.disabled = true;
+            currencyts.disabled = false;
+            sellAmount.disabled = true;
+            targetPrice.disabled = true;
 
+        });
         currencyts.addEventListener('input', function() {
             buyAmount.disabled = true;
             currencytb.disabled = true;
             currencyts.disabled = true;
-            sellAmount.disabled = true;
-            targetPrice.disabled = false;
+            sellAmount.disabled = false;
+            targetPrice.disabled = true;
 
             let sell = currencyts.value;
             let buy = currencytb.value;
@@ -395,44 +401,27 @@
             document.getElementById('rate').innerHTML = rate;
         });
 
-        buyAmount.addEventListener('input', function() {
-            buyAmount.disabled = false;
-            currencytb.disabled = true;
-            currencyts.disabled = true;
-            sellAmount.disabled = true;
-            targetPrice.disabled = true;
-
-            if (buyAmount.value) {
-                sellAmount.readOnly = true;
-                sellAmount.value = targetPrice.value ? (buyAmount.value * targetPrice.value).toFixed(2) : '';
-            } else {
-                sellAmount.readOnly = false;
-                sellAmount.value = '';
-            }
-        });
-
         sellAmount.addEventListener('input', function() {
             buyAmount.disabled = true;
             currencytb.disabled = true;
             currencyts.disabled = true;
-            sellAmount.disabled = false;
             targetPrice.disabled = true;
 
-            if (sellAmount.value) {
-                buyAmount.readOnly = true;
-                buyAmount.value = targetPrice.value ? (sellAmount.value / targetPrice.value).toFixed(2) : '';
-            } else {
-                buyAmount.readOnly = false;
-                buyAmount.value = '';
-            }
+            targetPrice.value = buyAmount.value / sellAmount.value
+
+            // if (sellAmount.value) {
+            //     buyAmount.readOnly = true;
+            //     buyAmount.value = targetPrice.value ? (buyAmount.value / sellAmount.value).toFixed(2) : '';
+            // }
+
         });
 
         targetPrice.addEventListener('input', function() {
-            buyAmount.disabled = false;
+            buyAmount.disabled = true;
             currencytb.disabled = true;
             currencyts.disabled = true;
-            sellAmount.disabled = false;
-            targetPrice.disabled = false;
+            sellAmount.disabled = true;
+            targetPrice.disabled = true;
         });
     </script>
     <script>
