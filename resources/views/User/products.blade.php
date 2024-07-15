@@ -64,10 +64,11 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amountb">Amount to Buy</label>
-                                                <input type="number" id="buyamount" required name="amountb" id="amountb"
+                                                <input type="text" id="buyamount" required name="amountb"
                                                     class="form-control">
                                             </div>
                                         </div>
+
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencys">Currency Sell</label>
@@ -83,7 +84,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amounts">Amount to Sell</label>
-                                                <input type="number" id="sellamount" required name="amountts"
+                                                <input type="text" id="sellamount" required name="amountts"
                                                     id="amounts" class="form-control">
                                             </div>
                                         </div>
@@ -91,7 +92,7 @@
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price for conversion of <span class="mb-0"
                                                         id="rate"></span></label>
-                                                <input type="number" id="targetprice" required name="targetp"
+                                                <input type="text" id="targetprice" required name="targetp"
                                                     id="targetp" class="form-control">
                                             </div>
                                         </div>
@@ -367,13 +368,11 @@
         const rate = document.getElementById('rate');
         const resetButton = document.getElementById('resetButton');
 
-        // Initially disable all inputs except currencytb
         buyAmount.disabled = true;
         currencyts.disabled = true;
         sellAmount.disabled = true;
         targetPrice.disabled = true;
 
-        // Enable all inputs when currencytb has input
         currencytb.addEventListener('input', function() {
             buyAmount.disabled = false;
             currencyts.disabled = true;
@@ -396,8 +395,7 @@
 
             let sell = currencyts.value;
             let buy = currencytb.value;
-            let rate = sell + '/' + buy;
-            console.log(rate);
+            let rate = buy + '/' + sell;
             document.getElementById('rate').innerHTML = rate;
         });
 
@@ -406,14 +404,17 @@
             currencytb.disabled = true;
             currencyts.disabled = true;
             targetPrice.disabled = true;
+            // targetPrice.value = buyAmount.value / sellAmount.value
+            let buyAmountValue = parseFloat(buyAmount.value);
+            let sellAmountValue = parseFloat(sellAmount.value);
 
-            targetPrice.value = buyAmount.value / sellAmount.value
-
-            // if (sellAmount.value) {
-            //     buyAmount.readOnly = true;
-            //     buyAmount.value = targetPrice.value ? (buyAmount.value / sellAmount.value).toFixed(2) : '';
-            // }
-
+            // Check if both values are numbers and sellAmountValue is not zero
+            if (!isNaN(buyAmountValue) && !isNaN(sellAmountValue) && sellAmountValue !== 0) {
+                targetPrice.value = buyAmountValue / sellAmountValue;
+            } else {
+                console.error("Invalid input values");
+                targetPrice.value = "Invalid";
+            }
         });
 
         targetPrice.addEventListener('input', function() {
@@ -426,35 +427,53 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const currencyBuy = document.getElementById('currencytb');
-    const currencySell = document.getElementById('currencyts');
-    const originalSellOptions = Array.from(currencySell.options);
-
-    currencyBuy.addEventListener('change', function () {
-        const selectedCurrency = this.value;
-
-        // Clear current options
-        while (currencySell.options.length > 0) {
-            currencySell.remove(0);
-        }
-
-        // Add options back except the selected one
-        originalSellOptions.forEach(option => {
-            if (option.value !== selectedCurrency) {
-                currencySell.add(new Option(option.text, option.value));
+        const currencyBuy = document.getElementById('currencytb');
+        const currencySell = document.getElementById('currencyts');
+        const originalSellOptions = Array.from(currencySell.options);
+        currencyBuy.addEventListener('change', function () {
+            const selectedCurrency = this.value;
+            while (currencySell.options.length > 0) {
+                currencySell.remove(0);
             }
-        });
+            originalSellOptions.forEach(option => {
+                if (option.value !== selectedCurrency) {
+                    currencySell.add(new Option(option.text, option.value));
+                }
+            });
     });
 });
 
     </script>
 
-<script>
-    document.getElementById('resetButton').addEventListener('click', function() {
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
         location.reload();
     });
-</script>
+    </script>
+    <script>
+        function formatNumber(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+
+        document.getElementById('buyamount').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+
+        document.getElementById('sellamount').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+
+        document.getElementById('targetprice').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+    </script>
+
     @include('../Template.jslinks')
 </body>
 
 </html>
+
