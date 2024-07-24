@@ -377,14 +377,14 @@
         });
     </script>
     <script>
-        const firstcurrency = document.getElementById('firstcurrency');
-        const secondcurrency = document.getElementById('secondcurrency');
-        const targetPrice = document.getElementById('targetprice');
-        const currencytb = document.getElementById('currencytb');
-        const buyamount = document.getElementById('buyamount');
-        const sellAmount = document.getElementById('sellamount');
-        const rate = document.getElementById('rate');
-        const resetButton = document.getElementById('resetButton');
+        let firstcurrency = document.getElementById('firstcurrency');
+        let secondcurrency = document.getElementById('secondcurrency');
+        let targetPrice = document.getElementById('targetprice');
+        let currencytb = document.getElementById('currencytb');
+        let buyamount = document.getElementById('buyamount');
+        let sellAmount = document.getElementById('sellamount');
+        let rate = document.getElementById('rate');
+        let resetButton = document.getElementById('resetButton');
 
         secondcurrency.disabled = true;
         targetPrice.disabled = true;
@@ -444,10 +444,12 @@
         });
 
         buyamount.addEventListener('input', function() {
+            let bav = parseFloat(buyamount.value.replaceAll(" ",""))
+            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
             if(currencytb.value == firstcurrency.value){
-                sellAmount.value = targetPrice.value / buyamount.value
+                sellAmount.value = tpv * bav
             }else{
-                sellAmount.value = targetPrice.value * buyamount.value
+                sellAmount.value = bav / tpv
             }
         });
 
@@ -457,11 +459,11 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        const currencyBuy = document.getElementById('firstcurrency');
-        const currencySell = document.getElementById('secondcurrency');
-        const originalSellOptions = Array.from(currencySell.options);
+        let currencyBuy = document.getElementById('firstcurrency');
+        let currencySell = document.getElementById('secondcurrency');
+        let originalSellOptions = Array.from(currencySell.options);
         currencyBuy.addEventListener('change', function () {
-            const selectedCurrency = this.value;
+            let selectedCurrency = this.value;
             while (currencySell.options.length > 0) {
                 currencySell.remove(0);
             }
@@ -475,8 +477,8 @@
     </script>
     <script>
         function updatecurrencytb() {
-            const firstCurrencyValue = firstcurrency.value;
-            const secondCurrencyValue = secondcurrency.value;
+            let firstCurrencyValue = firstcurrency.value;
+            let secondCurrencyValue = secondcurrency.value;
 
             currencytb.innerHTML = `
                 <option value="0" hidden>Choose currency</option>
