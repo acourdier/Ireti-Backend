@@ -444,7 +444,11 @@
         });
 
         buyamount.addEventListener('input', function() {
-            sellAmount.value = targetPrice.value * buyamount.value
+            if(currencytb.value == firstcurrency.value){
+                sellAmount.value = targetPrice.value / buyamount.value
+            }else{
+                sellAmount.value = targetPrice.value * buyamount.value
+            }
         });
 
         document.getElementById('resetButton').addEventListener('click', function() {
@@ -497,10 +501,6 @@
         }
 
         document.getElementById('buyamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('sellamount').addEventListener('input', function (e) {
             formatNumber(e.target);
         });
 
