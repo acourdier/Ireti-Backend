@@ -439,7 +439,7 @@
 
             let nonSelected = getNonSelectedValue(currencytb);
             let selected = currencytb.value;
-            let rate = nonSelected + '/' + selected;
+            let rate = selected + '/' + nonSelected;
             document.getElementById('rate').innerHTML =  'Conversion Rate is ' +rate ;
         });
 

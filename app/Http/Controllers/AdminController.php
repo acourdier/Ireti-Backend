@@ -47,7 +47,7 @@ class AdminController extends Controller
 
 
     public function currency(){
-        $data = Currency::orderBy('id', 'desc')->get();
+        $data = Currency::orderBy('currency', 'asc')->get();
         return view('Admin.currency', ['currencies' => $data]);
     }
     public function addCurrency(){
@@ -132,7 +132,7 @@ class AdminController extends Controller
         return redirect()->route('admin.underlaying')->with ('update','Commodity Updated Successfully');
     }
 
-    
+
     public function orders(){
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
@@ -148,7 +148,7 @@ class AdminController extends Controller
         'filled' => 'required',
         ]);
         $order = Order::find($request->id);
-    
+
         if ($order) {
             $order->update(['filled' => $request->filled]);
         }
@@ -162,9 +162,9 @@ class AdminController extends Controller
         $order = Order::find($request->id);
         $data = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
         ->select('users.fname', 'users.email', 'orders.*')
-        ->where('orders.id', $order->id) 
+        ->where('orders.id', $order->id)
         ->first();
-    
+
         if ($data) {
             $username = $data->fname;
             $email = $data->email;
@@ -179,7 +179,7 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.orders')->with('update', 'Email Sent Successfully');
     }
-    
+
 
 
     public function investment(){
@@ -197,16 +197,16 @@ class AdminController extends Controller
             'status' => 'required',
         ]);
             $order = Investment::find($request->id);
-    
+
         if ($order) {
             $order->update(['status' => $request->status]);
         }
-    
+
         // $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
         //     ->select('users.fname', 'users.email', 'investments.*')
-        //     ->where('investments.id', $order->id) 
+        //     ->where('investments.id', $order->id)
         //     ->first();
-        
+
         // if ($data) {
         //     $username = $data->fname;
         //     $email = $data->email;
@@ -217,16 +217,16 @@ class AdminController extends Controller
         //     Mail::to($to_email)
         //         ->send($mail);
         // }
-    
+
         return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }
     public function investmentemail(Request $request){
         $order = Investment::find($request->id);
         $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
             ->select('users.fname', 'users.email', 'investments.*')
-            ->where('investments.id', $order->id) 
+            ->where('investments.id', $order->id)
             ->first();
-        
+
         if ($data) {
             $username = $data->fname;
             $email = $data->email;
@@ -240,7 +240,7 @@ class AdminController extends Controller
                 ->send($mail);
 
         }
-    
+
         return redirect()->route('admin.investment')->with('update', 'Email Sent Successfully');
     }
 
@@ -295,7 +295,7 @@ class AdminController extends Controller
         $request['userid'] = $userid;
         $payments = $request->all();
         Payment:: create($payments);
-        
+
         $username=auth()->user()->fname;
         $requestMail = $request->all();
         $requestMail['username'] = $username;
@@ -316,7 +316,7 @@ class AdminController extends Controller
     public function editpayment($id){
         $data['payment'] =Payment::find($id);
         return view('Admin.editpayment',$data);
-    } 
+    }
     public function updatepayment(Request $request){
         $payment = Payment::find($request->id);
         if ($payment) {
@@ -328,7 +328,7 @@ class AdminController extends Controller
         $payment = Payment::find($request->id);
         $data = Payment::leftJoin('users', 'payments.userid', '=', 'users.id')
         ->select('users.fname', 'users.email', 'payments.*')
-        ->where('payments.id', $payment->id) 
+        ->where('payments.id', $payment->id)
         ->first();
 
         if ($data) {
@@ -349,5 +349,5 @@ class AdminController extends Controller
 
         return redirect()->route('admin.payments')->with ('update','Mail Sent Successfully');
     }
-    
+
 }
