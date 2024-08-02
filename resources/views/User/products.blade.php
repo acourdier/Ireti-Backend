@@ -515,6 +515,10 @@
             formatNumber(e.target);
         });
 
+        document.getElementById('sellamount').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+
         document.getElementById('targetprice').addEventListener('input', function (e) {
             formatNumber(e.target);
         });
