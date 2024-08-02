@@ -425,7 +425,7 @@
             targetPrice.disabled = true;
             currencytb.disabled = true;
             buyamount.disabled = false;
-            sellAmount.disabled = true;
+            sellAmount.disabled = false;
 
             function getNonSelectedValue(currencytb) {
                 let nonSelectedValue = '';
@@ -450,6 +450,15 @@
                 sellAmount.value = tpv * bav
             }else{
                 sellAmount.value = bav / tpv
+            }
+        });
+        sellAmount.addEventListener('input', function() {
+            let sav = parseFloat(sellAmount.value.replaceAll(" ",""))
+            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
+            if(currencytb.value == firstcurrency.value){
+                buyamount.value = sav / tpv
+            }else{
+                buyamount.value = tpv * sav
             }
         });
 
