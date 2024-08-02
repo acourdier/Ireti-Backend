@@ -35,7 +35,7 @@ class UserController extends Controller
         $sumfilledorders = Order::where('status', 1)
         ->where('userid', $userId)
         ->sum('quantity');
-        
+
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
     }
@@ -50,16 +50,16 @@ class UserController extends Controller
             })
             ->orderBy('notifications.id', 'desc')
             ->get();
-        
+
         return view('User.notifications', ['notifications' => $data]);
-        
+
     }
 
 
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
         $soft = UnderLaying::where('Type', 'Soft Commodities')->orderBy('id', 'desc')->get();
-        $currency = Currency::orderBy('id', 'desc')->get();
+        $currency = Currency::orderBy('currency', 'asc')->get();
         return view('User.products',['oils' => $oil,'softs' => $soft,'currencies' => $currency]);
     }
     public function submitorder(Request $Request){
@@ -95,7 +95,7 @@ class UserController extends Controller
         $data['orderData'] =Order::find($id);
         return view('User.orderdeatils',$data);
     }
-    
+
     public function validateOrder($id){
         $order = Order::find($id);
         if ($order) {
@@ -135,7 +135,7 @@ class UserController extends Controller
         $mail = new InvestmentMail($requestMail);
         Mail::to($to_email)
             ->send($mail);
-            
+
         notification::create([
         'message' => $msg,
         'userid' => $userid,
@@ -156,7 +156,7 @@ class UserController extends Controller
         return view('User.profile', ['profile' => $profile]);
     }
     public function updateprofile(Request $request){
-        $user = auth()->user();    
+        $user = auth()->user();
         if ($user instanceof User) {
             $validatedData = $request->validate([
                 '*' => 'required'
@@ -166,7 +166,7 @@ class UserController extends Controller
             $msg = "updated Profile successfully";
 
 
-    
+
             $username=auth()->user()->fname;
             $requestMail = $request->all();
             $requestMail['username'] = $username;
@@ -174,7 +174,7 @@ class UserController extends Controller
             $mail = new ProfileMail($requestMail);
             Mail::to($to_email)
                 ->send($mail);
-            
+
             notification::create([
             'message' => $msg,
             'userid' => $userid,
@@ -189,10 +189,10 @@ class UserController extends Controller
         $account = BankAccount::where('userid', $userId)->first();
         $currencies = Currency::orderBy('id', 'desc')->get();
         if (is_null($account)) {
-            return view('User.bank',['account' => $account,'currencies' => $currencies]); 
+            return view('User.bank',['account' => $account,'currencies' => $currencies]);
         }
         return view('User.bank', ['account' => $account,'currencies' => $currencies]);
-    }  
+    }
     public function addbank(Request $request) {
         $request->validate([
             '*' => 'required'
@@ -238,7 +238,7 @@ class UserController extends Controller
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
 
-    
+
     public function beneficiaries(){
         $userId = auth()->id();
         $beneficiaries = Beneficiaries::where('userid', $userId)->get();
@@ -256,7 +256,7 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
-        
+
         $username=auth()->user()->fname;
         $requestMail = $Request->all();
         $requestMail['username'] = $username;
@@ -273,5 +273,5 @@ class UserController extends Controller
         ]);
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
-   
+
 }
