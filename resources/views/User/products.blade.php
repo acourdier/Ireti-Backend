@@ -556,6 +556,7 @@
         function updateAmounts() {
             buyamount.value = 0;
             sellAmount.value = 0;
+            currencytb.value = 0;
             if (buyamount.value) {
                 updateSellAmount();
             }
