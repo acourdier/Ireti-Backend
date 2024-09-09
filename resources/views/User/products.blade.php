@@ -422,24 +422,24 @@
         currencytb.addEventListener('input', function() {
             firstcurrency.disabled = true;
             secondcurrency.disabled = true;
-            targetPrice.disabled = true;
-            currencytb.disabled = true;
+            targetPrice.disabled = false;
+            currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
+            // function getNonSelectedValue(currencytb) {
+            //     let nonSelectedValue = '';
+            //     for (let option of currencytb.options) {
+            //         if (!option.selected) {
+            //             nonSelectedValue = option.value;
+            //         }
+            //     }
+            //     return nonSelectedValue;
+            // }
 
-            function getNonSelectedValue(currencytb) {
-                let nonSelectedValue = '';
-                for (let option of currencytb.options) {
-                    if (!option.selected) {
-                        nonSelectedValue = option.value;
-                    }
-                }
-                return nonSelectedValue;
-            }
-
-            let nonSelected = getNonSelectedValue(currencytb);
-            let selected = currencytb.value;
-            let rate = selected + '/' + nonSelected;
+            // let nonSelected = getNonSelectedValue(currencytb);
+            // let selected = currencytb.value;
+            // let rate = selected + '/' + nonSelected;
+            let rate = firstcurrency.value + '/' + secondcurrency.value;
             document.getElementById('rate').innerHTML =  'Conversion Rate is ' +rate ;
         });
 
