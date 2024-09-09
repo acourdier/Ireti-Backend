@@ -376,7 +376,7 @@
             }
         });
     </script>
-    <script>
+    {{-- <script>
         let firstcurrency = document.getElementById('firstcurrency');
         let secondcurrency = document.getElementById('secondcurrency');
         let targetPrice = document.getElementById('targetprice');
@@ -465,6 +465,104 @@
         document.getElementById('resetButton').addEventListener('click', function() {
         location.reload();
         });
+    </script> --}}
+    <script>
+        let firstcurrency = document.getElementById('firstcurrency');
+        let secondcurrency = document.getElementById('secondcurrency');
+        let targetPrice = document.getElementById('targetprice');
+        let currencytb = document.getElementById('currencytb');
+        let buyamount = document.getElementById('buyamount');
+        let sellAmount = document.getElementById('sellamount');
+        let rate = document.getElementById('rate');
+        let resetButton = document.getElementById('resetButton');
+
+        secondcurrency.disabled = true;
+        targetPrice.disabled = true;
+        currencytb.disabled = true;
+        buyamount.disabled = true;
+        sellAmount.disabled = true;
+
+        firstcurrency.addEventListener('input', function() {
+            firstcurrency.disabled = true;
+            secondcurrency.disabled = false;
+            targetPrice.disabled = true;
+            currencytb.disabled = true;
+            buyamount.disabled = true;
+            sellAmount.disabled = true;
+        });
+
+        secondcurrency.addEventListener('input', function() {
+            firstcurrency.disabled = true;
+            secondcurrency.disabled = true;
+            targetPrice.disabled = false;
+            currencytb.disabled = true;
+            buyamount.disabled = true;
+            sellAmount.disabled = true;
+        });
+
+        targetPrice.addEventListener('input', function() {
+            firstcurrency.disabled = true;
+            secondcurrency.disabled = true;
+            targetPrice.disabled = false;
+            currencytb.disabled = false;
+            buyamount.disabled = true;
+            sellAmount.disabled = true;
+            updateAmounts();
+        });
+
+        currencytb.addEventListener('input', function() {
+            firstcurrency.disabled = true;
+            secondcurrency.disabled = true;
+            targetPrice.disabled = false;
+            currencytb.disabled = false;
+            buyamount.disabled = false;
+            sellAmount.disabled = false;
+            let rate = firstcurrency.value + '/' + secondcurrency.value;
+            document.getElementById('rate').innerHTML =  'Conversion Rate is ' + rate;
+        });
+
+        buyamount.addEventListener('input', function() {
+            updateSellAmount();
+        });
+
+        sellAmount.addEventListener('input', function() {
+            updateBuyAmount(); 
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            location.reload();
+        });
+
+        function updateSellAmount() {
+            let bav = parseFloat(buyamount.value.replaceAll(" ", ""));
+            let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            if (currencytb.value == firstcurrency.value) {
+                sellAmount.value = tpv * bav;
+            } else {
+                sellAmount.value = bav / tpv;
+            }
+        }
+
+        function updateBuyAmount() {
+            let sav = parseFloat(sellAmount.value.replaceAll(" ", ""));
+            let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            if (currencytb.value == firstcurrency.value) {
+                buyamount.value = sav / tpv;
+            } else {
+                buyamount.value = tpv * sav;
+            }
+        }
+
+        function updateAmounts() {
+            buyamount.value = 0;
+            sellAmount.value = 0;
+            if (buyamount.value) {
+                updateSellAmount();
+            }
+            if (sellAmount.value) {
+                updateBuyAmount();
+            }
+        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
