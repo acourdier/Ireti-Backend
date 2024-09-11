@@ -498,6 +498,8 @@
             currencytb.disabled = true;
             buyamount.disabled = true;
             sellAmount.disabled = true;
+            let rate = firstcurrency.value + '/' + secondcurrency.value;
+            document.getElementById('rate').innerHTML =  'Conversion Rate is ' + rate;
         });
 
         targetPrice.addEventListener('input', function() {
@@ -505,8 +507,8 @@
             secondcurrency.disabled = true;
             targetPrice.disabled = false;
             currencytb.disabled = false;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+            buyamount.disabled = false;
+            sellAmount.disabled = false;
             updateAmounts();
         });
 
@@ -517,15 +519,15 @@
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
-            let rate = firstcurrency.value + '/' + secondcurrency.value;
-            document.getElementById('rate').innerHTML =  'Conversion Rate is ' + rate;
         });
 
         buyamount.addEventListener('input', function() {
+            currencytb.disabled = false;
             updateSellAmount();
         });
 
         sellAmount.addEventListener('input', function() {
+            currencytb.disabled = false;
             updateBuyAmount(); 
         });
 
@@ -556,7 +558,6 @@
         function updateAmounts() {
             buyamount.value = 0;
             sellAmount.value = 0;
-            currencytb.value = 0;
             if (buyamount.value) {
                 updateSellAmount();
             }
