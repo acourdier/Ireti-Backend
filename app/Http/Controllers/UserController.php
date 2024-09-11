@@ -187,7 +187,7 @@ class UserController extends Controller
     public function bank(){
         $userId = auth()->id();
         $account = BankAccount::where('userid', $userId)->first();
-        $currencies = Currency::orderBy('id', 'desc')->get();
+        $currencies = Currency::orderBy('currency', 'asc')->get();
         if (is_null($account)) {
             return view('User.bank',['account' => $account,'currencies' => $currencies]);
         }
