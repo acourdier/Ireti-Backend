@@ -43,8 +43,16 @@
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <p class="mb-0 small"> <strong>Amount to Buy:</strong> {{ $requestMail ['amountb'] }}</p>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
+                    {{-- <div class="d-flex justify-content-between align-items-center mt-3">
                         <p class="mb-0 small"><strong>Currency Sell:</strong> {{ $requestMail ['currencyts'] }}</p>
+                    </div> --}}
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <p class="font-semi mb-0 small"></p>
+                        <p class="mb-0 small"><strong>First Currency:</strong> {{ $requestMail ['firstcurrency'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <p class="font-semi mb-0 small"></p>
+                        <p class="mb-0 small"><strong>Second Currency:</strong> {{ $requestMail ['secondcurrency'] }}</p>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <p class="font-semi mb-0 small"></p>

@@ -67,6 +67,8 @@ class UserController extends Controller
             'FundType'=>'required',
         ]);
         $order = $Request->all();
+        // $fc = $Request->firstcurrency;
+        // echo $fc; die();
         $userId = auth()->id();
         $order['userid'] = $userId;
         $orderData = Order::create($order);

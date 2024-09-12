@@ -32,9 +32,17 @@
                                     <p class="mb-0 small">{{ $orderData->amountb }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <p class="font-semi mb-0 small">First Currency</p>
+                                    <p class="mb-0 small">{{ $orderData->firstcurrency }}</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <p class="font-semi mb-0 small">Second Currency</p>
+                                    <p class="mb-0 small">{{ $orderData->secondcurrency }}</p>
+                                </div>
+                                {{-- <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font small font-semi mb-0">Currency Sell</p>
                                     <p class="mb-0 small">{{ $orderData->currencyts }}</p>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi mb-0 small">Amount to Sell</p>
                                     <p class="mb-0 small">{{ $orderData->amountts }}</p>

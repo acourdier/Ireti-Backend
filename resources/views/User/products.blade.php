@@ -52,12 +52,12 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
-                                                <select name="firstcurrency" required id="firstcurrency"
-                                                    class="form-control">
+                                                <select name="firstcurrency" required id="firstcurrency" class="form-control">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
-                                                    <option {{ $currency['currency']}}>{{ $currency['currency']}}
-                                                    </option>
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -70,7 +70,7 @@
                                                     class="form-control">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
-                                                    <option {{ $currency['currency']}}>{{ $currency['currency']}}
+                                                    <option value="{{ $currency['currency']}}" {{ $currency['currency']}}>{{ $currency['currency']}}
                                                     </option>
                                                     @endforeach
                                                 </select>
@@ -149,6 +149,7 @@
                                                 class="form-control d-none">
                                         </div>
                                     </div>
+                                    @if ($softs->count() > 0)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mt-3">
@@ -234,7 +235,9 @@
                                             </button>
                                         </div>
                                     </div>
-
+                                    @else
+                                    <p class="text-danger">There is no underlying commodity for soft commodity</p>
+                                @endif
                                 </form>
                             </div>
                             <div id="oil" class="product-fields">
@@ -251,6 +254,7 @@
                                             value="Oil and oil Derivatives" class="form-control">
                                     </div>
                                     <div class="row">
+                                    @if ($oils->count() > 0)
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
@@ -335,6 +339,9 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        @else
+                                        <p class="text-danger">There is no underlying commodity for oil and oil derivatives</p>
+                                    @endif
                                     </div>
                                 </form>
                             </div>
@@ -524,11 +531,17 @@
         buyamount.addEventListener('input', function() {
             currencytb.disabled = false;
             updateSellAmount();
+            // ------remove---
+            firstcurrency.disabled = false;
+            secondcurrency.disabled = false;
         });
 
         sellAmount.addEventListener('input', function() {
             currencytb.disabled = false;
             updateBuyAmount(); 
+            // ------remove---
+            firstcurrency.disabled = false;
+            secondcurrency.disabled = false;
         });
 
         document.getElementById('resetButton').addEventListener('click', function() {
