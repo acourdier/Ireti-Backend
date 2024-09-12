@@ -164,12 +164,11 @@ class AdminController extends Controller
         ->select('users.fname', 'users.email', 'orders.*')
         ->where('orders.id', $order->id)
         ->first();
-
         if ($data) {
             $username = $data->fname;
             $email = $data->email;
             $filled = $data->filled;
-            $requestMail = $request->all();
+            $requestMail = $order;
             $requestMail['username'] = $username;
             $requestMail['filled'] = $filled;
             $to_email = $email;
@@ -338,7 +337,7 @@ class AdminController extends Controller
             $requestMail = $request->all();
             $requestMail['username'] = $username;
             $requestMail['status'] = $status;
-            $to_email = "Sullivan.joubert@ireticapital.com";
+            $to_email = "mehakamir187@gmail.com";
             $to_email1 = "Gabriel.olugbenga@ireticapital.com";
             $mail = new PaymentUpdate($requestMail);
             Mail::to($to_email)

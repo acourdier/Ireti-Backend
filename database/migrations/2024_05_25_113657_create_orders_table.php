@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('userid');
             $table->integer('status');
             $table->string('FundType');
+            $table->string('firstcurrency')->nullable();
+            $table->string('secondcurrency')->nullable();
             $table->string('currencytb')->nullable();
             $table->string('amountb')->nullable();
-            $table->string('currencyts')->nullable();
+            // $table->string('currencyts')->nullable();
             $table->string('amountts')->nullable();
             $table->string('targetp')->nullable();
             $table->string('underlying')->nullable();
