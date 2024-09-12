@@ -83,6 +83,8 @@ class UserController extends Controller
         $username=auth()->user()->fname;
         $requestMail = $Request->all();
         $requestMail['username'] = $username;
+        $requestMail['id'] = $orderData->id;
+        $requestMail['created_at'] = $orderData->created_at;
         $to_email = auth()->user()->email;
         $mail = new OrderMail($requestMail);
         Mail::to($to_email)
