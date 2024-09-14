@@ -412,8 +412,8 @@
                                 <div>
                                     <div>
                                         <input type="radio" id="tradeRef" name="refName">
-                                        <label for="tradeRef" class="form-label fw-bold mb-2">Tradeshow: Which
-                                            tradeshow? </label>
+                                        <label for="tradeRef" class="form-label fw-bold mb-2">Trade Show: Which
+                                            trade Show? </label>
                                     </div>
                                     <input type="text" class="form-control mb-3 tradeRef">
                                 </div>
@@ -437,7 +437,7 @@
                                     <label for="idcard" class="form-label fw-bold mb-2">Personal Documentation
                                         Required</label>
                                     <p>Original seen (certified true copy) Valid photo ID of Directors and the UBOs. The
-                                        copy document must be in colour, (Passport or Driving License). Copy must be of
+                                        copy document must be in color, (Passport or Driving License). Copy must be of
                                         front and back of any card used for ID verification or double page of the
                                         passport.</p>
                                     <input type="file" id="idcard" class="form-control mb-3" name="idFile" required>
