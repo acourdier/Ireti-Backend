@@ -37,7 +37,7 @@
                         </div>
                         <h3 class="fs-4 mt-3 green-text font-semi">Expertise</h3>
                         <p class="text-center">
-                            Thanks to an audit of our clients' situation and needs
+                            Thanks to an audit of our client's situation and needs
                         </p>
                     </div>
                     <div
@@ -58,7 +58,7 @@
                         </div>
                         <h3 class="fs-4 mt-3 green-text font-semi">Price</h3>
                         <p class="text-center">
-                            Thanks to an audit of our clients' situation and needs
+                            With the optimisation of our partner's operations
                         </p>
                     </div>
                     <div
@@ -68,7 +68,7 @@
                         </div>
                         <h3 class="fs-4 mt-3 green-text font-semi">Sourcing</h3>
                         <p class="text-center">
-                            Thanks to an audit of our clients' situation and needs
+                            With the contribution of our privileged network
                         </p>
                     </div>
                 </div>
