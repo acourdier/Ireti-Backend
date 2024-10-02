@@ -21,7 +21,7 @@
                                     <h4>Add Currency</h4>
                                     <div class="col-12 my-2">
                                         <label for="currency" class="font-medium fs-5">Currency:</label>
-                                        <input type="text" name="currency" class="form-control" id="currency">
+                                        <input type="text" name="currency" class="form-control" id="currency" required>
                                     </div>
                                 </div>
                                 <div class="col-12">

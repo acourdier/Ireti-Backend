@@ -53,7 +53,7 @@
                                         <tbody>
                                             @foreach ($payments as $payment)
                                             <tr>
-                                                <td class="text-secondary align-middle">{{$payment['customer']}}</td>
+                                                <td class="text-secondary align-middle">{{$payment['fname']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['Beneficiary']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['baccount']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['amount']}}</td>

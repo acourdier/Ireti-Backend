@@ -22,43 +22,43 @@
                     <div class="col-12 my-2">
                         <label for="fname" class="font-medium fs-5">Full Name:</label>
                         <input type="text" name="fname"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="fname">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="fname" required>
                     </div>
                     <div class="col-12 my-2">
                         <label for="email" class="font-medium fs-5">Email:</label>
                         <input type="email" name="email"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="email">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="email" required>
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="phone" class="font-medium fs-5">Phone Number:</label>
                         <input type="tel" name="phone" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="phone">
+                            id="phone" required>
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="uname" class="font-medium fs-5">Username:</label>
                         <input type="text" name="username"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="uname">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="uname" required>
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="pass" class="font-medium fs-5">Password:</label>
                         <input type="password" name="password"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="pass">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="pass" required>
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="cpass" class="font-medium fs-5">Confirm Password:</label>
                         <input type="password" name="password_confirmation"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="cpass">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="cpass" required>
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="city" class="font-medium fs-5">City:</label>
                         <input type="text" name="city" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="city">
+                            id="city" required>
                     </div>
 
                     <div class="col-md-6 my-2">
                         <label for="country" class="font-medium fs-5">Country:</label>
                         <input type="text" name="country"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="country">
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="country" required>
                     </div>
 
                     <div class="mt-5 col-6 col-sm-5 col-md-4 col-xl-3">

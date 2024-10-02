@@ -1,7 +1,7 @@
 <footer class="bg-white pt-5 pb-4">
     <div class="mycontainer py-2">
         <div class="row">
-            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-3">
+            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-4">
                 <h2 class="fs-4 font-semi">
                     Company
                 </h2>
@@ -11,8 +11,7 @@
                     <a href="{{route('about')}}" class="text-decoration-none text-black my-2 d-block">About Us</a>
                 </div>
             </div>
-
-            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-3">
+            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-4">
                 <h2 class="fs-4 font-semi">
                     Services
                 </h2>
@@ -28,18 +27,7 @@
                         optimization</a>
                 </div>
             </div>
-            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-3">
-                <h2 class="fs-4 font-semi">
-                    Resources
-                </h2>
-                <div class="mt-3">
-                    <a href="#" class="text-decoration-none text-black my-2 d-block">Contributors</a>
-                    <a href="#" class="text-decoration-none text-black my-2 d-block">Insights</a>
-                    <a href="#" class="text-decoration-none text-black my-2 d-block">Media Room</a>
-                    <a href="#" class="text-decoration-none text-black my-2 d-block">Partners</a>
-                </div>
-            </div>
-            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-3">
+            <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-4">
                 <h2 class="fs-4 font-semi">
                     Contact
                 </h2>

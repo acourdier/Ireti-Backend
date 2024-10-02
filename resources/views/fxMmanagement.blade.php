@@ -28,7 +28,7 @@
         <div class="mycontainer">
             <div class="row justify-content-center align-items-center py-5">
                 <div class="col-md-6  pe-md-4" data-aos="fade-down" data-aos-delay="500">
-                    <img src="{{asset('img/risk-mitigation.svg')}}" alt="risk-mitigation" class="w-100">
+                    <img src="{{ asset('img/risk-mitigation.svg') }}" alt="risk-mitigation" class="w-100">
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Risk mitigation strategies</h2>
@@ -51,16 +51,17 @@
                         positively impact their performance.</p>
                 </div>
                 <div class="col-md-6  ps-md-4" data-aos="fade-right" data-aos-delay="300">
-                    <img src="{{asset('img/currency-flows.svg')}}" alt="currency-flows" class="w-100">
+                    <img src="{{ asset('img/currency-flows.svg') }}" alt="currency-flows" class="w-100">
                 </div>
             </div>
             <div class="row justify-content-center align-items-center py-5">
                 <div class="col-md-6 pe-lg-5 pe-md-4" data-aos="fade-right" data-aos-delay="300">
-                    <img src="{{asset('img/hedging-solutions.svg')}}" alt="hedging-solutions" class="w-100">
+                    <img src="{{ asset('img/hedging-solutions.svg') }}" alt="hedging-solutions" class="w-100">
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-down" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Hedging solutions</h2>
-                    <p class="fs-5">To protect companies margins and rentability, our consultants develop and implement
+                    <p class="fs-5">To protect companies margins and rentability, our consultants develop and
+                        implement
                         customized
                         hedging solutions. These solutions are tailored to the specific needs and risk appetite of each
                         client, providing a proactive approach to manage currency risk. Whether it's forward contracts,
@@ -72,7 +73,7 @@
                 <p class="text-center fs-5 mb-5">
                     Choose Ireti Capital for FX Management Consulting — where our expertise becomes your strategic
                     advantage in navigating the complexities of currency risk, optimizing flows, and fostering financial
-                    resilience in an ever-changing market landscape
+                    resilience in an ever-changing market landscape.
                 </p>
             </div>
         </div>

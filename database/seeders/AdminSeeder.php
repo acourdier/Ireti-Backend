@@ -15,10 +15,10 @@ class AdminSeeder extends Seeder
     {
         User::create([
             'fname' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@example.com',
             'phone'=>"03000000000",
             'username' => 'admin',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('aszx1234'),
             'city'=> 'Daska',
             'role' => '0',
             'country' => 'Pakistan',
@@ -43,6 +43,17 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'city'=> 'sialkot',
             'role' => '0',
+            'country' => 'Pakistan',
+
+        ]);
+        User::create([
+            'fname' => 'Test User',
+            'email' => 'testuser@example.com',
+            'phone'=>"03300000000",
+            'username' => 'Test User',
+            'password' => Hash::make('aszx1234'),
+            'city'=> 'sialkot',
+            'role' => '1',
             'country' => 'Pakistan',
 
         ]);

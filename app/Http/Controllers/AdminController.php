@@ -278,7 +278,7 @@ class AdminController extends Controller
     }
 
     public function payments(){
-        $data = Payment::orderBy('id', 'desc')->get();
+        $data = Payment::leftjoin('users','payments.customer','=','users.id')->select('payments.*','users.fname')->orderBy('id', 'desc')->get();
         return view('Admin.payments', ['payments' => $data]);
     }
     public function addpayment(){
