@@ -18,7 +18,7 @@
             <div class="mycontainer py-5">
                 <div class="row justify-content-center align-items-center py-5">
                     <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
-                        <h1 class="font-black green-text display-5">We are Ireti Capital</h1>
+                        <h1 class="font-black green-text display-5">We Are Ireti Capital</h1>
                         <p>We drive Liquidity and Value across Emerging markets thanks to our in-house market making
                             solution.</p>
                         <div class="mt-4">

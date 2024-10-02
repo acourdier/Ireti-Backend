@@ -16,13 +16,16 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4>Add Payments</h4>
+                            @if ($users->count() < 1)
+                            <p class="text-danger">No customers available. You can only add a payment if there is at least one customer.</p>
+                            @else
                             <form action="{{route('admin.savepayment')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <select name="customer" id="customer" onchange="fetchBeneficiary()" class="form-control">
+                                            <select name="customer" id="customer" onchange="fetchBeneficiary()" class="form-control" required>
                                                 <option value="" selected hidden disbaled>Choose customer</option>
                                                 @foreach ($users as $user)
                                                 <option value="{{ $user['id']}}">{{ $user['fname']}}</option>
@@ -54,7 +57,7 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="Beneficiary">Beneficiary</label>
-                                            <select name="Beneficiary" id="Beneficiary" class="form-control">
+                                            <select name="Beneficiary" id="Beneficiary" class="form-control" required>
                                                 
                                             </select>
                                         </div>
@@ -87,6 +90,7 @@
                                     </div>
                                 </div>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -98,6 +102,7 @@
     </div>
 
     @include('../Template.jslinks')
+
 </body>
 
 </html>

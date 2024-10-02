@@ -28,48 +28,49 @@
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="name">Fund type</label>
-                                        <select name="fund" id="name" class="form-control">
-                                            <option value="opt" selected disabled>Select Fund type</option>
+                                        <select name="fund" id="name" class="form-control" required>
+                                            <option value="" selected disabled hidden>Select Fund type</option>
                                             <option value="Listed Funds">Listed Funds</option>
                                             <option value="Non Listed Fund">Non Listed Fund</option>
                                         </select>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="yield">Target yield</label>
-                                        <select name="yeild" id="yield" class="form-control">
-                                            <option value="opt" selected disabled>Select Target yield</option>
+                                        <select required name="yeild" id="yield" class="form-control" required>
+                                            <option value="" selected disabled hidden>Select Target yield</option>
                                             <option value="0-5%">0-5%</option>
                                             <option value="5-10%">5-10%</option>
                                             <option value="10%+">10%+</option>
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <div class="col-sm-6">
-                                    <div class="mt-3">
+                                    <div class="mt-3" >
                                         <label for="exposure">Geographical exposure</label>
-                                        <input type="text" name="geographical" id="exposure" class="form-control">
+                                        <input type="text" name="geographical" id="exposure" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="amount">Amount wish to invest (in USD)</label>
-                                        <input type="number" name="amount" id="amount" class="form-control">
+                                        <input type="number" name="amount" id="amount" class="form-control" required>
                                     </div>
                                 </div>
                                 <h5 class="mt-3">Book Call Meeting</h5>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="Date">Date</label>
-                                        <input type="date" name="date" id="Date" class="form-control">
+                                        <input type="date" name="date" id="Date" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="Time">Time</label>
-                                        <input type="time" name="time" id="Time" class="form-control">
+                                        <input type="time" name="time" id="Time" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-12 d-none">

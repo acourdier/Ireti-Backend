@@ -54,8 +54,8 @@
                                             @foreach ($payments as $payment)
                                             <tr>
                                                 <td class="text-secondary align-middle">{{$payment['fname']}}</td>
-                                                <td class="text-secondary align-middle">{{$payment['Beneficiary']}}</td>
-                                                <td class="text-secondary align-middle">{{$payment['baccount']}}</td>
+                                                <td class="text-secondary align-middle">{{$payment['accountname']}}</td>
+                                                <td class="text-secondary align-middle">{{$payment['accountnumber']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['amount']}}</td>
                                                 <td class=" align-middle">
                                                     <button class=" 
