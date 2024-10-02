@@ -38,27 +38,27 @@
                                     <div class="mt-3">
                                         <label for="name">Account Name</label>
                                         <input type="text" value="{{$account->accountname ?? ''}}" name="accountname"
-                                            id="name" class="form-control">
+                                            id="name" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="account">Account Number</label>
                                         <input type="text" value="{{ $account->accountnumber ?? '' }}"
-                                            name="accountnumber" id="account" class="form-control">
+                                            name="accountnumber" id="account" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="bic">BIC</label>
                                         <input type="text" value="{{ $account->bic ?? '' }}" name="bic" id="bic"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="currency">Currency of the account</label>
-                                        <select name="currency" required id="currency" class="form-control">
+                                        <select name="currency" required id="currency" class="form-control" required>
                                             @foreach ($currencies as $currency)
                                             <option value="{{ $currency['currency'] }}" {{ isset($account->currency) &&
                                                 $currency['currency'] == $account->currency ? 'selected' : '' }}>
