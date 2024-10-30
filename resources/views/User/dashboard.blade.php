@@ -68,7 +68,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>Product</th>
-                                                    <th>Price Target</th>
+                                                    <th>Currency pair</th>
+                                                    <th>Amount to Buy</th>
+                                                    <th>Amount to Sell</th>
+                                                    <th>Target Price</th>
                                                     <th>Order Date</th>
                                                     <th>Order Filled</th>
                                                     <th>Action</th>
@@ -83,6 +86,9 @@
                                                             <p class="mb-0">{{$order['underlying']}}</p>
                                                         </div>
                                                     </td>
+                                                    <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
+                                                    <td>{{$order['amountb']}}</td>
+                                                    <td>{{$order['amountts']}}</td>
                                                     <td>{{$order['targetp']}}</td>
                                                     <td>{{$order['created_at']}}</td>
                                                     <td>

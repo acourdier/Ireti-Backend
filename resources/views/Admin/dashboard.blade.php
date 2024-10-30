@@ -69,7 +69,10 @@
                                             <tr>
                                                 <th>User ID</th>
                                                 <th>Product</th>
-                                                <th>Price Target</th>
+                                                <th>Currency pair</th>
+                                                <th>Amount to Buy</th>
+                                                <th>Amount to Sell</th>
+                                                <th>Target Price</th>
                                                 <th>Order Date</th>
                                                 <th>Order Filled</th>
                                                 <th>Action</th>
