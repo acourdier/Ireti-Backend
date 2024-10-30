@@ -25,7 +25,9 @@ class AdminController extends Controller
 
     public function dashboard(){
         $counttotalorders = Order::where('status', 1)
+        ->where('filled', 'No')
         ->count();
+
 
         $countfilledorders = Order::where('filled', 'YES')
         ->count();

@@ -25,10 +25,12 @@ class UserController extends Controller
         $userId = auth()->id();
 
         $counttotalorders = Order::where('status', 1)
+        ->where('filled', 'No')
         ->where('userid', $userId)
         ->count();
 
         $countfilledorders = Order::where('filled', 'YES')
+        ->where('status', 1)
         ->where('userid', $userId)
         ->count();
 
