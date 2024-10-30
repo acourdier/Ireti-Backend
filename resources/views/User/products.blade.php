@@ -49,11 +49,11 @@
                                                 class="form-control d-none">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                                    <div class="row align-items-end">
+                                        <div class="col-sm-5">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
-                                                <select name="firstcurrency" required id="firstcurrency" class="form-control">
+                                                <select name="firstcurrency" required id="firstcurrency" class="form-control text-center">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}">
@@ -63,12 +63,16 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-2">
+                                            <div class="mt-3">
+                                                <p class="mb-0 text-center">/</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
-                                                    class="form-control">
+                                                    class="form-control text-center">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option value="{{ $currency['currency']}}" {{ $currency['currency']}}>{{ $currency['currency']}}
@@ -489,96 +493,6 @@
             }
         });
     </script>
-    {{-- <script>
-        let firstcurrency = document.getElementById('firstcurrency');
-        let secondcurrency = document.getElementById('secondcurrency');
-        let targetPrice = document.getElementById('targetprice');
-        let currencytb = document.getElementById('currencytb');
-        let buyamount = document.getElementById('buyamount');
-        let sellAmount = document.getElementById('sellamount');
-        let rate = document.getElementById('rate');
-        let resetButton = document.getElementById('resetButton');
-
-        secondcurrency.disabled = true;
-        targetPrice.disabled = true;
-        currencytb.disabled = true;
-        buyamount.disabled = true;
-        sellAmount.disabled = true;
-
-        firstcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = false;
-            targetPrice.disabled = true;
-            currencytb.disabled = true;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
-        });
-
-        secondcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = true;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
-        });
-
-        targetPrice.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = false;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
-        });
-
-        currencytb.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = false;
-            buyamount.disabled = false;
-            sellAmount.disabled = false;
-            // function getNonSelectedValue(currencytb) {
-            //     let nonSelectedValue = '';
-            //     for (let option of currencytb.options) {
-            //         if (!option.selected) {
-            //             nonSelectedValue = option.value;
-            //         }
-            //     }
-            //     return nonSelectedValue;
-            // }
-
-            // let nonSelected = getNonSelectedValue(currencytb);
-            // let selected = currencytb.value;
-            // let rate = selected + '/' + nonSelected;
-            let rate = firstcurrency.value + '/' + secondcurrency.value;
-            document.getElementById('rate').innerHTML =  'Conversion Rate is ' +rate ;
-        });
-
-        buyamount.addEventListener('input', function() {
-            let bav = parseFloat(buyamount.value.replaceAll(" ",""))
-            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
-            if(currencytb.value == firstcurrency.value){
-                sellAmount.value = tpv * bav
-            }else{
-                sellAmount.value = bav / tpv
-            }
-        });
-        sellAmount.addEventListener('input', function() {
-            let sav = parseFloat(sellAmount.value.replaceAll(" ",""))
-            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
-            if(currencytb.value == firstcurrency.value){
-                buyamount.value = sav / tpv
-            }else{
-                buyamount.value = tpv * sav
-            }
-        });
-
-        document.getElementById('resetButton').addEventListener('click', function() {
-        location.reload();
-        });
-    </script> --}}
     <script>
         let firstcurrency = document.getElementById('firstcurrency');
         let secondcurrency = document.getElementById('secondcurrency');
@@ -717,31 +631,48 @@
 
         firstcurrency.addEventListener('change', updatecurrencytb);
         secondcurrency.addEventListener('change', updatecurrencytb);
-        // Initialize with default values
         updatecurrencytb();
 
     </script>
     <script>
-        function formatNumber(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+        function addCommas(value) {
             let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (parts[1]) parts[1] = parts[1].slice(0, 2);
-            input.value = parts.join('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
+            return parts.join('.');
+        }
+
+        function restrictDecimals(value) {
+            let parts = value.split('.');
+            if (parts[1]) {
+                parts[1] = parts[1].slice(0, 2); 
+            }
+            return parts.join('.');
+        }
+
+        function formatWithCommas(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, ''); 
+            input.value = addCommas(value);
+        }
+
+        function formatWithCommasAndDecimals(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, ''); 
+            value = restrictDecimals(value); 
+            input.value = addCommas(value); 
         }
 
         document.getElementById('buyamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
+            formatWithCommasAndDecimals(e.target);
         });
 
         document.getElementById('sellamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
+            formatWithCommasAndDecimals(e.target);
         });
 
         document.getElementById('targetprice').addEventListener('input', function (e) {
-            formatNumber(e.target);
+            formatWithCommas(e.target);
         });
     </script>
+
 
     @include('../Template.jslinks')
 </body>
