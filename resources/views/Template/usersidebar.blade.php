@@ -38,6 +38,16 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('user.orders') }}"
+                        class="{{ request()->routeIs('user.orders','user.editorders','user.orderdeatils') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        <div class="d-flex align-items-center ms-2">
+                            <img src="{{ request()->routeIs('user.orders','user.editorders','user.orderdeatils') ? asset('img/boxg.svg') : asset('img/box.svg') }}"
+                                alt="" class="sicon">
+                            My Orders
+                        </div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('user.profile')}}"
                         class="{{ request()->routeIs('user.profile') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-iten-center ms-2">

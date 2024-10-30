@@ -94,27 +94,31 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('orderdetail','orderdetail')->name('user.orderdetail');
             Route::post('submitorder','submitorder')->name('user.submitorder');
             Route::get('validateOrder/{id}','validateOrder')->name('admin.validateOrder');
-            Route::get('orderdeatils/{id}','orderdeatils')->name('admin.orderdeatils');
-
-
+            
+            
             
             Route::get('investment','investment')->name('user.investment');
             Route::get('makeinvestment','makeinvestment')->name('user.makeinvestment');
             Route::post('createinvestment','createinvestment')->name('user.createinvestment');
             Route::get('Deleteinvestment/{id}','Deleteinvestment')->name('user.Deleteinvestment');
-
-
+            
+            
             Route::get('profile','profile')->name('user.profile');
             Route::post('updateprofile','updateprofile')->name('user.updateprofile');
-
+            
 
             Route::get('bank','bank')->name('user.bank');
             Route::post('addbank','addbank')->name('user.addbank');
 
-
+            
             Route::get('beneficiaries','beneficiaries')->name('user.beneficiaries');
             Route::get('addbeneficiaries','addbeneficiaries')->name('user.addbeneficiaries');
             Route::post('createbeneficiaries','createbeneficiaries')->name('user.createbeneficiaries');
+
+            Route::get('orders','orders')->name('user.orders');
+            Route::post('updateorder','updateorder')->name('user.updateorder');
+            Route::get('editorders/{id}','editorders')->name('user.editorders');
+            Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
             
         });
     });

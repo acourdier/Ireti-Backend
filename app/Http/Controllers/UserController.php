@@ -93,9 +93,26 @@ class UserController extends Controller
             ->send($mail);
         return redirect()->route('user.orderdetail')->with('orderData', $orderData);
     }
-    public function orderdetail(){
-        $orderData = session('orderData');
-        return view('User.orderdetail', compact('orderData'));
+    public function orders(){
+        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->get();
+        return view('user.orders', ['orders' => $data]);
+    }
+    public function editorders($id){
+        $data['orders'] =Order::find($id);
+        return view('user.editorders',$data);
+    }
+    public function updateorder(Request $request){
+        $request->validate([
+        'filled' => 'required',
+        ]);
+        $order = Order::find($request->id);
+
+        if ($order) {
+            $order->update(['filled' => $request->filled]);
+        }
+        return redirect()->route('user.orders')->with ('update','Order Updated Successfully');
     }
     public function orderdeatils($id){
         $data['orderData'] =Order::find($id);
