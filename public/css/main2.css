@@ -116,6 +116,7 @@
 .pagination{
     --bs-pagination-color:#00A73F !important;
 }
+
 @media screen and (max-width: 768px) {
     .back-img img {
         max-width: 221px;

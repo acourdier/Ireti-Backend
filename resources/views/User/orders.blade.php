@@ -4,6 +4,56 @@
 <head>
     @include('../Template.csslinks')
     <title>Profile</title>
+    <style>
+        <style>
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 500px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #000000;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        canvas {
+            display: block;
+            width: 460px;
+            height: 300px;
+            background-color: #fff;
+        }
+    </style>
+    </style>
 </head>
 
 <body>
@@ -14,7 +64,7 @@
                 @include('../Template.usernav')
                 @if (session('success'))
                 <script>
-                    swal("Good job!", "{{ session('success') }}", "success");
+                    // swal("Good job!", "{{ session('success') }}", "success");
                 </script>
                 @endif
                 @if (session('Delete'))
@@ -82,9 +132,9 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                            href="{{ 'orderdeatils/' . $order['id'] }}">
-                                                            <i class="fa-solid text-muted me-2 fa-eye"></i>
-                                                            View
+                                                                href="{{ 'orderdeatils/' . $order['id'] }}">
+                                                                <i class="fa-solid text-muted me-2 fa-eye"></i>
+                                                                View
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -99,6 +149,7 @@
                             <p class="text-danger">No orders available.</p>
                             @endif
                         </div>
+
                     </div>
                 </div>
                 <div class="ftr text-center">
@@ -107,8 +158,72 @@
             </div>
         </div>
     </div>
+    <!-- Popup Modal -->
+    <div id="fireworks-popup" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- Fireworks canvas -->
+            <canvas id="fw"></canvas>
+            <p class="fw-semibold fs-4">Order validated Successfully</p>
+        </div>
+    </div>
+
+    <!-- Fireworks JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+
+    <!-- Trigger button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                const popup = document.getElementById('fireworks-popup');
+                const closeBtn = document.querySelector('.close');
+                const canvas = document.getElementById('fw');
+    
+                // Fireworks instance
+                let fireworks;
+
+                // Check for the Laravel success session (from server-side)
+                @if (session('success'))
+                    // Open the modal and start fireworks
+                    popup.style.display = 'block';
+    
+                    fireworks = new Fireworks.default(canvas, {
+                        speed: 1,
+                        sound: {
+                            enabled: true,
+                            files: [
+                                'https://fireworks.js.org/sounds/explosion0.mp3',
+                                'https://fireworks.js.org/sounds/explosion1.mp3',
+                                'https://fireworks.js.org/sounds/explosion2.mp3'
+                            ]
+                        }
+                    });
+                    fireworks.start();
+    
+                    // Stop fireworks and close modal after 2 seconds
+                    setTimeout(function () {
+                        fireworks.stop();
+                        popup.style.display = 'none';
+                    }, 5000); // 2 seconds
+                @endif
+    
+                // Close the modal manually with close button
+                closeBtn.addEventListener('click', function () {
+                    fireworks.stop();
+                    popup.style.display = 'none';
+                });
+    
+                // Close the modal if clicking outside of the modal content
+                window.addEventListener('click', function (e) {
+                    if (e.target == popup) {
+                        fireworks.stop();
+                        popup.style.display = 'none';
+                    }
+                });
+            });
+    </script>
 
     @include('../Template.jslinks')
+
 </body>
 
 </html>

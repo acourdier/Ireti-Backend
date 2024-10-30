@@ -131,7 +131,7 @@ class UserController extends Controller
         }
 
 
-        return redirect()->route('user.products')->with('success', 'Product validate successfully.');
+        return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
     }
 
 
