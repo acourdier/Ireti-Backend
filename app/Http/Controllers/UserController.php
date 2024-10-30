@@ -61,8 +61,9 @@ class UserController extends Controller
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
         $soft = UnderLaying::where('Type', 'Soft Commodities')->orderBy('id', 'desc')->get();
+        $metal = UnderLaying::where('Type', 'Metals and Precious Metals')->orderBy('id', 'desc')->get();
         $currency = Currency::orderBy('currency', 'asc')->get();
-        return view('User.products',['oils' => $oil,'softs' => $soft,'currencies' => $currency]);
+        return view('User.products',['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
     public function submitorder(Request $Request){
         $Request->validate([

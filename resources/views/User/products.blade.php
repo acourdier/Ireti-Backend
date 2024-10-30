@@ -27,6 +27,7 @@
                                     <option value="FX">FX</option>
                                     <option value="commodities">Soft Commodities</option>
                                     <option value="oil">Oil and oil Derivatives</option>
+                                    <option value="Metals">Metals and Precious Metals</option>
                                 </select>
                             </div>
                         </div>
@@ -341,6 +342,111 @@
                                         </div>
                                         @else
                                         <p class="text-danger">There is no underlying commodity for oil and oil derivatives</p>
+                                    @endif
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="Metals" class="product-fields">
+                                <form action="{{ route('user.submitorder') }}" method="POST" id="OrderForm">
+                                    @csrf
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <input type="number" readonly value="0" name="status" id="status"
+                                                class="form-control d-none">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <input type="text" readonly name="FundType" class="d-none"
+                                            value="Metals" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                    @if ($metals->count() > 0)
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="underlying">Select underlying commodity</label>
+                                                <select name="underlying" id="underlying" class="form-control">
+                                                    @foreach ($metals as $metal)
+                                                    <option {{ $metal['underlaying']}}>{{ $metal['underlaying']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="country">Country of Origin</label>
+                                                <input type="text" required name="country" id="country"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="grade">Grade</label>
+                                                <input type="text" required name="grade" id="grade"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="cell">Buy/Sell</label>
+                                                <input type="text" required name="buysell" id="cell"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="quantity">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantity"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="unit">Unit of Measurement</label>
+                                                <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>choose</option>
+                                                    <option value="Gram">Gram</option>
+                                                    <option value="Kg">Kg</option>
+                                                    <option value="Ton">Ton</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mt-3">
+                                                <label for="targetp">Price Target per Unit</label>
+                                                <input type="text" required name="targetp" id="targetp"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="Incoterm">Incoterm</label>
+                                                <input type="text" required name="Incoterm" id="Incoterm"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="details">Additional Details</label>
+                                                <textarea id="details" required name="details" cols="30" rows="5"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <input type="text" name="filled" value="No" id="" readonly
+                                                    class="d-none">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3 d-flex justify-content-end">
+                                                <button type="submit"
+                                                    class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                    Validate Order
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @else
+                                        <p class="text-danger">There is no underlying commodity for Metals and Precious Metals</p>
                                     @endif
                                     </div>
                                 </form>
