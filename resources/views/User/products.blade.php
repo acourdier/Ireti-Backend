@@ -623,6 +623,12 @@
             if (parts[1]) parts[1] = parts[1].slice(0, 2);
             input.value = parts.join('.');
         }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
 
         document.getElementById('buyamount').addEventListener('input', function (e) {
             formatNumber(e.target);
@@ -633,8 +639,10 @@
         });
 
         document.getElementById('targetprice').addEventListener('input', function (e) {
-            formatNumber(e.target);
+            spaceonly(e.target);
         });
+
+
     </script>
 
     @include('../Template.jslinks')
