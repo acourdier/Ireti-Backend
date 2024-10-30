@@ -29,7 +29,7 @@
                                             </select>
                                         </div>
                                         <div class="col-6 my-2">
-                                            <label for="underlaying" class="font-medium fs-5">Underlaying:</label>
+                                            <label for="underlaying" class="font-medium fs-5">Underlying:</label>
                                             <input type="text" name="underlaying" class="form-control" id="underlaying" required>
                                         </div>
                                     </div>
