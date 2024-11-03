@@ -23,35 +23,42 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <input type="text" value="{{ $payment['customer'] }}" required
-                                                name="customer" id="customer" class="form-control">
+                                            <select name="customer" id="customer" onchange="fetchBeneficiary(); fetchOrder();" class="form-control bg-transparent" disabled>
+                                                {{-- <option value="{{ $payment['customer'] }}">{{ $payment['customer'] }}</option> --}}
+                                                @foreach ($users as $user)
+                                                <option value="{{ $user['id'] }}" {{ $user['id'] == $payment['customer'] ? 'selected' : '' }}>
+                                                    {{ $user['fname'] }}
+                                                </option>
+                                            @endforeach
+                                            
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
-                                            <label for="Beneficiary">Beneficiary Name</label>
-                                            <input type="text" value="{{ $payment['Beneficiary'] }}" required
-                                                name="Beneficiary" id="Beneficiary" class="form-control">
+                                            <label for="baccount">Beneficiary</label>
+                                            <input type="text" value="{{ $payment['accountnumber'] }}" required
+                                                name="baccount" id="baccount" class="form-control border border-1" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
-                                            <label for="baccount">Beneficiary Account</label>
-                                            <input type="text" value="{{ $payment['baccount'] }}" required
-                                                name="baccount" id="baccount" class="form-control">
+                                            <label for="baccount">Order</label>
+                                            <input type="text" value="{{ $payment['orderid'] }}" required
+                                                name="baccount" id="baccount" class="form-control border border-1" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="amount">Amount</label>
                                             <input type="number" value="{{ $payment['amount'] }}" required name="amount"
-                                                id="amount" class="form-control">
+                                                id="amount" class="form-control border border-1">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="status">Status</label>
-                                            <select name="status" id="status" class="form-control">
+                                            <select name="status" id="status" class="form-control border border-1">
                                                 <option {{ $payment['status']=='Pending' ? 'selected' : '' }}>Pending
                                                 </option>
                                                 <option {{ $payment['status']=='Accepted' ? 'selected' : '' }}>Accepted

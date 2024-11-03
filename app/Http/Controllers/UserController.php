@@ -9,11 +9,14 @@ use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
 use App\Mail\InvestmentMail;
-use App\Mail\OrderMail;
 use App\Mail\ProfileMail;
 use App\Mail\BankAccountMail;
 use App\Mail\BankAccountUpdate;
 use App\Mail\BenficiaryMail;
+use App\Mail\OrderMail;
+use App\Mail\OrderConfirmation;
+use App\Mail\OrderUpdateConfirmation;
+use App\Mail\OrderUpdate;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use Illuminate\Http\Request;
@@ -89,29 +92,55 @@ class UserController extends Controller
         $requestMail['id'] = $orderData->id;
         $requestMail['created_at'] = $orderData->created_at;
         $to_email = auth()->user()->email;
-        $mail = new OrderMail($requestMail);
+        $mail = new OrderConfirmation($requestMail);
         Mail::to($to_email)
             ->send($mail);
+
+        $to_emailAdmin = "mehakamir187@gmail.com";
+        $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
+        $mail2 = new OrderMail($requestMail);
+        Mail::to($to_emailAdmin)
+            ->cc($to_emailAdmin2)
+            ->send($mail2);
         return redirect()->route('user.orderdetail')->with('orderData', $orderData);
     }
     public function orders(){
+        $loginid = auth()->user()->id;
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
+        ->where('orders.userid',$loginid)
         ->orderBy('id', 'desc')->get();
         return view('user.orders', ['orders' => $data]);
     }
     public function editorders($id){
+        $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
+        $soft = UnderLaying::where('Type', 'Soft Commodities')->orderBy('id', 'desc')->get();
+        $metal = UnderLaying::where('Type', 'Metals and Precious Metals')->orderBy('id', 'desc')->get();
+        $currency = Currency::orderBy('currency', 'asc')->get();
         $data['orders'] =Order::find($id);
-        return view('user.editorders',$data);
+        return view('user.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
-    public function updateorder(Request $request){
-        $request->validate([
-        'filled' => 'required',
-        ]);
-        $order = Order::find($request->id);
 
+    public function updateorder(Request $request){
+        $order = Order::find($request->id);
         if ($order) {
-            $order->update(['filled' => $request->filled]);
+            $data1 = Order::leftjoin('users','orders.userid','=','users.id')
+            ->where('orders.id',$request->id)->first();
+            if ($data1) {
+                $requestMail = $data1;
+                $to_email = $data1->email;
+                $mail = new OrderUpdateConfirmation($requestMail);
+                Mail::to($to_email)
+                    ->send($mail);
+                
+                $to_emailAdmin = "mehakamir187@gmail.com";
+                $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
+                $mail2 = new OrderUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                    ->cc($to_emailAdmin2)
+                    ->send($mail2);
+            }
+            $order->update($request->all());
         }
         return redirect()->route('user.orders')->with ('update','Order Updated Successfully');
     }
@@ -129,8 +158,6 @@ class UserController extends Controller
             $order->status = 1;
             $order->save();
         }
-
-
         return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
     }
 

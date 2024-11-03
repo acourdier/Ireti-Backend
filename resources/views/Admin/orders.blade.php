@@ -58,7 +58,7 @@
                                                 <td>{{$order['created_at']}}</td>
                                                 <td>
                                                     <button
-                                                        class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                        class="{{ $order['filled'] === 'Yes' ? 'btngreen' : 'btnred' }}">
                                                         {{$order['filled']}}
                                                     </button>
                                                 </td>
@@ -67,21 +67,25 @@
                                                         <i class="fa-solid fa-ellipsis-vertical pointer" id="dropdownMenuButton"
                                                             data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            @if( $order['filled'] == 'No')
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ 'editorders/' . $order['id'] }}">
+                                                                        <i
+                                                                            class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                        Edit
+                                                                    </a>
+                                                                </li>
+                                                            @endif
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ 'editorders/' . $order['id'] }}">
+                                                                href="{{ 'orderdeatils/' . $order['id'] }}">
                                                                     <i
                                                                         class="fa-solid text-muted me-2 fa-pen-to-square"></i>
-                                                                    Edit
+                                                                    View
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ 'orderemail/' . $order['id'] }}">
-                                                                    <i class="fa-regular text-muted me-2 fa-envelope"></i>
-                                                                    Send Email
-                                                                </a>
-                                                            </li>
+                                                           
                                                         </ul>
                                                     </div>
                                                 </td>

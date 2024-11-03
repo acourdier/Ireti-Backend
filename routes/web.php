@@ -51,7 +51,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('orders','orders')->name('admin.orders');
             Route::post('updateorder','updateorder')->name('admin.updateorder');
             Route::get('editorders/{id}','editorders')->name('admin.editorders');
-            Route::get('orderdeatil/{id}','orderdeatil')->name('admin.orderdeatil');
+            Route::get('orderdeatils/{id}','orderdeatils')->name('admin.orderdeatils');
 
 
             Route::get('investment','investment')->name('admin.investment');
@@ -67,6 +67,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('approveUser/{id}','approveUser')->name('admin.approveUser');
 
             Route::get('getBeneficiary/{id}','getBeneficiary')->name('admin.getBeneficiary');
+            Route::get('getOrder/{id}','getOrder')->name('admin.getOrder');
 
             Route::get('payments','payments')->name('admin.payments');
             Route::get('addpayment','addpayment')->name('admin.addpayment');

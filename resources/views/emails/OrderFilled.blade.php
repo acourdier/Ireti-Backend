@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-12">
                     <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
-                    <p class="mb-0 mt-3 p2">We are pleased to inform you that your order has been filled. You are required to send us the funds to process your payment.please find the details of your transaction below:</p>
+                    <p class="mb-0 mt-3 p2">Order of {{ $requestMail['fname'] }} has been filled. Details of their transaction are given below:</p>
                 </div>
             </div>
             <div class="row p3">
@@ -177,8 +177,6 @@
                 <div class="col-12">
                     <p class="mb-0 fw-bold">Amount to be sent to ireti capital:</p>
                     <p class="mb-0">{{ $requestMail['targetp'] }}</p>
-                    <p class="mb-0 mt-5 p6">If you have any questions regarding this transaction or need further assistance, please don't hesitate to contact our support team at <a href="mailto:info@ireticapital.com">info@ireticapital.com</a>.</p>
-                    <p class="py-3">Thank you for choosing Ireti Capital, we look forward to serving you again.</p>
                     <p class="mb-0">Best regards</p>
                     <p class="mb-0">Ireti Capital Team</p>
                     <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a><br>
