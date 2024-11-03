@@ -25,7 +25,7 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <select name="customer" id="customer" onchange="fetchBeneficiary()" class="form-control" required>
+                                            <select name="customer" id="customer"onchange="fetchBeneficiary(); fetchOrder();" class="form-control" required>
                                                 <option value="" selected hidden disbaled>Choose customer</option>
                                                 @foreach ($users as $user)
                                                 <option value="{{ $user['id']}}">{{ $user['fname']}}</option>
@@ -52,12 +52,42 @@
                                                     }
                                                 }
                                             </script>
+                                                        <script>
+                                                            async function fetchOrder() {
+                                                                const id = document.getElementById('customer').value;
+                                                                let Order = document.getElementById('Order')
+                                                                Order.innerHTML = '';
+                                                                try {
+                                                                    const response = await fetch(`/admin/getOrder/${id}`);
+                                                                    if (!response.ok) {
+                                                                    throw new Error('Network response was not ok');
+                                                                    }
+                                                                    const data = await response.json();
+                                                                    for (let order of data) {
+                                                                        console.log(order);
+                                                                        Order.insertAdjacentHTML("beforeend",`<option value="${order.id}">${order.id}</option>`)
+                                                                    }
+                                                                    
+                                                                } catch (error) {
+                                                                    console.error('There was a problem with the fetch operation:', error);
+                                                                }
+                                                            }
+                                                        </script>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="Beneficiary">Beneficiary</label>
                                             <select name="Beneficiary" id="Beneficiary" class="form-control" required>
+                                                
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <label for="Order">Order</label>
+                                            <select name="orderid" id="Order" class="form-control" required>
                                                 
                                             </select>
                                         </div>

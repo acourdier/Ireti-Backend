@@ -51,10 +51,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    {{-- <p class="mb-0">Dear,</p> --}}
-                    <p class="mb-0 mt-3 p2">Order of  {{ $requestMail['fname'] }} with Ireti Capital has been
-                        successfully processed. The funds have been transferred to their beneficiary account.
-                        The details of their transaction is given below:</p>
+                    <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
+                    <p class="mb-0 mt-3 p2">We are pleased to inform you that your order with Ireti Capital has been
+                        successfully processed. The funds have been transferred to your beneficiary account. Please find
+                        the details of your transaction below:</p>
                 </div>
             </div>
             <div class="row p3">
@@ -181,6 +181,9 @@
             </div>
             <div class="row">
                 <div class="col-12">
+                    <p>If you have any questions regarding this transaction or need further assistance, please don't
+                        hesitate to contact our support team at info@ireticapital.com.</p>
+                    <p>Thank you for choosing Ireti Capital, we look forward to serving you again.</p>
                     <p class="mb-0">Best regards</p>
                     <p class="mb-0">Ireti Capital Team</p>
                     <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a><br>

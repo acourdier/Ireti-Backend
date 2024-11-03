@@ -43,6 +43,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="font-semi">Customer Name</th>
+                                                <th class="font-semi">Order ID</th>
                                                 <th class="font-semi">Beneficiary Name</th>
                                                 <th class="font-semi">Beneficiary Account</th>
                                                 <th class="font-semi">Amount</th>
@@ -54,6 +55,7 @@
                                             @foreach ($payments as $payment)
                                             <tr>
                                                 <td class="text-secondary align-middle">{{$payment['fname']}}</td>
+                                                <td class="text-secondary align-middle">{{$payment['orderid']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['accountname']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['accountnumber']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['amount']}}</td>
@@ -87,13 +89,15 @@
                                                                     Edit
                                                                 </a>
                                                             </li>
+                                                            @if ($payment['status'] == 'Accepted') 
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ 'paymentemail/' . $payment['id'] }}">
+                                                                    href="{{ 'paymentemail/' . $payment['orderid'] }}">
                                                                     <i class="fa-regular text-muted me-2 fa-envelope"></i>
                                                                     Send Email
                                                                 </a>
                                                             </li>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                 </td>

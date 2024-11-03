@@ -14,5 +14,6 @@ class Payment extends Model
         'Beneficiary',
         'amount',
         'status',
+        'orderid',
     ];
 }

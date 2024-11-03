@@ -31,17 +31,21 @@
         }
 
         .mail-sec .p2 {
-            padding-bottom: 66px;
+            padding-bottom:35px;
             border-bottom: 1px solid black;
         }
 
         .mail-sec .p3 {
-            padding-bottom: 66px;
+            padding-bottom:35px;
             border-bottom: 1px solid black;
         }
 
         .mail-sec .p4 {
-            padding-bottom: 66px;
+            padding-bottom:35px;
+        }
+
+        .mail-sec .p6 {
+            padding-bottom:15px;
         }
     </style>
 </head>
@@ -51,10 +55,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    {{-- <p class="mb-0">Dear,</p> --}}
-                    <p class="mb-0 mt-3 p2">Order of  {{ $requestMail['fname'] }} with Ireti Capital has been
-                        successfully processed. The funds have been transferred to their beneficiary account.
-                        The details of their transaction is given below:</p>
+                    <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
+                    <p class="mb-0 mt-3 p2">We are pleased to inform you that your order has been filled. You are required to send us the funds to process your payment.please find the details of your transaction below:</p>
                 </div>
             </div>
             <div class="row p3">
@@ -63,10 +65,12 @@
                         <p class="mb-0 fw-bold">Transaction Details</p>
                         <ul>
                             <li>
-                              <p class="mb-0">
-                                <span class="fw-bold">Date of Conversion:</span>
-                                {{ \Carbon\Carbon::parse($requestMail['orderdate'])->format('Y-m-d') }}
-                            </p>
+                                <p class="mb-0 "><span class="fw-bold">Order Number: </span>{{ $requestMail['id'] }}
+                                </p>
+                            </li>
+                            <li>
+                                <p class="mb-0 "><span class="fw-bold">Date: </span>{{ $requestMail['created_at'] }}
+                                </p>
                             </li>
                             @if ($requestMail['FundType'] == 'FX')
                                 <li>
@@ -79,16 +83,16 @@
                                         </span>{{ $requestMail['currencytb'] }}</p>
                                 </li>
                                 <li>
+                                    <p class="mb-0"><span class="fw-bold">Target Exchange Rate:
+                                        </span>{{ $requestMail['targetp'] }}</p>
+                                </li>
+                                <li>
                                     <p class="mb-0"><span class="fw-bold">Amount to buy:
                                         </span>{{ $requestMail['amountb'] }}</p>
                                 </li>
                                 <li>
                                     <p class="mb-0"><span class="fw-bold">Amount to sell:
                                         </span>{{ $requestMail['amountts'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Target Exchange Rate:
-                                        </span>{{ $requestMail['targetp'] }}</p>
                                 </li>
                             @elseif($requestMail['FundType'] == 'Soft Commodities')
                                 <li>
@@ -165,22 +169,16 @@
                                         </span>{{ $requestMail['details'] }}</p>
                                 </li>
                             @endif
-                            <li>
-                                <p class="mb-0"><span class="fw-bold">Payment Reference Number:
-                                    </span>{{ $requestMail['pid'] }}</p>
-                            </li>
-                            <li>
-                              <p class="mb-0">
-                                <span class="fw-bold">Payment’s date:</span>
-                                {{ \Carbon\Carbon::parse($requestMail['pdate'])->format('Y-m-d') }}
-                            </p>
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
+                    <p class="mb-0 fw-bold">Amount to be sent to ireti capital:</p>
+                    <p class="mb-0">{{ $requestMail['targetp'] }}</p>
+                    <p class="mb-0 mt-5 p6">If you have any questions regarding this transaction or need further assistance, please don't hesitate to contact our support team at <a href="mailto:info@ireticapital.com">info@ireticapital.com</a>.</p>
+                    <p class="py-3">Thank you for choosing Ireti Capital, we look forward to serving you again.</p>
                     <p class="mb-0">Best regards</p>
                     <p class="mb-0">Ireti Capital Team</p>
                     <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a><br>

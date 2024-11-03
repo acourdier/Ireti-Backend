@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('Beneficiary');
             $table->string('amount');
             $table->string('status');
+            $table->integer('orderid');
             $table->timestamps();
         });
     }

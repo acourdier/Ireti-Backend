@@ -112,7 +112,7 @@
                                             <td>{{$order['created_at']}}</td>
                                             <td>
                                                 <button
-                                                    class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                    class="{{ $order['filled'] === 'Yes' ? 'btngreen' : 'btnred' }}">
                                                     {{$order['filled']}}
                                                 </button>
                                             </td>
@@ -122,6 +122,7 @@
                                                         id="dropdownMenuButton" data-bs-toggle="dropdown"
                                                         aria-expanded="false"></i>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        @if ($order['filled'] == 'No')
                                                         <li>
                                                             <a class="dropdown-item"
                                                                 href="{{ 'editorders/' . $order['id'] }}">
@@ -130,6 +131,7 @@
                                                                 Edit
                                                             </a>
                                                         </li>
+                                                        @endif
                                                         <li>
                                                             <a class="dropdown-item"
                                                                 href="{{ 'orderdeatils/' . $order['id'] }}">
