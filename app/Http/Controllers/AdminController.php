@@ -301,13 +301,6 @@ class AdminController extends Controller
 
         return redirect()->route('admin.clients')->with('update', 'Clients Updated Successfully');
     }
-    public function viewuser($id){
-        $data['user'] =User::find($id);
-        $data['directors'] =Director::where('userid',$id)->get();
-        $data['owners'] =Owner::where('userid',$id)->get();
-        $data['ubos'] =Ubo::where('userid',$id)->get();
-        return view('Admin.viewuser',$data);
-    }
 
     public function payments(){
         $data = Payment::leftjoin('users','payments.customer','=','users.id')

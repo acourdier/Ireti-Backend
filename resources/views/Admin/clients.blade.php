@@ -38,8 +38,6 @@
                                         <thead>
                                             <tr>
                                                 <th class="font-semi">Customer Name</th>
-                                                <th class="font-semi">Email</th>
-                                                <th class="font-semi">Phone</th>
                                                 <th class="font-semi">Active Date</th>
                                                 <th class="font-semi">Status</th>
                                                 <th class="font-semi">Action</th>
@@ -49,8 +47,6 @@
                                             @foreach ($users as $user)
                                             <tr>
                                                 <td class="text-secondary align-middle">{{$user['fname']}}</td>
-                                                <td class="text-secondary align-middle">{{$user['email']}}</td>
-                                                <td class="text-secondary align-middle">{{$user['phone']}}</td>
                                                 <td class="text-secondary align-middle">{{$user['created_at']}}</td>
                                                 <td class="text-secondary align-middle">
                                                     @php
@@ -69,8 +65,6 @@
                                                 </td>
                                                 <td class="text-secondary align-middle">
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ 'viewuser/' . $user['id'] }}"><i
-                                                                class="fa-solid fa-eye text-secondary pointer me-3"></i></a>
                                                         <a href="{{ 'editclient/' . $user['id'] }}"><i
                                                             class="fa-solid fa-pen-to-square text-secondary pointer me-3"></i></a>
                                                         <a href="{{ 'Deleteuser/' . $user['id'] }}"><i
