@@ -25,7 +25,7 @@
                                             <select name="Type" id="Type" class="form-control">
                                                 <option value="Soft Commodities">Soft Commodities</option>
                                                 <option value="Oil and oil Derivatives">Oil and oil Derivatives</option>
-                                                {{-- <option value="Metals and Precious Metals">Metals and Precious Metals</option> --}}
+                                                <option value="Metals and Precious Metals">Metals and Precious Metals</option>
                                             </select>
                                         </div>
                                         <div class="col-6 my-2">
