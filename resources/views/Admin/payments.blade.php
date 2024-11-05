@@ -81,6 +81,7 @@
                                                                     Delete
                                                                 </a>
                                                             </li>
+                                                            @if ($payment['status'] != 'Accepted')
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     href="{{ 'editpayment/' . $payment['id'] }}">
@@ -89,6 +90,7 @@
                                                                     Edit
                                                                 </a>
                                                             </li>
+                                                            @endif
                                                             @if ($payment['status'] == 'Accepted') 
                                                             <li>
                                                                 <a class="dropdown-item"

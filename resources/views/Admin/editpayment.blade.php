@@ -23,7 +23,7 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="customer">Customer Name</label>
-                                            <select name="customer" id="customer" onchange="fetchBeneficiary(); fetchOrder();" class="form-control bg-transparent" disabled>
+                                            <select name="customer" id="customer" onchange="fetchBeneficiary(); fetchOrder();" class="form-control bg-grey" disabled>
                                                 {{-- <option value="{{ $payment['customer'] }}">{{ $payment['customer'] }}</option> --}}
                                                 @foreach ($users as $user)
                                                 <option value="{{ $user['id'] }}" {{ $user['id'] == $payment['customer'] ? 'selected' : '' }}>
@@ -37,15 +37,22 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="baccount">Beneficiary</label>
-                                            <input type="text" value="{{ $payment['accountnumber'] }}" required
-                                                name="baccount" id="baccount" class="form-control border border-1" readonly>
+                                            <input type="text" value="{{ $payment['accountname'] }}" required
+                                                name="baccount" id="baccount" class="form-control border border-1  bg-grey" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="baccount">Order</label>
                                             <input type="text" value="{{ $payment['orderid'] }}" required
-                                                name="baccount" id="baccount" class="form-control border border-1" readonly>
+                                                name="baccount" id="baccount" class="form-control border border-1  bg-grey" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mt-3">
+                                            <label for="currency">Currency</label>
+                                            <input type="text" value="{{ $payment['currency'] }}" required name="currency"
+                                                id="currency" class="form-control border border-1  bg-grey" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -55,6 +62,7 @@
                                                 id="amount" class="form-control border border-1">
                                         </div>
                                     </div>
+                                  
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="status">Status</label>
