@@ -86,22 +86,22 @@ class UserController extends Controller
         'userid' => $userid,
         ]);
 
-        $username=auth()->user()->fname;
-        $requestMail = $Request->all();
-        $requestMail['username'] = $username;
-        $requestMail['id'] = $orderData->id;
-        $requestMail['created_at'] = $orderData->created_at;
-        $to_email = auth()->user()->email;
-        $mail = new OrderConfirmation($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
+        // $username=auth()->user()->fname;
+        // $requestMail = $Request->all();
+        // $requestMail['username'] = $username;
+        // $requestMail['id'] = $orderData->id;
+        // $requestMail['created_at'] = $orderData->created_at;
+        // $to_email = auth()->user()->email;
+        // $mail = new OrderConfirmation($requestMail);
+        // Mail::to($to_email)
+        //     ->send($mail);
 
-        $to_emailAdmin = "mehakamir187@gmail.com";
-        $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
-        $mail2 = new OrderMail($requestMail);
-        Mail::to($to_emailAdmin)
-            ->cc($to_emailAdmin2)
-            ->send($mail2);
+        // $to_emailAdmin = "mehakamir187@gmail.com";
+        // $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
+        // $mail2 = new OrderMail($requestMail);
+        // Mail::to($to_emailAdmin)
+        //     ->cc($to_emailAdmin2)
+        //     ->send($mail2);
         return redirect()->route('user.orderdetail')->with('orderData', $orderData);
     }
     public function orders(){
@@ -158,6 +158,25 @@ class UserController extends Controller
             $order->status = 1;
             $order->save();
         }
+
+        $orderData = $order;
+
+        $username=auth()->user()->fname;
+        $requestMail = $order;
+        $requestMail['username'] = $username;
+        $requestMail['id'] = $orderData->id;
+        $requestMail['created_at'] = $orderData->created_at;
+        $to_email = auth()->user()->email;
+        $mail = new OrderConfirmation($requestMail);
+        Mail::to($to_email)
+            ->send($mail);
+
+        $to_emailAdmin = "mehakamir187@gmail.com";
+        $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
+        $mail2 = new OrderMail($requestMail);
+        Mail::to($to_emailAdmin)
+            ->cc($to_emailAdmin2)
+            ->send($mail2);
         return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
     }
 
