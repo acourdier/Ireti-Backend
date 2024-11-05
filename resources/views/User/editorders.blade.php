@@ -199,6 +199,98 @@
                                     </div>
                                 </div>
                             </form>
+                            @elseif ($orders['FundType'] == 'Metals')
+                            <form action="{{ route('user.updateorder') }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6 d-none">
+                                        <input type="text" name="id" value="{{ $orders['id'] }}">
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <label for="underlying">Select underlying commodity</label>
+                                            <select name="underlying" id="underlying" class="form-control">
+                                                @foreach ($metals as $metal)
+                                                <option value="{{ $metal['underlaying']}}"
+                                                    {{ $metal['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
+                                                    {{ $metal['underlaying']}}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="country">Country of Origin</label>
+                                            <input type="text" required name="country" id="country" value="{{$orders['country']}}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="grade">Grade</label>
+                                            <input type="text" required name="grade" id="grade"
+                                                class="form-control" value="{{$orders['grade']}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="cell">Buy/Sell</label>
+                                            <input type="text" required name="buysell" id="cell"
+                                                class="form-control" value="{{$orders['buysell']}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="text" required name="quantity" id="quantity"
+                                                class="form-control"  value="{{$orders['quantity']}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="unit">Unit of Measurement</label>
+                                            <select name="unit" id="unit" class="form-control">
+                                                <option value="choose" selected disabled hidden>choose</option>
+                                                <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
+                                                <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
+                                                <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="targetp">Price Target per Unit</label>
+                                            <input type="text" required name="targetp" id="targetp"
+                                                class="form-control"  value="{{$orders['targetp']}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <label for="Incoterm">Incoterm</label>
+                                            <input type="text" required name="Incoterm" id="Incoterm"
+                                                class="form-control"  value="{{$orders['Incoterm']}}">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12">
+                                        <div class="mt-3">
+                                            <label for="details">Additional Details</label>
+                                            <textarea id="details" required name="details" cols="30" rows="5"
+                                                class="form-control">{{$orders['details']}}</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-3 d-flex justify-content-end">
+                                        <button type="submit"
+                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                            Update Order
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                             @else
                             <form action="{{ route('user.updateorder') }}" method="post">
                                 @csrf
@@ -210,10 +302,10 @@
                                         <div class="mt-3">
                                             <label for="underlying">Select underlying commodity</label>
                                             <select name="underlying" id="underlying" class="form-control">
-                                                @foreach ($softs as $soft)
-                                                <option value="{{ $soft['underlaying']}}"
-                                                    {{ $soft['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
-                                                    {{ $soft['underlaying']}}
+                                                @foreach ($oils as $oil)
+                                                <option value="{{ $oil['underlaying']}}"
+                                                    {{ $oil['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
+                                                    {{ $oil['underlaying']}}
                                                 </option>
                                                 @endforeach
                                             </select>
