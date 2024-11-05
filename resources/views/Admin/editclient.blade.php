@@ -16,13 +16,18 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4>Edit Client</h4>
-                            <form action="{{route('admin.saveclient')}}" method="POST">
+                            <form action="{{route('admin.updateclient')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 my-2 d-none">
                                         <label for="role">Role:</label>
                                         <input type="number" value="1" readonly name="role"
                                             class="form-control" id="role">
+                                    </div>
+                                    <div class="col-md-6 my-2 d-none">
+                                        <label for="id">id:</label>
+                                        <input type="number" readonly name="id" value="{{$user['id']}}"
+                                            class="form-control" id="id">
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="fname">Full Name:</label>

@@ -267,7 +267,10 @@ class AdminController extends Controller
 
 
     public function clients(){
-        $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
+        $data = User::where('role', 1)
+        ->whereIn('status', [1, 2, 3])
+        ->orderBy('id', 'desc')
+        ->get();
         return view('Admin.clients', ['users' => $data]);
     }
     public function addclient(){
@@ -286,21 +289,17 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->route('admin.clients');
     }
-    public function approveUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 2;
-            $user->save();
+    public function updateclient(Request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $data = User::find($request->id);
+
+        if ($data) {
+            $data->update($request->all());
         }
-        return redirect()->back()->with('success', 'User approved successfully.');
-    }
-    public function rejectUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 3;
-            $user->save();
-        }
-        return redirect()->back()->with('reject', 'User rejected successfully.');
+
+        return redirect()->route('admin.clients')->with('update', 'Clients Updated Successfully');
     }
     public function viewuser($id){
         $data['user'] =User::find($id);
