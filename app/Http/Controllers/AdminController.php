@@ -163,25 +163,14 @@ class AdminController extends Controller
                 $to_emailAdmin = "mehakamir187@gmail.com";
                 $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
 
-                if($request->filled=="Yes") {
-                        $mail = new OrderFilledConfirmation($requestMail);
-                        Mail::to($to_email)->send($mail);
-
-                        $mail2 = new OrderFilled($requestMail);
-                        Mail::to($to_emailAdmin)
-                            ->cc($to_emailAdmin2)
-                            ->send($mail2);
-                }
-                else {
-                    $mail = new OrderUpdateConfirmation($requestMail);
-                    Mail::to($to_email)
-                        ->send($mail);
-                    
-                    $mail2 = new OrderUpdate($requestMail);
-                    Mail::to($to_emailAdmin)
-                        ->cc($to_emailAdmin2)
-                        ->send($mail2);
-                }
+                $mail = new OrderUpdateConfirmation($requestMail);
+                Mail::to($to_email)
+                    ->send($mail);
+                
+                $mail2 = new OrderUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                    ->cc($to_emailAdmin2)
+                    ->send($mail2);
                 $order->update($request->all());
             }
         }
@@ -193,21 +182,21 @@ class AdminController extends Controller
     }
     public function orderemail(Request $request){
         $order = Order::find($request->id);
-        $data = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
-        ->select('users.fname', 'users.email', 'orders.*')
-        ->where('orders.id', $order->id)
-        ->first();
-        if ($data) {
-            $username = $data->fname;
-            $email = $data->email;
-            $filled = $data->filled;
-            $requestMail = $order;
-            $requestMail['username'] = $username;
-            $requestMail['filled'] = $filled;
-            $to_email = $email;
-            $mail = new OrderFilled($requestMail);
-            Mail::to($to_email)
-                ->send($mail);
+      
+        $data1 = Order::leftjoin('users','orders.userid','=','users.id')
+        ->where('orders.id',$request->id)->first();
+        if ($data1) {
+            $requestMail = $data1;
+            $to_email = $data1->email;
+            $to_emailAdmin = "mehakamir187@gmail.com";
+            $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
+            $mail = new OrderFilledConfirmation($requestMail);
+            Mail::to($to_email)->send($mail);
+
+            $mail2 = new OrderFilled($requestMail);
+            Mail::to($to_emailAdmin)
+                ->cc($to_emailAdmin2)
+                ->send($mail2);
         }
         return redirect()->route('admin.orders')->with('update', 'Email Sent Successfully');
     }

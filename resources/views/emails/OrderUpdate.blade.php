@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-12">
                     {{-- <p class="mb-0">Dear {{ $requestMail['username'] }},</p> --}}
-                    <p class="mb-0 mt-3 p2">Order of {{ $requestMail['fname'] }} has been and the details are summarized below:</p>
+                    <p class="mb-0 mt-3 p2">Order of {{ $requestMail['fname'] }} has been updated and the details are summarized below:</p>
                 </div>
             </div>
             <div class="row p3">
