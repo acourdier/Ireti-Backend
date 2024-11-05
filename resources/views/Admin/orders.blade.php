@@ -77,6 +77,15 @@
                                                                     </a>
                                                                 </li>
                                                             @endif
+                                                            @if( $order['filled'] == 'Yes')
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'orderemail/' . $order['id'] }}">
+                                                                    <i class="fa-regular text-muted me-2 fa-envelope"></i>
+                                                                    Send Email
+                                                                </a>
+                                                            </li>
+                                                            @endif
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                 href="{{ 'orderdeatils/' . $order['id'] }}">
