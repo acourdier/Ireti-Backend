@@ -270,6 +270,13 @@ class AdminController extends Controller
         $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
         return view('Admin.clients', ['users' => $data]);
     }
+    public function addclient(){
+        return view('Admin.addclient');
+    }
+    public function saveclient(Request $Request){
+        User::create($Request->all());
+        return redirect()->route('admin.clients')->with('success', 'User Created successfully.');
+    }
     public function Deleteuser($id){
         $data =User::find($id);
         $data->delete();
