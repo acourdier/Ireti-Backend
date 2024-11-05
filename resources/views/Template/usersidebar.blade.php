@@ -58,12 +58,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('user.bank')}}"
-                        class="{{ request()->routeIs('user.bank') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                    <a href="{{route('user.payments')}}"
+                        class="{{ request()->routeIs('user.payments') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('user.bank') ? asset('img/bankg.svg') : asset('img/bank.svg') }}"
+                            <img src="{{ request()->routeIs('user.payments') ? asset('img/bankg.svg') : asset('img/bank.svg') }}"
                                 alt="" class="sicon">
-                            Bank Account
+                                Payments
                         </div>
                     </a>
                 </li>
@@ -77,7 +77,16 @@
                         </div>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{route('user.bank')}}"
+                        class="{{ request()->routeIs('user.bank') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        <div class="d-flex align-iten-center ms-2">
+                            <img src="{{ request()->routeIs('user.bank') ? asset('img/bankg.svg') : asset('img/bank.svg') }}"
+                                alt="" class="sicon">
+                            Bank Account
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -121,6 +121,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::post('updateorder','updateorder')->name('user.updateorder');
             Route::get('editorders/{id}','editorders')->name('user.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
+            Route::get('payments','payments')->name('user.payments');
+
             
         });
     });
