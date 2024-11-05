@@ -90,7 +90,7 @@
                                                                 <a class="dropdown-item"
                                                                 href="{{ 'orderdeatils/' . $order['id'] }}">
                                                                     <i
-                                                                        class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                        class="fa-solid text-muted me-2 fa-eye"></i>
                                                                     View
                                                                 </a>
                                                             </li>
