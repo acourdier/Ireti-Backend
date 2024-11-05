@@ -19,6 +19,7 @@ use App\Mail\OrderUpdateConfirmation;
 use App\Mail\OrderUpdate;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -96,8 +97,8 @@ class UserController extends Controller
         // Mail::to($to_email)
         //     ->send($mail);
 
-        // $to_emailAdmin = env('ADMIN_EMAIL');
-        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        // $to_emailAdmin = "mehakamir187@gmail.com";
+        // $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
         // $mail2 = new OrderMail($requestMail);
         // Mail::to($to_emailAdmin)
         //     ->cc($to_emailAdmin2)
@@ -133,8 +134,8 @@ class UserController extends Controller
                 Mail::to($to_email)
                     ->send($mail);
                 
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin = "mehakamir187@gmail.com";
+                $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)
                     ->cc($to_emailAdmin2)
@@ -171,8 +172,8 @@ class UserController extends Controller
         Mail::to($to_email)
             ->send($mail);
 
-        $to_emailAdmin = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin = "mehakamir187@gmail.com";
+        $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
         $mail2 = new OrderMail($requestMail);
         Mail::to($to_emailAdmin)
             ->cc($to_emailAdmin2)
@@ -345,6 +346,12 @@ class UserController extends Controller
         'userid' => $userid,
         ]);
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
+    }
+    public function payments(){
+        $data = Payment::leftjoin('users','payments.customer','=','users.id')
+        ->leftjoin('beneficiaries','payments.Beneficiary','=','beneficiaries.id')
+        ->select('payments.*','users.fname','beneficiaries.accountname','beneficiaries.accountnumber')->orderBy('id', 'desc')->get();
+        return view('user.payments', ['payments' => $data]);
     }
 
 }

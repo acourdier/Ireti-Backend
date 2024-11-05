@@ -160,8 +160,8 @@ class AdminController extends Controller
             if ($data1) {
                 $requestMail = $data1;
                 $to_email = $data1->email;
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin = "mehakamir187@gmail.com";
+                $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
 
                 $mail = new OrderUpdateConfirmation($requestMail);
                 Mail::to($to_email)
@@ -188,8 +188,8 @@ class AdminController extends Controller
         if ($data1) {
             $requestMail = $data1;
             $to_email = $data1->email;
-            $to_emailAdmin = env('ADMIN_EMAIL');
-            $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            $to_emailAdmin = "mehakamir187@gmail.com";
+            $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
             $mail = new OrderFilledConfirmation($requestMail);
             Mail::to($to_email)->send($mail);
 
@@ -267,36 +267,39 @@ class AdminController extends Controller
 
 
     public function clients(){
-        $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
+        $data = User::where('role', 1)
+        ->whereIn('status', [1, 2, 3])
+        ->orderBy('id', 'desc')
+        ->get();
         return view('Admin.clients', ['users' => $data]);
+    }
+    public function addclient(){
+        return view('Admin.addclient');
+    }
+    public function editclient($id){
+        $data['user'] =User::find($id);
+        return view('Admin.editclient',$data);
+    }
+    public function saveclient(Request $Request){
+        User::create($Request->all());
+        return redirect()->route('admin.clients')->with('success', 'User Created successfully.');
     }
     public function Deleteuser($id){
         $data =User::find($id);
         $data->delete();
         return redirect()->route('admin.clients');
     }
-    public function approveUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 2;
-            $user->save();
+    public function updateclient(Request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $data = User::find($request->id);
+
+        if ($data) {
+            $data->update($request->all());
         }
-        return redirect()->back()->with('success', 'User approved successfully.');
-    }
-    public function rejectUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 3;
-            $user->save();
-        }
-        return redirect()->back()->with('reject', 'User rejected successfully.');
-    }
-    public function viewuser($id){
-        $data['user'] =User::find($id);
-        $data['directors'] =Director::where('userid',$id)->get();
-        $data['owners'] =Owner::where('userid',$id)->get();
-        $data['ubos'] =Ubo::where('userid',$id)->get();
-        return view('Admin.viewuser',$data);
+
+        return redirect()->route('admin.clients')->with('update', 'Clients Updated Successfully');
     }
 
     public function payments(){
@@ -329,15 +332,15 @@ class AdminController extends Controller
         $payments = $request->all();
         Payment:: create($payments);
 
-        // $username=auth()->user()->fname;
-        // $requestMail = $request->all();
-        // $requestMail['username'] = $username;
-        // $to_email = env('ADMIN_EMAIL');
-        // $to_email1 = env('ADMIN2_EMAIL');
-        // $mail = new PaymentMail($requestMail);
-        // Mail::to($to_email)
-        //     ->cc($to_email1)
-        //     ->send($mail);
+        $username=auth()->user()->fname;
+        $requestMail = $request->all();
+        $requestMail['username'] = $username;
+        $to_email = "Sullivan.joubert@ireticapital.com";
+        $to_email1 = "Gabriel.olugbenga@ireticapital.com";
+        $mail = new PaymentMail($requestMail);
+        Mail::to($to_email)
+            ->cc($to_email1)
+            ->send($mail);
 
         return redirect()->route('admin.payments')->with ('success','Payment Added Successfully');
     }
@@ -369,8 +372,8 @@ class AdminController extends Controller
 
         if ($data1) {
             $requestMail = $data1;
-            $to_email = env('ADMIN_EMAIL');
-            $to_email1 = env('ADMIN2_EMAIL');
+            $to_email = "mehakamir187@gmail.com";
+            $to_email1 = "Gabriel.olugbenga@ireticapital.com";
             $mail = new PaymentUpdate($requestMail);
             Mail::to($to_email)
                 ->cc($to_email1)
