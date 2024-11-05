@@ -185,12 +185,19 @@ class WebController extends Controller
         }
    
         $requestMail = $request->all();
-        $to_email = "Sullivan.joubert@ireticapital.com";
-        $to_email1 = "Gabriel.olugbenga@ireticapital.com";
+        $to_email = env('ADMIN2_EMAIL');
+        $to_email1 = env('ADMIN2_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
             ->cc($to_email1)
             ->send($mail);
+
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $mail2 = new OrderUpdate($requestMail);
+        Mail::to($to_emailAdmin)
+            ->cc($to_emailAdmin2)
+            ->send($mail2);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
 
