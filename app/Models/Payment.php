@@ -15,5 +15,6 @@ class Payment extends Model
         'amount',
         'status',
         'orderid',
+        'currency'
     ];
 }

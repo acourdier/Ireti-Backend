@@ -320,6 +320,12 @@ class AdminController extends Controller
         $Orders = Order::where('userid',$id)->get();
         return response()->json($Orders,200);
     }
+    public function getCurrency($id, $bid){
+        $Beneficiaries = Beneficiaries::where('userid', $id)
+                                      ->where('id', $bid)
+                                      ->get();
+        return response()->json($Beneficiaries, 200);
+    }
     public function savepayment(Request $request){
         $userid=auth()->user()->id;
         $request['userid'] = $userid;
