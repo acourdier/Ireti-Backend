@@ -61,10 +61,11 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
 
             Route::get('clients','clients')->name('admin.clients');
+            Route::get('addclient','addclient')->name('admin.addclient');
+            Route::get('editclient/{id}','editclient')->name('admin.editclient');
+            Route::post('saveclient','saveclient')->name('admin.saveclient');
+            Route::post('updateclient','updateclient')->name('admin.updateclient');
             Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
-            Route::get('rejectUser/{id}','rejectUser')->name('admin.rejectUser');
-            Route::get('viewuser/{id}','viewuser')->name('admin.viewuser');
-            Route::get('approveUser/{id}','approveUser')->name('admin.approveUser');
 
             Route::get('getBeneficiary/{id}','getBeneficiary')->name('admin.getBeneficiary');
             Route::get('getOrder/{id}','getOrder')->name('admin.getOrder');
@@ -120,6 +121,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::post('updateorder','updateorder')->name('user.updateorder');
             Route::get('editorders/{id}','editorders')->name('user.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
+            Route::get('payments','payments')->name('user.payments');
+
             
         });
     });

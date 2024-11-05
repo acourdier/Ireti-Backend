@@ -24,16 +24,20 @@
                 @endif
                 <div class="rightbottom">
                     <div class="container-fluid">
-                        <div class="row px-3 ">
-                            <h4>My Clients</h4>
+                        <div class="row px-3 ">                            
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <h4>My Clients</h4>
+                                <a href="{{route('admin.addclient')}}"
+                                    class=" px-4 py-2 border-0 rounded-3 text-decoration-none green text-white font-semi">
+                                    Add Clients
+                                </a>
+                            </div>
                             @if ($users->count() > 0)
                                 <div class="table-responsive tbl-800 mt-3">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th class="font-semi">Customer Name</th>
-                                                <th class="font-semi">Email</th>
-                                                <th class="font-semi">Phone</th>
                                                 <th class="font-semi">Active Date</th>
                                                 <th class="font-semi">Status</th>
                                                 <th class="font-semi">Action</th>
@@ -43,8 +47,6 @@
                                             @foreach ($users as $user)
                                             <tr>
                                                 <td class="text-secondary align-middle">{{$user['fname']}}</td>
-                                                <td class="text-secondary align-middle">{{$user['email']}}</td>
-                                                <td class="text-secondary align-middle">{{$user['phone']}}</td>
                                                 <td class="text-secondary align-middle">{{$user['created_at']}}</td>
                                                 <td class="text-secondary align-middle">
                                                     @php
@@ -63,17 +65,10 @@
                                                 </td>
                                                 <td class="text-secondary align-middle">
                                                     <div class="d-flex align-items-center">
+                                                        <a href="{{ 'editclient/' . $user['id'] }}"><i
+                                                            class="fa-solid fa-pen-to-square text-secondary pointer me-3"></i></a>
                                                         <a href="{{ 'Deleteuser/' . $user['id'] }}"><i
-                                                                class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
-                                                        <a href="{{ 'viewuser/' . $user['id'] }}"><i
-                                                                class="fa-solid fa-eye text-secondary pointer me-3"></i></a>
-                                                        @if($user['status'] == 1)
-                                                        <a href="{{'approveUser/' . $user['id'] }}"
-                                                            class="bg-success px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Approve</a>
-                                                        <a href="{{'rejectUser/' . $user['id'] }}"
-                                                            class="bg-danger px-2 text-white text-decoration-none rounded-2 mx-1 d-inline-block py-2">Reject</a>
-                                                        @endif
-
+                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

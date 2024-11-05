@@ -267,36 +267,39 @@ class AdminController extends Controller
 
 
     public function clients(){
-        $data = User::where('role', 1)->where('status', '!=', 0)->orderBy('id', 'desc')->get();
+        $data = User::where('role', 1)
+        ->whereIn('status', [1, 2, 3])
+        ->orderBy('id', 'desc')
+        ->get();
         return view('Admin.clients', ['users' => $data]);
+    }
+    public function addclient(){
+        return view('Admin.addclient');
+    }
+    public function editclient($id){
+        $data['user'] =User::find($id);
+        return view('Admin.editclient',$data);
+    }
+    public function saveclient(Request $Request){
+        User::create($Request->all());
+        return redirect()->route('admin.clients')->with('success', 'User Created successfully.');
     }
     public function Deleteuser($id){
         $data =User::find($id);
         $data->delete();
         return redirect()->route('admin.clients');
     }
-    public function approveUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 2;
-            $user->save();
+    public function updateclient(Request $request){
+        $request->validate([
+            '*' => 'required',
+        ]);
+        $data = User::find($request->id);
+
+        if ($data) {
+            $data->update($request->all());
         }
-        return redirect()->back()->with('success', 'User approved successfully.');
-    }
-    public function rejectUser($id){
-        $user = User::find($id);
-        if ($user) {
-            $user->status = 3;
-            $user->save();
-        }
-        return redirect()->back()->with('reject', 'User rejected successfully.');
-    }
-    public function viewuser($id){
-        $data['user'] =User::find($id);
-        $data['directors'] =Director::where('userid',$id)->get();
-        $data['owners'] =Owner::where('userid',$id)->get();
-        $data['ubos'] =Ubo::where('userid',$id)->get();
-        return view('Admin.viewuser',$data);
+
+        return redirect()->route('admin.clients')->with('update', 'Clients Updated Successfully');
     }
 
     public function payments(){

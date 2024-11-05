@@ -19,6 +19,7 @@ use App\Mail\OrderUpdateConfirmation;
 use App\Mail\OrderUpdate;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -345,6 +346,12 @@ class UserController extends Controller
         'userid' => $userid,
         ]);
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
+    }
+    public function payments(){
+        $data = Payment::leftjoin('users','payments.customer','=','users.id')
+        ->leftjoin('beneficiaries','payments.Beneficiary','=','beneficiaries.id')
+        ->select('payments.*','users.fname','beneficiaries.accountname','beneficiaries.accountnumber')->orderBy('id', 'desc')->get();
+        return view('user.payments', ['payments' => $data]);
     }
 
 }

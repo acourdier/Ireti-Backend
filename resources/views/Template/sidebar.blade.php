@@ -59,9 +59,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.clients') }}"
-                        class="{{ request()->routeIs('admin.clients') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        class="{{ request()->routeIs('admin.clients','admin.editclient','admin.addclient','admin.viewuser') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.clients') ? asset('img/userg.svg') : asset('img/user.svg') }}"
+                            <img src="{{ request()->routeIs('admin.clients','admin.editclient','admin.addclient','admin.viewuser') ? asset('img/userg.svg') : asset('img/user.svg') }}"
                                 alt="" class="sicon">
                             My Clients
                         </div>
