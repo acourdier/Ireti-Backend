@@ -97,8 +97,8 @@ class UserController extends Controller
         // Mail::to($to_email)
         //     ->send($mail);
 
-        // $to_emailAdmin = env('ADMIN_EMAIL');
-        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        // $to_emailAdmin = "mehakamir187@gmail.com";
+        // $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
         // $mail2 = new OrderMail($requestMail);
         // Mail::to($to_emailAdmin)
         //     ->cc($to_emailAdmin2)
@@ -134,8 +134,8 @@ class UserController extends Controller
                 Mail::to($to_email)
                     ->send($mail);
                 
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin = "mehakamir187@gmail.com";
+                $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)
                     ->cc($to_emailAdmin2)
@@ -172,8 +172,8 @@ class UserController extends Controller
         Mail::to($to_email)
             ->send($mail);
 
-        $to_emailAdmin = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin = "mehakamir187@gmail.com";
+        $to_emailAdmin2 = "Gabriel.olugbenga@ireticapital.com";
         $mail2 = new OrderMail($requestMail);
         Mail::to($to_emailAdmin)
             ->cc($to_emailAdmin2)
