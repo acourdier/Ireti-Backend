@@ -273,6 +273,10 @@ class AdminController extends Controller
     public function addclient(){
         return view('Admin.addclient');
     }
+    public function editclient($id){
+        $data['user'] =User::find($id);
+        return view('Admin.editclient',$data);
+    }
     public function saveclient(Request $Request){
         User::create($Request->all());
         return redirect()->route('admin.clients')->with('success', 'User Created successfully.');

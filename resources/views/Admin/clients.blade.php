@@ -73,6 +73,8 @@
                                                                 class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
                                                         <a href="{{ 'viewuser/' . $user['id'] }}"><i
                                                                 class="fa-solid fa-eye text-secondary pointer me-3"></i></a>
+                                                        <a href="{{ 'editclient/' . $user['id'] }}"><i
+                                                            class="fa-solid fa-pen-to-square text-secondary pointer me-3"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

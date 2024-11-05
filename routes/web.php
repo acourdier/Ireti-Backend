@@ -62,10 +62,11 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
 
             Route::get('clients','clients')->name('admin.clients');
             Route::get('addclient','addclient')->name('admin.addclient');
+            Route::get('editclient/{id}','editclient')->name('admin.editclient');
             Route::post('saveclient','saveclient')->name('admin.saveclient');
+            Route::get('viewuser/{id}','viewuser')->name('admin.viewuser');
             Route::get('Deleteuser/{id}','Deleteuser')->name('admin.Deleteuser');
             Route::get('rejectUser/{id}','rejectUser')->name('admin.rejectUser');
-            Route::get('viewuser/{id}','viewuser')->name('admin.viewuser');
             Route::get('approveUser/{id}','approveUser')->name('admin.approveUser');
 
             Route::get('getBeneficiary/{id}','getBeneficiary')->name('admin.getBeneficiary');
