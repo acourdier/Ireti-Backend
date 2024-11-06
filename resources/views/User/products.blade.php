@@ -681,17 +681,25 @@
             }
         }
 
+        function formatNumber(element) {
+            let value = element.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            element.value = parts.join('.');
+        }
+
         function updateAmounts() {
-            buyamount.value = 0;
-            sellAmount.value = 0;
-            
             if (buyamount.value) {
                 updateSellAmount();
+                formatNumber(sellAmount); // Format sellAmount after calculation
             }
             if (sellAmount.value) {
                 updateBuyAmount();
+                formatNumber(buyamount); // Format buyamount after calculation
             }
         }
+
 
     </script>
     <script>
