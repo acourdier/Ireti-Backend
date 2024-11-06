@@ -18,7 +18,7 @@
                             <h4>Edit Payments</h4>
                             <form action="{{route('admin.updatepayment')}}" method="POST">
                                 @csrf
-                                <input type="text" name="id" class="d-none" value="{{$payment['id']}}">
+                                <input type="text" name="id" class="d-none" value="{{$payment['pid']}}" readonly>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mt-3">
@@ -37,8 +37,12 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="baccount">Beneficiary</label>
-                                            <input type="text" value="{{ $payment['accountname'] }}" required
-                                                name="baccount" id="baccount" class="form-control border border-1  bg-grey" readonly>
+                                                <select name="baccount" id="baccount" class="form-control bg-grey" disabled>
+                                                    {{-- <option value="{{ $payment['baccount'] }}">{{ $payment['baccount'] }}</option> --}}
+                                                    <option value=" {{ $payment['accountnumber'] }}">
+                                                        {{ $payment['accountname'] }}
+                                                    </option>
+                                                </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
