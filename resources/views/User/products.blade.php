@@ -495,6 +495,35 @@
         });
     </script>
     <script>
+        function formatNumber(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
+
+        document.getElementById('buyamount').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+
+        document.getElementById('sellamount').addEventListener('input', function (e) {
+            formatNumber(e.target);
+        });
+
+        document.getElementById('targetprice').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+
+
+    </script>
+    <script>
         let firstcurrency = document.getElementById('firstcurrency');
         let secondcurrency = document.getElementById('secondcurrency');
         let targetPrice = document.getElementById('targetprice');
@@ -569,6 +598,14 @@
             location.reload();
         });
 
+        function formatNumber(element) {
+            let value = element.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            element.value = parts.join('.');
+        }
+
         function updateSellAmount() {
             let bav = parseFloat(buyamount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
@@ -591,22 +628,16 @@
             }
         }
 
-        function formatNumber(element) {
-            let value = element.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (parts[1]) parts[1] = parts[1].slice(0, 2);
-            element.value = parts.join('.');
-        }
+
 
         function updateAmounts() {
             if (buyamount.value) {
                 updateSellAmount();
-                formatNumber(sellAmount); // Format sellAmount after calculation
+                formatNumber(sellAmount);
             }
             if (sellAmount.value) {
                 updateBuyAmount();
-                formatNumber(buyamount); // Format buyamount after calculation
+                formatNumber(buyamount); 
             }
         }
 
@@ -648,35 +679,7 @@
         updatecurrencytb();
 
     </script>
-    <script>
-        function formatNumber(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (parts[1]) parts[1] = parts[1].slice(0, 2);
-            input.value = parts.join('.');
-        }
-        function spaceonly(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            input.value = parts.join('.');
-        }
 
-        document.getElementById('buyamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('sellamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('targetprice').addEventListener('input', function (e) {
-            spaceonly(e.target);
-        });
-
-
-    </script>
 
     @include('../Template.jslinks')
 </body>
