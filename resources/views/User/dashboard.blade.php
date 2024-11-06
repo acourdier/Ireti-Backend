@@ -87,8 +87,20 @@
                                                         </div>
                                                     </td>
                                                     <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
-                                                    <td>{{$order['amountb']}}</td>
-                                                    <td>{{$order['amountts']}}</td>
+                                                    <td>
+                                                        @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
+                                                            {{ $order['quantity'] }}
+                                                        @else
+                                                            {{ $order['amountb'] }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
+                                                            {{ $order['quantity'] }}
+                                                        @else
+                                                            {{ $order['amountts'] }}
+                                                        @endif
+                                                    </td>
                                                     <td>{{$order['targetp']}}</td>
                                                     <td>{{$order['created_at']}}</td>
                                                     <td>
@@ -98,10 +110,30 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <a
-                                                            href="{{ 'orderdeatils/' . $order['id'] }}">
-                                                                <i class="fa-solid text-muted me-2 fa-eye"></i>
-                                                        </a>
+                                                        <div class="dropdown">
+                                                            <i class="fa-solid fa-ellipsis-vertical pointer"
+                                                                id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                                aria-expanded="false"></i>
+                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                @if ($order['filled'] == 'No')
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ 'editorders/' . $order['id'] }}">
+                                                                        <i
+                                                                            class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                        Edit
+                                                                    </a>
+                                                                </li>
+                                                                @endif
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ 'orderdeatils/' . $order['id'] }}">
+                                                                        <i class="fa-solid text-muted me-2 fa-eye"></i>
+                                                                        View
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 @endforeach
