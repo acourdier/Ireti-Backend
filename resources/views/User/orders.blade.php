@@ -106,8 +106,20 @@
                                                 </div>
                                             </td>
                                             <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
-                                            <td>{{$order['amountb']}}</td>
-                                            <td>{{$order['amountts']}}</td>
+                                            <td>
+                                                @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
+                                                    {{ $order['quantity'] }}
+                                                @else
+                                                    {{ $order['amountb'] }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
+                                                    {{ $order['quantity'] }}
+                                                @else
+                                                    {{ $order['amountts'] }}
+                                                @endif
+                                            </td>
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
                                             <td>
