@@ -23,7 +23,7 @@
                             <h4>Products</h4>
                             <div class="mt-3">
                                 <label for="selectOption">Product type</label>
-                                <select id="selectOption" class="form-control">
+                                <select id="selectOption" class="form-select">
                                     <option value="FX">FX</option>
                                     <option value="commodities">Soft Commodities</option>
                                     <option value="oil">Oil and oil Derivatives</option>
@@ -53,7 +53,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
-                                                <select name="firstcurrency" required id="firstcurrency" class="form-control">
+                                                <select name="firstcurrency" required id="firstcurrency" class="form-select">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}">
@@ -68,7 +68,7 @@
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
-                                                    class="form-control">
+                                                    class="form-select">
                                                     <option selected disabled hidden>Choose currency</option>
                                                     @foreach ($currencies as $currency)
                                                     <option value="{{ $currency['currency']}}" {{ $currency['currency']}}>{{ $currency['currency']}}
@@ -87,7 +87,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="currencytb">Choose Currency to buy</label>
-                                                <select id="currencytb" name="currencytb" class="form-control">
+                                                <select id="currencytb" name="currencytb" class="form-select">
                                                     <!-- Options will be dynamically added here -->
                                                 </select>
                                             </div>
@@ -155,7 +155,7 @@
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
-                                                <select name="underlying" id="underlying" class="form-control">
+                                                <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($softs as $soft)
                                                     <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
                                                     @endforeach
@@ -179,8 +179,10 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" required name="buysell" id="cell"
-                                                    class="form-control">
+                                                <select name="buysell" id="underlying" class="form-select">
+                                                    <option value="Buy" >Buy</option>
+                                                    <option value="Sell" >Sell</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -193,7 +195,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
-                                                <select name="unit" id="unit" class="form-control">
+                                                <select name="unit" id="unit" class="form-select">
                                                     <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
@@ -259,7 +261,7 @@
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
-                                                <select name="underlying" id="underlying" class="form-control">
+                                                <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($oils as $oil)
                                                     <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
                                                     @endforeach
@@ -283,8 +285,10 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" required name="buysell" id="cell"
-                                                    class="form-control">
+                                                <select name="buysell" id="underlying" class="form-select">
+                                                    <option value="Buy" >Buy</option>
+                                                    <option value="Sell" >Sell</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -297,7 +301,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
-                                                <select name="unit" id="unit" class="form-control">
+                                                <select name="unit" id="unit" class="form-select">
                                                     <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
@@ -364,7 +368,7 @@
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="underlying">Select underlying commodity</label>
-                                                <select name="underlying" id="underlying" class="form-control">
+                                                <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($metals as $metal)
                                                     <option {{ $metal['underlaying']}}>{{ $metal['underlaying']}}</option>
                                                     @endforeach
@@ -388,8 +392,10 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <input type="text" required name="buysell" id="cell"
-                                                    class="form-control">
+                                                <select name="buysell" id="underlying" class="form-select">
+                                                    <option value="Buy" >Buy</option>
+                                                    <option value="Sell" >Sell</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -402,7 +408,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
-                                                <select name="unit" id="unit" class="form-control">
+                                                <select name="unit" id="unit" class="form-selectha">
                                                     <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
