@@ -66,7 +66,7 @@
 
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="secondcurrency">Choose second Currency</label>
+                                                <label for="secondcurrency">Choose Second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
                                                     class="form-select">
                                                     <option selected disabled hidden>Choose currency</option>
@@ -662,26 +662,29 @@
         function updateSellAmount() {
             let bav = parseFloat(buyamount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                sellAmount.value = tpv * bav;
+                sellAmount.value = (tpv * bav).toFixed(2);
             } else {
-                sellAmount.value = bav / tpv;
+                sellAmount.value = (bav / tpv).toFixed(2);
             }
         }
 
         function updateBuyAmount() {
             let sav = parseFloat(sellAmount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                buyamount.value = sav / tpv;
+                buyamount.value = (sav / tpv).toFixed(2);
             } else {
-                buyamount.value = tpv * sav;
+                buyamount.value = (tpv * sav).toFixed(2);
             }
         }
 
         function updateAmounts() {
             buyamount.value = 0;
             sellAmount.value = 0;
+            
             if (buyamount.value) {
                 updateSellAmount();
             }
@@ -689,6 +692,7 @@
                 updateBuyAmount();
             }
         }
+
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
