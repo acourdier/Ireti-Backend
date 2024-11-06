@@ -36,9 +36,11 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>User ID</th>
                                                 <th>Product</th>
-                                                <th>Price Target</th>
+                                                <th>Currency pair</th>
+                                                <th>Amount to Buy</th>
+                                                <th>Amount to Sell</th>
+                                                <th>Target Price</th>
                                                 <th>Order Date</th>
                                                 <th>Order Filled</th>
                                                 <th>Action</th>
@@ -47,12 +49,26 @@
                                         <tbody>
                                             @foreach ($orders as $order)
                                             <tr class="align-middle">
-                                                <td>{{$order['fname']}}</td>
                                                 <td>
                                                     <div>
                                                         <p class="mb-0 font-semi">{{$order['FundType']}}</p>
                                                         <p class="mb-0">{{$order['underlying']}}</p>
                                                     </div>
+                                                </td>
+                                                <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
+                                                <td>
+                                                    @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
+                                                        {{ $order['quantity'] }}
+                                                    @else
+                                                        {{ $order['amountb'] }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
+                                                        {{ $order['quantity'] }}
+                                                    @else
+                                                        {{ $order['amountts'] }}
+                                                    @endif
                                                 </td>
                                                 <td>{{$order['targetp']}}</td>
                                                 <td>{{$order['created_at']}}</td>
@@ -64,37 +80,27 @@
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <i class="fa-solid fa-ellipsis-vertical pointer" id="dropdownMenuButton"
-                                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                        <i class="fa-solid fa-ellipsis-vertical pointer"
+                                                            id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                            aria-expanded="false"></i>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            @if( $order['filled'] == 'No')
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ 'editorders/' . $order['id'] }}">
-                                                                        <i
-                                                                            class="fa-solid text-muted me-2 fa-pen-to-square"></i>
-                                                                        Edit
-                                                                    </a>
-                                                                </li>
-                                                            @endif
-                                                            @if( $order['filled'] == 'Yes')
+                                                            @if ($order['filled'] == 'No')
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ 'orderemail/' . $order['id'] }}">
-                                                                    <i class="fa-regular text-muted me-2 fa-envelope"></i>
-                                                                    Send Email
+                                                                    href="{{ 'editorders/' . $order['id'] }}">
+                                                                    <i
+                                                                        class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                    Edit
                                                                 </a>
                                                             </li>
                                                             @endif
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                href="{{ 'orderdeatils/' . $order['id'] }}">
-                                                                    <i
-                                                                        class="fa-solid text-muted me-2 fa-eye"></i>
+                                                                    href="{{ 'orderdeatils/' . $order['id'] }}">
+                                                                    <i class="fa-solid text-muted me-2 fa-eye"></i>
                                                                     View
                                                                 </a>
                                                             </li>
-                                                           
                                                         </ul>
                                                     </div>
                                                 </td>

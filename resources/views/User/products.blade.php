@@ -66,7 +66,7 @@
 
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="secondcurrency">Choose second Currency</label>
+                                                <label for="secondcurrency">Choose Second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
                                                     class="form-select">
                                                     <option selected disabled hidden>Choose currency</option>
@@ -494,96 +494,35 @@
             }
         });
     </script>
-    {{-- <script>
-        let firstcurrency = document.getElementById('firstcurrency');
-        let secondcurrency = document.getElementById('secondcurrency');
-        let targetPrice = document.getElementById('targetprice');
-        let currencytb = document.getElementById('currencytb');
-        let buyamount = document.getElementById('buyamount');
-        let sellAmount = document.getElementById('sellamount');
-        let rate = document.getElementById('rate');
-        let resetButton = document.getElementById('resetButton');
+    <script>
+        function formatNumbers(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
 
-        secondcurrency.disabled = true;
-        targetPrice.disabled = true;
-        currencytb.disabled = true;
-        buyamount.disabled = true;
-        sellAmount.disabled = true;
-
-        firstcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = false;
-            targetPrice.disabled = true;
-            currencytb.disabled = true;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+        document.getElementById('buyamount').addEventListener('input', function (e) {
+            formatNumbers(e.target);
         });
 
-        secondcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = true;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+        document.getElementById('sellamount').addEventListener('input', function (e) {
+            formatNumbers(e.target);
         });
 
-        targetPrice.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = false;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+        document.getElementById('targetprice').addEventListener('input', function (e) {
+            spaceonly(e.target);
         });
 
-        currencytb.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
-            currencytb.disabled = false;
-            buyamount.disabled = false;
-            sellAmount.disabled = false;
-            // function getNonSelectedValue(currencytb) {
-            //     let nonSelectedValue = '';
-            //     for (let option of currencytb.options) {
-            //         if (!option.selected) {
-            //             nonSelectedValue = option.value;
-            //         }
-            //     }
-            //     return nonSelectedValue;
-            // }
 
-            // let nonSelected = getNonSelectedValue(currencytb);
-            // let selected = currencytb.value;
-            // let rate = selected + '/' + nonSelected;
-            let rate = firstcurrency.value + '/' + secondcurrency.value;
-            document.getElementById('rate').innerHTML =  'Conversion Rate is ' +rate ;
-        });
-
-        buyamount.addEventListener('input', function() {
-            let bav = parseFloat(buyamount.value.replaceAll(" ",""))
-            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
-            if(currencytb.value == firstcurrency.value){
-                sellAmount.value = tpv * bav
-            }else{
-                sellAmount.value = bav / tpv
-            }
-        });
-        sellAmount.addEventListener('input', function() {
-            let sav = parseFloat(sellAmount.value.replaceAll(" ",""))
-            let tpv = parseFloat(targetPrice.value.replaceAll(" ",""))
-            if(currencytb.value == firstcurrency.value){
-                buyamount.value = sav / tpv
-            }else{
-                buyamount.value = tpv * sav
-            }
-        });
-
-        document.getElementById('resetButton').addEventListener('click', function() {
-        location.reload();
-        });
-    </script> --}}
+    </script>
     <script>
         let firstcurrency = document.getElementById('firstcurrency');
         let secondcurrency = document.getElementById('secondcurrency');
@@ -659,36 +598,53 @@
             location.reload();
         });
 
+        function formatNumber(element) {
+            let value = element.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            element.value = parts.join('.');
+        }
+
         function updateSellAmount() {
             let bav = parseFloat(buyamount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                sellAmount.value = tpv * bav;
+                sellAmount.value = (tpv * bav).toFixed(2);
             } else {
-                sellAmount.value = bav / tpv;
+                sellAmount.value = (bav / tpv).toFixed(2);
             }
+            formatNumber(sellAmount);
         }
 
         function updateBuyAmount() {
             let sav = parseFloat(sellAmount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                buyamount.value = sav / tpv;
+                buyamount.value = (sav / tpv).toFixed(2);
             } else {
-                buyamount.value = tpv * sav;
+                buyamount.value = (tpv * sav).toFixed(2);
             }
+            formatNumber(buyamount);
+
         }
 
+
+
         function updateAmounts() {
-            buyamount.value = 0;
-            sellAmount.value = 0;
             if (buyamount.value) {
                 updateSellAmount();
+                formatNumber(sellAmount);
             }
             if (sellAmount.value) {
                 updateBuyAmount();
+                formatNumber(buyamount); 
             }
         }
+
+
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -726,35 +682,7 @@
         updatecurrencytb();
 
     </script>
-    <script>
-        function formatNumber(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (parts[1]) parts[1] = parts[1].slice(0, 2);
-            input.value = parts.join('.');
-        }
-        function spaceonly(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            input.value = parts.join('.');
-        }
 
-        document.getElementById('buyamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('sellamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('targetprice').addEventListener('input', function (e) {
-            spaceonly(e.target);
-        });
-
-
-    </script>
 
     @include('../Template.jslinks')
 </body>

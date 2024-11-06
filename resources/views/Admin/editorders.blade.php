@@ -152,11 +152,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="cell">Buy/Sell</label>
-                                            <input type="text" required name="buysell" id="cell"
-                                                class="form-control" value="{{$orders['buysell']}}">
-                                        </div>
+                                        <label for="buysell">Buy/Sell</label>
+                                        <select name="buysell" id="buysell" class="form-select">
+                                            <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
+                                            <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
@@ -254,11 +254,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="cell">Buy/Sell</label>
-                                            <input type="text" required name="buysell" id="cell"
-                                                class="form-control" value="{{$orders['buysell']}}">
-                                        </div>
+                                        <label for="buysell">Buy/Sell</label>
+                                        <select name="buysell" id="buysell" class="form-select">
+                                            <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
+                                            <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
@@ -356,11 +356,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="cell">Buy/Sell</label>
-                                            <input type="text" required name="buysell" id="cell"
-                                                class="form-control" value="{{$orders['buysell']}}">
-                                        </div>
+                                        <label for="buysell">Buy/Sell</label>
+                                        <select name="buysell" id="buysell" class="form-select">
+                                            <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
+                                            <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
