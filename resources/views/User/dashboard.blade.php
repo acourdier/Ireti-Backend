@@ -93,7 +93,7 @@
                                                     <td>{{$order['created_at']}}</td>
                                                     <td>
                                                         <button
-                                                            class="{{ $order['filled'] === 'YES' ? 'btngreen' : 'btnred' }}">
+                                                            class="{{ $order['filled'] === 'Yes' ? 'btngreen' : 'btnred' }}">
                                                             {{$order['filled']}}
                                                         </button>
                                                     </td>

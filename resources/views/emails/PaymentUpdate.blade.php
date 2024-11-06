@@ -52,14 +52,14 @@
             <div class="row">
                 <div class="col-12">
                     {{-- <p class="mb-0">Dear,</p> --}}
-                    <p class="mb-0 mt-3 p2">Order of  {{ $requestMail['fname'] }} with Ireti Capital has been
+                    <p class="mb-0 mt-3 p-2">Order of  {{ $requestMail['fname'] }} with Ireti Capital has been
                         successfully processed. The funds have been transferred to their beneficiary account.
                         The details of their transaction is given below:</p>
                 </div>
             </div>
-            <div class="row p3">
+            <div class="row p-3">
                 <div class="col-12">
-                    <div class="mt-5 border-top border-bottom border-dark border-3">
+                    <div class="py-5 border-top border-bottom border-dark border-2">
                         <p class="mb-0 fw-bold">Transaction Details</p>
                         <ul>
                             <li>
@@ -181,9 +181,17 @@
             </div>
             <div class="row">
                 <div class="col-12">
+                    <p class="mb-0 mt-3">
+                        If you have any questions regarding this transaction or need further assistance, please don't hesitate to contact our support team at info@ireticapital.com.
+                    </p>
+                    <p class="mb-0 mt-3">
+                        Thank you for choosing Ireti Capital, we look forward to serving you again.
+                    </p>
+                </div>
+                <div class="col-12 mt-3">
                     <p class="mb-0">Best regards</p>
                     <p class="mb-0">Ireti Capital Team</p>
-                    <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a><br>
+                    <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a>
                     <a href="https://www.ireticapital.com" target="_blank">www.ireticapital.com</a>
                 </div>
             </div>

@@ -28,6 +28,8 @@
                                                     Soft Commodities</option>
                                                 <option {{ $Commodity['Type']=='Oil and oil Derivatives' ? 'selected'
                                                     : '' }}>Oil and oil Derivatives</option>
+                                                <option {{ $Commodity['Type']=='Metals and Precious Metals' ? 'selected'
+                                                    : '' }}>Metals and Precious Metals</option>
                                             </select>
                                         </div>
                                         <div class="col-6 my-2">
