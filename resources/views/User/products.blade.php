@@ -49,7 +49,7 @@
                                                 class="form-control d-none">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row gx-5 position-relative">
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
@@ -63,7 +63,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
+                                        <p class="position-absolute d-none d-sm-block mb-0 slash">/</p>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose Second Currency</label>
@@ -77,6 +77,8 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
