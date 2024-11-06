@@ -47,6 +47,7 @@
                                                 <th class="font-semi">Beneficiary Name</th>
                                                 <th class="font-semi">Beneficiary Account</th>
                                                 <th class="font-semi">Amount</th>
+                                                <th class="font-semi">Currency</th>
                                                 <th class="font-semi">Status</th>
                                                 <th class="font-semi">Action</th>
                                             </tr>
@@ -59,6 +60,7 @@
                                                 <td class="text-secondary align-middle">{{$payment['accountname']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['accountnumber']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['amount']}}</td>
+                                                <td class="text-secondary align-middle">{{$payment['currency']}}</td>
                                                 <td class=" align-middle">
                                                     <button class=" 
                                                     @if ($payment['status'] == 'Accepted') btngreen

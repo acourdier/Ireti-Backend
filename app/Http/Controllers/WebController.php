@@ -185,8 +185,8 @@ class WebController extends Controller
         }
    
         $requestMail = $request->all();
-        $to_email = "Sullivan.joubert@ireticapital.com";
-        $to_email1 = "Gabriel.olugbenga@ireticapital.com";
+        $to_email = env('ADMIN_EMAIL');
+        $to_email1 = env('ADMIN2_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
             ->cc($to_email1)
