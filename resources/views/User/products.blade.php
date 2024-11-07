@@ -78,7 +78,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row gx-5">
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="targetp">Target Price</label>
@@ -410,7 +410,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="unit">Unit of Measurement</label>
-                                                <select name="unit" id="unit" class="form-selectha">
+                                                <select name="unit" id="unit" class="form-select">
                                                     <option value="choose" selected disabled hidden>choose</option>
                                                     <option value="Gram">Gram</option>
                                                     <option value="Kg">Kg</option>
