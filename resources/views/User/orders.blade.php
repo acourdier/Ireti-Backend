@@ -194,22 +194,49 @@
     
                 // Fireworks instance
                 let fireworks;
-
+                popup.style.display = 'block';
+    
+    fireworks = new Fireworks.default(canvas, {
+        speed: 5,
+        acceleration: 1.05,           
+        friction: 0.98,             
+        gravity: 1.2,                
+        particles: 350,               
+        trace: 2,                     
+        explosion: 12,
+        sound: {
+            enabled: true,
+            files: [
+                'https://fireworks.js.org/sounds/explosion0.mp3',
+                'https://fireworks.js.org/sounds/explosion1.mp3',
+                'https://fireworks.js.org/sounds/explosion2.mp3'
+            ],
+            volume: { min: 50, max: 50 }
+        },
+    });
+    fireworks.start();
                 // Check for the Laravel success session (from server-side)
                 @if (session('success'))
                     // Open the modal and start fireworks
                     popup.style.display = 'block';
     
                     fireworks = new Fireworks.default(canvas, {
-                        speed: 1,
+                        speed: 5,
+                        acceleration: 1.05,           
+                        friction: 0.98,             
+                        gravity: 1.2,                
+                        particles: 350,               
+                        trace: 2,                     
+                        explosion: 12,
                         sound: {
                             enabled: true,
                             files: [
                                 'https://fireworks.js.org/sounds/explosion0.mp3',
                                 'https://fireworks.js.org/sounds/explosion1.mp3',
                                 'https://fireworks.js.org/sounds/explosion2.mp3'
-                            ]
-                        }
+                            ],
+                            volume: { min: 50, max: 50 }
+                        },
                     });
                     fireworks.start();
     
