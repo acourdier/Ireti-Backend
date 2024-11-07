@@ -672,7 +672,7 @@
             let secondCurrencyValue = secondcurrency.value;
 
             currencytb.innerHTML = `
-                <option value="0" hidden>Choose currency</option>
+                <option value="0" hidden>Choose Currency</option>
                 <option value="${firstCurrencyValue}">${firstCurrencyValue}</option>
                 <option value="${secondCurrencyValue}">${secondCurrencyValue}</option>
             `;
