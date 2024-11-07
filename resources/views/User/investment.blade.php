@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Make Investment</title>
+    <title>Investment</title>
 </head>
 
 <body>

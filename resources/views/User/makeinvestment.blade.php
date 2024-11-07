@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Investment</title>
+    <title>Make Investment</title>
 </head>
 
 <body>
@@ -27,9 +27,9 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3">
-                                        <label for="name">Fund type</label>
+                                        <label for="name">Fund Type</label>
                                         <select name="fund" id="name" class="form-control" required>
-                                            <option value="" selected disabled hidden>Select Fund type</option>
+                                            <option value="" selected disabled hidden>Select Fund Type</option>
                                             <option value="Listed Funds">Listed Funds</option>
                                             <option value="Non Listed Fund">Non Listed Fund</option>
                                         </select>
@@ -38,9 +38,9 @@
                                 
                                 <div class="col-12">
                                     <div class="mt-3">
-                                        <label for="yield">Target yield</label>
+                                        <label for="yield">Target Yield</label>
                                         <select required name="yeild" id="yield" class="form-control" required>
-                                            <option value="" selected disabled hidden>Select Target yield</option>
+                                            <option value="" selected disabled hidden>Select Target Yield</option>
                                             <option value="0-5%">0-5%</option>
                                             <option value="5-10%">5-10%</option>
                                             <option value="10%+">10%+</option>
@@ -50,13 +50,13 @@
                                 
                                 <div class="col-sm-6">
                                     <div class="mt-3" >
-                                        <label for="exposure">Geographical exposure</label>
+                                        <label for="exposure">Geographical Exposure</label>
                                         <input type="text" name="geographical" id="exposure" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="amount">Amount wish to invest (in USD)</label>
+                                        <label for="amount">Amount Wish to Invest (in USD)</label>
                                         <input type="number" name="amount" id="amount" class="form-control" required>
                                     </div>
                                 </div>
