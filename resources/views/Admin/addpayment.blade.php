@@ -29,7 +29,7 @@
                                                 <select name="customer" id="customer"
                                                     onchange="fetchBeneficiary(); fetchOrder();" class="form-control"
                                                     required>
-                                                    <option value="" selected hidden disbaled>Choose customer
+                                                    <option value="" selected hidden disbaled>Choose Customer
                                                     </option>
                                                     @foreach ($users as $user)
                                                         <option value="{{ $user['id'] }}">{{ $user['fname'] }}

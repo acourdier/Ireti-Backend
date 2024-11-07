@@ -69,7 +69,7 @@
                                     </table>
                                 </div>
                             @else
-                                <p class="text-danger">No payment available.</p>
+                                <p class="text-danger">No Payment Available.</p>
                             @endif
                         </div>
                     </div>

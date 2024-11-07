@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Edit Currency</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                                 @csrf
                                 <input type="text" name="id" class="d-none" value="{{$currency['id']}}">
                                 <div class="Add Currency">
-                                    <h4>Update Currency</h4>
+                                    <h4>Edit Currency</h4>
                                     <div class="col-12 my-2">
                                         <label for="currency" class="font-medium fs-5">Currency:</label>
                                         <input type="text" name="currency" value="{{ $currency['currency'] }}"
@@ -30,7 +30,7 @@
                                     <div class="mt-3 d-flex justify-content-end">
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Save
+                                            Update
                                         </button>
                                     </div>
                                 </div>

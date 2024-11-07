@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Investment</title>
 </head>
 
 <body>
@@ -37,8 +37,8 @@
                                         <thead>
                                             <tr>
                                                 <th>User ID</th>
-                                                <th>Fund type</th>
-                                                <th>Target yield</th>
+                                                <th>Fund Type</th>
+                                                <th>Target Yield</th>
                                                 <th>Geographical Exposure</th>
                                                 <th>Amount</th>
                                                 <th>Status</th>
@@ -88,7 +88,7 @@
                                     </table>
                                 </div>
                             @else
-                                <p class="text-danger">No investment available.</p>
+                                <p class="text-danger">No Investment Available.</p>
                             @endif
                         </div>
                     </div>

@@ -35,7 +35,7 @@
                                     <p class="mb-0 small">{{ $orderData->created_at }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">Currency pair</p>
+                                    <p class="font-semi mb-0 small">Currency Pair</p>
                                     <p class="mb-0 small">{{ $orderData->firstcurrency ." / ". $orderData->secondcurrency}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -80,7 +80,7 @@
                                     <p class="mb-0 small">{{ $orderData->unit }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">Price Target per Unit</p>
+                                    <p class="font-semi mb-0 small">Price Target Per Unit</p>
                                     <p class="mb-0 small">{{ $orderData->targetp }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -117,7 +117,7 @@
                                     <p class="mb-0 small">{{ $orderData->unit }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">Price Target per Unit</p>
+                                    <p class="font-semi mb-0 small">Price Target Per Unit</p>
                                     <p class="mb-0 small">{{ $orderData->targetp }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -130,7 +130,7 @@
                                 </div>
                                 @endif
                                 <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                    <p class="font-semi small mb-0  mt-3">Do you wish to validate this order ?</p>
+                                    <p class="font-semi small mb-0  mt-3">Do You Wish to Validate This Order ?</p>
                                     <div class="d-flex align-items-center  mt-3">
                                         <a href="{{ 'validateOrder/' . $orderData->id }}"
                                             class="px-3 py-1 me-2 border-0 rounded-3 green text-white font-semi text-decoration-none">Yes</a>

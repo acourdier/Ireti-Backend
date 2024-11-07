@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Currency</title>
 </head>
 
 <body>
@@ -70,7 +70,7 @@
                                 </table>
                             </div>
                             @else
-                                <p class="text-danger">No currencies available.</p>
+                                <p class="text-danger">No Currencies Available.</p>
                             @endif
                         </div>
                     </div>

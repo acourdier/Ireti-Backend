@@ -77,7 +77,7 @@
                                     <p class="mb-0 small">{{ $orderData->unit }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">Price Target per Unit</p>
+                                    <p class="font-semi mb-0 small">Price Target Per Unit</p>
                                     <p class="mb-0 small">{{ $orderData->targetp }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -114,7 +114,7 @@
                                     <p class="mb-0 small">{{ $orderData->unit }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi mb-0 small">Price Target per Unit</p>
+                                    <p class="font-semi mb-0 small">Price Target Per Unit</p>
                                     <p class="mb-0 small">{{ $orderData->targetp }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">

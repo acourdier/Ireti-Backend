@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4>Update Investment</h4>
+                            <h4>Edit Investment</h4>
                             <form action="{{route('admin.updateinvestment')}}" method="post">
                                 @csrf
                                 <div class="col-md-6">
@@ -32,7 +32,7 @@
                                         </select>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="submit" value="Change Status"
+                                        <input type="submit" value="Update Status"
                                             class="form-control green text-white font-semi">
                                     </div>
                                 </div>

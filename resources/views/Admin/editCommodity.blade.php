@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Add Commodities</title>
+    <title>Edit Commodities</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
                             <form action="{{route('admin.updateCommodity')}}" method="POST">
                                 @csrf
                                 <div class="Add Currency">
-                                    <h4>Add Commodities</h4>
+                                    <h4>Edit Commodities</h4>
                                     <input type="text" name="id" class="d-none" value="{{ $Commodity['id'] }}">
                                     <div class="row">
                                         <div class="col-6 my-2">
@@ -27,7 +27,7 @@
                                                 <option {{ $Commodity['Type']=='Soft Commodities' ? 'selected' : '' }}>
                                                     Soft Commodities</option>
                                                 <option {{ $Commodity['Type']=='Oil and oil Derivatives' ? 'selected'
-                                                    : '' }}>Oil and oil Derivatives</option>
+                                                    : '' }}>Oil and Oil Derivatives</option>
                                                 <option {{ $Commodity['Type']=='Metals and Precious Metals' ? 'selected'
                                                     : '' }}>Metals and Precious Metals</option>
                                             </select>
@@ -43,7 +43,7 @@
                                     <div class="mt-3 d-flex justify-content-end">
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Save
+                                            Update
                                         </button>
                                     </div>
                                 </div>

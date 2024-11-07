@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Edit Order</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4>Order</h4>
+                            <h4>Edit Order</h4>
 
                             @if ($orders['FundType'] == 'FX')
                                 <form action="{{ route('user.updateorder') }}" method="post">
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mt-3">
-                                                <label for="currencytb">Choose Currency to buy</label>
+                                                <label for="currencytb">Choose Currency to Buy</label>
                                                 <select id="currencytb" name="currencytb" class="form-control">
                                                     <!-- Options will be dynamically added here -->
                                                 </select>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <label for="underlying">Select underlying commodity</label>
+                                            <label for="underlying">Select Underlying Commodity</label>
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($softs as $soft)
                                                 <option value="{{ $soft['underlaying']}}"
@@ -161,7 +161,7 @@
                                         <div class="mt-3">
                                             <label for="unit">Unit of Measurement</label>
                                             <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>choose</option>
+                                                <option value="choose" selected disabled hidden>Choose</option>
                                                 <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
                                                 <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
                                                 <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target per Unit</label>
+                                            <label for="targetp">Price Target Per Unit</label>
                                             <input type="text" required name="targetp" id="targetp"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>
@@ -210,7 +210,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <label for="underlying">Select underlying commodity</label>
+                                            <label for="underlying">Select Underlying Commodity</label>
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($metals as $metal)
                                                 <option value="{{ $metal['underlaying']}}"
@@ -255,7 +255,7 @@
                                         <div class="mt-3">
                                             <label for="unit">Unit of Measurement</label>
                                             <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>choose</option>
+                                                <option value="choose" selected disabled hidden>Choose</option>
                                                 <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
                                                 <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
                                                 <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
@@ -264,7 +264,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target per Unit</label>
+                                            <label for="targetp">Price Target Per Unit</label>
                                             <input type="text" required name="targetp" id="targetp"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>
@@ -304,7 +304,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
-                                            <label for="underlying">Select underlying commodity</label>
+                                            <label for="underlying">Select Underlying Commodity</label>
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($oils as $oil)
                                                 <option value="{{ $oil['underlaying']}}"
@@ -349,7 +349,7 @@
                                         <div class="mt-3">
                                             <label for="unit">Unit of Measurement</label>
                                             <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>choose</option>
+                                                <option value="choose" selected disabled hidden>Choose</option>
                                                 <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
                                                 <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
                                                 <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
@@ -358,7 +358,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target per Unit</label>
+                                            <label for="targetp">Price Target Per Unit</label>
                                             <input type="text" required name="targetp" id="targetp"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>

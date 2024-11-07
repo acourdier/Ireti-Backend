@@ -39,7 +39,7 @@
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
                                             <span>-25% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i></span>
-                                            Last Month payments
+                                            Last Month Payments
                                         </p>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th>Currency pair</th>
+                                                <th>Currency Pair</th>
                                                 <th>Amount to Buy</th>
                                                 <th>Amount to Sell</th>
                                                 <th>Target Price</th>
