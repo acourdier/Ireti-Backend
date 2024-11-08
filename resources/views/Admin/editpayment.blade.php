@@ -62,7 +62,7 @@
                                     <div class="col-sm-6">
                                         <div class="mt-3">
                                             <label for="amount">Amount</label>
-                                            <input type="number" value="{{ $payment['amount'] }}" required name="amount"
+                                            <input type="text" value="{{ $payment['amount'] }}" required name="amount"
                                                 id="amount" class="form-control border border-1">
                                         </div>
                                     </div>
@@ -101,6 +101,25 @@
     </div>
 
     @include('../Template.jslinks')
+    <script>
+        function formatNumbers(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
+
+        document.getElementById('amount').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+    </script>
 </body>
 
 </html>

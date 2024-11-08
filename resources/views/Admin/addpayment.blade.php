@@ -16,10 +16,10 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4>Add Payments</h4>
-                            @if ($users->count() < 1)
-                                <p class="text-danger">No customers available. You can only add a payment if there is at
-                                    least one customer.</p>
-                            @else
+                            @if ($users->count() < 1) <p class="text-danger">No customers available. You can only add a
+                                payment if there is at
+                                least one customer.</p>
+                                @else
                                 <form action="{{ route('admin.savepayment') }}" method="POST">
                                     @csrf
                                     <div class="row">
@@ -32,8 +32,8 @@
                                                     <option value="" selected hidden disbaled>Choose Customer
                                                     </option>
                                                     @foreach ($users as $user)
-                                                        <option value="{{ $user['id'] }}">{{ $user['fname'] }}
-                                                        </option>
+                                                    <option value="{{ $user['id'] }}">{{ $user['fname'] }}
+                                                    </option>
                                                     @endforeach
                                                 </select>
 
@@ -70,7 +70,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amount">Amount</label>
-                                                <input type="number" required name="amount" id="amount"
+                                                <input type="text" required name="amount" id="amount"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            @endif
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -107,75 +107,95 @@
 
     @include('../Template.jslinks')
     <script>
-       async function fetchCurrencies() {
-    const id = document.getElementById('customer').value;
-    const bid = document.getElementById('Beneficiary').value;
-    let Currency = document.getElementById('Currency');
-    Currency.innerHTML = '';
+        async function fetchCurrencies() {
+            const id = document.getElementById('customer').value;
+            const bid = document.getElementById('Beneficiary').value;
+            let Currency = document.getElementById('Currency');
+            Currency.innerHTML = '';
 
-    if (id && bid) { // Only fetch if both customer and beneficiary are selected
-        try {
-            const response = await fetch(`/admin/getCurrency/${id}/${bid}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            if (id && bid) { // Only fetch if both customer and beneficiary are selected
+                try {
+                    const response = await fetch(`/admin/getCurrency/${id}/${bid}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    for (let currency of data) {
+                        console.log(currency);
+                        Currency.insertAdjacentHTML("beforeend", `<option value="${currency.currency}">${currency.currency}</option>`);
+                    }
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
             }
-            const data = await response.json();
-            for (let currency of data) {
-                console.log(currency);
-                Currency.insertAdjacentHTML("beforeend", `<option value="${currency.currency}">${currency.currency}</option>`);
+        }
+
+        async function fetchBeneficiary() {
+            const id = document.getElementById('customer').value;
+            let Beneficiary = document.getElementById('Beneficiary');
+            Beneficiary.innerHTML = '';
+            
+            try {
+                const response = await fetch(`/admin/getBeneficiary/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                for (let beneficiary of data) {
+                    console.log(beneficiary);
+                    Beneficiary.insertAdjacentHTML("beforeend", `<option value="${beneficiary.id}">${beneficiary.accountname}</option>`);
+                }
+                
+                if (Beneficiary.options.length > 1) {
+                    Beneficiary.selectedIndex = 1; 
+                    fetchCurrencies(); 
+                }
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
             }
-        } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
-        }
-    }
-}
-
-async function fetchBeneficiary() {
-    const id = document.getElementById('customer').value;
-    let Beneficiary = document.getElementById('Beneficiary');
-    Beneficiary.innerHTML = '';
-    
-    try {
-        const response = await fetch(`/admin/getBeneficiary/${id}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        for (let beneficiary of data) {
-            console.log(beneficiary);
-            Beneficiary.insertAdjacentHTML("beforeend", `<option value="${beneficiary.id}">${beneficiary.accountname}</option>`);
-        }
-        
-        if (Beneficiary.options.length > 1) {
-            Beneficiary.selectedIndex = 1; 
-            fetchCurrencies(); 
         }
 
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-    }
-}
+        async function fetchOrder() {
+            const id = document.getElementById('customer').value;
+            let Order = document.getElementById('Order');
+            Order.innerHTML = '';
 
-async function fetchOrder() {
-    const id = document.getElementById('customer').value;
-    let Order = document.getElementById('Order');
-    Order.innerHTML = '';
-
-    try {
-        const response = await fetch(`/admin/getOrder/${id}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+            try {
+                const response = await fetch(`/admin/getOrder/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                for (let order of data) {
+                    console.log(order);
+                    Order.insertAdjacentHTML("beforeend", `<option value="${order.id}">${order.id}</option>`);
+                }
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         }
-        const data = await response.json();
-        for (let order of data) {
-            console.log(order);
-            Order.insertAdjacentHTML("beforeend", `<option value="${order.id}">${order.id}</option>`);
-        }
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-    }
-}
 
+    </script>
+
+    <script>
+        function formatNumbers(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
+
+        document.getElementById('amount').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
     </script>
 
 </body>

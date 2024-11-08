@@ -35,7 +35,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12">
                                     <div class="mt-3">
                                         <label for="yield">Target Yield</label>
@@ -47,17 +47,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-6">
-                                    <div class="mt-3" >
+                                    <div class="mt-3">
                                         <label for="exposure">Geographical Exposure</label>
-                                        <input type="text" name="geographical" id="exposure" class="form-control" required>
+                                        <input type="text" name="geographical" id="exposure" class="form-control"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
                                         <label for="amount">Amount Wish to Invest (in USD)</label>
-                                        <input type="number" name="amount" id="amount" class="form-control" required>
+                                        <input type="text" name="amount" id="amount" class="form-control" required>
                                     </div>
                                 </div>
                                 <h5 class="mt-3">Book Call Meeting</h5>
@@ -95,6 +96,18 @@
         </div>
     </div>
     @include('../Template.jslinks')
+    <script>
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
+
+        document.getElementById('amount').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+    </script>
 </body>
 
 </html>

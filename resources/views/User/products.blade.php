@@ -207,8 +207,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetp">Price Target Per Unit</label>
-                                                <input type="text" required name="targetp" id="targetp"
+                                                <label for="targetpu">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpu"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -295,8 +295,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="quantity">Quantity</label>
-                                                <input type="text" required name="quantity" id="quantity"
+                                                <label for="quantityo">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantityo"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -313,8 +313,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetp">Price Target Per Unit</label>
-                                                <input type="text" required name="targetp" id="targetp"
+                                                <label for="targetpo">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpo"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -402,8 +402,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="quantity">Quantity</label>
-                                                <input type="text" required name="quantity" id="quantity"
+                                                <label for="quantitym">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantitym"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -420,8 +420,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mt-3">
-                                                <label for="targetp">Price Target Per Unit</label>
-                                                <input type="text" required name="targetp" id="targetp"
+                                                <label for="targetpm">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpm"
                                                     class="form-control">
                                             </div>
                                         </div>
@@ -523,6 +523,29 @@
             spaceonly(e.target);
         });
 
+        document.getElementById('quantity').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+        
+        document.getElementById('targetpu').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+
+        document.getElementById('quantityo').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+        
+        document.getElementById('targetpo').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+
+        document.getElementById('quantitym').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
+        
+        document.getElementById('targetpm').addEventListener('input', function (e) {
+            spaceonly(e.target);
+        });
 
     </script>
     <script>

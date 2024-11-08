@@ -178,8 +178,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetp"
+                                            <label for="targetpu">Price Target Per Unit</label>
+                                            <input type="text" required name="targetp" id="targetpu"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>
                                     </div>
@@ -262,8 +262,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="quantity">Quantity</label>
-                                            <input type="text" required name="quantity" id="quantity"
+                                            <label for="quantitym">Quantity</label>
+                                            <input type="text" required name="quantity" id="quantitym"
                                                 class="form-control"  value="{{$orders['quantity']}}">
                                         </div>
                                     </div>
@@ -280,8 +280,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetp"
+                                            <label for="targetpm">Price Target Per Unit</label>
+                                            <input type="text" required name="targetp" id="targetpm"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>
                                     </div>
@@ -364,8 +364,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="quantity">Quantity</label>
-                                            <input type="text" required name="quantity" id="quantity"
+                                            <label for="quantityo">Quantity</label>
+                                            <input type="text" required name="quantity" id="quantityo"
                                                 class="form-control"  value="{{$orders['quantity']}}">
                                         </div>
                                     </div>
@@ -382,8 +382,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-3">
-                                            <label for="targetp">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetp"
+                                            <label for="targetpm">Price Target Per Unit</label>
+                                            <input type="text" required name="targetp" id="targetpm"
                                                 class="form-control"  value="{{$orders['targetp']}}">
                                         </div>
                                     </div>
@@ -460,9 +460,45 @@
             }
         });
     </script>
-      <script>
+    <script>
+        function formatNumbers(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            input.value = parts.join('.');
+        }
+        function spaceonly(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            input.value = parts.join('.');
+        }
+
+        const idsForFormatNumbers = ['buyamount', 'sellamount'];
+        const idsForSpaceOnly = ['targetprice', 'quantity', 'targetpu', 'quantityo', 'targetpo', 'quantitym', 'targetpm'];
+
+        idsForFormatNumbers.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', function (e) {
+                    formatNumbers(e.target);
+                });
+            }
+        });
+
+        idsForSpaceOnly.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', function (e) {
+                    spaceonly(e.target);
+                });
+            }
+        });
+
+    </script>
+    <script>
         let firstcurrency = document.getElementById('firstcurrency');
-        let defaultcurrencytb = document.getElementById('currencytbdefault');
         let secondcurrency = document.getElementById('secondcurrency');
         let targetPrice = document.getElementById('targetprice');
         let currencytb = document.getElementById('currencytb');
@@ -536,36 +572,53 @@
             location.reload();
         });
 
+        function formatNumber(element) {
+            let value = element.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
+            let parts = value.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (parts[1]) parts[1] = parts[1].slice(0, 2);
+            element.value = parts.join('.');
+        }
+
         function updateSellAmount() {
             let bav = parseFloat(buyamount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                sellAmount.value = tpv * bav;
+                sellAmount.value = (tpv * bav).toFixed(2);
             } else {
-                sellAmount.value = bav / tpv;
+                sellAmount.value = (bav / tpv).toFixed(2);
             }
+            formatNumber(sellAmount);
         }
 
         function updateBuyAmount() {
             let sav = parseFloat(sellAmount.value.replaceAll(" ", ""));
             let tpv = parseFloat(targetPrice.value.replaceAll(" ", ""));
+            
             if (currencytb.value == firstcurrency.value) {
-                buyamount.value = sav / tpv;
+                buyamount.value = (sav / tpv).toFixed(2);
             } else {
-                buyamount.value = tpv * sav;
+                buyamount.value = (tpv * sav).toFixed(2);
             }
+            formatNumber(buyamount);
+
         }
 
+
+
         function updateAmounts() {
-            buyamount.value = 0;
-            sellAmount.value = 0;
             if (buyamount.value) {
                 updateSellAmount();
+                formatNumber(sellAmount);
             }
             if (sellAmount.value) {
                 updateBuyAmount();
+                formatNumber(buyamount); 
             }
         }
+
+
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -589,10 +642,9 @@
         function updatecurrencytb() {
             let firstCurrencyValue = firstcurrency.value;
             let secondCurrencyValue = secondcurrency.value;
-            let defaultcurrencytbValue = defaultcurrencytb.value;
-            
+
             currencytb.innerHTML = `
-                <option value="${defaultcurrencytbValue}">${defaultcurrencytbValue}</option>
+                <option value="0" hidden>Choose Currency</option>
                 <option value="${firstCurrencyValue}">${firstCurrencyValue}</option>
                 <option value="${secondCurrencyValue}">${secondCurrencyValue}</option>
             `;
@@ -602,35 +654,6 @@
         secondcurrency.addEventListener('change', updatecurrencytb);
         // Initialize with default values
         updatecurrencytb();
-
-    </script>
-    <script>
-        function formatNumber(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (parts[1]) parts[1] = parts[1].slice(0, 2);
-            input.value = parts.join('.');
-        }
-        function spaceonly(input) {
-            let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
-            let parts = value.split('.');
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            input.value = parts.join('.');
-        }
-
-        document.getElementById('buyamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('sellamount').addEventListener('input', function (e) {
-            formatNumber(e.target);
-        });
-
-        document.getElementById('targetprice').addEventListener('input', function (e) {
-            spaceonly(e.target);
-        });
-
 
     </script>
 </body>
