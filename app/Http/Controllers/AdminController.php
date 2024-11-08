@@ -155,7 +155,7 @@ class AdminController extends Controller
         $data['orders'] =Order::find($id);
         return view('Admin.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
-    
+
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
@@ -169,51 +169,36 @@ class AdminController extends Controller
                 $to_email = $data1->email;
                 $to_emailAdmin = env('ADMIN_EMAIL');
                 $to_emailAdmin2 = env('ADMIN2_EMAIL');
-    
-                // Send confirmation emails
                 $mail = new OrderUpdateConfirmation($requestMail);
                 Mail::to($to_email)->send($mail);
                 
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
-                
-                // Update order details
+
                 $order->update($request->all());
                 
-                // Check if the order's 'filled' status is 'Yes'
                 if ($order->filled === 'Yes' && $order->currencytb && $order->amountb) {
-                    // Clean up the amount (remove spaces, commas)
                     $amount = str_replace([' ', ','], '', $order->amountb);
-                    $amount = (float)$amount;  // Convert to float
+                    $amount = (float)$amount;   
                     
-                    // Fetch exchange rate from API
-                    $currency = strtoupper($order->currencytb);  // Ensure currency code is uppercase
+                    $currency = strtoupper($order->currencytb);  
                     $apiKey = env('EXCHANGE_RATE_API_KEY');
                     $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
     
-                    // Make API request
                     $response = Http::get($exchangeRateAPI);
                     
                     if ($response->successful()) {
-                        // Ensure the rate is numeric
                         $rate = isset($response->json()['conversion_rates']['USD']) 
                                 ? $response->json()['conversion_rates']['USD'] 
                                 : 0;
-    
-                        // Ensure rate is numeric before performing the calculation
                         if (is_numeric($rate)) {
-                            // Use bcmath for precise multiplication if necessary
-                            $convertedAmount = bcmul($amount, $rate, 2);  // Multiplying with 2 decimal precision
-    
-                            // Update the 'converted' column with the calculated USD amount
+                            $convertedAmount = bcmul($amount, $rate, 2);  
                             $order->converted = $convertedAmount;
                             $order->save();
                         } else {
-                            // Log or handle the case where rate is non-numeric
                             Log::error('Invalid exchange rate for currency ' . $currency);
                         }
                     } else {
-                        // Handle API failure (optional)
                         Log::error('Exchange Rate API failed for currency ' . $currency);
                     }
                 }
