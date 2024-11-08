@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('filled')->nullable();
             $table->string('Incoterm')->nullable();
             $table->text('details')->nullable();
+            $table->text('converted')->nullable();
             $table->timestamps();
         });
     }

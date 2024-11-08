@@ -27,6 +27,7 @@ class Order extends Model
         'unit',
         'filled',
         'Incoterm',
-        'details'
+        'details',
+        'converted'
     ];
 }
