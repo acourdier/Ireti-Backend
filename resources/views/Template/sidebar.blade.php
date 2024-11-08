@@ -39,9 +39,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.orders') }}"
-                        class="{{ request()->routeIs('admin.orders') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
+                        class="{{ request()->routeIs('admin.orders','admin.editorders','admin.orderdeatils') ? 'active' : '' }} text-decoration-none d-block lnk text-black ">
                         <div class="d-flex align-items-center ms-2">
-                            <img src="{{ request()->routeIs('admin.orders') ? asset('img/boxg.svg') : asset('img/box.svg') }}"
+                            <img src="{{ request()->routeIs('admin.orders','admin.editorders','admin.orderdeatils') ? asset('img/boxg.svg') : asset('img/box.svg') }}"
                                 alt="" class="sicon">
                             My Orders
                         </div>
@@ -49,9 +49,9 @@
                 </li>
                 <li>
                     <a href="{{route('admin.investment')}}"
-                        class="{{ request()->routeIs('admin.investment' ,'admin.makeinvestment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
+                        class="{{ request()->routeIs('admin.investment' ,'admin.editinvestment') ? 'active' : '' }} text-decoration-none d-block lnk text-black">
                         <div class="d-flex align-iten-center ms-2">
-                            <img src="{{ request()->routeIs('admin.investment' ,'admin.makeinvestment') ? asset('img/growg.svg') : asset('img/grow.svg') }}"
+                            <img src="{{ request()->routeIs('admin.investment' ,'admin.editinvestment') ? asset('img/growg.svg') : asset('img/grow.svg') }}"
                                 alt="" class="sicon">
                             Investment
                         </div>
