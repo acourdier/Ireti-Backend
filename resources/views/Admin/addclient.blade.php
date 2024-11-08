@@ -25,7 +25,7 @@
                                             class="form-control" id="role">
                                     </div>
                                     <div class="col-md-6 my-2 d-none">
-                                        <label for="status">status:</label>
+                                        <label for="status">Status:</label>
                                         <input type="number" value="1" readonly name="status"
                                             class="form-control" id="status">
                                     </div>

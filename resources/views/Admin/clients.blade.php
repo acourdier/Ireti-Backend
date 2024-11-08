@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>My Clients</title>
 </head>
 
 <body>
@@ -77,7 +77,7 @@
                                     </table>
                                 </div>
                             @else
-                                <p class="text-danger">No clients available.</p>
+                                <p class="text-danger">No Clients Available.</p>
                             @endif
                         </div>
                     </div>

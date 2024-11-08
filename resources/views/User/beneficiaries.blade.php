@@ -41,7 +41,7 @@
                                 <div class="mt-3">
                                     <label for="name">Bank Account Details</label>
                                     <select name="opn" id="name" class="form-control" onchange="showDetails()">
-                                        <option value="opt" selected disabled>Select by name</option>
+                                        <option value="opt" selected disabled>Select By Name</option>
                                         @foreach ($beneficiaries as $beneficiary)
                                         <option value="{{$beneficiary['accountname']}}">{{$beneficiary['accountname']}}
                                         </option>
@@ -54,11 +54,11 @@
                             <div class="col-md-8 border-bottom border-2 py-5 beneficiary-details"
                                 id="details-{{$beneficiary['accountname']}}">
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font-semi small mb-0">Account name</p>
+                                    <p class="font-semi small mb-0">Account Name</p>
                                     <p class="mb-0 small">{{$beneficiary['accountname']}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="font small font-semi mb-0">Account number</p>
+                                    <p class="font small font-semi mb-0">Account Number</p>
                                     <p class="mb-0 small">{{$beneficiary['accountnumber']}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">

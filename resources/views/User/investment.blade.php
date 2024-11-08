@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Make Investment</title>
+    <title>Investment</title>
 </head>
 
 <body>
@@ -42,8 +42,8 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="font-semi align-middle">Fund type</th>
-                                                <th class="font-semi align-middle">Target yield</th>
+                                                <th class="font-semi align-middle">Fund Type</th>
+                                                <th class="font-semi align-middle">Target Yield</th>
                                                 <th class="font-semi align-middle">Geographical Exposure</th>
                                                 <th class="font-semi align-middle">Amount</th>
                                                 <th class="font-semi align-middle">Status</th>
@@ -76,7 +76,7 @@
                                     </table>
                                 </div>
                             @else
-                                <p class="text-danger">No investment available.</p>
+                                <p class="text-danger">No Investment Available.</p>
                               @endif
                         </div>
                     </div>

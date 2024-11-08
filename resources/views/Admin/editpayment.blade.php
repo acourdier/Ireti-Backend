@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Edit Payments</title>
+    <title>Edit Payment</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
-                            <h4>Edit Payments</h4>
+                            <h4>Edit Payment</h4>
                             <form action="{{route('admin.updatepayment')}}" method="POST">
                                 @csrf
                                 <input type="text" name="id" class="d-none" value="{{$payment['pid']}}" readonly>

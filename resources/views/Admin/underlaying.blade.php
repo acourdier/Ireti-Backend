@@ -3,7 +3,7 @@
 
 <head>
     @include('../Template.csslinks')
-    <title>Profile</title>
+    <title>Underlying Commodities</title>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
                                     </table>
                                 </div>
                             @else
-                                <p class="text-danger">No underLaying available.</p>
+                                <p class="text-danger">No Underlying Commodities Available.</p>
                             @endif
                         </div>
                     </div>

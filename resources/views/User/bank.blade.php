@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="currency">Currency of the account</label>
+                                        <label for="currency">Currency of The Account</label>
                                         <select name="currency" required id="currency" class="form-control" required>
                                             @foreach ($currencies as $currency)
                                             <option value="{{ $currency['currency'] }}" {{ isset($account->currency) &&

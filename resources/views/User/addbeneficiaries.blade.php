@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mt-3">
-                                        <label for="currency">Currency of the account</label>
+                                        <label for="currency">Currency of The Account</label>
                                         <select name="currency" required id="currency" class="form-control">
                                             @foreach ($currencies as $currency)
                                             <option {{ $currency['currency']}}>{{ $currency['currency']}}</option>

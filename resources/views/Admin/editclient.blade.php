@@ -25,7 +25,7 @@
                                             class="form-control" id="role">
                                     </div>
                                     <div class="col-md-6 my-2 d-none">
-                                        <label for="id">id:</label>
+                                        <label for="id">Id:</label>
                                         <input type="number" readonly name="id" value="{{$user['id']}}"
                                             class="form-control" id="id">
                                     </div>

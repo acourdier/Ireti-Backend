@@ -87,7 +87,7 @@
                                     <thead>
                                         <tr>
                                             <th>Product</th>
-                                            <th>Currency pair</th>
+                                            <th>Currency Pair</th>
                                             <th>Amount to Buy</th>
                                             <th>Amount to Sell</th>
                                             <th>Target Price</th>
@@ -160,7 +160,7 @@
                                 </table>
                             </div>
                             @else
-                            <p class="text-danger">No orders available.</p>
+                            <p class="text-danger">No Orders Available.</p>
                             @endif
                         </div>
 

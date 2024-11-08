@@ -24,7 +24,7 @@
                                             <label for="Type" class="font-medium fs-5">Type:</label>
                                             <select name="Type" id="Type" class="form-control">
                                                 <option value="Soft Commodities">Soft Commodities</option>
-                                                <option value="Oil and oil Derivatives">Oil and oil Derivatives</option>
+                                                <option value="Oil and oil Derivatives">Oil and Oil Derivatives</option>
                                                 <option value="Metals and Precious Metals">Metals and Precious Metals</option>
                                             </select>
                                         </div>
