@@ -32,7 +32,7 @@
                                         </select>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="submit" value="Update Status"
+                                        <input type="submit" value="Update"
                                             class="form-control green text-white font-semi">
                                     </div>
                                 </div>
