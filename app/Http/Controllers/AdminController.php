@@ -23,6 +23,9 @@ use App\Mail\PaymentMail;
 use App\Mail\PaymentUpdate;
 use App\Mail\PaymentConfirmation;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+
 class AdminController extends Controller
 {
 
@@ -152,30 +155,60 @@ class AdminController extends Controller
         $data['orders'] =Order::find($id);
         return view('Admin.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
+
+
     public function updateorder(Request $request){
         $order = Order::find($request->id);
         if ($order) {
-            $data1 = Order::leftjoin('users','orders.userid','=','users.id')
-            ->where('orders.id',$request->id)->first();
+            $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
+                          ->where('orders.id', $request->id)
+                          ->first();
+            
             if ($data1) {
                 $requestMail = $data1;
                 $to_email = $data1->email;
                 $to_emailAdmin = env('ADMIN_EMAIL');
                 $to_emailAdmin2 = env('ADMIN2_EMAIL');
-
                 $mail = new OrderUpdateConfirmation($requestMail);
-                Mail::to($to_email)
-                    ->send($mail);
+                Mail::to($to_email)->send($mail);
                 
                 $mail2 = new OrderUpdate($requestMail);
-                Mail::to($to_emailAdmin)
-                    ->cc($to_emailAdmin2)
-                    ->send($mail2);
+                Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
+
                 $order->update($request->all());
+                
+                if ($order->filled === 'Yes' && $order->currencytb && $order->amountb) {
+                    $amount = str_replace([' ', ','], '', $order->amountb);
+                    $amount = (float)$amount;   
+                    
+                    $currency = strtoupper($order->currencytb);  
+                    $apiKey = env('EXCHANGE_RATE_API_KEY');
+                    $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
+    
+                    $response = Http::get($exchangeRateAPI);
+                    
+                    if ($response->successful()) {
+                        $rate = isset($response->json()['conversion_rates']['USD']) 
+                                ? $response->json()['conversion_rates']['USD'] 
+                                : 0;
+                        if (is_numeric($rate)) {
+                            $convertedAmount = bcmul($amount, $rate, 2);  
+                            $order->converted = $convertedAmount;
+                            $order->save();
+                        } else {
+                            Log::error('Invalid exchange rate for currency ' . $currency);
+                        }
+                    } else {
+                        Log::error('Exchange Rate API failed for currency ' . $currency);
+                    }
+                }
             }
         }
-        return redirect()->route('admin.orders')->with ('update','Order Updated Successfully');
+    
+        return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
     }
+    
+    
     public function orderdeatils($id){
         $data['orderData'] =Order::find($id);
         return view('Admin.orderdetail',$data);
