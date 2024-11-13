@@ -89,7 +89,9 @@
                                             <th>Product</th>
                                             <th>Currency Pair</th>
                                             <th>Amount to Buy</th>
+                                            <th>Currency Buy</th>
                                             <th>Amount to Sell</th>
+                                            <th>Currency Sell</th>
                                             <th>Target Price</th>
                                             <th>Order Date</th>
                                             <th>Order Filled</th>
@@ -114,11 +116,17 @@
                                                 @endif
                                             </td>
                                             <td>
+
+                                            </td>
+                                            <td>
                                                 @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
                                                     {{ $order['quantity'] }}
                                                 @else
                                                     {{ $order['amountts'] }}
                                                 @endif
+                                            </td>
+                                            <td>
+                                                
                                             </td>
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
