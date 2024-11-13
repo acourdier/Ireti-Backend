@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confetti Animation</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            background-color: #ffffff;
+            opacity: 1;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const colors = [
+        "#FF6633", "#FFB399", "#FF33FF", "#FFFF99", "#00B3E6", "#E6B333", "#3366E6", "#999966", "#99FF99", "#B34D4D",
+        "#80B300", "#809900", "#E6B3B3", "#6680B3", "#66991A", "#FF99E6", "#CCFF1A", "#FF1A66", "#E6331A", "#33FFCC",
+        "#66994D", "#B366CC", "#4D8000", "#B33300", "#CC80CC", "#66664D", "#991AFF", "#E666FF", "#4DB3FF", "#1AB399",
+        "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#999933",
+        "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF",
+        "#FF6633", "#FFB399", "#FF33FF", "#FFFF99", "#00B3E6", "#E6B333", "#3366E6", "#999966", "#99FF99", "#B34D4D",
+        "#80B300", "#809900", "#E6B3B3", "#6680B3", "#66991A", "#FF99E6", "#CCFF1A", "#FF1A66", "#E6331A", "#33FFCC",
+        "#66994D", "#B366CC", "#4D8000", "#B33300", "#CC80CC", "#66664D", "#991AFF", "#E666FF", "#4DB3FF", "#1AB399",
+        "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#999933",
+        "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF",
+        "#4C4CFF", "#9999FF", "#B366FF", "#1A66CC", "#FF4D66", "#B300B3", "#B300FF", "#E63366", "#33CCCC", "#66FFCC",
+        "#6666E6", "#FF9999", "#669966", "#4D4D4D", "#B33333", "#FF6666", "#99FF99", "#FF9933", "#999999", "#FFFF33",
+        "#FF9999", "#FF3333", "#993333", "#99FF99", "#66B2FF", "#FF99CC", "#33FF99", "#E6FF33", "#E6B3CC", "#669999",
+        "#CC33FF", "#336699", "#33CCFF", "#996699", "#FFFF66", "#CC33CC", "#66FF99", "#FF6666", "#FF3399", "#6633FF",
+        "#9933CC", "#FF33CC", "#FF9933", "#9966FF", "#339966", "#CCFFCC", "#6633CC", "#FFFF66", "#CC66FF", "#FF3399",
+        "#99CCFF", "#FF6699", "#CC6699", "#6633FF", "#FF3399", "#FF3366", "#9966CC", "#99FF33", "#666666", "#FF3366",
+        "#66CCFF", "#FF99FF", "#CC9933", "#339933", "#FF9966", "#9999CC", "#6666CC", "#3399FF", "#33FF66", "#CC9999"
+    ];
+    
+    
+        function createConfetti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+
+            // Random color
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random position
+            confetti.style.left = Math.random() * 100 + "vw";
+            
+            // Random width and height
+            const size = Math.random() * 10 + 5; // Min 5px, max 15px
+            confetti.style.width = size + "px";
+            confetti.style.height = (Math.random() * 10 + 5) + "px"; // Height between 5px and 15px
+
+            // Random shape (circle or square)
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = "50%"; // Make it a circle
+            }
+
+            // Random fall speed
+            confetti.style.animationDuration = (Math.random() * 1 + 2) + "s"; // Between 3s and 5s
+
+            // Initial rotation
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation ends
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        setInterval(createConfetti, 1); 
+    </script>
+</body>
+</html>
