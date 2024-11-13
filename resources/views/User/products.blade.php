@@ -331,6 +331,19 @@
                                                     class="form-control">
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <div class="mt-3">
+                                                <label for="currencytb">Choose Currency to Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @foreach ($currencies as $currency)
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-12">
                                             <div class="mt-3">
                                                 <label for="Incoterm">Incoterm</label>
@@ -436,6 +449,19 @@
                                                 <label for="targetpm">Price Target Per Unit</label>
                                                 <input type="text" required name="targetp" id="targetpm"
                                                     class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="mt-3">
+                                                <label for="currencytb">Choose Currency to Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @foreach ($currencies as $currency)
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12">
