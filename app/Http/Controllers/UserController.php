@@ -98,6 +98,7 @@ class UserController extends Controller
                 $amountb = $targetPrice * $quantity;
                
                 $order['amountb'] = $amountb;
+                $order['currencytb'] =$Request->input('currencytb');
                 
             }
             
@@ -106,6 +107,7 @@ class UserController extends Controller
                 $amountts = $targetPrice * $quantity;
               
                 $order['amountts'] = $amountts;
+                $order['currencyts'] =$Request->input('currencyts');
                 
    
             }

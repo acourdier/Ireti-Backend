@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('secondcurrency')->nullable();
             $table->string('currencytb')->nullable();
             $table->string('amountb')->nullable();
-            // $table->string('currencyts')->nullable();
+            $table->string('currencyts')->nullable();
             $table->string('amountts')->nullable();
             $table->string('targetp')->nullable();
             $table->string('underlying')->nullable();

@@ -116,7 +116,7 @@
                                                 @endif
                                             </td>
                                             <td>
-
+                                            {{$order['currencytb']}}
                                             </td>
                                             <td>
                                                 @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
@@ -126,7 +126,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                
+                                            {{$order['currencyts']}}
                                             </td>
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
