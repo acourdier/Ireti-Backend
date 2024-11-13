@@ -23,9 +23,9 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi small mb-0">Product Type</p>
-                                    <p class="mb-0 small">{{ $orderData->FundType }}</p>
+                                   
                                 </div>
-                                @if($orderData->FundType=="FX")
+                                @if(isset($orderData['FundType']) && $orderData['FundType'])
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font small font-semi mb-0">Order Number</p>
                                     <p class="mb-0 small">{{ $orderData->id }}</p>
@@ -54,7 +54,7 @@
                                     <p class="font-semi mb-0 small">Amount to Sell</p>
                                     <p class="mb-0 small">{{ $orderData->amountts }}</p>
                                 </div>
-                                @elseif($orderData->FundType=="Soft Commodities")
+                                @elseif(isset($orderData['FundType']) && $orderData['FundType'] == "Soft Commodities")
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi mb-0 small">Underlying</p>
                                     <p class="mb-0 small">{{ $orderData->underlying }}</p>
