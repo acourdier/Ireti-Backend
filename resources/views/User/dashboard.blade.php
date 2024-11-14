@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-xxl-6 mt-3">
                                 <div class="green p-4 text-white rounded-4 h-100">
-                                    <p class="mb-0 font-bold fs-2">${{$sumfilledorders}}</p>
+                                    <p class="mb-0 font-bold fs-2">${{$sumfilledordersFormatted}}</p>
                                     <p class="mb-0 font-bold fs-5">Total Executed YTD in USD</p>
 
                                 </div>

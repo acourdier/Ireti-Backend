@@ -41,9 +41,10 @@ class UserController extends Controller
         $sumfilledorders = Order::where('status', 1)
         ->where('userid', $userId)
         ->sum('converted');
+        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
 
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
-        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
+        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledordersFormatted'=> $sumfilledordersFormatted]);
     }
     public function notifications(){
         $userId = auth()->id();

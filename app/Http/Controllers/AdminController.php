@@ -40,11 +40,12 @@ class AdminController extends Controller
 
         $sumfilledorders = Order::where('status', 1)
         ->sum('converted');
+        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
 
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
         ->orderBy('id', 'desc')->paginate(5);
-        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
+        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledordersFormatted'=> $sumfilledordersFormatted]);
     }
     public function notifications(){
         $data = notification::leftjoin('users','notifications.userid','=','users.id')
