@@ -90,31 +90,39 @@ class UserController extends Controller
        
          
         if (in_array($fundType, ['Soft Commodities','Oil and oil Derivatives','Metals'])) {
-            
-          
             if ($buySell == 'Buy') {
-               
-               
-                $amountb = $targetPrice * $quantity;
-               
-                $order['amountb'] = $amountb;
-                $order['currencytb'] =$Request->input('currencytb');
-                
+                $quantity = str_replace(' ', '', $quantity);
+                $targetPrice = str_replace(' ', '', $targetPrice);
+                if (!is_numeric($targetPrice)) {
+                    $targetPrice = 0; 
+                }
+                if (!is_numeric($quantity)) {
+                    $quantity = 0; 
+                }         
+                $targetPrice = (string)$targetPrice;
+                $quantity = (string)$quantity;
+                $amountbRaw = bcmul($targetPrice, $quantity, 10);
+                $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
+                $order['amountb'] = $amountbFormatted;
+                $order['currencytb'] = $Request->input('currencytb');
             }
             
             if ($buySell == 'Sell') {
-            
-                $amountts = $targetPrice * $quantity;
-              
-                $order['amountts'] = $amountts;
-                $order['currencyts'] =$Request->input('currencyts');
-                
-   
+                $quantity = str_replace(' ', '', $quantity);
+                $targetPrice = str_replace(' ', '', $targetPrice);
+                if (!is_numeric($targetPrice)) {
+                    $targetPrice = 0; 
+                }
+                if (!is_numeric($quantity)) {
+                    $quantity = 0; 
+                }           
+                $targetPrice = (string)$targetPrice;
+                $quantity = (string)$quantity;
+                $amounttsRaw = bcmul($targetPrice, $quantity, 10);
+                $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
+                $order['amountts'] = $amounttsFormatted;
+                $order['currencyts'] = $Request->input('currencyts');
             }
-
-            
-
-            
         }
        
         $userid = auth()->user()->id;
