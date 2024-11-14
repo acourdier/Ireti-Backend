@@ -25,26 +25,86 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    public function dashboard(){
+    public function dashboard() {
         $userId = auth()->id();
-
+    
+        $counttotalorders = Order::where('status', 1)
+            ->where('filled', 'No')
+            ->where('userid', $userId)
+            ->count();
+    
+        $countfilledorders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->count();
+    
+        $sumfilledorders = Order::where('status', 1)
+            ->where('userid', $userId)
+            ->sum('converted');
+        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
+    
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+            ->where('userid', $userId)
+            ->where('status', 1)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+    
+        $totalOrdersData = array_fill(0, 12, null); 
+        $totalConvertedData = array_fill(0, 12, null); 
+        $monthsData = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+    
+        foreach ($ordersPerMonth as $order) {
+            $monthIndex = $order->month - 1; 
+            $totalOrdersData[$monthIndex] = $order->totalOrders;
+            $totalConvertedData[$monthIndex] = $order->totalConverted;
+        }
+        $data = Order::where('userid', $userId)->where('status', 1)->orderBy('id', 'desc')->paginate(5);
         $counttotalorders = Order::where('status', 1)
         ->where('filled', 'No')
         ->where('userid', $userId)
         ->count();
 
         $countfilledorders = Order::where('filled', 'YES')
-        ->where('status', 1)
-        ->where('userid', $userId)
-        ->count();
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->count();
 
-        $sumfilledorders = Order::where('status', 1)
-        ->where('userid', $userId)
-        ->sum('converted');
+        $previousMonthTotalOrders = Order::where('status', 1)
+            ->where('userid', $userId)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
 
-        $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
-        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
+        $previousMonthFilledOrders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
+
+        $totalOrdersChange = $previousMonthTotalOrders ? (($counttotalorders - $previousMonthTotalOrders) / $previousMonthTotalOrders) * 100 : 0;
+        $filledOrdersChange = $previousMonthFilledOrders ? (($countfilledorders - $previousMonthFilledOrders) / $previousMonthFilledOrders) * 100 : 0;
+
+        $totalOrdersChangeFormatted = round($totalOrdersChange, 2);
+        $filledOrdersChangeFormatted = round($filledOrdersChange, 2);
+
+        return view('User.dashboard', [
+            'orders' => $data,
+            'totalorders' => $counttotalorders,
+            'filledorders' => $countfilledorders,
+            'totalOrdersChange' => $totalOrdersChangeFormatted,
+            'filledOrdersChange' => $filledOrdersChangeFormatted,
+            'sumfilledordersFormatted' => $sumfilledordersFormatted,
+            'totalOrdersData' => $totalOrdersData,
+            'totalConvertedData' => $totalConvertedData,
+            'monthsData' => $monthsData
+        ]);
     }
+    
+    
+    
+    
     public function notifications(){
         $userId = auth()->id();
 
@@ -90,31 +150,39 @@ class UserController extends Controller
        
          
         if (in_array($fundType, ['Soft Commodities','Oil and oil Derivatives','Metals'])) {
-            
-          
             if ($buySell == 'Buy') {
-               
-               
-                $amountb = $targetPrice * $quantity;
-               
-                $order['amountb'] = $amountb;
-                $order['currencytb'] =$Request->input('currencytb');
-                
+                $quantity = str_replace(' ', '', $quantity);
+                $targetPrice = str_replace(' ', '', $targetPrice);
+                if (!is_numeric($targetPrice)) {
+                    $targetPrice = 0; 
+                }
+                if (!is_numeric($quantity)) {
+                    $quantity = 0; 
+                }         
+                $targetPrice = (string)$targetPrice;
+                $quantity = (string)$quantity;
+                $amountbRaw = bcmul($targetPrice, $quantity, 10);
+                $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
+                $order['amountb'] = $amountbFormatted;
+                $order['currencytb'] = $Request->input('currencytb');
             }
             
             if ($buySell == 'Sell') {
-            
-                $amountts = $targetPrice * $quantity;
-              
-                $order['amountts'] = $amountts;
-                $order['currencyts'] =$Request->input('currencyts');
-                
-   
+                $quantity = str_replace(' ', '', $quantity);
+                $targetPrice = str_replace(' ', '', $targetPrice);
+                if (!is_numeric($targetPrice)) {
+                    $targetPrice = 0; 
+                }
+                if (!is_numeric($quantity)) {
+                    $quantity = 0; 
+                }           
+                $targetPrice = (string)$targetPrice;
+                $quantity = (string)$quantity;
+                $amounttsRaw = bcmul($targetPrice, $quantity, 10);
+                $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
+                $order['amountts'] = $amounttsFormatted;
+                $order['currencyts'] = $Request->input('currencyts');
             }
-
-            
-
-            
         }
        
         $userid = auth()->user()->id;

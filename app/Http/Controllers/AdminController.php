@@ -29,22 +29,71 @@ use Illuminate\Support\Facades\Log;
 class AdminController extends Controller
 {
 
-    public function dashboard(){
+    public function dashboard() {
+        $counttotalorders = Order::where('status', 1)
+            ->where('filled', 'No')
+            ->count();
+    
+        $countfilledorders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->count();
+    
+        $sumfilledorders = Order::where('status', 1)
+            ->sum('converted');
+        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
+    
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+            ->where('status', 1)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+    
+        $totalOrdersData = array_fill(0, 12, null); 
+        $totalConvertedData = array_fill(0, 12, null); 
+        $monthsData = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+    
+        foreach ($ordersPerMonth as $order) {
+            $monthIndex = $order->month - 1; 
+            $totalOrdersData[$monthIndex] = $order->totalOrders;
+            $totalConvertedData[$monthIndex] = $order->totalConverted;
+        }
+        $data = Order::where('status', 1)->orderBy('id', 'desc')->paginate(5);
         $counttotalorders = Order::where('status', 1)
         ->where('filled', 'No')
         ->count();
 
-
         $countfilledorders = Order::where('filled', 'YES')
-        ->count();
+            ->where('status', 1)
+            ->count();
 
-        $sumfilledorders = Order::where('status', 1)
-        ->sum('quantity');
+        $previousMonthTotalOrders = Order::where('status', 1)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
 
-        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
-        ->select('users.fname','orders.*')
-        ->orderBy('id', 'desc')->paginate(5);
-        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
+        $previousMonthFilledOrders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
+
+        $totalOrdersChange = $previousMonthTotalOrders ? (($counttotalorders - $previousMonthTotalOrders) / $previousMonthTotalOrders) * 100 : 0;
+        $filledOrdersChange = $previousMonthFilledOrders ? (($countfilledorders - $previousMonthFilledOrders) / $previousMonthFilledOrders) * 100 : 0;
+
+        $totalOrdersChangeFormatted = round($totalOrdersChange, 2);
+        $filledOrdersChangeFormatted = round($filledOrdersChange, 2);
+
+        return view('Admin.dashboard', [
+            'orders' => $data,
+            'totalorders' => $counttotalorders,
+            'filledorders' => $countfilledorders,
+            'totalOrdersChange' => $totalOrdersChangeFormatted,
+            'filledOrdersChange' => $filledOrdersChangeFormatted,
+            'sumfilledordersFormatted' => $sumfilledordersFormatted,
+            'totalOrdersData' => $totalOrdersData,
+            'totalConvertedData' => $totalConvertedData,
+            'monthsData' => $monthsData
+        ]);
     }
     public function notifications(){
         $data = notification::leftjoin('users','notifications.userid','=','users.id')

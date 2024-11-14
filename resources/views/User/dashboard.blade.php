@@ -19,33 +19,51 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Live Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</span></p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
-                                            <span>+25% <i class="fa-solid mx-1 text-success fa-arrow-up"></i></span>
+                                            <span>
+                                                @if ($totalOrdersChange > 0)
+                                                    +{{ abs($totalOrdersChange) }}% <i class="fa-solid mx-1 text-success fa-arrow-up"></i>
+                                                @elseif ($totalOrdersChange < 0)
+                                                    -{{ abs($totalOrdersChange) }}% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i>
+                                                @else
+                                                    0% <i class="fa-solid mx-1 text-muted fa-arrow-right"></i>
+                                                @endif
+                                            </span>
                                             Order Last Month
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-6 col-xxl-3 mt-3">
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Filled Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</span></p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
-                                            <span>-25% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i></span>
+                                            <span>
+                                                @if ($filledOrdersChange > 0)
+                                                    +{{ abs($filledOrdersChange) }}% <i class="fa-solid mx-1 text-success fa-arrow-up"></i>
+                                                @elseif ($filledOrdersChange < 0)
+                                                    -{{ abs($filledOrdersChange) }}% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i>
+                                                @else
+                                                    0% <i class="fa-solid mx-1 text-muted fa-arrow-right"></i>
+                                                @endif
+                                            </span>
                                             Last Month Payments
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-xxl-6 mt-3">
                                 <div class="green p-4 text-white rounded-4 h-100">
-                                    <p class="mb-0 font-bold fs-2">${{$sumfilledorders}}</p>
+                                    <p class="mb-0 font-bold fs-2">${{$sumfilledordersFormatted}}</p>
                                     <p class="mb-0 font-bold fs-5">Total Executed YTD in USD</p>
 
                                 </div>
@@ -159,20 +177,32 @@
     @include('../Template.jslinks')
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
+    
+        const monthsData = @json($monthsData); 
+        const totalOrdersData = @json($totalOrdersData); 
+        const totalConvertedData = @json($totalConvertedData);
+    
+        const currentMonth = new Date().getMonth(); 
+    
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: monthsData, 
             datasets: [{
-                label: 'Dataset 1',
+                label: 'Total Orders',
                 borderColor: '#AA7D09',
-                data: [21, 23, 24, 27, 29, 31, 29, 27, 25, 23, 21, 25,],
-                tension: 0.4
+                data: totalOrdersData,
+                yAxisID: 'y',
+                tension: 0.4,
+                fill: false
             }, {
-                label: 'Dataset 2',
+                label: 'Total Converted',
                 borderColor: '#7AC231',
-                data: [22, 24, 21, 28, 30, 28, 26, 24, 22, 26, 24, 28,],
-                tension: 0.4
+                data: totalConvertedData, 
+                yAxisID: 'y1',
+                tension: 0.4,
+                fill: false
             }]
         };
+    
         const config = {
             type: 'line',
             data: data,
@@ -184,6 +214,10 @@
                 },
                 stacked: false,
                 scales: {
+                    x: {
+                        type: 'category',
+                        labels: monthsData, 
+                    },
                     y: {
                         type: 'linear',
                         display: true,
@@ -192,16 +226,41 @@
                             drawOnChartArea: false,
                         },
                     },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {
+                                return value.toLocaleString(); 
+                            }
+                        },
+                    },
                 },
                 plugins: {
                     legend: {
                         display: false,
+                        position: 'top',
                     }
                 },
+                elements: {
+                    line: {
+                        tension: 0.4
+                    }
+                }
             },
         };
+    
         new Chart(ctx, config);
     </script>
+    
+    
+    
+    
 </body>
 
 </html>

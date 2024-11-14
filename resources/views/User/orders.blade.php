@@ -5,17 +5,6 @@
     @include('../Template.csslinks')
     <title>My Orders</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100vh;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
         .confetti {
             position: fixed;
             top: 0;
@@ -68,7 +57,7 @@
                     // Stop the confetti animation after 5 seconds
                     setTimeout(() => {
                         clearInterval(confettiInterval);
-                    }, 5000);
+                    }, 3000);
                 </script>
                 @endif
                 @if (session('Delete'))

@@ -63,12 +63,10 @@
                                                 <td>{{$order['currencytb']}}</td>
                                                 <td>{{ $order['amountts'] }}</td>
                                                 <td>
-                                                    @if ($order['firstcurrency'] !== $order['currencytb'])
-                                                        {{ $order['firstcurrency'] }}
-                                                    @elseif ($order['secondcurrency'] !== $order['currencytb'])
-                                                        {{ $order['secondcurrency'] }}
+                                                    @if (is_null($order['currencyts']) && $order['FundType'] == 'FX')
+                                                        {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : $order['secondcurrency'] }}
                                                     @else
-                                                        {{ $order['currencytb'] }}
+                                                        {{ $order['currencyts'] }}
                                                     @endif
                                                 </td>
                                                 <td>{{$order['targetp']}}</td>
@@ -79,9 +77,7 @@
                                                         {{$order['filled']}}
                                                     </button>
                                                 </td>
-                                                <td>
-                                                    {{$order['converted']}}
-                                                </td>
+                                                <td>{{$order['converted']}}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <i class="fa-solid fa-ellipsis-vertical pointer"
