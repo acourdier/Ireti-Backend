@@ -24,28 +24,69 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function dashboard(){
         $userId = auth()->id();
-
+    
         $counttotalorders = Order::where('status', 1)
-        ->where('filled', 'No')
-        ->where('userid', $userId)
-        ->count();
-
+            ->where('filled', 'No')
+            ->where('userid', $userId)
+            ->count();
+    
         $countfilledorders = Order::where('filled', 'YES')
-        ->where('status', 1)
-        ->where('userid', $userId)
-        ->count();
-
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->count();
+    
         $sumfilledorders = Order::where('status', 1)
-        ->where('userid', $userId)
-        ->sum('converted');
+            ->where('userid', $userId)
+            ->sum('converted');
         $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
-
+    
+        // Retrieve data grouped by month with proper month names
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+            ->where('userid', $userId)
+            ->where('status', 1)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+    
+        // Map the month numbers (1-12) to month names
+        $monthNames = [
+            1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April',
+            5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',
+            9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December'
+        ];
+    
+        // Create arrays for the total orders and converted data
+        $totalOrdersData = array_fill(0, 12, 0); // Initialize with 0s
+        $totalConvertedData = array_fill(0, 12, 0); // Initialize with 0s
+        $monthsData = array_fill(0, 12, ''); // Initialize with empty strings
+    
+        foreach ($ordersPerMonth as $order) {
+            $monthIndex = $order->month - 1; // Convert month number to array index (0-11)
+            $totalOrdersData[$monthIndex] = $order->totalOrders;
+            $totalConvertedData[$monthIndex] = $order->totalConverted;
+            $monthsData[$monthIndex] = $monthNames[$order->month]; // Store month name
+        }
+    
+        // Ensure that monthsData is a complete set of month names (January to December)
+        $fullMonthNames = array_values($monthNames); // From January to December
+    
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
-        return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledordersFormatted'=> $sumfilledordersFormatted]);
+    
+        return view('User.dashboard', [
+            'orders' => $data,
+            'totalorders' => $counttotalorders,
+            'filledorders' => $countfilledorders,
+            'sumfilledordersFormatted' => $sumfilledordersFormatted,
+            'totalOrdersData' => $totalOrdersData,
+            'totalConvertedData' => $totalConvertedData,
+            'monthsData' => $fullMonthNames
+        ]);
     }
+    
+    
+    
     public function notifications(){
         $userId = auth()->id();
 
