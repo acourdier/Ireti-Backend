@@ -108,25 +108,15 @@
                                                 </div>
                                             </td>
                                             <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
+                                            <td>{{ $order['amountb'] }}</td>
+                                            <td>{{$order['currencytb']}}</td>
+                                            <td>{{ $order['amountts'] }}</td>
                                             <td>
-                                                @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
-                                                    {{ $order['quantity'] }}
+                                                @if (is_null($order['currencyts']) && $order['FundType'] == 'FX')
+                                                    {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : $order['secondcurrency'] }}
                                                 @else
-                                                    {{ $order['amountb'] }}
+                                                    {{ $order['currencyts'] }}
                                                 @endif
-                                            </td>
-                                            <td>
-                                            {{$order['currencytb']}}
-                                            </td>
-                                            <td>
-                                                @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
-                                                    {{ $order['quantity'] }}
-                                                @else
-                                                    {{ $order['amountts'] }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                            {{$order['currencyts']}}
                                             </td>
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
@@ -201,74 +191,54 @@
                 const canvas = document.getElementById('fw');
     
                 // Fireworks instance
-                let fireworks;
-                popup.style.display = 'block';
-    
-    fireworks = new Fireworks.default(canvas, {
-        speed: 5,
-        acceleration: 1.05,           
-        friction: 0.98,             
-        gravity: 1.2,                
-        particles: 350,               
-        trace: 2,                     
-        explosion: 12,
-        sound: {
-            enabled: true,
-            files: [
-                'https://fireworks.js.org/sounds/explosion0.mp3',
-                'https://fireworks.js.org/sounds/explosion1.mp3',
-                'https://fireworks.js.org/sounds/explosion2.mp3'
-            ],
-            volume: { min: 50, max: 50 }
-        },
-    });
-    fireworks.start();
-                // Check for the Laravel success session (from server-side)
-                @if (session('success'))
-                    // Open the modal and start fireworks
-                    popup.style.display = 'block';
-    
-                    fireworks = new Fireworks.default(canvas, {
-                        speed: 5,
-                        acceleration: 1.05,           
-                        friction: 0.98,             
-                        gravity: 1.2,                
-                        particles: 350,               
-                        trace: 2,                     
-                        explosion: 12,
-                        sound: {
-                            enabled: true,
-                            files: [
-                                'https://fireworks.js.org/sounds/explosion0.mp3',
-                                'https://fireworks.js.org/sounds/explosion1.mp3',
-                                'https://fireworks.js.org/sounds/explosion2.mp3'
-                            ],
-                            volume: { min: 50, max: 50 }
-                        },
+                let fireworks;    
+                fireworks.start();
+                    // Check for the Laravel success session (from server-side)
+                    @if (session('success'))
+                        // Open the modal and start fireworks
+                        popup.style.display = 'block';
+        
+                        fireworks = new Fireworks.default(canvas, {
+                            speed: 5,
+                            acceleration: 1.05,           
+                            friction: 0.98,             
+                            gravity: 1.2,                
+                            particles: 350,               
+                            trace: 2,                     
+                            explosion: 12,
+                            sound: {
+                                enabled: true,
+                                files: [
+                                    'https://fireworks.js.org/sounds/explosion0.mp3',
+                                    'https://fireworks.js.org/sounds/explosion1.mp3',
+                                    'https://fireworks.js.org/sounds/explosion2.mp3'
+                                ],
+                                volume: { min: 50, max: 50 }
+                            },
+                        });
+                        fireworks.start();
+        
+                        // Stop fireworks and close modal after 2 seconds
+                        setTimeout(function () {
+                            fireworks.stop();
+                            popup.style.display = 'none';
+                        }, 5000); // 2 seconds
+                    @endif
+        
+                    // Close the modal manually with close button
+                    closeBtn.addEventListener('click', function () {
+                        fireworks.stop();
+                        popup.style.display = 'none';
                     });
-                    fireworks.start();
-    
-                    // Stop fireworks and close modal after 2 seconds
-                    setTimeout(function () {
-                        fireworks.stop();
-                        popup.style.display = 'none';
-                    }, 5000); // 2 seconds
-                @endif
-    
-                // Close the modal manually with close button
-                closeBtn.addEventListener('click', function () {
-                    fireworks.stop();
-                    popup.style.display = 'none';
+        
+                    // Close the modal if clicking outside of the modal content
+                    window.addEventListener('click', function (e) {
+                        if (e.target == popup) {
+                            fireworks.stop();
+                            popup.style.display = 'none';
+                        }
+                    });
                 });
-    
-                // Close the modal if clicking outside of the modal content
-                window.addEventListener('click', function (e) {
-                    if (e.target == popup) {
-                        fireworks.stop();
-                        popup.style.display = 'none';
-                    }
-                });
-            });
     </script>
 
     @include('../Template.jslinks')
