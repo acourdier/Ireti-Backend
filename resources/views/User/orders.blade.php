@@ -5,54 +5,28 @@
     @include('../Template.csslinks')
     <title>My Orders</title>
     <style>
-        <style>
-
-        /* Modal styles */
-        .modal {
-            display: none;
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .confetti {
             position: fixed;
-            z-index: 1;
-            left: 0;
             top: 0;
-            width: 400px;
-            height: 300px;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: #ffffff;
+            opacity: 1;
+            animation: fall 5s linear infinite;
         }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 500px;
-            position: relative;
-            text-align: center;
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 1; }
         }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: #000000;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        canvas {
-            display: block;
-            width: 460px;
-            height: 300px;
-            background-color: #fff;
-        }
-    </style>
     </style>
 </head>
 
@@ -65,6 +39,36 @@
                 @if (session('success'))
                 <script>
                     swal("Good job!", "{{ session('success') }}", "success");
+
+                    // Confetti animation function
+                    const colors = ["#2F7630", "#38833A"];
+
+                    function createConfetti() {
+                        const confetti = document.createElement("div");
+                        confetti.classList.add("confetti");
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.left = Math.random() * 100 + "vw";
+                        const size = Math.random() * 10 + 5; 
+                        confetti.style.width = size + "px";
+                        confetti.style.height = (Math.random() * 10 + 5) + "px"; 
+                        if (Math.random() > 0.5) {
+                            confetti.style.borderRadius = "50%"; 
+                        }
+                        confetti.style.animationDuration = (Math.random() * 1 + 2) + "s"; 
+                        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                        document.body.appendChild(confetti);
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 5000);
+                    }
+
+                    // Start the confetti animation only when session is successful
+                    const confettiInterval = setInterval(createConfetti, 1);
+
+                    // Stop the confetti animation after 5 seconds
+                    setTimeout(() => {
+                        clearInterval(confettiInterval);
+                    }, 5000);
                 </script>
                 @endif
                 @if (session('Delete'))
@@ -172,7 +176,6 @@
     </div>
 
     @include('../Template.jslinks')
-
 </body>
 
 </html>
