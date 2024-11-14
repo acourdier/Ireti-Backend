@@ -43,7 +43,6 @@ class UserController extends Controller
             ->sum('converted');
         $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
     
-        // Retrieve the sum of 'converted' and count of orders for each month
         $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
             ->where('userid', $userId)
             ->where('status', 1)
@@ -51,27 +50,51 @@ class UserController extends Controller
             ->orderBy('month')
             ->get();
     
-        // Initialize arrays for 12 months
-        $totalOrdersData = array_fill(0, 12, null); // Initialize with null (no data)
-        $totalConvertedData = array_fill(0, 12, null); // Initialize with null (no data)
+        $totalOrdersData = array_fill(0, 12, null); 
+        $totalConvertedData = array_fill(0, 12, null); 
         $monthsData = [
             'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
         ];
     
-        // Map database results to the correct month (index 0 = January, 11 = December)
         foreach ($ordersPerMonth as $order) {
-            $monthIndex = $order->month - 1; // Convert month number (1-12) to index (0-11)
+            $monthIndex = $order->month - 1; 
             $totalOrdersData[$monthIndex] = $order->totalOrders;
             $totalConvertedData[$monthIndex] = $order->totalConverted;
         }
-    
-        // Pass the data to the view
         $data = Order::where('userid', $userId)->where('status', 1)->orderBy('id', 'desc')->paginate(5);
-        
+        $counttotalorders = Order::where('status', 1)
+        ->where('filled', 'No')
+        ->where('userid', $userId)
+        ->count();
+
+        $countfilledorders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->count();
+
+        $previousMonthTotalOrders = Order::where('status', 1)
+            ->where('userid', $userId)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
+
+        $previousMonthFilledOrders = Order::where('filled', 'YES')
+            ->where('status', 1)
+            ->where('userid', $userId)
+            ->whereMonth('created_at', now()->subMonth()->month)
+            ->count();
+
+        $totalOrdersChange = $previousMonthTotalOrders ? (($counttotalorders - $previousMonthTotalOrders) / $previousMonthTotalOrders) * 100 : 0;
+        $filledOrdersChange = $previousMonthFilledOrders ? (($countfilledorders - $previousMonthFilledOrders) / $previousMonthFilledOrders) * 100 : 0;
+
+        $totalOrdersChangeFormatted = round($totalOrdersChange, 2);
+        $filledOrdersChangeFormatted = round($filledOrdersChange, 2);
+
         return view('User.dashboard', [
             'orders' => $data,
             'totalorders' => $counttotalorders,
             'filledorders' => $countfilledorders,
+            'totalOrdersChange' => $totalOrdersChangeFormatted,
+            'filledOrdersChange' => $filledOrdersChangeFormatted,
             'sumfilledordersFormatted' => $sumfilledordersFormatted,
             'totalOrdersData' => $totalOrdersData,
             'totalConvertedData' => $totalConvertedData,

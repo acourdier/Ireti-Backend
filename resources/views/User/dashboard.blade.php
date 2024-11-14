@@ -19,30 +19,48 @@
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Live Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$totalorders}}</span></p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
-                                            <span>+25% <i class="fa-solid mx-1 text-success fa-arrow-up"></i></span>
+                                            <span>
+                                                @if ($totalOrdersChange > 0)
+                                                    +{{ abs($totalOrdersChange) }}% <i class="fa-solid mx-1 text-success fa-arrow-up"></i>
+                                                @elseif ($totalOrdersChange < 0)
+                                                    -{{ abs($totalOrdersChange) }}% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i>
+                                                @else
+                                                    0% <i class="fa-solid mx-1 text-muted fa-arrow-right"></i>
+                                                @endif
+                                            </span>
                                             Order Last Month
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-6 col-xxl-3 mt-3">
                                 <div class="lgreen p-4 rounded-4 h-100">
                                     <p class="mb-0">Total Filled Orders</p>
                                     <div class="d-flex">
-                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</p>
+                                        <p class="mb-0"><span class="fs-3 font-semi me-2">{{$filledorders}}</span></p>
                                     </div>
                                     <div class="text-center lime py-1 mt-2 rounded-pill">
                                         <p class="mb-0 ex-small">
-                                            <span>-25% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i></span>
+                                            <span>
+                                                @if ($filledOrdersChange > 0)
+                                                    +{{ abs($filledOrdersChange) }}% <i class="fa-solid mx-1 text-success fa-arrow-up"></i>
+                                                @elseif ($filledOrdersChange < 0)
+                                                    -{{ abs($filledOrdersChange) }}% <i class="fa-solid mx-1 text-danger fa-arrow-down"></i>
+                                                @else
+                                                    0% <i class="fa-solid mx-1 text-muted fa-arrow-right"></i>
+                                                @endif
+                                            </span>
                                             Last Month Payments
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-xxl-6 mt-3">
                                 <div class="green p-4 text-white rounded-4 h-100">
                                     <p class="mb-0 font-bold fs-2">${{$sumfilledordersFormatted}}</p>
