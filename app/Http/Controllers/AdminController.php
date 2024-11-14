@@ -177,22 +177,22 @@ class AdminController extends Controller
 
                 $order->update($request->all());
                 
-                if ($order->filled === 'Yes' && $order->currencytb && $order->amountb) {
-                    $amount = str_replace([' ', ','], '', $order->amountb);
-                    $amount = (float)$amount;   
-                    
-                    $currency = strtoupper($order->currencytb);  
+                function convertAmount($currency, $amount, $order) {
+                    $amount = str_replace([' ', ','], '', $amount);
+                    $amount = (float)$amount;
+                    $currency = strtoupper($currency);
                     $apiKey = env('EXCHANGE_RATE_API_KEY');
                     $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
-    
+                
                     $response = Http::get($exchangeRateAPI);
-                    
+                
                     if ($response->successful()) {
-                        $rate = isset($response->json()['conversion_rates']['USD']) 
-                                ? $response->json()['conversion_rates']['USD'] 
+                        $rate = isset($response->json()['conversion_rates']['USD'])
+                                ? $response->json()['conversion_rates']['USD']
                                 : 0;
+                
                         if (is_numeric($rate)) {
-                            $convertedAmount = bcmul($amount, $rate, 2);  
+                            $convertedAmount = bcmul($amount, $rate, 2);
                             $order->converted = $convertedAmount;
                             $order->save();
                         } else {
@@ -202,6 +202,16 @@ class AdminController extends Controller
                         Log::error('Exchange Rate API failed for currency ' . $currency);
                     }
                 }
+                
+                // Main conditional check
+                if ($order->filled === 'Yes') {
+                    if ($order->currencytb && $order->amountb) {
+                        convertAmount($order->currencytb, $order->amountb, $order);
+                    } elseif ($order->currencyts && $order->amountts) {
+                        convertAmount($order->currencyts, $order->amountts, $order);
+                    }
+                }
+                
             }
         }
     
