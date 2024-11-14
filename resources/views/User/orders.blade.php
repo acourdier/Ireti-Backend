@@ -5,54 +5,28 @@
     @include('../Template.csslinks')
     <title>My Orders</title>
     <style>
-        <style>
-
-        /* Modal styles */
-        .modal {
-            display: none;
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .confetti {
             position: fixed;
-            z-index: 1;
-            left: 0;
             top: 0;
-            width: 400px;
-            height: 300px;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: #ffffff;
+            opacity: 1;
+            animation: fall 5s linear infinite;
         }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 500px;
-            position: relative;
-            text-align: center;
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 1; }
         }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: #000000;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        canvas {
-            display: block;
-            width: 460px;
-            height: 300px;
-            background-color: #fff;
-        }
-    </style>
     </style>
 </head>
 
@@ -64,7 +38,37 @@
                 @include('../Template.usernav')
                 @if (session('success'))
                 <script>
-                    // swal("Good job!", "{{ session('success') }}", "success");
+                    swal("Good job!", "{{ session('success') }}", "success");
+
+                    // Confetti animation function
+                    const colors = ["#2F7630", "#38833A"];
+
+                    function createConfetti() {
+                        const confetti = document.createElement("div");
+                        confetti.classList.add("confetti");
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.left = Math.random() * 100 + "vw";
+                        const size = Math.random() * 10 + 5; 
+                        confetti.style.width = size + "px";
+                        confetti.style.height = (Math.random() * 10 + 5) + "px"; 
+                        if (Math.random() > 0.5) {
+                            confetti.style.borderRadius = "50%"; 
+                        }
+                        confetti.style.animationDuration = (Math.random() * 1 + 2) + "s"; 
+                        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                        document.body.appendChild(confetti);
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 5000);
+                    }
+
+                    // Start the confetti animation only when session is successful
+                    const confettiInterval = setInterval(createConfetti, 1);
+
+                    // Stop the confetti animation after 5 seconds
+                    setTimeout(() => {
+                        clearInterval(confettiInterval);
+                    }, 5000);
                 </script>
                 @endif
                 @if (session('Delete'))
@@ -108,25 +112,15 @@
                                                 </div>
                                             </td>
                                             <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
+                                            <td>{{ $order['amountb'] }}</td>
+                                            <td>{{$order['currencytb']}}</td>
+                                            <td>{{ $order['amountts'] }}</td>
                                             <td>
-                                                @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
-                                                    {{ $order['quantity'] }}
+                                                @if (is_null($order['currencyts']) && $order['FundType'] == 'FX')
+                                                    {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : $order['secondcurrency'] }}
                                                 @else
-                                                    {{ $order['amountb'] }}
+                                                    {{ $order['currencyts'] }}
                                                 @endif
-                                            </td>
-                                            <td>
-                                            {{$order['currencytb']}}
-                                            </td>
-                                            <td>
-                                                @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
-                                                    {{ $order['quantity'] }}
-                                                @else
-                                                    {{ $order['amountts'] }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                            {{$order['currencyts']}}
                                             </td>
                                             <td>{{$order['targetp']}}</td>
                                             <td>{{$order['created_at']}}</td>
@@ -180,99 +174,8 @@
             </div>
         </div>
     </div>
-    <!-- Popup Modal -->
-    <div id="fireworks-popup" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <!-- Fireworks canvas -->
-            <canvas id="fw"></canvas>
-            <p class="fw-semibold fs-4">Order validated Successfully</p>
-        </div>
-    </div>
-
-    <!-- Fireworks JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
-
-    <!-- Trigger button -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-                const popup = document.getElementById('fireworks-popup');
-                const closeBtn = document.querySelector('.close');
-                const canvas = document.getElementById('fw');
-    
-                // Fireworks instance
-                let fireworks;
-                popup.style.display = 'block';
-    
-    fireworks = new Fireworks.default(canvas, {
-        speed: 5,
-        acceleration: 1.05,           
-        friction: 0.98,             
-        gravity: 1.2,                
-        particles: 350,               
-        trace: 2,                     
-        explosion: 12,
-        sound: {
-            enabled: true,
-            files: [
-                'https://fireworks.js.org/sounds/explosion0.mp3',
-                'https://fireworks.js.org/sounds/explosion1.mp3',
-                'https://fireworks.js.org/sounds/explosion2.mp3'
-            ],
-            volume: { min: 50, max: 50 }
-        },
-    });
-    fireworks.start();
-                // Check for the Laravel success session (from server-side)
-                @if (session('success'))
-                    // Open the modal and start fireworks
-                    popup.style.display = 'block';
-    
-                    fireworks = new Fireworks.default(canvas, {
-                        speed: 5,
-                        acceleration: 1.05,           
-                        friction: 0.98,             
-                        gravity: 1.2,                
-                        particles: 350,               
-                        trace: 2,                     
-                        explosion: 12,
-                        sound: {
-                            enabled: true,
-                            files: [
-                                'https://fireworks.js.org/sounds/explosion0.mp3',
-                                'https://fireworks.js.org/sounds/explosion1.mp3',
-                                'https://fireworks.js.org/sounds/explosion2.mp3'
-                            ],
-                            volume: { min: 50, max: 50 }
-                        },
-                    });
-                    fireworks.start();
-    
-                    // Stop fireworks and close modal after 2 seconds
-                    setTimeout(function () {
-                        fireworks.stop();
-                        popup.style.display = 'none';
-                    }, 5000); // 2 seconds
-                @endif
-    
-                // Close the modal manually with close button
-                closeBtn.addEventListener('click', function () {
-                    fireworks.stop();
-                    popup.style.display = 'none';
-                });
-    
-                // Close the modal if clicking outside of the modal content
-                window.addEventListener('click', function (e) {
-                    if (e.target == popup) {
-                        fireworks.stop();
-                        popup.style.display = 'none';
-                    }
-                });
-            });
-    </script>
 
     @include('../Template.jslinks')
-
 </body>
 
 </html>

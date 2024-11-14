@@ -40,7 +40,7 @@ class UserController extends Controller
 
         $sumfilledorders = Order::where('status', 1)
         ->where('userid', $userId)
-        ->sum('quantity');
+        ->sum('converted');
 
         $data = Order::where('userid', $userId)->where('status',1)->orderBy('id', 'desc')->paginate(5);
         return view('User.dashboard', ['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledorders'=> $sumfilledorders]);
