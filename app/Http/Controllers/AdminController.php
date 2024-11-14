@@ -39,7 +39,7 @@ class AdminController extends Controller
         ->count();
 
         $sumfilledorders = Order::where('status', 1)
-        ->sum('quantity');
+        ->sum('converted');
 
         $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
