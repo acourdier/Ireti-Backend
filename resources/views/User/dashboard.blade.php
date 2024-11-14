@@ -70,7 +70,9 @@
                                                     <th>Product</th>
                                                     <th>Currency Pair</th>
                                                     <th>Amount to Buy</th>
+                                                    <th>Currency Buy</th>
                                                     <th>Amount to Sell</th>
+                                                    <th>Currency Sell</th>
                                                     <th>Target Price</th>
                                                     <th>Order Date</th>
                                                     <th>Order Filled</th>
@@ -87,18 +89,14 @@
                                                         </div>
                                                     </td>
                                                     <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
+                                                    <td>{{ $order['amountb'] }}</td>
+                                                    <td>{{$order['currencytb']}}</td>
+                                                    <td>{{ $order['amountts'] }}</td>
                                                     <td>
-                                                        @if (is_null($order['amountb']) && $order['buysell'] == 'Buy')
-                                                            {{ $order['quantity'] }}
+                                                        @if (is_null($order['currencyts']) && $order['FundType'] == 'FX')
+                                                            {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : $order['secondcurrency'] }}
                                                         @else
-                                                            {{ $order['amountb'] }}
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if (is_null($order['amountts']) && $order['buysell'] == 'Sell')
-                                                            {{ $order['quantity'] }}
-                                                        @else
-                                                            {{ $order['amountts'] }}
+                                                            {{ $order['currencyts'] }}
                                                         @endif
                                                     </td>
                                                     <td>{{$order['targetp']}}</td>
