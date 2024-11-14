@@ -105,6 +105,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row justify-content-center align-items-center py-5">
+                    <div class="col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
+                        <h2 class="font-bold fs-2 green-text">ESG Investments</h2>
+                        <p>
+                            We provide tailored solutions for funds seeking to invest in ESG projects across Africa. Our local presence enables our partners to access projects that align with their specific investment policies and objectives.
+                            Our Investment process is designed to secure our partners investments against an adverse move on the FX markets while offering a full transparency on the allocation of the funds.
+                            
+                        </p>
+                        <div class="mt-4">
+                            <a href="{{route('ESGInvestments')}}"
+                            class="green-bg text-white  text-decoration-none me-3 px-4 py-3 rounded-3 opacity-hover font-bold fs-6">Learn
+                            More</a>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-8 col-md-5 pe-lg-5" data-aos="fade-up" data-aos-delay="300">
+                        <img src="{{asset('img/main.svg')}}" alt="main " class="w-100">
+                    </div>
+                </div>
             </div>
         </section>
         @include('Template.footer')
