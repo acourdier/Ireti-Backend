@@ -71,7 +71,7 @@
                                                     class="form-select">
                                                     <option selected disabled hidden>Choose Currency</option>
                                                     @foreach ($currencies as $currency)
-                                                    <option value="{{ $currency['currency']}}" {{ $currency['currency']}}>{{ $currency['currency']}}
+                                                    <option value="{{ $currency['currency']}}">{{ $currency['currency']}}
                                                     </option>
                                                     @endforeach
                                                 </select>
@@ -159,7 +159,7 @@
                                                 <label for="underlying">Select Underlying Commodity</label>
                                                 <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($softs as $soft)
-                                                    <option {{ $soft['underlaying']}}>{{ $soft['underlaying']}}</option>
+                                                    <option value="{{ $soft['underlaying']}}">{{ $soft['underlaying']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -178,10 +178,10 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6" id="buysell1">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <select name="buysell" id="underlying" class="form-select">
+                                                <select name="buysell" id="underlying" class="form-select sel-sellbuy">
                                                     <option value="Buy" >Buy</option>
                                                     <option value="Sell" >Sell</option>
                                                 </select>
@@ -212,10 +212,23 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12" id="buy1">
                                             <div class="mt-3">
-                                                <label for="currencytb">Choose Currency to Buy</label>
-                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Buy</label>
+                                                <select  name="currencytb" class="form-select">
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @foreach ($currencies as $currency)
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 d-none" id="sell1">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Sell</label>
+                                                <select  name="currencyts" class="form-select">
                                                 <option selected disabled hidden>Choose Currency</option>
                                                 @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}">
@@ -278,7 +291,7 @@
                                                 <label for="underlying">Select Underlying Commodity</label>
                                                 <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($oils as $oil)
-                                                    <option {{ $oil['underlaying']}}>{{ $oil['underlaying']}}</option>
+                                                    <option value="{{ $oil['underlaying']}}">{{ $oil['underlaying']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -300,7 +313,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <select name="buysell" id="underlying" class="form-select">
+                                                <select name="buysell" id="underlying" class="form-select sel-sellbuy1">
                                                     <option value="Buy" >Buy</option>
                                                     <option value="Sell" >Sell</option>
                                                 </select>
@@ -331,10 +344,23 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12" id="buy2">
                                             <div class="mt-3">
-                                                <label for="currencytb">Choose Currency to Buy</label>
+                                                <label for="currencytb" id="currencyLabel_2">Choose Currency to Buy</label>
                                                 <select id="currencytb" name="currencytb" class="form-select">
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @foreach ($currencies as $currency)
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 d-none" id="sell2">
+                                            <div class="mt-3">
+                                                <label for="currencyts" id="currencyLabel_2">Choose Currency to Sell</label>
+                                                <select id="currencyts" name="currencyts" class="form-select">
                                                 <option selected disabled hidden>Choose Currency</option>
                                                 @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}">
@@ -398,7 +424,7 @@
                                                 <label for="underlying">Select Underlying Commodity</label>
                                                 <select name="underlying" id="underlying" class="form-select">
                                                     @foreach ($metals as $metal)
-                                                    <option {{ $metal['underlaying']}}>{{ $metal['underlaying']}}</option>
+                                                    <option value="{{ $metal['underlaying']}}">{{ $metal['underlaying']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -420,7 +446,7 @@
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="cell">Buy/Sell</label>
-                                                <select name="buysell" id="underlying" class="form-select">
+                                                <select name="buysell" id="underlying" class="form-select sel-sellbuy2">
                                                     <option value="Buy" >Buy</option>
                                                     <option value="Sell" >Sell</option>
                                                 </select>
@@ -451,10 +477,23 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12" id="buy3">
                                             <div class="mt-3">
-                                                <label for="currencytb">Choose Currency to Buy</label>
+                                                <label for="currencytb" id="currencyLabel_3">Choose Currency to Buy</label>
                                                 <select id="currencytb" name="currencytb" class="form-select">
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @foreach ($currencies as $currency)
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 d-none" id="sell3">
+                                            <div class="mt-3">
+                                                <label for="currencyts" id="currencyLabel_3">Choose Currency to Sell</label>
+                                                <select id="currencyts" name="currencyts" class="form-select">
                                                 <option selected disabled hidden>Choose Currency</option>
                                                 @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}">
@@ -745,6 +784,7 @@
         // Initialize with default values
         updatecurrencytb();
 
+
     </script>
 
 
@@ -752,3 +792,91 @@
 </body>
 
 </html>
+<script>
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    
+        const buysellDropdown = document.querySelector('.sel-sellbuy');  
+        const buyDiv = document.getElementById('buy1');
+        const sellDiv = document.getElementById('sell1');
+
+        
+        buysellDropdown.addEventListener('change', function() {
+            if (buysellDropdown.value === 'Buy') {
+                
+                buyDiv.classList.remove('d-none');
+                sellDiv.classList.add('d-none');
+            } else if (buysellDropdown.value === 'Sell') {
+               
+                sellDiv.classList.remove('d-none');
+                buyDiv.classList.add('d-none');
+            }
+        });
+
+        
+        if (buysellDropdown.value === 'Buy') {
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+        } else if (buysellDropdown.value === 'Sell') {
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+    
+    const buysellDropdown = document.querySelector('.sel-sellbuy1');  
+    const buyDiv = document.getElementById('buy2');
+    const sellDiv = document.getElementById('sell2');
+
+    
+    buysellDropdown.addEventListener('change', function() {
+        if (buysellDropdown.value === 'Buy') {
+            
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+        } else if (buysellDropdown.value === 'Sell') {
+           
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+
+    
+    if (buysellDropdown.value === 'Buy') {
+        buyDiv.classList.remove('d-none');
+        sellDiv.classList.add('d-none');
+    } else if (buysellDropdown.value === 'Sell') {
+        sellDiv.classList.remove('d-none');
+        buyDiv.classList.add('d-none');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const buysellDropdown = document.querySelector('.sel-sellbuy2');  
+    const buyDiv = document.getElementById('buy3');
+    const sellDiv = document.getElementById('sell3');
+
+    
+    buysellDropdown.addEventListener('change', function() {
+        if (buysellDropdown.value === 'Buy') {
+            
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+        } else if (buysellDropdown.value === 'Sell') {
+           
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+
+    
+    if (buysellDropdown.value === 'Buy') {
+        buyDiv.classList.remove('d-none');
+        sellDiv.classList.add('d-none');
+    } else if (buysellDropdown.value === 'Sell') {
+        sellDiv.classList.remove('d-none');
+        buyDiv.classList.add('d-none');
+    }
+});
+</script>

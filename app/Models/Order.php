@@ -14,7 +14,7 @@ class Order extends Model
         'FundType',
         'currencytb',
         'amountb',
-        // 'currencyts',
+        'currencyts',
         'firstcurrency',
         'secondcurrency',
         'amountts',
