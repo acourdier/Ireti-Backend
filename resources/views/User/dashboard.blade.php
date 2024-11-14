@@ -159,19 +159,26 @@
     @include('../Template.jslinks')
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
+    
+        const monthsData = @json($monthsData); 
+        const totalOrdersData = @json($totalOrdersData); 
+        const totalConvertedData = @json($totalConvertedData);
+    
+        const currentMonth = new Date().getMonth(); 
+    
         const data = {
-            labels: @json($monthsData), // Use the dynamically generated month names
+            labels: monthsData, 
             datasets: [{
                 label: 'Total Orders',
                 borderColor: '#AA7D09',
-                data: @json($totalOrdersData), // Inject the total orders data
+                data: totalOrdersData,
                 yAxisID: 'y',
                 tension: 0.4,
                 fill: false
             }, {
                 label: 'Total Converted',
                 borderColor: '#7AC231',
-                data: @json($totalConvertedData), // Inject the total converted data
+                data: totalConvertedData, 
                 yAxisID: 'y1',
                 tension: 0.4,
                 fill: false
@@ -189,6 +196,10 @@
                 },
                 stacked: false,
                 scales: {
+                    x: {
+                        type: 'category',
+                        labels: monthsData, 
+                    },
                     y: {
                         type: 'linear',
                         display: true,
@@ -207,22 +218,28 @@
                         ticks: {
                             beginAtZero: true,
                             callback: function(value) {
-                                return value.toLocaleString(); // Format numbers with commas
+                                return value.toLocaleString(); 
                             }
                         },
                     },
                 },
                 plugins: {
                     legend: {
-                        display: true,
+                        display: false,
                         position: 'top',
                     }
                 },
+                elements: {
+                    line: {
+                        tension: 0.4
+                    }
+                }
             },
         };
     
         new Chart(ctx, config);
     </script>
+    
     
     
     
