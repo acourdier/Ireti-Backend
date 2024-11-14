@@ -156,20 +156,32 @@
     @include('../Template.jslinks')
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
+    
+        const monthsData = @json($monthsData); 
+        const totalOrdersData = @json($totalOrdersData); 
+        const totalConvertedData = @json($totalConvertedData);
+    
+        const currentMonth = new Date().getMonth(); 
+    
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: monthsData, 
             datasets: [{
-                label: 'Dataset 1',
+                label: 'Total Orders',
                 borderColor: '#AA7D09',
-                data: [21, 23, 24, 27, 29, 31, 29, 27, 25, 23, 21, 25,],
-                tension: 0.4
+                data: totalOrdersData,
+                yAxisID: 'y',
+                tension: 0.4,
+                fill: false
             }, {
-                label: 'Dataset 2',
+                label: 'Total Converted',
                 borderColor: '#7AC231',
-                data: [22, 24, 21, 28, 30, 28, 26, 24, 22, 26, 24, 28,],
-                tension: 0.4
+                data: totalConvertedData, 
+                yAxisID: 'y1',
+                tension: 0.4,
+                fill: false
             }]
         };
+    
         const config = {
             type: 'line',
             data: data,
@@ -181,6 +193,10 @@
                 },
                 stacked: false,
                 scales: {
+                    x: {
+                        type: 'category',
+                        labels: monthsData, 
+                    },
                     y: {
                         type: 'linear',
                         display: true,
@@ -189,14 +205,35 @@
                             drawOnChartArea: false,
                         },
                     },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {
+                                return value.toLocaleString(); 
+                            }
+                        },
+                    },
                 },
                 plugins: {
                     legend: {
                         display: false,
+                        position: 'top',
                     }
                 },
+                elements: {
+                    line: {
+                        tension: 0.4
+                    }
+                }
             },
         };
+    
         new Chart(ctx, config);
     </script>
 </body>

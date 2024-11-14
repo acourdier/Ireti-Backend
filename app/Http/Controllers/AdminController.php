@@ -29,23 +29,53 @@ use Illuminate\Support\Facades\Log;
 class AdminController extends Controller
 {
 
-    public function dashboard(){
+    public function dashboard() {
+    
         $counttotalorders = Order::where('status', 1)
-        ->where('filled', 'No')
-        ->count();
-
-
+            ->where('filled', 'No')
+            ->count();
+    
         $countfilledorders = Order::where('filled', 'YES')
-        ->count();
-
+            ->where('status', 1)
+            ->count();
+    
         $sumfilledorders = Order::where('status', 1)
-        ->sum('converted');
+            ->sum('converted');
         $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
-
-        $data =Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
-        ->select('users.fname','orders.*')
-        ->orderBy('id', 'desc')->paginate(5);
-        return view('Admin.dashboard',['orders' => $data ,'totalorders'=> $counttotalorders, 'filledorders'=>$countfilledorders , 'sumfilledordersFormatted'=> $sumfilledordersFormatted]);
+    
+        // Retrieve the sum of 'converted' and count of orders for each month
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+            ->where('status', 1)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+    
+        // Initialize arrays for 12 months
+        $totalOrdersData = array_fill(0, 12, null); // Initialize with null (no data)
+        $totalConvertedData = array_fill(0, 12, null); // Initialize with null (no data)
+        $monthsData = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+    
+        // Map database results to the correct month (index 0 = January, 11 = December)
+        foreach ($ordersPerMonth as $order) {
+            $monthIndex = $order->month - 1; // Convert month number (1-12) to index (0-11)
+            $totalOrdersData[$monthIndex] = $order->totalOrders;
+            $totalConvertedData[$monthIndex] = $order->totalConverted;
+        }
+    
+        // Pass the data to the view
+        $data = Order::where('status', 1)->orderBy('id', 'desc')->paginate(5);
+        
+        return view('User.dashboard', [
+            'orders' => $data,
+            'totalorders' => $counttotalorders,
+            'filledorders' => $countfilledorders,
+            'sumfilledordersFormatted' => $sumfilledordersFormatted,
+            'totalOrdersData' => $totalOrdersData,
+            'totalConvertedData' => $totalConvertedData,
+            'monthsData' => $monthsData
+        ]);
     }
     public function notifications(){
         $data = notification::leftjoin('users','notifications.userid','=','users.id')
