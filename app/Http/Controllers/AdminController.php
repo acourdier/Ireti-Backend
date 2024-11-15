@@ -216,15 +216,15 @@ class AdminController extends Controller
                           ->first();
             
             if ($data1) {
-                // $requestMail = $data1;
-                // $to_email = $data1->email;
-                // $to_emailAdmin = env('ADMIN_EMAIL');
-                // $to_emailAdmin2 = env('ADMIN2_EMAIL');
-                // $mail = new OrderUpdateConfirmation($requestMail);
-                // Mail::to($to_email)->send($mail);
+                $requestMail = $data1;
+                $to_email = $data1->email;
+                $to_emailAdmin = env('ADMIN_EMAIL');
+                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $mail = new OrderUpdateConfirmation($requestMail);
+                Mail::to($to_email)->send($mail);
                 
-                // $mail2 = new OrderUpdate($requestMail);
-                // Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
+                $mail2 = new OrderUpdate($requestMail);
+                Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
 
                 $buySell = $request->input('buysell');
 

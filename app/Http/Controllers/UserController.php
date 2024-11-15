@@ -219,18 +219,18 @@ class UserController extends Controller
             $data1 = Order::leftjoin('users','orders.userid','=','users.id')
             ->where('orders.id',$request->id)->first();
             if ($data1) {
-                // $requestMail = $data1;
-                // $to_email = $data1->email;
-                // $mail = new OrderUpdateConfirmation($requestMail);
-                // Mail::to($to_email)
-                //     ->send($mail);
+                $requestMail = $data1;
+                $to_email = $data1->email;
+                $mail = new OrderUpdateConfirmation($requestMail);
+                Mail::to($to_email)
+                    ->send($mail);
                 
-                // $to_emailAdmin = env('ADMIN_EMAIL');
-                // $to_emailAdmin2 = env('ADMIN2_EMAIL');
-                // $mail2 = new OrderUpdate($requestMail);
-                // Mail::to($to_emailAdmin)
-                //     ->cc($to_emailAdmin2)
-                //     ->send($mail2);
+                $to_emailAdmin = env('ADMIN_EMAIL');
+                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $mail2 = new OrderUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                    ->cc($to_emailAdmin2)
+                    ->send($mail2);
             }
             $buySell = $request->input('buysell');
 
