@@ -151,9 +151,9 @@
                                                 class="form-control" value="{{$orders['grade']}}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-3">
                                         <label for="buysell">Buy/Sell</label>
-                                        <select name="buysell" id="buysell" class="form-select">
+                                        <select name="buysell" id="buysell" class="form-select sel-sellbuy">
                                             <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
                                             <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
                                         </select>
@@ -201,6 +201,45 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12" id="buy1">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Buy</label>
+                                                <select  name="currencytb" id="firstbuy" class="form-select">
+                                                @if(!empty($orders['currencytb']))   
+                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
+                                                @else
+                                                <option selected disabled hidden>Choose Currency</option>    
+                                                @endif
+                                                @foreach ($currencies as $currency)
+                                                 @if($orders['currencytb'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                     @endif   
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 d-none" id="sell1">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Sell</label>
+                                                <select  name="currencyts" id="firstbuy" class="form-select">
+                                                @if(!empty($orders['currencyts']))    
+                                                <option value="{{ $orders['currencyts'] }}">{{ $orders['currencyts'] }}</option>
+                                                @else
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @endif
+                                                @foreach ($currencies as $currency)
+
+                                                @if($orders['currencyts'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <label for="details">Additional Details</label>
@@ -253,9 +292,9 @@
                                                 class="form-control" value="{{$orders['grade']}}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-3">
                                         <label for="buysell">Buy/Sell</label>
-                                        <select name="buysell" id="buysell" class="form-select">
+                                        <select name="buysell" id="buysell" class="form-select sel-sellbuy2">
                                             <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
                                             <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
                                         </select>
@@ -303,6 +342,45 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6" id="buy3">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_3">Choose Currency to Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                @if(!empty($orders['currencytb']))
+                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
+                                                @else
+                                                <option selected disabled hidden>Choose Currency</option>    
+                                                @endif
+                                                @foreach ($currencies as $currency)
+
+                                                    @IF($orders['currencytb'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 d-none" id="sell3">
+                                            <div class="mt-3">
+                                                <label for="currencyts" id="currencyLabel_3">Choose Currency to Sell</label>
+                                                <select id="currencyts" name="currencyts" class="form-select">
+                                                @if(!empty($orders['currencyts']))
+                                                <option value="{{ $orders['currencyts']}}">{{ $orders['currencyts'] }}</option>
+                                                @else
+                                                <option selected disabled hidden>Choose Currency</option>                
+                                                @endif
+                                                @foreach ($currencies as $currency)
+                                                   @if($orders['currencyts'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <label for="details">Additional Details</label>
@@ -355,9 +433,9 @@
                                                 class="form-control" value="{{$orders['grade']}}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-3">
                                         <label for="buysell">Buy/Sell</label>
-                                        <select name="buysell" id="buysell" class="form-select">
+                                        <select name="buysell" id="buysell" class="form-select sel-sellbuy1">
                                             <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
                                             <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
                                         </select>
@@ -405,6 +483,45 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12" id="buy2">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_2">Choose Currency to Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                @if(!empty($orders['currencytb']))
+                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
+                                                @else
+                                                <option selected disabled hidden>Choose Currency</option>
+                                                @endif
+                                                @foreach ($currencies as $currency)
+                                                    @if($orders['currencytb'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 d-none" id="sell2">
+                                            <div class="mt-3">
+                                                <label for="currencyts" id="currencyLabel_2">Choose Currency to Sell</label>
+                                                <select id="currencyts" name="currencyts" class="form-select">
+                                                @if(!empty($orders['currencyts']))   
+                                               
+                                                <option value="{{ $orders['currencyts']}}">{{ $orders['currencyts'] }}</option>
+                                                @else
+                                                    <option selected disabled hidden>Choose Currency</option>
+                                                @endif
+                                                @foreach ($currencies as $currency)
+                                                    @if($orders['currencyts'] != $currency['currency'])
+                                                        <option value="{{ $currency['currency'] }}">
+                                                            {{ $currency['currency'] }}
+                                                        </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     <div class="col-12">
                                         <div class="mt-3">
                                             <label for="details">Additional Details</label>
@@ -659,3 +776,92 @@
 </body>
 
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const buysellDropdown = document.querySelector('.sel-sellbuy');  
+    const buyDiv = document.getElementById('buy1');
+    const sellDiv = document.getElementById('sell1');
+ 
+    
+    buysellDropdown.addEventListener('change', function() {
+        if (buysellDropdown.value === 'Buy') {
+            
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+           
+        } else if (buysellDropdown.value === 'Sell') {
+           
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+
+    
+    if (buysellDropdown.value === 'Buy') {
+        buyDiv.classList.remove('d-none');
+        sellDiv.classList.add('d-none');
+    } else if (buysellDropdown.value === 'Sell') {
+        sellDiv.classList.remove('d-none');
+        buyDiv.classList.add('d-none');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const buysellDropdown = document.querySelector('.sel-sellbuy2');  
+    const buyDiv = document.getElementById('buy3');
+    const sellDiv = document.getElementById('sell3');
+
+    
+    buysellDropdown.addEventListener('change', function() {
+        if (buysellDropdown.value === 'Buy') {
+            
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+        } else if (buysellDropdown.value === 'Sell') {
+           
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+
+    
+    if (buysellDropdown.value === 'Buy') {
+        buyDiv.classList.remove('d-none');
+        sellDiv.classList.add('d-none');
+    } else if (buysellDropdown.value === 'Sell') {
+        sellDiv.classList.remove('d-none');
+        buyDiv.classList.add('d-none');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const buysellDropdown = document.querySelector('.sel-sellbuy1');  
+    const buyDiv = document.getElementById('buy2');
+    const sellDiv = document.getElementById('sell2');
+
+    
+    buysellDropdown.addEventListener('change', function() {
+        if (buysellDropdown.value === 'Buy') {
+            
+            buyDiv.classList.remove('d-none');
+            sellDiv.classList.add('d-none');
+        } else if (buysellDropdown.value === 'Sell') {
+           
+            sellDiv.classList.remove('d-none');
+            buyDiv.classList.add('d-none');
+        }
+    });
+
+    
+    if (buysellDropdown.value === 'Buy') {
+        buyDiv.classList.remove('d-none');
+        sellDiv.classList.add('d-none');
+    } else if (buysellDropdown.value === 'Sell') {
+        sellDiv.classList.remove('d-none');
+        buyDiv.classList.add('d-none');
+    }
+});
+</script>    
