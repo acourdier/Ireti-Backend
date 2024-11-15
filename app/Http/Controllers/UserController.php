@@ -213,8 +213,6 @@ class UserController extends Controller
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
-        $quantity = $request->input('quantity');
-        $targetPrice = $request->input('targetp');
         if ($order) {
             $data1 = Order::leftjoin('users','orders.userid','=','users.id')
             ->where('orders.id',$request->id)->first();
@@ -247,10 +245,7 @@ class UserController extends Controller
             $order['amountb'] = $amountbFormatted;
             $order['quantity'] = $quantity;
             $order['targetp'] = $targetPrice;
-            $order['currencytb'] = $request->input('currencytb');
-            
-           
-          
+            $order['currencytb'] = $request->input('currencytb');              
              
            }
            if($buySell == 'Sell'){
@@ -271,15 +266,14 @@ class UserController extends Controller
            
            }
 
-          
-            
-
             $order->save();
-
-           
+    
+            return redirect()->route('user.orders')->with('update', 'Order Updated Successfully');
         }
-        return redirect()->route('user.orders')->with ('update','Order Updated Successfully');
+    
+        return redirect()->route('user.orders')->with('error', 'Order not found.');
     }
+    
     public function orderdeatils($id){
         $data['orderData'] =Order::find($id);
         return view('User.orderdeatils',$data);

@@ -27,7 +27,7 @@
                 @include('../Template.usernav')
                 @if (session('success'))
                 <script>
-                    swal("Good job!", "{{ session('success') }}", "success");
+                    swal("Good Job", "", "success");
 
                     // Confetti animation function
                     const colors = ["#2F7630", "#38833A"];

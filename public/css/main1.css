@@ -196,6 +196,9 @@ nav .green-text {
     transform: translate(-50%, 0%);
     width: max-content;
 }
+.swal-overlay {
+    background-color: transparent;
+  }
 @media screen and (max-width:992px) {
     .cus-dropdown {
         border: none;
