@@ -213,24 +213,55 @@ class UserController extends Controller
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
+        $quantity = $request->input('quantity');
+        $targetPrice = $request->input('targetp');
         if ($order) {
             $data1 = Order::leftjoin('users','orders.userid','=','users.id')
             ->where('orders.id',$request->id)->first();
-            if ($data1) {
-                $requestMail = $data1;
-                $to_email = $data1->email;
-                $mail = new OrderUpdateConfirmation($requestMail);
-                Mail::to($to_email)
-                    ->send($mail);
+            // if ($data1) {
+            //     $requestMail = $data1;
+            //     $to_email = $data1->email;
+            //     $mail = new OrderUpdateConfirmation($requestMail);
+            //     Mail::to($to_email)
+            //         ->send($mail);
                 
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
-                $mail2 = new OrderUpdate($requestMail);
-                Mail::to($to_emailAdmin)
-                    ->cc($to_emailAdmin2)
-                    ->send($mail2);
-            }
+            //     $to_emailAdmin = env('ADMIN_EMAIL');
+            //     $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            //     $mail2 = new OrderUpdate($requestMail);
+            //     Mail::to($to_emailAdmin)
+            //         ->cc($to_emailAdmin2)
+            //         ->send($mail2);
+            // }
+            $buySell = $request->input('buysell');
+
+           if($buySell == 'Buy'){
+
+            $amount=$quantity*$targetPrice;
+            $order['currencyts'] = '0';
+            $order['amountts'] = 0;
+            $order['amountb'] = $amount;
+            $order['currencytb'] = $request->input('currencytb');
+            
+           
+          
+             
+           }
+           if($buySell == 'Sell'){
+
+            $amount=$quantity*$targetPrice;
+            $order['amountb']=0;
+            $order['currencytb'] = '0';
+            $order['amountts'] = $amount;
+            $order['currencyts'] = $request->input('currencyts');
+           
+           }
+
+          
+            
+
             $order->update($request->all());
+
+           
         }
         return redirect()->route('user.orders')->with ('update','Order Updated Successfully');
     }
