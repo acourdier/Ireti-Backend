@@ -208,6 +208,8 @@ class AdminController extends Controller
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
+        $quantity = $request->input('quantity');
+        $targetPrice = $request->input('targetp');
         if ($order) {
             $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
                           ->where('orders.id', $request->id)
@@ -224,7 +226,48 @@ class AdminController extends Controller
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
 
-                $order->update($request->all());
+                $buySell = $request->input('buysell');
+
+                    if($buySell == 'Buy'){
+                    
+                        
+                        $quantity = str_replace(' ', '', $quantity);
+                        $targetPrice = str_replace(' ', '', $targetPrice);
+                        $targetPrice = (string)$targetPrice;
+                        $quantity = (string)$quantity;
+                        $amountbRaw = bcmul($targetPrice, $quantity, 10);
+                        $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
+                        $order['buysell'] = $buySell;
+                        $order['currencyts'] = '';
+                        $order['amountts'] = '';
+                        $order['amountb'] = $amountbFormatted;
+                        $order['quantity'] = $quantity;
+                        $order['targetp'] = $targetPrice;
+                        $order['currencytb'] = $request->input('currencytb');
+                        
+                    
+                    
+                        
+                    }
+                    if($buySell == 'Sell'){
+
+        
+                        $quantity = str_replace(' ', '', $quantity);
+                        $targetPrice = str_replace(' ', '', $targetPrice);
+                        $targetPrice = (string)$targetPrice;
+                        $quantity = (string)$quantity;
+                        $amounttsRaw = bcmul($targetPrice, $quantity, 10);
+                        $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
+                        $order['buysell'] = $buySell;
+                        $order['amountb']='';
+                        $order['currencytb'] = '';
+                        $order['amountts'] = $amounttsFormatted;
+                        $order['quantity'] = $quantity;
+                        $order['targetp'] = $targetPrice;
+                        $order['currencyts'] = $request->input('currencyts');
+                    
+                    }
+                $order->save();
                 
                 function convertAmount($currency, $amount, $order) {
                     $amount = str_replace([' ', ','], '', $amount);

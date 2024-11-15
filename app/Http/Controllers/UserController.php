@@ -211,49 +211,62 @@ class UserController extends Controller
         return view('user.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
 
-    public function updateorder(Request $request)
-    {
+    public function updateorder(Request $request){
         $order = Order::find($request->id);
         if ($order) {
-            $quantity = $request->input('quantity');
-            $targetPrice = $request->input('targetp');
-            $buySell = $request->input('buysell');
-    
-            // Update order fields based on Buy or Sell
-            if ($buySell == 'Buy') {
-                $amount = $quantity * $targetPrice;
-                $order->amountb = $amount;
-                $order->currencytb = $request->input('currencytb');
-                $order->currencyts = '';
-                $order->amountts = '';
-            } elseif ($buySell == 'Sell') {
-                $amount = $quantity * $targetPrice;
-                $order->amountts = $amount;
-                $order->currencyts = $request->input('currencyts');
-                $order->amountb = '';
-                $order->currencytb = '';
+            $data1 = Order::leftjoin('users','orders.userid','=','users.id')
+            ->where('orders.id',$request->id)->first();
+            if ($data1) {
+                $requestMail = $data1;
+                $to_email = $data1->email;
+                $mail = new OrderUpdateConfirmation($requestMail);
+                Mail::to($to_email)
+                    ->send($mail);
+                
+                $to_emailAdmin = env('ADMIN_EMAIL');
+                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $mail2 = new OrderUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                    ->cc($to_emailAdmin2)
+                    ->send($mail2);
             }
-    
-            // Save the updated order
+            $buySell = $request->input('buysell');
+
+           if($buySell == 'Buy'){
+            $quantity = str_replace(' ', '', $quantity);
+            $targetPrice = str_replace(' ', '', $targetPrice);
+            $targetPrice = (string)$targetPrice;
+            $quantity = (string)$quantity;
+            $amountbRaw = bcmul($targetPrice, $quantity, 10);
+            $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
+            $order['buysell'] = $buySell;
+            $order['currencyts'] = '';
+            $order['amountts'] = '';
+            $order['amountb'] = $amountbFormatted;
+            $order['quantity'] = $quantity;
+            $order['targetp'] = $targetPrice;
+            $order['currencytb'] = $request->input('currencytb');              
+             
+           }
+           if($buySell == 'Sell'){
+
+            $quantity = str_replace(' ', '', $quantity);
+            $targetPrice = str_replace(' ', '', $targetPrice);
+            $targetPrice = (string)$targetPrice;
+            $quantity = (string)$quantity;
+            $amounttsRaw = bcmul($targetPrice, $quantity, 10);
+            $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
+            $order['buysell'] = $buySell;
+            $order['amountb']='';
+            $order['currencytb'] = '';
+            $order['amountts'] = $amounttsFormatted;
+            $order['quantity'] = $quantity;
+            $order['targetp'] = $targetPrice;
+            $order['currencyts'] = $request->input('currencyts');
+           
+           }
+
             $order->save();
-    
-            // Optional: Email logic
-            $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
-                ->where('orders.id', $request->id)
-                ->first();
-    
-            // Uncomment and customize as needed
-            // if ($data1) {
-            //     $requestMail = $data1;
-            //     $to_email = $data1->email;
-            //     $mail = new OrderUpdateConfirmation($requestMail);
-            //     Mail::to($to_email)->send($mail);
-    
-            //     $to_emailAdmin = env('ADMIN_EMAIL');
-            //     $to_emailAdmin2 = env('ADMIN2_EMAIL');
-            //     $mail2 = new OrderUpdate($requestMail);
-            //     Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
-            // }
     
             return redirect()->route('user.orders')->with('update', 'Order Updated Successfully');
         }
