@@ -49,29 +49,29 @@
                                                 class="form-control d-none">
                                         </div>
                                     </div>
-                                    <div class="row gx-5 position-relative">
-                                        <div class="col-sm-6">
+                                    <div class="row gx-5 justify-content-center position-relative">
+                                        <div class="col-sm-3">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
-                                                <select name="firstcurrency" required id="firstcurrency" class="form-select">
+                                                <select name="firstcurrency" required id="firstcurrency" class="form-select py-4 fs-5 text-center">
                                                     <option selected disabled hidden>Choose Currency</option>
                                                     @foreach ($currencies as $currency)
-                                                        <option value="{{ $currency['currency'] }}">
+                                                        <option  value="{{ $currency['currency'] }}">
                                                             {{ $currency['currency'] }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                        <p class="position-absolute d-none d-sm-block mb-0 slash">/</p>
-                                        <div class="col-sm-6">
+                                        <p class="position-absolute d-none d-sm-block mb-0 fs-2 slash">/</p>
+                                        <div class="col-sm-3">
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose Second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
-                                                    class="form-select">
+                                                    class="form-select py-4 fs-5 text-center">
                                                     <option selected disabled hidden>Choose Currency</option>
                                                     @foreach ($currencies as $currency)
-                                                    <option value="{{ $currency['currency']}}">{{ $currency['currency']}}
+                                                    <option  value="{{ $currency['currency']}}">{{ $currency['currency']}}
                                                     </option>
                                                     @endforeach
                                                 </select>
