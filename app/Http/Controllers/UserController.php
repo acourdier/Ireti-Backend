@@ -213,6 +213,8 @@ class UserController extends Controller
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
+        $quantity = $request->input('quantity');
+        $targetPrice = $request->input('targetp');
         if ($order) {
             $data1 = Order::leftjoin('users','orders.userid','=','users.id')
             ->where('orders.id',$request->id)->first();
@@ -227,7 +229,7 @@ class UserController extends Controller
                 $to_emailAdmin2 = env('ADMIN2_EMAIL');
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)
-                    ->cc($to_emailAdmin2)
+                    ->Cc($to_emailAdmin2)
                     ->send($mail2);
             }
             $buySell = $request->input('buysell');
