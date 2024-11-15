@@ -14,7 +14,7 @@ Route::controller(WebController::class)->group(function(){
     Route::post('createuser','createuser')->name('createuser');
     Route::post('saveInquiry','saveInquiry')->name('saveInquiry');
     Route::get('fxMmanagement','fxMmanagement')->name('fxMmanagement');
-    Route::get('onlineInquiry','onlineInquiry')->name('onlineInquiry');
+    Route::get('ESGInvestments','ESGInvestments')->name('ESGInvestments');
     Route::get('onlineInquiry','onlineInquiry')->name('onlineInquiry');
     Route::get('liquidityProvider','liquidityProvider')->name('liquidityProvider');
     Route::get('NgoFlowOptimization','NgoFlowOptimization')->name('NgoFlowOptimization');

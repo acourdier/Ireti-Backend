@@ -51,6 +51,12 @@
                                 <img src="{{asset('img/icon3.svg')}}" alt="liquidity" class="me-2">
                                 <span>NGO Flow Optimization</span>
                             </a>
+                            <a href="{{route('ESGInvestments')}}"
+                                class="d-flex align-items-center text-decoration-none small py-2 text-black">
+                                <img src="{{asset('img/icon2.svg')}}" alt="liquidity" class="me-2">
+                                <span>ESG Investments</span>
+                            </a>
+                            
                         </div>
                     </li>
                     <li class="nav-item px-md-2">

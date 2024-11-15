@@ -40,6 +40,7 @@ footer {
 }
 .cus-dropdown {
     border: 1px solid #a1c1a2;
+    z-index: 99999;
     width: 258px;
     display: none;
 }

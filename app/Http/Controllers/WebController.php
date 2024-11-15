@@ -26,6 +26,9 @@ class WebController extends Controller
     public function NgoFlowOptimization(){
         return view('NgoFlowOptimization');
     }
+    public function ESGInvestments(){
+        return view('ESGInvestments');
+    }
     public function onlineInquiry(){
         $userId = session('userId');
         return view('onlineInquiry', compact('userId'));
