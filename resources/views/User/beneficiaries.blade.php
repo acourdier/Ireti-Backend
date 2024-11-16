@@ -12,21 +12,7 @@
             @include('../Template.usersidebar')
             <div class="rightmain">
                 @include('../Template.usernav')
-                @if (session('success'))
-                <script>
-                    swal("Good job!", "{{ session('success') }}", "success");
-                </script>
-                @endif
-                @if (session('Delete'))
-                <script>
-                    swal("Good job!", "{{ session('Delete') }}", "success");
-                </script>
-                @endif
-                @if (session('update'))
-                <script>
-                    swal("Good job!", "{{ session('update') }}", "success");
-                </script>
-                @endif
+                @include('Template.status-alert')
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 px-md-5">

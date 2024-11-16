@@ -12,16 +12,7 @@
             @include('../Template.sidebar')
             <div class="rightmain">
                 @include('../Template.adminnav')
-                @if (session('success'))
-                <script>
-                    swal("Good job!", "{{ session('success') }}", "success");
-                </script>
-                @endif
-                @if (session('reject'))
-                <script>
-                    swal("Good job!", "{{ session('reject') }}", "success");
-                </script>
-                @endif
+               @include('Template.status-alert')
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">                            

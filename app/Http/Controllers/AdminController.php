@@ -422,7 +422,7 @@ class AdminController extends Controller
     public function Deleteuser($id){
         $data =User::find($id);
         $data->delete();
-        return redirect()->route('admin.clients');
+        return redirect()->route('admin.clients')->with ('Delete','User Deleted Successfully');;
     }
     public function updateclient(Request $request){
         $request->validate([
