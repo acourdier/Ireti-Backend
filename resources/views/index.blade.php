@@ -9,11 +9,7 @@
 <body>
     @include('Template.navbar')
     <div>
-        @if (session('error'))
-        <script>
-            swal("Ooops!", "{{session('error')}}", "error");
-        </script>
-        @endif
+    @include('Template.status-alert')
         <section class="bg-grey">
             <div class="mycontainer py-5">
                 <div class="row justify-content-center align-items-center py-5">

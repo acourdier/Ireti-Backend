@@ -7,11 +7,9 @@
 </head>
 
 <body>
-    @if (session('success'))
-    <script>
-        swal("Good Job!", "{{session('success')}}", "success");
-    </script>
-    @endif
+
+    @include('Template.status-alert')
+    
     <div class="section">
         <div class="maindiv">
             @include('../Template.usersidebar')

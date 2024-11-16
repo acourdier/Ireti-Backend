@@ -25,51 +25,7 @@
             @include('../Template.usersidebar')
             <div class="rightmain">
                 @include('../Template.usernav')
-                @if (session('success'))
-                <script>
-                    swal("Good Job", "", "success");
-
-                    // Confetti animation function
-                    const colors = ["#2F7630", "#38833A"];
-
-                    function createConfetti() {
-                        const confetti = document.createElement("div");
-                        confetti.classList.add("confetti");
-                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                        confetti.style.left = Math.random() * 100 + "vw";
-                        const size = Math.random() * 10 + 5; 
-                        confetti.style.width = size + "px";
-                        confetti.style.height = (Math.random() * 10 + 5) + "px"; 
-                        if (Math.random() > 0.5) {
-                            confetti.style.borderRadius = "50%"; 
-                        }
-                        confetti.style.animationDuration = (Math.random() * 1 + 2) + "s"; 
-                        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                        document.body.appendChild(confetti);
-                        setTimeout(() => {
-                            confetti.remove();
-                        }, 5000);
-                    }
-
-                    // Start the confetti animation only when session is successful
-                    const confettiInterval = setInterval(createConfetti, 1);
-
-                    // Stop the confetti animation after 5 seconds
-                    setTimeout(() => {
-                        clearInterval(confettiInterval);
-                    }, 3000);
-                </script>
-                @endif
-                @if (session('Delete'))
-                <script>
-                    swal("Good job!", "{{ session('Delete') }}", "success");
-                </script>
-                @endif
-                @if (session('update'))
-                <script>
-                    swal("Good job!", "{{ session('update') }}", "success");
-                </script>
-                @endif
+                @include('Template.status-alert')
                 <div class="rightbottom">
                     <div class="container-fluid">
                         <div class="row px-3 ">
