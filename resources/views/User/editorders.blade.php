@@ -24,12 +24,12 @@
                                         <div class="col-md-6 d-none">
                                             <input type="text" name="id" value="{{ $orders['id'] }}">
                                         </div>
-                                        <div class="row gx-5 justify-content-center position-relative">
-                                        <div class="col-sm-3">
+                                     
+                                        <div class="col-md-6">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
                                                 <select name="firstcurrency" required id="firstcurrency"
-                                                class="form-select py-4 fs-5 text-center">
+                                                    class="form-control">
                                                     @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}"
                                                             {{ $currency['currency'] == $orders['firstcurrency'] ? 'selected' : '' }}>
@@ -39,11 +39,11 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-md-6">
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose Second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"
-                                                class="form-select py-4 fs-5 text-center">
+                                                    class="form-control">
                                                     @foreach ($currencies as $currency)
                                                         <option value="{{ $currency['currency'] }}"
                                                             {{ $currency['currency'] == $orders['secondcurrency'] ? 'selected' : '' }}>
@@ -52,7 +52,6 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mt-3">

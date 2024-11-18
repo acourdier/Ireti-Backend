@@ -223,37 +223,6 @@ textarea:focus {
     }
 }
 
-.swal-overlay--show-modal .swal-modal{
-
-    background: transparent;
-}
-
-.swal-icon--success:before{
-    display: none;
-}
-
-.swal-icon--success:after {
-
-    display: none;
-}
-
-.swal-icon--success__hide-corners {
-
-    display: none;
-}
-.swal-button {
-
-    display: none;
-
-}
-.swal-icon--success__line {
-
-    background-color:#2F7630;
-}
-.swal-icon--success__ring {
-
-    border-color: #2F7630;
-}
 @media screen and (max-width:400px) {
     .navbar-brand {
         max-width: 100px;

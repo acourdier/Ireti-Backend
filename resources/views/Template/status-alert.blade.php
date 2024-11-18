@@ -1,6 +1,6 @@
 @if (session('success'))
                 <script>
-                    swal("", "", "success");
+                    swal("Good Job", "", "success");
 
                     // Confetti animation function
                     const colors = ["#2F7630", "#38833A"];
@@ -21,14 +21,11 @@
                         document.body.appendChild(confetti);
                         setTimeout(() => {
                             confetti.remove();
-                            $(".swal-icon--success__line").hide();
-                            $(".swal-icon--success__ring").hide();
-                            $(".swal-icon").hide();
-                        }, 3000);
+                        }, 5000);
                     }
 
                     // Start the confetti animation only when session is successful
-                    const confettiInterval = setInterval(createConfetti, 10);
+                    const confettiInterval = setInterval(createConfetti, 1);
 
                     // Stop the confetti animation after 5 seconds
                     setTimeout(() => {
