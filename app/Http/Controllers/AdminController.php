@@ -218,10 +218,10 @@ class AdminController extends Controller
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-            // Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
-            // Mail::to($to_emailAdmin)
-            //     ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            //     ->send(new OrderUpdate($requestMail));
+            Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
+            Mail::to($to_emailAdmin)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                ->send(new OrderUpdate($requestMail));
     
             if (isset($data['quantity']) && $data['quantity'] != null) {
                 $quantity = str_replace(' ', '', $data['quantity']);
