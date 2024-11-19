@@ -4,6 +4,7 @@
         title: "",
         text: "",
         icon: "success",
+        timer:3000,
         buttons: false, 
     }).then(() => {
     });
