@@ -9,9 +9,6 @@ use App\Models\Currency;
 use App\Models\UnderLaying;
 use App\Models\Payment;
 use App\Models\notification;
-use App\Models\Director;
-use App\Models\Owner;
-use App\Models\Ubo;
 use App\Models\Beneficiaries;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmInvest;
@@ -19,7 +16,6 @@ use App\Mail\OrderFilled;
 use App\Mail\OrderFilledConfirmation;
 use App\Mail\OrderUpdate;
 use App\Mail\OrderUpdateConfirmation;
-use App\Mail\PaymentMail;
 use App\Mail\PaymentUpdate;
 use App\Mail\PaymentConfirmation;
 use Illuminate\Support\Facades\Mail;
@@ -205,123 +201,24 @@ class AdminController extends Controller
         return view('Admin.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
 
-
-    // public function updateorder(Request $request){
-    //     $order = Order::find($request->id);
-    //     $quantity = $request->input('quantity');
-    //     $targetPrice = $request->input('targetp');
-    //     $data = $request->all();
-    //     if ($order) {
-    //         $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
-    //                       ->where('orders.id', $request->id)
-    //                       ->first();
-            
-    //         if ($data1) {
-    //             $requestMail = $data1;
-    //             $to_email = $data1->email;
-    //             $to_emailAdmin = env('ADMIN_EMAIL');
-    //             $to_emailAdmin2 = env('ADMIN2_EMAIL');
-    //             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-    //             $mail = new OrderUpdateConfirmation($requestMail);
-    //             Mail::to($to_email)->send($mail);
-                
-    //             $mail2 = new OrderUpdate($requestMail);
-    //             Mail::to($to_emailAdmin)
-    //             ->cc([$to_emailAdmin2, $to_emailAdmin3])
-    //             ->send($mail2);
-    //             $buySell = $request->input('buysell');
-    //                 if($buySell == 'Buy'){
-    //                     $quantity = str_replace(' ', '', $quantity);
-    //                     $targetPrice = str_replace(' ', '', $targetPrice);
-    //                     $targetPrice = (string)$targetPrice;
-    //                     $quantity = (string)$quantity;
-    //                     $amountbRaw = bcmul($targetPrice, $quantity, 10);
-    //                     $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
-    //                     $order['buysell'] = $buySell;
-    //                     $order['currencyts'] = '';
-    //                     $order['amountts'] = '';
-    //                     $order['amountb'] = $amountbFormatted;
-    //                     $order['quantity'] = $quantity;
-    //                     $order['targetp'] = $targetPrice;
-    //                     $order['currencytb'] = $request->input('currencytb');
-    //                 }
-    //                 if($buySell == 'Sell'){
-    //                     $quantity = str_replace(' ', '', $quantity);
-    //                     $targetPrice = str_replace(' ', '', $targetPrice);
-    //                     $targetPrice = (string)$targetPrice;
-    //                     $quantity = (string)$quantity;
-    //                     $amounttsRaw = bcmul($targetPrice, $quantity, 10);
-    //                     $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
-    //                     $order['buysell'] = $buySell;
-    //                     $order['amountb']='';
-    //                     $order['currencytb'] = '';
-    //                     $order['amountts'] = $amounttsFormatted;
-    //                     $order['quantity'] = $quantity;
-    //                     $order['targetp'] = $targetPrice;
-    //                     $order['currencyts'] = $request->input('currencyts');
-    //                 }
-    //             $order->save();
-    //             function convertAmount($currency, $amount, $order) {
-    //                 $amount = str_replace([' ', ','], '', $amount);
-    //                 $amount = (float)$amount;
-    //                 $currency = strtoupper($currency);
-    //                 $apiKey = env('EXCHANGE_RATE_API_KEY');
-    //                 $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
-    //                 $response = Http::get($exchangeRateAPI);
-    //                 if ($response->successful()) {
-    //                     $rate = isset($response->json()['conversion_rates']['USD'])
-    //                             ? $response->json()['conversion_rates']['USD']
-    //                             : 0;
-                
-    //                     if (is_numeric($rate)) {
-    //                         $convertedAmount = bcmul($amount, $rate, 2);
-    //                         $order->converted = $convertedAmount;
-    //                         $order->save();
-    //                     } else {
-    //                         Log::error('Invalid exchange rate for currency ' . $currency);
-    //                     }
-    //                 } else {
-    //                     Log::error('Exchange Rate API failed for currency ' . $currency);
-    //                 }
-    //             }
-    //             if ($order->filled === 'Yes') {
-    //                 if ($order->currencytb && $order->amountb) {
-    //                     convertAmount($order->currencytb, $order->amountb, $order);
-    //                 } elseif ($order->currencyts && $order->amountts) {
-    //                     convertAmount($order->currencyts, $order->amountts, $order);
-    //                 }
-    //             }
-                
-    //         }
-    //     }
-    //     return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
-    // }
     public function updateorder(Request $request) {
         $order = Order::find($request->id);
         if (!$order) {
             return redirect()->route('admin.orders')->withErrors('Order not found');
         }
     
-        // Get all request inputs
         $data = $request->all();
-    
-        // Fetch order details
         $orderDetails = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
             ->where('orders.id', $request->id)
             ->first();
     
         if ($orderDetails) {
-            // Prepare mail
             $requestMail = $orderDetails;
             $to_email = $orderDetails->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-    
-            // Send Order Update Confirmation Email
             Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
-    
-            // Send Admin Notification Email
             Mail::to($to_emailAdmin)
                 ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send(new OrderUpdate($requestMail));
@@ -338,10 +235,8 @@ class AdminController extends Controller
                 $data['amountts'] = '';
                 $data['buysell'] = 'Buy';
                 $order->update($data);
-            //    print_r($order); die();
                 
             } elseif ($data['buysell'] == 'Sell') {
-                // Calculate amount for Sell
                 $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
                 $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
                 $data['amountb'] = '';
@@ -351,11 +246,8 @@ class AdminController extends Controller
                 $order->update(
                     $data
                 );
-            //    print_r($order); die();
-
             }
     
-            // Check if order is filled and process exchange rates
             if ($order->filled === 'Yes') {
                 if ($order->currencytb && $order->amountb) {
                     $this->convertAmount($order->currencytb, $order->amountb, $order);
@@ -443,22 +335,6 @@ class AdminController extends Controller
             $order->update(['status' => $request->status]);
         }
 
-        // $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
-        //     ->select('users.fname', 'users.email', 'investments.*')
-        //     ->where('investments.id', $order->id)
-        //     ->first();
-
-        // if ($data) {
-        //     $username = $data->fname;
-        //     $email = $data->email;
-        //     $requestMail = $request->all();
-        //     $requestMail['username'] = $username;
-        //     $to_email = $email;
-        //     $mail = new ConfirmInvest($requestMail);
-        //     Mail::to($to_email)
-        //         ->send($mail);
-        // }
-
         return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }
     public function investmentemail(Request $request){
@@ -542,8 +418,8 @@ class AdminController extends Controller
     }
     public function getCurrency($id, $bid){
         $Beneficiaries = Beneficiaries::where('userid', $id)
-                                      ->where('id', $bid)
-                                      ->get();
+        ->where('id', $bid)
+        ->get();
         return response()->json($Beneficiaries, 200);
     }
     public function savepayment(Request $request){
@@ -551,16 +427,6 @@ class AdminController extends Controller
         $request['userid'] = $userid;
         $payments = $request->all();
         Payment:: create($payments);
-
-        // $username=auth()->user()->fname;
-        // $requestMail = $request->all();
-        // $requestMail['username'] = $username;
-        // $to_email = env('ADMIN_EMAIL');
-        // $to_email1 = env('ADMIN2_EMAIL');
-        // $mail = new PaymentMail($requestMail);
-        // Mail::to($to_email)
-        //     ->cc($to_email1)
-        //     ->send($mail);
 
         return redirect()->route('admin.payments')->with ('success','Payment Added Successfully');
     }
@@ -594,7 +460,7 @@ class AdminController extends Controller
         if ($data1) {
             $requestMail = $data1;
             $to_email = env('ADMIN_EMAIL');
-            $to_email1 = env('ADMIN2_EMAIL');
+            $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
             $mail = new PaymentUpdate($requestMail);
             Mail::to($to_email)
@@ -602,21 +468,16 @@ class AdminController extends Controller
                 ->send($mail);
         }
 
-        // -----for user-------
         $data2 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')
         ->leftJoin('orders', 'payments.orderid', '=', 'orders.id')
         ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','orders.*','orders.id as oid','orders.created_at as orderdate' )
         ->where('payments.orderid',$id)
         ->first();
-        // print_r($data2); die();
 
         if ($data2) {
             $username=auth()->user()->fname;
             $status = $data2->status;
             $requestMail = $data2;
-            // $requestMail['username'] = $username;
-            // $requestMail['status'] = $status;
-
             $to_useremail = $data2->email;
             $mail = new PaymentConfirmation($requestMail);
             Mail::to($to_useremail)
