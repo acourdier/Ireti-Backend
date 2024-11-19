@@ -227,9 +227,10 @@ class UserController extends Controller
                 
                 $to_emailAdmin = env('ADMIN_EMAIL');
                 $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin3 = env('ADMIN3_EMAIL');
                 $mail2 = new OrderUpdate($requestMail);
                 Mail::to($to_emailAdmin)
-                    ->Cc($to_emailAdmin2)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
                     ->send($mail2);
             }
             $buySell = $request->input('buysell');
@@ -305,9 +306,10 @@ class UserController extends Controller
 
         $to_emailAdmin = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail2 = new OrderMail($requestMail);
         Mail::to($to_emailAdmin)
-            ->cc($to_emailAdmin2)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
             ->send($mail2);
         return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
     }

@@ -220,12 +220,14 @@ class AdminController extends Controller
                 $to_email = $data1->email;
                 $to_emailAdmin = env('ADMIN_EMAIL');
                 $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin3 = env('ADMIN3_EMAIL');
                 $mail = new OrderUpdateConfirmation($requestMail);
                 Mail::to($to_email)->send($mail);
                 
                 $mail2 = new OrderUpdate($requestMail);
-                Mail::to($to_emailAdmin)->cc($to_emailAdmin2)->send($mail2);
-
+                Mail::to($to_emailAdmin)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                ->send($mail2);
                 $buySell = $request->input('buysell');
 
                     if($buySell == 'Buy'){
@@ -325,12 +327,13 @@ class AdminController extends Controller
             $to_email = $data1->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            $to_emailAdmin3 = env('ADMIN3_EMAIL');
             $mail = new OrderFilledConfirmation($requestMail);
             Mail::to($to_email)->send($mail);
 
             $mail2 = new OrderFilled($requestMail);
             Mail::to($to_emailAdmin)
-                ->cc($to_emailAdmin2)
+            ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send($mail2);
         }
         return redirect()->route('admin.orders')->with('update', 'Email Sent Successfully');
@@ -510,9 +513,10 @@ class AdminController extends Controller
             $requestMail = $data1;
             $to_email = env('ADMIN_EMAIL');
             $to_email1 = env('ADMIN2_EMAIL');
+            $to_emailAdmin3 = env('ADMIN3_EMAIL');
             $mail = new PaymentUpdate($requestMail);
             Mail::to($to_email)
-                ->cc($to_email1)
+            ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send($mail);
         }
 

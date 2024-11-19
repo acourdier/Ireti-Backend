@@ -190,9 +190,10 @@ class WebController extends Controller
         $requestMail = $request->all();
         $to_email = env('ADMIN_EMAIL');
         $to_email1 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
-            ->cc($to_email1)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
             ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
