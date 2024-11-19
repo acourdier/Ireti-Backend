@@ -191,7 +191,7 @@ class UserController extends Controller
         ->select('users.fname','orders.*')
         ->where('orders.userid',$loginid)
         ->orderBy('id', 'desc')->get();
-        return view('user.orders', ['orders' => $data]);
+        return view('User.orders', ['orders' => $data]);
     }
     public function editorders($id){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
@@ -199,7 +199,7 @@ class UserController extends Controller
         $metal = UnderLaying::where('Type', 'Metals and Precious Metals')->orderBy('id', 'desc')->get();
         $currency = Currency::orderBy('currency', 'asc')->get();
         $data['orders'] =Order::find($id);
-        return view('user.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
+        return view('User.editorders',$data,['oils' => $oil,'softs' => $soft,'metals' => $metal,'currencies' => $currency]);
     }
 
     public function updateorder(Request $request){
@@ -426,7 +426,7 @@ class UserController extends Controller
         $data = Payment::leftjoin('users','payments.customer','=','users.id')
         ->leftjoin('beneficiaries','payments.Beneficiary','=','beneficiaries.id')
         ->select('payments.*','users.fname','beneficiaries.accountname','beneficiaries.accountnumber')->orderBy('id', 'desc')->get();
-        return view('user.payments', ['payments' => $data]);
+        return view('User.payments', ['payments' => $data]);
     }
 
 }
