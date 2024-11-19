@@ -46,17 +46,6 @@ class AdminSeeder extends Seeder
             'country' => 'Pakistan',
 
         ]);
-        User::create([
-            'fname' => 'Test User',
-            'email' => 'testuser@example.com',
-            'phone'=>"03300000000",
-            'username' => 'Test User',
-            'password' => Hash::make('aszx1234'),
-            'city'=> 'sialkot',
-            'role' => '1',
-            'country' => 'Pakistan',
-
-        ]);
     }
 
 }
