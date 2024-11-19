@@ -224,31 +224,36 @@ class UserController extends Controller
             Mail::to($to_emailAdmin)
                 ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send(new OrderUpdate($requestMail));
-    
-            $quantity = str_replace(' ', '', $data['quantity']);
-            $targetPrice = str_replace(' ', '', $data['targetp']);
-            $data['quantity'] = (string)$quantity;
-            $data['targetPrice'] = (string)$targetPrice;
-    
-            if ($data['buysell'] == 'Buy') {
-                $amountbRaw = bcmul($data['targetPrice'], $data['quantity'], 10);
-                $data['amountb'] = number_format($amountbRaw, 2, '.', ' ');
-                $data['currencyts'] = '';
-                $data['amountts'] = '';
-                $data['buysell'] = 'Buy';
-                $order->update($data);
-                
-            } elseif ($data['buysell'] == 'Sell') {
-                $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
-                $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
-                $data['amountb'] = '';
-                $data['currencytb'] = '';
-                $data['buysell'] = 'Sell';
+            if (isset($data['quantity']) && $data['quantity'] != null) {
+                $quantity = str_replace(' ', '', $data['quantity']);
+                $targetPrice = str_replace(' ', '', $data['targetp']);
+                $data['quantity'] = (string)$quantity;
+                $data['targetPrice'] = (string)$targetPrice;
+        
+                if ($data['buysell'] == 'Buy') {
+                    $amountbRaw = bcmul($data['targetPrice'], $data['quantity'], 10);
+                    $data['amountb'] = number_format($amountbRaw, 2, '.', ' ');
+                    $data['currencyts'] = '';
+                    $data['amountts'] = '';
+                    $data['buysell'] = 'Buy';
+                    $order->update($data);
+                    
+                } elseif ($data['buysell'] == 'Sell') {
+                    $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
+                    $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
+                    $data['amountb'] = '';
+                    $data['currencytb'] = '';
+                    $data['buysell'] = 'Sell';
 
-                $order->update(
-                    $data
-                );
+                    $order->update(
+                        $data
+                    );
+                }
             }
+            else {
+                $order->update($data);
+            }
+
     
             return redirect()->route('user.orders')->with('update', 'Order Updated Successfully');
         }
