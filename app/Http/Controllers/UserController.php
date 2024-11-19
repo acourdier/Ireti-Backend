@@ -8,11 +8,7 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
-use App\Mail\InvestmentMail;
 use App\Mail\ProfileMail;
-use App\Mail\BankAccountMail;
-use App\Mail\BankAccountUpdate;
-use App\Mail\BenficiaryMail;
 use App\Mail\OrderMail;
 use App\Mail\OrderConfirmation;
 use App\Mail\OrderUpdateConfirmation;
@@ -102,9 +98,6 @@ class UserController extends Controller
         ]);
     }
     
-    
-    
-    
     public function notifications(){
         $userId = auth()->id();
 
@@ -120,7 +113,6 @@ class UserController extends Controller
         return view('User.notifications', ['notifications' => $data]);
 
     }
-
 
     public function products(){
         $oil  = UnderLaying::where('Type', 'Oil and oil Derivatives')->orderBy('id', 'desc')->get();
@@ -223,17 +215,13 @@ class UserController extends Controller
         ->first();
 
         if ($orderDetails) {
-            // Prepare mail
             $requestMail = $orderDetails;
             $to_email = $orderDetails->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
     
-            // Send Order Update Confirmation Email
             Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
-    
-            // Send Admin Notification Email
             Mail::to($to_emailAdmin)
                 ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send(new OrderUpdate($requestMail));
@@ -250,10 +238,8 @@ class UserController extends Controller
                 $data['amountts'] = '';
                 $data['buysell'] = 'Buy';
                 $order->update($data);
-            //    print_r($order); die();
                 
             } elseif ($data['buysell'] == 'Sell') {
-                // Calculate amount for Sell
                 $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
                 $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
                 $data['amountb'] = '';
@@ -308,7 +294,6 @@ class UserController extends Controller
         return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
     }
 
-
     public function investment(){
         $userId = auth()->id();
         $data = Investment::where('userid', $userId)->orderBy('id', 'desc')->get();
@@ -329,14 +314,6 @@ class UserController extends Controller
         $userid = auth()->user()->id;
         $msg = "Added a new Investment";
 
-        $username=auth()->user()->fname;
-        $requestMail = $Request->all();
-        $requestMail['username'] = $username;
-        $to_email = auth()->user()->email;
-        $mail = new InvestmentMail($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
-
         notification::create([
         'message' => $msg,
         'userid' => $userid,
@@ -349,7 +326,6 @@ class UserController extends Controller
         $data->delete();
         return redirect()->route('user.investment')->with ('Delete','Investment Deleted Successfully');
     }
-
 
     public function profile(){
         $userId = auth()->id();
@@ -366,16 +342,6 @@ class UserController extends Controller
             $userid = auth()->user()->id;
             $msg = "updated Profile successfully";
 
-
-
-            $username=auth()->user()->fname;
-            $requestMail = $request->all();
-            $requestMail['username'] = $username;
-            $to_email = auth()->user()->email;
-            $mail = new ProfileMail($requestMail);
-            Mail::to($to_email)
-                ->send($mail);
-
             notification::create([
             'message' => $msg,
             'userid' => $userid,
@@ -383,7 +349,6 @@ class UserController extends Controller
             return redirect()->route('user.profile')->with ('update','Profile Updated Successfully');
         }
     }
-
 
     public function bank(){
         $userId = auth()->id();
@@ -403,13 +368,6 @@ class UserController extends Controller
             if ($existingAccount) {
             $existingAccount->update($request->all());
 
-            $username=auth()->user()->fname;
-            $requestMail = $request->all();
-            $requestMail['username'] = $username;
-            $to_email = auth()->user()->email;
-            $mail = new BankAccountUpdate($requestMail);
-            Mail::to($to_email)
-                ->send($mail);
             $userid = auth()->user()->id;
             $msg = "Updated Bank Account successfully";
             notification::create([
@@ -428,17 +386,16 @@ class UserController extends Controller
         'userid' => $userid,
         ]);
 
-        $username=auth()->user()->fname;
-        $requestMail = $request->all();
-        $requestMail['username'] = $username;
-        $to_email = auth()->user()->email;
-        $mail = new BankAccountMail($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
+        // $username=auth()->user()->fname;
+        // $requestMail = $request->all();
+        // $requestMail['username'] = $username;
+        // $to_email = auth()->user()->email;
+        // $mail = new BankAccountMail($requestMail);
+        // Mail::to($to_email)
+        //     ->send($mail);
 
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
-
 
     public function beneficiaries(){
         $userId = auth()->id();
@@ -457,14 +414,6 @@ class UserController extends Controller
         $userId = auth()->id();
         $beneficiaries['userid'] = $userId;
         Beneficiaries:: create($beneficiaries);
-
-        $username=auth()->user()->fname;
-        $requestMail = $Request->all();
-        $requestMail['username'] = $username;
-        $to_email = auth()->user()->email;
-        $mail = new BenficiaryMail($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
 
         $userid = auth()->user()->id;
         $msg = "Added a new Beneficiary";
