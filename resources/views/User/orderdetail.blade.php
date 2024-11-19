@@ -26,10 +26,6 @@
                                 </div>
                                 @if(isset($orderData['FundType']) && $orderData['FundType']== "FX")
                                     <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="font small font-semi mb-0">Order Number</p>
-                                        <p class="mb-0 small">{{ $orderData->id }}</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
                                         <p class="font-semi mb-0 small">Date</p>
                                         <p class="mb-0 small">{{ $orderData->created_at }}</p>
                                     </div>
