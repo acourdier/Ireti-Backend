@@ -120,7 +120,7 @@
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($softs as $soft)
                                                 <option value="{{ $soft['underlaying']}}"
-                                                    {{ $soft['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
+                                                    {{ $soft['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
                                                     {{ $soft['underlaying']}}
                                                 </option>
                                                 @endforeach
@@ -252,7 +252,7 @@
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($metals as $metal)
                                                 <option value="{{ $metal['underlaying']}}"
-                                                    {{ $metal['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
+                                                    {{ $metal['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
                                                     {{ $metal['underlaying']}}
                                                 </option>
                                                 @endforeach
@@ -384,7 +384,7 @@
                                             <select name="underlying" id="underlying" class="form-control">
                                                 @foreach ($oils as $oil)
                                                 <option value="{{ $oil['underlaying']}}"
-                                                    {{ $oil['underlaying']== $orders['underlaying'] ? 'selected' : '' }}>
+                                                    {{ $oil['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
                                                     {{ $oil['underlaying']}}
                                                 </option>
                                                 @endforeach
