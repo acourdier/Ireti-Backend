@@ -65,10 +65,6 @@
                         <p class="mb-0 fw-bold">Transaction Details</p>
                         <ul>
                             <li>
-                                <p class="mb-0 "><span class="fw-bold">Order Number: </span>{{ $requestMail['id'] }}
-                                </p>
-                            </li>
-                            <li>
                                 <p class="mb-0 "><span class="fw-bold">Date: </span>{{ $requestMail['created_at'] }}
                                 </p>
                             </li>
