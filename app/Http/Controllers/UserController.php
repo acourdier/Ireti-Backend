@@ -8,7 +8,6 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
-use App\Mail\ProfileMail;
 use App\Mail\OrderMail;
 use App\Mail\OrderConfirmation;
 use App\Mail\OrderUpdateConfirmation;
