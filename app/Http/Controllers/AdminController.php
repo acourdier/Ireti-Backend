@@ -206,110 +206,192 @@ class AdminController extends Controller
     }
 
 
-    public function updateorder(Request $request){
-        $order = Order::find($request->id);
-        $quantity = $request->input('quantity');
-        $targetPrice = $request->input('targetp');
-        if ($order) {
-            $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
-                          ->where('orders.id', $request->id)
-                          ->first();
+    // public function updateorder(Request $request){
+    //     $order = Order::find($request->id);
+    //     $quantity = $request->input('quantity');
+    //     $targetPrice = $request->input('targetp');
+    //     $data = $request->all();
+    //     if ($order) {
+    //         $data1 = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
+    //                       ->where('orders.id', $request->id)
+    //                       ->first();
             
-            if ($data1) {
-                $requestMail = $data1;
-                $to_email = $data1->email;
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
-                $to_emailAdmin3 = env('ADMIN3_EMAIL');
-                $mail = new OrderUpdateConfirmation($requestMail);
-                Mail::to($to_email)->send($mail);
+    //         if ($data1) {
+    //             $requestMail = $data1;
+    //             $to_email = $data1->email;
+    //             $to_emailAdmin = env('ADMIN_EMAIL');
+    //             $to_emailAdmin2 = env('ADMIN2_EMAIL');
+    //             $to_emailAdmin3 = env('ADMIN3_EMAIL');
+    //             $mail = new OrderUpdateConfirmation($requestMail);
+    //             Mail::to($to_email)->send($mail);
                 
-                $mail2 = new OrderUpdate($requestMail);
-                Mail::to($to_emailAdmin)
-                ->cc([$to_emailAdmin2, $to_emailAdmin3])
-                ->send($mail2);
-                $buySell = $request->input('buysell');
-
-                    if($buySell == 'Buy'){
-                    
-                        
-                        $quantity = str_replace(' ', '', $quantity);
-                        $targetPrice = str_replace(' ', '', $targetPrice);
-                        $targetPrice = (string)$targetPrice;
-                        $quantity = (string)$quantity;
-                        $amountbRaw = bcmul($targetPrice, $quantity, 10);
-                        $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
-                        $order['buysell'] = $buySell;
-                        $order['currencyts'] = '';
-                        $order['amountts'] = '';
-                        $order['amountb'] = $amountbFormatted;
-                        $order['quantity'] = $quantity;
-                        $order['targetp'] = $targetPrice;
-                        $order['currencytb'] = $request->input('currencytb');
-                        
-                    
-                    
-                        
-                    }
-                    if($buySell == 'Sell'){
-
-        
-                        $quantity = str_replace(' ', '', $quantity);
-                        $targetPrice = str_replace(' ', '', $targetPrice);
-                        $targetPrice = (string)$targetPrice;
-                        $quantity = (string)$quantity;
-                        $amounttsRaw = bcmul($targetPrice, $quantity, 10);
-                        $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
-                        $order['buysell'] = $buySell;
-                        $order['amountb']='';
-                        $order['currencytb'] = '';
-                        $order['amountts'] = $amounttsFormatted;
-                        $order['quantity'] = $quantity;
-                        $order['targetp'] = $targetPrice;
-                        $order['currencyts'] = $request->input('currencyts');
-                    
-                    }
-                $order->save();
+    //             $mail2 = new OrderUpdate($requestMail);
+    //             Mail::to($to_emailAdmin)
+    //             ->cc([$to_emailAdmin2, $to_emailAdmin3])
+    //             ->send($mail2);
+    //             $buySell = $request->input('buysell');
+    //                 if($buySell == 'Buy'){
+    //                     $quantity = str_replace(' ', '', $quantity);
+    //                     $targetPrice = str_replace(' ', '', $targetPrice);
+    //                     $targetPrice = (string)$targetPrice;
+    //                     $quantity = (string)$quantity;
+    //                     $amountbRaw = bcmul($targetPrice, $quantity, 10);
+    //                     $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
+    //                     $order['buysell'] = $buySell;
+    //                     $order['currencyts'] = '';
+    //                     $order['amountts'] = '';
+    //                     $order['amountb'] = $amountbFormatted;
+    //                     $order['quantity'] = $quantity;
+    //                     $order['targetp'] = $targetPrice;
+    //                     $order['currencytb'] = $request->input('currencytb');
+    //                 }
+    //                 if($buySell == 'Sell'){
+    //                     $quantity = str_replace(' ', '', $quantity);
+    //                     $targetPrice = str_replace(' ', '', $targetPrice);
+    //                     $targetPrice = (string)$targetPrice;
+    //                     $quantity = (string)$quantity;
+    //                     $amounttsRaw = bcmul($targetPrice, $quantity, 10);
+    //                     $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
+    //                     $order['buysell'] = $buySell;
+    //                     $order['amountb']='';
+    //                     $order['currencytb'] = '';
+    //                     $order['amountts'] = $amounttsFormatted;
+    //                     $order['quantity'] = $quantity;
+    //                     $order['targetp'] = $targetPrice;
+    //                     $order['currencyts'] = $request->input('currencyts');
+    //                 }
+    //             $order->save();
+    //             function convertAmount($currency, $amount, $order) {
+    //                 $amount = str_replace([' ', ','], '', $amount);
+    //                 $amount = (float)$amount;
+    //                 $currency = strtoupper($currency);
+    //                 $apiKey = env('EXCHANGE_RATE_API_KEY');
+    //                 $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
+    //                 $response = Http::get($exchangeRateAPI);
+    //                 if ($response->successful()) {
+    //                     $rate = isset($response->json()['conversion_rates']['USD'])
+    //                             ? $response->json()['conversion_rates']['USD']
+    //                             : 0;
                 
-                function convertAmount($currency, $amount, $order) {
-                    $amount = str_replace([' ', ','], '', $amount);
-                    $amount = (float)$amount;
-                    $currency = strtoupper($currency);
-                    $apiKey = env('EXCHANGE_RATE_API_KEY');
-                    $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
+    //                     if (is_numeric($rate)) {
+    //                         $convertedAmount = bcmul($amount, $rate, 2);
+    //                         $order->converted = $convertedAmount;
+    //                         $order->save();
+    //                     } else {
+    //                         Log::error('Invalid exchange rate for currency ' . $currency);
+    //                     }
+    //                 } else {
+    //                     Log::error('Exchange Rate API failed for currency ' . $currency);
+    //                 }
+    //             }
+    //             if ($order->filled === 'Yes') {
+    //                 if ($order->currencytb && $order->amountb) {
+    //                     convertAmount($order->currencytb, $order->amountb, $order);
+    //                 } elseif ($order->currencyts && $order->amountts) {
+    //                     convertAmount($order->currencyts, $order->amountts, $order);
+    //                 }
+    //             }
                 
-                    $response = Http::get($exchangeRateAPI);
-                
-                    if ($response->successful()) {
-                        $rate = isset($response->json()['conversion_rates']['USD'])
-                                ? $response->json()['conversion_rates']['USD']
-                                : 0;
-                
-                        if (is_numeric($rate)) {
-                            $convertedAmount = bcmul($amount, $rate, 2);
-                            $order->converted = $convertedAmount;
-                            $order->save();
-                        } else {
-                            Log::error('Invalid exchange rate for currency ' . $currency);
-                        }
-                    } else {
-                        Log::error('Exchange Rate API failed for currency ' . $currency);
-                    }
-                }
-                
-                // Main conditional check
-                if ($order->filled === 'Yes') {
-                    if ($order->currencytb && $order->amountb) {
-                        convertAmount($order->currencytb, $order->amountb, $order);
-                    } elseif ($order->currencyts && $order->amountts) {
-                        convertAmount($order->currencyts, $order->amountts, $order);
-                    }
-                }
-                
-            }
+    //         }
+    //     }
+    //     return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
+    // }
+    public function updateorder(Request $request) {
+        $order = Order::find($request->id);
+        if (!$order) {
+            return redirect()->route('admin.orders')->withErrors('Order not found');
         }
     
-        return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
+        // Get all request inputs
+        $data = $request->all();
+    
+        // Fetch order details
+        $orderDetails = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
+            ->where('orders.id', $request->id)
+            ->first();
+    
+        if ($orderDetails) {
+            // Prepare mail
+            $requestMail = $orderDetails;
+            $to_email = $orderDetails->email;
+            $to_emailAdmin = env('ADMIN_EMAIL');
+            $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            $to_emailAdmin3 = env('ADMIN3_EMAIL');
+    
+            // Send Order Update Confirmation Email
+            Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
+    
+            // Send Admin Notification Email
+            Mail::to($to_emailAdmin)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                ->send(new OrderUpdate($requestMail));
+    
+            $quantity = str_replace(' ', '', $data['quantity']);
+            $targetPrice = str_replace(' ', '', $data['targetp']);
+            $data['quantity'] = (string)$quantity;
+            $data['targetPrice'] = (string)$targetPrice;
+    
+            if ($data['buysell'] == 'Buy') {
+                $amountbRaw = bcmul($data['targetPrice'], $data['quantity'], 10);
+                $data['amountb'] = number_format($amountbRaw, 2, '.', ' ');
+                $data['currencyts'] = '';
+                $data['amountts'] = '';
+                $data['buysell'] = 'Buy';
+                $order->update($data);
+            //    print_r($order); die();
+                
+            } elseif ($data['buysell'] == 'Sell') {
+                // Calculate amount for Sell
+                $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
+                $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
+                $data['amountb'] = '';
+                $data['currencytb'] = '';
+                $data['buysell'] = 'Sell';
+
+                $order->update(
+                    $data
+                );
+            //    print_r($order); die();
+
+            }
+    
+            // Check if order is filled and process exchange rates
+            if ($order->filled === 'Yes') {
+                if ($order->currencytb && $order->amountb) {
+                    $this->convertAmount($order->currencytb, $order->amountb, $order);
+                } elseif ($order->currencyts && $order->amountts) {
+                    $this->convertAmount($order->currencyts, $order->amountts, $order);
+                }
+            }
+    
+            return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
+        }
+    
+        return redirect()->route('admin.orders')->withErrors('Failed to fetch order details.');
+    }
+    
+    public function convertAmount($currency, $amount, $order) {
+        $amount = str_replace([' ', ','], '', $amount);
+        $amount = (float)$amount;
+        $currency = strtoupper($currency);
+        $apiKey = env('EXCHANGE_RATE_API_KEY');
+        $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
+    
+        $response = Http::get($exchangeRateAPI);
+    
+        if ($response->successful()) {
+            $rate = isset($response->json()['conversion_rates']['USD']) ? $response->json()['conversion_rates']['USD'] : 0;
+    
+            if (is_numeric($rate)) {
+                $convertedAmount = bcmul($amount, $rate, 2);
+                $order->converted = $convertedAmount;
+                $order->save();
+            } else {
+                Log::error('Invalid exchange rate for currency ' . $currency);
+            }
+        } else {
+            Log::error('Exchange Rate API failed for currency ' . $currency);
+        }
     }
     
     

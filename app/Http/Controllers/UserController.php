@@ -213,63 +213,57 @@ class UserController extends Controller
 
     public function updateorder(Request $request){
         $order = Order::find($request->id);
-        $quantity = $request->input('quantity');
-        $targetPrice = $request->input('targetp');
-        if ($order) {
-            $data1 = Order::leftjoin('users','orders.userid','=','users.id')
-            ->where('orders.id',$request->id)->first();
-            if ($data1) {
-                $requestMail = $data1;
-                $to_email = $data1->email;
-                $mail = new OrderUpdateConfirmation($requestMail);
-                Mail::to($to_email)
-                    ->send($mail);
-                
-                $to_emailAdmin = env('ADMIN_EMAIL');
-                $to_emailAdmin2 = env('ADMIN2_EMAIL');
-                $to_emailAdmin3 = env('ADMIN3_EMAIL');
-                $mail2 = new OrderUpdate($requestMail);
-                Mail::to($to_emailAdmin)
+        if (!$order) {
+            return redirect()->route('admin.orders')->withErrors('Order not found');
+        }
+        $data = $request->all();
+    
+        $orderDetails = Order::leftJoin('users', 'orders.userid', '=', 'users.id')
+        ->where('orders.id', $request->id)
+        ->first();
+
+        if ($orderDetails) {
+            // Prepare mail
+            $requestMail = $orderDetails;
+            $to_email = $orderDetails->email;
+            $to_emailAdmin = env('ADMIN_EMAIL');
+            $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            $to_emailAdmin3 = env('ADMIN3_EMAIL');
+    
+            // Send Order Update Confirmation Email
+            Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
+    
+            // Send Admin Notification Email
+            Mail::to($to_emailAdmin)
                 ->cc([$to_emailAdmin2, $to_emailAdmin3])
-                    ->send($mail2);
+                ->send(new OrderUpdate($requestMail));
+    
+            $quantity = str_replace(' ', '', $data['quantity']);
+            $targetPrice = str_replace(' ', '', $data['targetp']);
+            $data['quantity'] = (string)$quantity;
+            $data['targetPrice'] = (string)$targetPrice;
+    
+            if ($data['buysell'] == 'Buy') {
+                $amountbRaw = bcmul($data['targetPrice'], $data['quantity'], 10);
+                $data['amountb'] = number_format($amountbRaw, 2, '.', ' ');
+                $data['currencyts'] = '';
+                $data['amountts'] = '';
+                $data['buysell'] = 'Buy';
+                $order->update($data);
+            //    print_r($order); die();
+                
+            } elseif ($data['buysell'] == 'Sell') {
+                // Calculate amount for Sell
+                $amounttsRaw = bcmul($data['targetPrice'],  $data['quantity'], 10);
+                $data['amountts'] = number_format($amounttsRaw, 2, '.', ' ');
+                $data['amountb'] = '';
+                $data['currencytb'] = '';
+                $data['buysell'] = 'Sell';
+
+                $order->update(
+                    $data
+                );
             }
-            $buySell = $request->input('buysell');
-
-           if($buySell == 'Buy'){
-            $quantity = str_replace(' ', '', $quantity);
-            $targetPrice = str_replace(' ', '', $targetPrice);
-            $targetPrice = (string)$targetPrice;
-            $quantity = (string)$quantity;
-            $amountbRaw = bcmul($targetPrice, $quantity, 10);
-            $amountbFormatted = number_format($amountbRaw, 2, '.', ' ');
-            $order['buysell'] = $buySell;
-            $order['currencyts'] = '';
-            $order['amountts'] = '';
-            $order['amountb'] = $amountbFormatted;
-            $order['quantity'] = $quantity;
-            $order['targetp'] = $targetPrice;
-            $order['currencytb'] = $request->input('currencytb');              
-             
-           }
-           if($buySell == 'Sell'){
-
-            $quantity = str_replace(' ', '', $quantity);
-            $targetPrice = str_replace(' ', '', $targetPrice);
-            $targetPrice = (string)$targetPrice;
-            $quantity = (string)$quantity;
-            $amounttsRaw = bcmul($targetPrice, $quantity, 10);
-            $amounttsFormatted = number_format($amounttsRaw, 2, '.', ' ');
-            $order['buysell'] = $buySell;
-            $order['amountb']='';
-            $order['currencytb'] = '';
-            $order['amountts'] = $amounttsFormatted;
-            $order['quantity'] = $quantity;
-            $order['targetp'] = $targetPrice;
-            $order['currencyts'] = $request->input('currencyts');
-           
-           }
-
-            $order->save();
     
             return redirect()->route('user.orders')->with('update', 'Order Updated Successfully');
         }
