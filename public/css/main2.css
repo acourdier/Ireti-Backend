@@ -117,7 +117,9 @@
     --bs-pagination-color:#00A73F !important;
 }
 
-
+td, th {
+    text-align: center;
+}
 
 @media screen and (max-width: 768px) {
     .back-img img {
