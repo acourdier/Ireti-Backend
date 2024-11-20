@@ -173,11 +173,11 @@
     @include('../Template.jslinks')
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
+        
+        const totalOrdersData = @json($totalOrdersData).map(value => Math.round(value));
+        const totalConvertedData = @json($totalConvertedData).map(value => Math.round(value));
     
         const monthsData = @json($monthsData); 
-        const totalOrdersData = @json($totalOrdersData); 
-        const totalConvertedData = @json($totalConvertedData);
-    
         const currentMonth = new Date().getMonth(); 
     
         const data = {
@@ -221,6 +221,13 @@
                         grid: {
                             drawOnChartArea: false,
                         },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1, 
+                            callback: function(value) {
+                                return Number.isInteger(value) ? value : '';
+                            }
+                        }
                     },
                     y1: {
                         type: 'linear',
@@ -233,6 +240,7 @@
                             beginAtZero: true,
                             callback: function(value) {
                                 return value.toLocaleString(); 
+
                             }
                         },
                     },
