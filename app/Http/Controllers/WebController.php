@@ -189,7 +189,7 @@ class WebController extends Controller
    
         $requestMail = $request->all();
         $to_email = env('ADMIN_EMAIL');
-        $to_email1 = env('ADMIN2_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
