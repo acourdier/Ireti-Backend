@@ -40,30 +40,30 @@
                                             <tr class="align-middle">
                                                 <td>
                                                     <div>
-                                                        <p class="mb-0 font-semi">{{$order['FundType']}}</p>
-                                                        <p class="mb-0">{{$order['underlying']}}</p>
+                                                        <p class="mb-0 font-semi">{{ $order['FundType'] !== null && $order['FundType'] !== '' ? $order['FundType'] : '/' }}</p>
+                                                        <p class="mb-0">{{ $order['underlying']}}</p>
                                                     </div>
                                                 </td>
-                                                <td>{{$order['firstcurrency']}}{{' / '}}{{$order['secondcurrency']}}</td>
-                                                <td>{{ $order['amountb'] }}</td>
-                                                <td>{{$order['currencytb']}}</td>
-                                                <td>{{ $order['amountts'] }}</td>
+                                                <td>{{ $order['firstcurrency']}}{{' / '}}{{ $order['secondcurrency']}}</td>
+                                                <td>{{ $order['amountb'] !== null && $order['amountb'] !== '' ? $order['amountb'] : '/' }}</td>
+                                                <td>{{ $order['currencytb'] !== null && $order['currencytb'] !== '' ? $order['currencytb'] : '/' }}</td>
+                                                <td>{{ $order['amountts'] !== null && $order['amountts'] !== '' ? $order['amountts'] : '/' }}</td>
                                                 <td>
                                                     @if (is_null($order['currencyts']) && $order['FundType'] == 'FX')
-                                                        {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : $order['secondcurrency'] }}
+                                                        {{ $order['firstcurrency'] !== $order['currencytb'] ? $order['firstcurrency'] : ($order['secondcurrency'] !== null && $order['secondcurrency'] !== '' ? $order['secondcurrency'] : '/') }}
                                                     @else
-                                                        {{ $order['currencyts'] }}
+                                                        {{ $order['currencyts'] !== null && $order['currencyts'] !== '' ? $order['currencyts'] : '/' }}
                                                     @endif
                                                 </td>
-                                                <td>{{$order['targetp']}}</td>
-                                                <td>{{$order['created_at']}}</td>
+                                                <td>{{ $order['targetp'] !== null && $order['targetp'] !== '' ? $order['targetp'] : '/' }}</td>
+                                                <td>{{ $order['created_at'] !== null && $order['created_at'] !== '' ? $order['created_at'] : '/' }}</td>
                                                 <td>
                                                     <button
                                                         class="{{ $order['filled'] === 'Yes' ? 'btngreen' : 'btnred' }}">
-                                                        {{$order['filled']}}
+                                                        {{ $order['filled'] !== null && $order['filled'] !== '' ? $order['filled'] : '/' }}
                                                     </button>
                                                 </td>
-                                                <td>{{$order['converted']}}</td>
+                                                <td>{{ $order['converted'] !== null && $order['converted'] !== '' ? $order['converted'] : '/' }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <i class="fa-solid fa-ellipsis-vertical pointer"
@@ -74,8 +74,7 @@
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     href="{{ 'editorders/' . $order['id'] }}">
-                                                                    <i
-                                                                        class="fa-solid text-muted me-2 fa-pen-to-square"></i>
+                                                                    <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
                                                                     Edit
                                                                 </a>
                                                             </li>
