@@ -58,7 +58,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="Order">Order</label>
                                                 <select name="orderid" id="Order" class="form-control" required>
@@ -66,7 +66,7 @@
                                                 </select>
                                             </div>
 
-                                        </div>
+                                        </div> --}}
                                         <div class="col-sm-6">
                                             <div class="mt-3">
                                                 <label for="amount">Amount</label>
@@ -156,25 +156,25 @@
             }
         }
 
-        async function fetchOrder() {
-            const id = document.getElementById('customer').value;
-            let Order = document.getElementById('Order');
-            Order.innerHTML = '';
+        // async function fetchOrder() {
+        //     const id = document.getElementById('customer').value;
+        //     let Order = document.getElementById('Order');
+        //     Order.innerHTML = '';
 
-            try {
-                const response = await fetch(`/admin/getOrder/${id}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                for (let order of data) {
-                    console.log(order);
-                    Order.insertAdjacentHTML("beforeend", `<option value="${order.id}">${order.id}</option>`);
-                }
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
+        //     try {
+        //         const response = await fetch(`/admin/getOrder/${id}`);
+        //         if (!response.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         const data = await response.json();
+        //         for (let order of data) {
+        //             console.log(order);
+        //             Order.insertAdjacentHTML("beforeend", `<option value="${order.id}">${order.id}</option>`);
+        //         }
+        //     } catch (error) {
+        //         console.error('There was a problem with the fetch operation:', error);
+        //     }
+        // }
 
     </script>
 
