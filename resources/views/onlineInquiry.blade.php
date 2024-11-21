@@ -781,7 +781,7 @@
                                         </div>
                                         <div>
                                             <label for="uboDOB" class="form-label fw-bold mb-2">DOB</label>
-                                            <input type="text" id="uboDOB" class="form-control mb-3" name="uboDOB[]">
+                                            <input type="date" id="uboDOB" class="form-control mb-3" name="uboDOB[]">
                                         </div>
                                         <div>
                                             <label for="uboPassport" class="form-label fw-bold mb-2">Passport #</label>

@@ -29,7 +29,6 @@
                                         <thead>
                                             <tr>
                                                 <th class="font-semi">Customer Name</th>
-                                                <th class="font-semi">Order ID</th>
                                                 <th class="font-semi">Beneficiary Name</th>
                                                 <th class="font-semi">Beneficiary Account</th>
                                                 <th class="font-semi">Amount</th>
@@ -42,7 +41,6 @@
                                             @foreach ($payments as $payment)
                                             <tr>
                                                 <td class="text-secondary align-middle">{{$payment['fname']}}</td>
-                                                <td class="text-secondary align-middle">{{$payment['orderid']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['accountname']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['accountnumber']}}</td>
                                                 <td class="text-secondary align-middle">{{$payment['amount']}}</td>

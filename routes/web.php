@@ -19,7 +19,6 @@ Route::controller(WebController::class)->group(function(){
     Route::get('liquidityProvider','liquidityProvider')->name('liquidityProvider');
     Route::get('NgoFlowOptimization','NgoFlowOptimization')->name('NgoFlowOptimization');
 
-
 });
 
 
@@ -124,7 +123,15 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
             Route::get('payments','payments')->name('user.payments');
 
-            
+            Route::get('addpayment','addpayment')->name('user.addpayment');
+            Route::post('savepayment','savepayment')->name('user.savepayment');
+            Route::get('editpayment/{id}','editpayment')->name('user.editpayment');
+            Route::post('updatepayment','updatepayment')->name('user.updatepayment');
+            Route::get('deletePayment/{id}','deletePayment')->name('user.deletePayment');
+            Route::get('paymentemail/{id}','paymentemail')->name('user.paymentemail');
+
+            Route::get('getCurrency/{bid}','getCurrency')->name('user.getCurrency');
+
         });
     });
 });

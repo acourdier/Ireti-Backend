@@ -428,10 +428,94 @@ class UserController extends Controller
         return redirect()->route('user.beneficiaries')->with ('success','Beneficiary Added Successfully');
     }
     public function payments(){
+        $userid=auth()->user()->id;
         $data = Payment::leftjoin('users','payments.customer','=','users.id')
         ->leftjoin('beneficiaries','payments.Beneficiary','=','beneficiaries.id')
-        ->select('payments.*','users.fname','beneficiaries.accountname','beneficiaries.accountnumber')->orderBy('id', 'desc')->get();
+        ->select('payments.*','users.fname','beneficiaries.accountname','beneficiaries.accountnumber')
+        ->where('payments.customer',$userid)
+        ->orderBy('id', 'desc')->get();
         return view('User.payments', ['payments' => $data]);
     }
+    
+    public function getCurrency($bid){
+        $userid=auth()->user()->id;
+        $Beneficiaries = Beneficiaries::where('userid', $userid)
+        ->where('id', $bid)
+        ->get();
+        return response()->json($Beneficiaries, 200);
+    }
 
+    public function addpayment(){
+        $userid=auth()->user()->id;
+        $Beneficiaries = Beneficiaries::where('userid',$userid)->get();
+        return view('User.addpayment',['Beneficiaries'=>$Beneficiaries]);
+    }
+    public function savepayment(Request $request){
+        $userid=auth()->user()->id;
+        $request['userid'] = $userid;
+        $request['customer'] = $userid;
+        $request['status'] = "Pending";
+        $payments = $request->all();
+        Payment:: create($payments);
+
+        return redirect()->route('user.payments')->with ('success','Payment Added Successfully');
+    }
+    public function deletePayment($id){
+        $data =Payment::find($id);
+        $data->delete();
+        return redirect()->route('user.payments')->with ('Delete','Payment Deleted Successfully');
+    }
+    public function editpayment($id){
+        $userid=auth()->user()->id;
+        $Beneficiaries = Beneficiaries::where('userid',$userid)->get();
+        $data['payment'] =Payment::leftjoin('beneficiaries','payments.Beneficiary','=','beneficiaries.id')
+        ->select('payments.*', 'beneficiaries.*', 'payments.id as pid')
+        ->where('payments.id',$id)->first();
+        return view('User.editpayment',$data,['Beneficiaries'=>$Beneficiaries]);
+    }
+    // public function updatepayment(Request $request){
+    //     $payment = Payment::find($request->id);
+    //     if ($payment) {
+    //         $payment->update($request->all());
+    //     }
+    //     return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
+    // }
+    // public function paymentemail($id){
+    //     $payment = Payment::find($id);
+    //     $data1 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')
+    //     ->leftJoin('orders', 'payments.orderid', '=', 'orders.id')
+    //     ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','orders.*','orders.id as oid','orders.created_at as orderdate' )
+    //     ->where('payments.orderid',$id)
+    //     ->first();
+
+    //     if ($data1) {
+    //         $requestMail = $data1;
+    //         $to_email = env('ADMIN_EMAIL');
+    //         $to_emailAdmin2 = env('ADMIN2_EMAIL');
+    //         $to_emailAdmin3 = env('ADMIN3_EMAIL');
+    //         $mail = new PaymentUpdate($requestMail);
+    //         Mail::to($to_email)
+    //         ->cc([$to_emailAdmin2, $to_emailAdmin3])
+    //             ->send($mail);
+    //     }
+
+    //     $data2 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')
+    //     ->leftJoin('orders', 'payments.orderid', '=', 'orders.id')
+    //     ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','orders.*','orders.id as oid','orders.created_at as orderdate' )
+    //     ->where('payments.orderid',$id)
+    //     ->first();
+
+    //     if ($data2) {
+    //         $username=auth()->user()->fname;
+    //         $status = $data2->status;
+    //         $requestMail = $data2;
+    //         $to_useremail = $data2->email;
+    //         $mail = new PaymentConfirmation($requestMail);
+    //         Mail::to($to_useremail)
+    //             ->send($mail);
+
+    //     }
+
+    //     return redirect()->route('admin.payments')->with ('update','Mail Sent Successfully');
+    // }
 }
