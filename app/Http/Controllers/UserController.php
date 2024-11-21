@@ -473,13 +473,13 @@ class UserController extends Controller
         ->where('payments.id',$id)->first();
         return view('User.editpayment',$data,['Beneficiaries'=>$Beneficiaries]);
     }
-    // public function updatepayment(Request $request){
-    //     $payment = Payment::find($request->id);
-    //     if ($payment) {
-    //         $payment->update($request->all());
-    //     }
-    //     return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
-    // }
+    public function updatepayment(Request $request){
+        $payment = Payment::find($request->id);
+        if ($payment) {
+            $payment->update($request->all());
+        }
+        return redirect()->route('user.payments')->with ('update','Payment Updated Successfully');
+    }
     // public function paymentemail($id){
     //     $payment = Payment::find($id);
     //     $data1 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')

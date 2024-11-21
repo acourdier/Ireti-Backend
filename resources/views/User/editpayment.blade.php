@@ -16,8 +16,9 @@
                     <div class="container-fluid">
                         <div class="row px-3 ">
                             <h4>Edit Payment</h4>
-                                <form action="{{ route('user.savepayment') }}" method="POST">
+                                <form action="{{ route('user.updatepayment') }}" method="POST">
                                     @csrf
+                                <input type="text" name="id" class="d-none" value="{{$payment['pid']}}" readonly>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mt-3">
@@ -57,7 +58,7 @@
                                             <div class="mt-3">
                                                 <button type="submit"
                                                     class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                                    Add Payment
+                                                    Update Payment
                                                 </button>
                                             </div>
                                         </div>
