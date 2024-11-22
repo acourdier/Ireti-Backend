@@ -25,6 +25,8 @@
                     <a href="{{route('NgoFlowOptimization')}}" class="text-decoration-none text-black my-2 d-block">NGO
                         flow
                         optimization</a>
+                    <a href="{{route('ESGInvestments')}}" class="text-decoration-none text-black my-2 d-block">ESG 
+                        Investments</a>
                 </div>
             </div>
             <div class="col-sm-6 my-2 my-lg-0 col-md-4 col-lg-4">
