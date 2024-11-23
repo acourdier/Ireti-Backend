@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderUpdateConfirmation extends Mailable
+class PaymentApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -35,7 +35,7 @@ class OrderUpdateConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.OrderUpdateConfirmation')->with([
+        return $this->view('emails.PaymentApproved')->with([
             'requestMail' => $this->requestMail,
         ]);
     }

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PaymentMail extends Mailable
+class InvestmentConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -35,7 +35,7 @@ class PaymentMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.PaymentMail')->with([
+        return $this->view('emails.InvestmentConfirmation')->with([
             'requestMail' => $this->requestMail,
         ]);
     }

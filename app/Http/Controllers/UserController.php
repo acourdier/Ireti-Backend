@@ -8,10 +8,12 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
-use App\Mail\OrderMail;
 use App\Mail\OrderConfirmation;
-use App\Mail\OrderUpdateConfirmation;
 use App\Mail\OrderUpdate;
+use App\Mail\PaymentConfirmation;
+use App\Mail\PaymentUpdate;
+use App\Mail\InvestmentConfirmation;
+use App\Mail\InvestmentApproved;
 use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use App\Models\Payment;
@@ -219,8 +221,10 @@ class UserController extends Controller
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-    
-            Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
+            $requestMail['role'] = "user";
+            Mail::to($to_email)->send(new OrderUpdate($requestMail));
+
+            $requestMail['role'] = "admin";
             Mail::to($to_emailAdmin)
                 ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send(new OrderUpdate($requestMail));
@@ -280,6 +284,7 @@ class UserController extends Controller
 
         $username=auth()->user()->fname;
         $requestMail = $order;
+        $requestMail['role'] = "user";
         $requestMail['username'] = $username;
         $requestMail['id'] = $orderData->id;
         $requestMail['created_at'] = $orderData->created_at;
@@ -288,10 +293,11 @@ class UserController extends Controller
         Mail::to($to_email)
             ->send($mail);
 
+        $requestMail['role'] = "admin";
         $to_emailAdmin = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        $mail2 = new OrderMail($requestMail);
+        $mail2 = new OrderConfirmation($requestMail);
         Mail::to($to_emailAdmin)
         ->cc([$to_emailAdmin2, $to_emailAdmin3])
             ->send($mail2);
@@ -311,17 +317,34 @@ class UserController extends Controller
             '*'=>'required'
         ]);
         $investment = $Request->all();
-        $userId = auth()->id();
-        $investment['userid'] = $userId;
-        Investment:: create($investment);
-
         $userid = auth()->user()->id;
+        $investment['userid'] = $userid;
+        Investment:: create($investment);
+            
         $msg = "Added a new Investment";
-
         notification::create([
         'message' => $msg,
         'userid' => $userid,
         ]);
+
+        $requestMail = $investment;
+        $username=auth()->user()->fname;
+        $to_email = auth()->user()->email;
+        $requestMail['fname'] = $username;
+
+        $requestMail['role'] = "user";
+        $mail = new InvestmentConfirmation($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
+        $requestMail['role'] = "admin";
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail2 = new InvestmentConfirmation($requestMail);
+        Mail::to($to_emailAdmin)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail2);
 
         return redirect()->route('user.investment')->with('success', 'Investment Added successfully.');
     }
@@ -458,6 +481,30 @@ class UserController extends Controller
         $payments = $request->all();
         Payment:: create($payments);
 
+        $requestMail = $payments;
+        $username=auth()->user()->fname;
+        $to_email = auth()->user()->email;
+        $requestMail['fname'] = $username;
+
+        $beneficiary = Beneficiaries::find($request->Beneficiary);
+        if ($beneficiary) {
+            $requestMail['accountname'] = $beneficiary->accountname;
+            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+        }
+
+        $requestMail['role'] = "user";
+        $mail = new PaymentConfirmation($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
+        $requestMail['role'] = "admin";
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail2 = new PaymentConfirmation($requestMail);
+        Mail::to($to_emailAdmin)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail2);
         return redirect()->route('user.payments')->with ('success','Payment Added Successfully');
     }
     public function deletePayment($id){
@@ -478,6 +525,32 @@ class UserController extends Controller
         if ($payment) {
             $payment->update($request->all());
         }
+
+        $requestMail = $payment;
+        
+        $beneficiary = Beneficiaries::find($request->Beneficiary);
+        if ($beneficiary) {
+            $requestMail['accountname'] = $beneficiary->accountname;
+            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+        }
+
+        $username=auth()->user()->fname;
+        $to_email = auth()->user()->email;
+        $requestMail['fname'] = $username;
+
+        $requestMail['role'] = "user";
+        $mail = new PaymentUpdate($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
+        $requestMail['role'] = "admin";
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail2 = new PaymentUpdate($requestMail);
+        Mail::to($to_emailAdmin)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail2);
         return redirect()->route('user.payments')->with ('update','Payment Updated Successfully');
     }
     // public function paymentemail($id){
@@ -510,7 +583,7 @@ class UserController extends Controller
     //         $status = $data2->status;
     //         $requestMail = $data2;
     //         $to_useremail = $data2->email;
-    //         $mail = new PaymentConfirmation($requestMail);
+    //         $mail = new PaymentApproved($requestMail);
     //         Mail::to($to_useremail)
     //             ->send($mail);
 

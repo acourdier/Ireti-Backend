@@ -80,7 +80,7 @@
                                                             @if ($payment['status'] == 'Accepted') 
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ 'paymentemail/' . $payment['orderid'] }}">
+                                                                    href="{{ 'paymentemail/' . $payment['id'] }}">
                                                                     <i class="fa-regular text-muted me-2 fa-envelope"></i>
                                                                     Send Email
                                                                 </a>
