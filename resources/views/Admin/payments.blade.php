@@ -59,28 +59,28 @@
                                                         <i class="fa-solid fa-ellipsis-vertical pointer" id="dropdownMenuButton"
                                                             data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ 'deletePayment/' . $payment['id'] }}">
-                                                                    <i
-                                                                        class="fa-solid fa-trash text-secondary pointer me-2"></i>
-                                                                    Delete
-                                                                </a>
-                                                            </li>
                                                             @if ($payment['status'] != 'Accepted')
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ 'editpayment/' . $payment['id'] }}">
-                                                                    <i
-                                                                        class="fa-solid me-2 text-muted fa-pen-to-square"></i>
-                                                                    Edit
-                                                                </a>
-                                                            </li>
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ 'deletePayment/' . $payment['id'] }}">
+                                                                        <i
+                                                                            class="fa-solid fa-trash text-secondary pointer me-2"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ 'editpayment/' . $payment['id'] }}">
+                                                                        <i
+                                                                            class="fa-solid me-2 text-muted fa-pen-to-square"></i>
+                                                                        Edit
+                                                                    </a>
+                                                                </li>
                                                             @endif
                                                             @if ($payment['status'] == 'Accepted') 
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ 'paymentemail/' . $payment['orderid'] }}">
+                                                                    href="{{ 'paymentemail/' . $payment['id'] }}">
                                                                     <i class="fa-regular text-muted me-2 fa-envelope"></i>
                                                                     Send Email
                                                                 </a>

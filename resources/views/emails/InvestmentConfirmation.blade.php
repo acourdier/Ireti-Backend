@@ -38,48 +38,45 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Confirmed Alert</p>
+                        <p><span class="mb-0 fw-bold">Subject: </span>Investment Confirmed</p>
                         <p class="mb-0">Dear Admin,</p>
-                        <p class="mb-0 mt-3 p2">Payment of {{ $requestMail['fname'] }} has been successfully
+                        <p class="mb-0 mt-3 p2">investment query of {{ $requestMail['fname'] }} has been successfully
                             entered into our system</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Confirmed - Thank You!</p>
+                        <p><span class="mb-0 fw-bold">Subject: </span>Investment Confirmed – Thank You!</p>
                         <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
-                        <p class="mb-0 mt-3 p2">We’re pleased to inform you that your payment has been successfully
-                            entered
-                            into our system. Thank you for your prompt action!</p>
+                        <p class="mb-0 mt-3 p2">We’re excited to let you know that your investment query has been
+                            successfully entered into our system. Thank you for taking this important step with us! A
+                            member of our team will be in touch with you shortly.</p>
                     @endif
                 </div>
             </div>
             <div class="row p3">
                 <div class="col-12">
                     <div class="mt-5 border-top border-bottom border-dark border-3">
-                        <p class="mb-0 fw-bold">Payment recap :</p>
+                        <p class="mb-0 fw-bold">Investment query recap :</p>
                         <ul>
                             <li>
-                                <p class="mb-0">
-                                    <span class="fw-bold">Beneficiary Name:</span>
-                                    {{ $requestMail['accountname'] }}
+                                <p class="mb-0 "><span class="fw-bold">Fund Type :
+                                    </span>{{ $requestMail['fund'] }}
                                 </p>
                             </li>
                             <li>
-                                <p class="mb-0">
-                                    <span class="fw-bold">Beneficiary Number:</span>
-                                    {{ $requestMail['accountnumber'] }}
+                                <p class="mb-0 "><span class="fw-bold">Target Yield :
+                                    </span>{{ $requestMail['yeild'] }}
                                 </p>
                             </li>
                             <li>
-                                <p class="mb-0">
-                                    <span class="fw-bold">Amount:</span>
-                                    {{ $requestMail['amount'] }}
+                                <p class="mb-0 "><span class="fw-bold">Geographical Exposure :
+                                    </span>{{ $requestMail['geographical'] }}
                                 </p>
                             </li>
                             <li>
-                                <p class="mb-0">
-                                    <span class="fw-bold">Currency:</span>
-                                    {{ $requestMail['currency'] }}
+                                <p class="mb-0 "><span class="fw-bold">Amount :
+                                    </span>{{ $requestMail['amount'] }}
                                 </p>
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -87,10 +84,10 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'user')
-                    <p>If you have any questions or need assistance, feel free to contact us.</p>
+                        <p>In the meantime, please feel free to reach out to us if you have any questions or if you need further details</p>
                     @endif
                     <p class="mb-0">Best regards,</p>
-                    <p class="mb-0">Ireti Operations Team</p>
+                    <p class="mb-0">Ireti Investment Team</p>
                 </div>
             </div>
     </section>

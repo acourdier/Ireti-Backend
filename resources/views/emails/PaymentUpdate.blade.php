@@ -29,20 +29,6 @@
         .mail-sec .fw-bold {
             font-weight: 700
         }
-
-        .mail-sec .p2 {
-            padding-bottom: 66px;
-            border-bottom: 1px solid black;
-        }
-
-        .mail-sec .p3 {
-            padding-bottom: 66px;
-            border-bottom: 1px solid black;
-        }
-
-        .mail-sec .p4 {
-            padding-bottom: 66px;
-        }
     </style>
 </head>
 
@@ -51,129 +37,45 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    {{-- <p class="mb-0">Dear,</p> --}}
-                    <p class="mb-0 mt-3 p-2">Order of  {{ $requestMail['fname'] }} with Ireti Capital has been
-                        successfully processed. The funds have been transferred to their beneficiary account.
-                        The details of their transaction is given below:</p>
+                    @if ($requestMail['role'] == 'admin')
+                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update –  Alert</p>
+                        <p class="mb-0">Dear Admin,</p>
+                        <p class="mb-0 mt-3 p2">{{ $requestMail['fname'] }} have updated the payment details in their account</p>
+                    @else
+                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update – Please Review</p>
+                        <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
+                        <p class="mb-0 mt-3 p2">We’ve noticed that you’ve updated the payment details in your account, and we’ve taken this update into consideration. Please find below the updated information.</p>
+                    @endif
                 </div>
             </div>
-            <div class="row p-3">
+            <div class="row p3">
                 <div class="col-12">
-                    <div class="py-5 border-top border-bottom border-dark border-2">
-                        <p class="mb-0 fw-bold">Transaction Details</p>
+                    <div class="mt-5 border-top border-bottom border-dark border-3">
+                        <p class="mb-0 fw-bold">Payment recap :</p>
                         <ul>
                             <li>
-                              <p class="mb-0">
-                                <span class="fw-bold">Date of Conversion:</span>
-                                {{ \Carbon\Carbon::parse($requestMail['orderdate'])->format('Y-m-d') }}
-                            </p>
-                            </li>
-                            @if ($requestMail['FundType'] == 'FX')
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency pair:
-                                        </span>{{ $requestMail['firstcurrency'] }} /
-                                        {{ $requestMail['secondcurrency'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency Buy:
-                                        </span>{{ $requestMail['currencytb'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Amount to buy:
-                                        </span>{{ $requestMail['amountb'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Amount to sell:
-                                        </span>{{ $requestMail['amountts'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Target Exchange Rate:
-                                        </span>{{ $requestMail['targetp'] }}</p>
-                                </li>
-                            @elseif($requestMail['FundType'] == 'Soft Commodities')
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Underlying:
-                                        </span>{{ $requestMail['underlying'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Country of Origin:
-                                        </span>{{ $requestMail['country'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Grade: </span>{{ $requestMail['grade'] }}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Buy/Sell:
-                                        </span>{{ $requestMail['buysell'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Quantity:
-                                        </span>{{ $requestMail['quantity'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Unit of Measurement:
-                                        </span>{{ $requestMail['unit'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Price Target per Unit:
-                                        </span>{{ $requestMail['targetp'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Incoterm:
-                                        </span>{{ $requestMail['Incoterm'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Details:
-                                        </span>{{ $requestMail['details'] }}</p>
-                                </li>
-                            @else
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Underlying:
-                                        </span>{{ $requestMail['underlying'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Country of Origin:
-                                        </span>{{ $requestMail['country'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Grade: </span>{{ $requestMail['grade'] }}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Buy/Sell:
-                                        </span>{{ $requestMail['buysell'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Quantity:
-                                        </span>{{ $requestMail['quantity'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Unit of Measurement:
-                                        </span>{{ $requestMail['unit'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Price Target per Unit:
-                                        </span>{{ $requestMail['targetp'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Incoterm:
-                                        </span>{{ $requestMail['Incoterm'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Details:
-                                        </span>{{ $requestMail['details'] }}</p>
-                                </li>
-                            @endif
-                            <li>
-                                <p class="mb-0"><span class="fw-bold">Payment Reference Number:
-                                    </span>{{ $requestMail['pid'] }}</p>
+                                <p class="mb-0">
+                                    <span class="fw-bold">Beneficiary Name:</span>
+                                    {{ $requestMail['accountname'] }}
+                                </p>
                             </li>
                             <li>
-                              <p class="mb-0">
-                                <span class="fw-bold">Payment’s date:</span>
-                                {{ \Carbon\Carbon::parse($requestMail['pdate'])->format('Y-m-d') }}
-                            </p>
+                                <p class="mb-0">
+                                    <span class="fw-bold">Beneficiary Number:</span>
+                                    {{ $requestMail['accountnumber'] }}
+                                </p>
+                            </li>
+                            <li>
+                                <p class="mb-0">
+                                    <span class="fw-bold">Amount:</span>
+                                    {{ $requestMail['amount'] }}
+                                </p>
+                            </li>
+                            <li>
+                                <p class="mb-0">
+                                    <span class="fw-bold">Currency:</span>
+                                    {{ $requestMail['currency'] }}
+                                </p>
                             </li>
                         </ul>
                     </div>
@@ -181,18 +83,11 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p class="mb-0 mt-3">
-                        If you have any questions regarding this transaction or need further assistance, please don't hesitate to contact our support team at info@ireticapital.com.
-                    </p>
-                    <p class="mb-0 mt-3">
-                        Thank you for choosing Ireti Capital, we look forward to serving you again.
-                    </p>
-                </div>
-                <div class="col-12 mt-3">
+                    @if ($requestMail['role'] == 'user')
+                    <p>If you have any questions or need assistance, feel free to contact us.</p>
+                    @endif
                     <p class="mb-0">Best regards</p>
-                    <p class="mb-0">Ireti Capital Team</p>
-                    <a href="mailto:info@ireticapital.com" class="d-flex">info@ireticapital.com</a>
-                    <a href="https://www.ireticapital.com" target="_blank">www.ireticapital.com</a>
+                    <p class="mb-0">Ireti Operations Team</p>
                 </div>
             </div>
     </section>

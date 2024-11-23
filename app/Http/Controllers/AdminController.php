@@ -13,11 +13,11 @@ use App\Models\Beneficiaries;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmInvest;
 use App\Mail\OrderFilled;
-use App\Mail\OrderFilledConfirmation;
 use App\Mail\OrderUpdate;
-use App\Mail\OrderUpdateConfirmation;
 use App\Mail\PaymentUpdate;
+use App\Mail\PaymentApproved;
 use App\Mail\PaymentConfirmation;
+use App\Mail\InvestmentApproved;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -218,10 +218,27 @@ class AdminController extends Controller
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-            Mail::to($to_email)->send(new OrderUpdateConfirmation($requestMail));
-            Mail::to($to_emailAdmin)
-                ->cc([$to_emailAdmin2, $to_emailAdmin3])
-                ->send(new OrderUpdate($requestMail));
+
+            $requestMail['role'] = "user";
+            if ($request->filled == 'Yes') {
+                Mail::to($to_email)->send(new OrderFilled($requestMail));
+            }
+            else {
+                Mail::to($to_email)->send(new OrderUpdate($requestMail));
+            }
+
+            $requestMail['role'] = "admin";
+            if ($request->filled == 'Yes') {
+                Mail::to($to_emailAdmin)
+                    ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send(new OrderFilled($requestMail));
+                }
+            else {
+                Mail::to($to_emailAdmin)
+                    ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send(new OrderUpdate($requestMail));
+                }
+            }
     
             if (isset($data['quantity']) && $data['quantity'] != null) {
                 $quantity = str_replace(' ', '', $data['quantity']);
@@ -263,10 +280,7 @@ class AdminController extends Controller
     
             return redirect()->route('admin.orders')->with('update', 'Order Updated Successfully');
         }
-    
-        return redirect()->route('admin.orders')->withErrors('Failed to fetch order details.');
-    }
-    
+ 
     public function convertAmount($currency, $amount, $order) {
         $amount = str_replace([' ', ','], '', $amount);
         $amount = (float)$amount;
@@ -307,7 +321,7 @@ class AdminController extends Controller
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-            $mail = new OrderFilledConfirmation($requestMail);
+            $mail = new OrderFilled($requestMail);
             Mail::to($to_email)->send($mail);
 
             $mail2 = new OrderFilled($requestMail);
@@ -340,6 +354,35 @@ class AdminController extends Controller
             $order->update(['status' => $request->status]);
         }
 
+
+        $data = Investment::leftJoin('users', 'investments.userid', '=', 'users.id')
+        ->select('users.fname', 'users.email', 'investments.*')
+        ->where('investments.id', $request->id)
+        ->first();
+
+        if ($data) {
+            $username = $data->fname;
+            $status = $data->status;
+            $requestMail = $data;
+            $requestMail['fname'] = $username;
+            $requestMail['status'] = $status;
+            $to_email = $data->email;
+
+            $requestMail['role'] = "user";
+            $mail = new InvestmentApproved($requestMail);
+            $data = Mail::to($to_email)
+            ->send($mail);
+
+            $requestMail['role'] = "admin";
+            $to_emailAdmin = env('ADMIN_EMAIL');
+            $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            $to_emailAdmin3 = env('ADMIN3_EMAIL');
+            $mail2 = new InvestmentApproved($requestMail);
+            Mail::to($to_emailAdmin)
+            ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                ->send($mail2);
+
+        }
         return redirect()->route('admin.investment')->with('update', 'Investment Updated Successfully');
     }
     public function investmentemail(Request $request){
@@ -433,6 +476,33 @@ class AdminController extends Controller
         $payments = $request->all();
         Payment:: create($payments);
 
+        $requestMail = $payments;
+        
+        $beneficiary = Beneficiaries::find($request->Beneficiary);
+        if ($beneficiary) {
+            $requestMail['accountname'] = $beneficiary->accountname;
+            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+        }
+
+        $user = User::find($request->customer);
+        if ($user) {
+            $requestMail['fname'] = $user->fname;
+            $to_email = $user->email;
+        }
+
+        $requestMail['role'] = "user";
+        $mail = new PaymentConfirmation($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
+        $requestMail['role'] = "admin";
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail2 = new PaymentConfirmation($requestMail);
+        Mail::to($to_emailAdmin)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail2);
         return redirect()->route('admin.payments')->with ('success','Payment Added Successfully');
     }
     public function deletePayment($id){
@@ -452,39 +522,70 @@ class AdminController extends Controller
         if ($payment) {
             $payment->update($request->all());
         }
+
+        $mypayment = Payment::where('id',$request->id)->first();
+        $requestMail = $mypayment;
+        
+        $beneficiary = Beneficiaries::find($mypayment->Beneficiary);
+        if ($beneficiary) {
+            $requestMail['accountname'] = $beneficiary->accountname;
+            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+        }
+
+        $user = User::find($mypayment->customer);
+        if ($user) {
+            $requestMail['fname'] = $user->fname;
+            $to_email = $user->email;
+        }
+
+        $requestMail['role'] = "user";
+        $mail = new PaymentUpdate($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
+        $requestMail['role'] = "admin";
+        $to_emailAdmin = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail2 = new PaymentUpdate($requestMail);
+        Mail::to($to_emailAdmin)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail2);
         return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
     }
     public function paymentemail($id){
         $payment = Payment::find($id);
         $data1 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')
-        ->leftJoin('orders', 'payments.orderid', '=', 'orders.id')
-        ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','orders.*','orders.id as oid','orders.created_at as orderdate' )
-        ->where('payments.orderid',$id)
+        ->leftJoin('beneficiaries', 'payments.Beneficiary', '=', 'beneficiaries.id')
+        ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','beneficiaries.*' )
+        ->where('payments.id',$id)
         ->first();
 
         if ($data1) {
             $requestMail = $data1;
+            $requestMail['role']="admin";
             $to_email = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
-            $mail = new PaymentUpdate($requestMail);
+            $mail = new PaymentApproved($requestMail);
             Mail::to($to_email)
             ->cc([$to_emailAdmin2, $to_emailAdmin3])
                 ->send($mail);
         }
 
         $data2 = Payment::leftJoin('users', 'payments.customer', '=', 'users.id')
-        ->leftJoin('orders', 'payments.orderid', '=', 'orders.id')
-        ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','orders.*','orders.id as oid','orders.created_at as orderdate' )
-        ->where('payments.orderid',$id)
+        ->leftJoin('beneficiaries', 'payments.Beneficiary', '=', 'beneficiaries.id')
+        ->select('users.fname', 'users.email', 'payments.*','payments.id as pid','payments.created_at as pdate','beneficiaries.*' )
+        ->where('payments.id',$id)
         ->first();
 
         if ($data2) {
             $username=auth()->user()->fname;
             $status = $data2->status;
             $requestMail = $data2;
+            $requestMail['role']="user";
             $to_useremail = $data2->email;
-            $mail = new PaymentConfirmation($requestMail);
+            $mail = new PaymentApproved($requestMail);
             Mail::to($to_useremail)
                 ->send($mail);
 
