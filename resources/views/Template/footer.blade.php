@@ -47,7 +47,7 @@
                 <img src="{{asset('img/logo.svg')}}" alt="logo" class="img-fluid">
             </a>
             <p class="mb-0 text-center mt-2">
-                © 2024 IRETI Capital. All Rights Reserved.
+                © 2024 Ireti Capital. All Rights Reserved.
             </p>
         </div>
     </div>
