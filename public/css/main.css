@@ -188,6 +188,9 @@ textarea:focus {
 .table-responsive {
     min-height: 300px !important;
 }
+.navdrpicon{
+    width: 18px;
+}
 @media screen and (max-width:992px) {
     .navbar-brand {
         max-width: 160px;
