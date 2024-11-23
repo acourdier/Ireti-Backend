@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <h1 class="font-bold text-black  display-4 text-center" data-aos="fade-right" data-aos-delay="300">
                         ESG Investments</h1>
-                    <p class=" text-center text-center mt-3 fs-5" data-aos="fade-up" data-aos-delay="500">As a liquidity
+                    <p class=" text-center text-center mt-3 fs-5" data-aos="fade-up" data-aos-delay="500">
                         We help our partners to invest in Africa by delivering tailored services, in line with their
                         investment strategy and policies. Once you have defined your investment objectives, we will
                         leverage our local presence and find the right projects for your fund. Investing in Africa can
@@ -29,22 +29,24 @@
         <div class="mycontainer py-5">
             <div class="row justify-content-center align-items-center py-5">
                 <div class="col-10 col-sm-8 col-md-6 py-lg-3" data-aos="fade-down" data-aos-delay="500">
-                    <img src="{{asset('img/crane.svg')}}" alt="crane" class="w-100">
+                    <img src="{{asset('img/cranes.svg')}}" alt="crane" class="w-100">
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0 py-lg-3 ps-md-4" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">The Right Projects</h2>
-                    <p  class="fs-5">
-                        We source projects that align with the Sustainable Development Goals (SDGs) set
-                        by the United Nations are selected based on your specific investment objectives, including
-                        sector, impact, duration, capital amount, and yield targets. Additionally, we manage the
-                        preliminary due diligence process to optimize time and resources for all parties.
+                    <p class="fs-5">
+                        We source projects that align with the Sustainable Development Goals (SDGs) set by the United
+                        Nations.
+                        Projects are selected based on your specific investment objectives, including sector, impact,
+                        duration, capital amount, and yield targets. Additionally, we manage the preliminary due
+                        diligence process to optimize time and resources for all parties.
+
                     </p>
                 </div>
             </div>
             <div class="row justify-content-center flex-column-reverse flex-md-row align-items-center py-5">
                 <div class="col-md-6 py-lg-3 mt-5 mt-md-0 pe-md-4" data-aos="fade-up" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text  ">Our Actions</h2>
-                    <p  class="fs-5">
+                    <p class="fs-5">
                         With offices in Western and Central Africa, Ireti Capital directly contributes
                         to the local economy by collaborating closely with local communities.
                         Ireti Capital is a member of Principles for Responsible Investments (PRI), an
@@ -55,7 +57,7 @@
                     </p>
                 </div>
                 <div class="col-md-6 py-lg-3" data-aos="fade-right" data-aos-delay="300">
-                    <img src="{{asset('img/plan.svg')}}" alt="plan" class="w-100">
+                    <img src="{{asset('img/esgplan.svg')}}" alt="plan" class="w-100">
                 </div>
             </div>
             <div class="row align-items-center justify-content-center py-5">
@@ -69,7 +71,7 @@
                     </p>
                 </div>
                 <div class="col-md-8  px-sm-5" data-aos="fade-right" data-aos-delay="300">
-                    <img src="{{ asset('img/main.svg') }}" alt="ngo" class="w-100">
+                    <img src="{{ asset('img/esgmain.svg') }}" alt="ngo" class="w-100">
                 </div>
             </div>
         </div>

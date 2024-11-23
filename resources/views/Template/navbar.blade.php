@@ -38,22 +38,22 @@
                         <div class="position-absolute cus-dropdown bg-white rounded-2 px-3 py-2">
                             <a href="{{route('liquidityProvider')}}"
                                 class="d-flex align-items-center text-decoration-none small py-2 text-black">
-                                <img src="{{asset('img/icon1.svg')}}" alt="liquidity" class="me-2">
+                                <img src="{{asset('img/icon1.svg')}}" alt="liquidity" class="me-2 navdrpicon">
                                 <span>Liquidity provider</span>
                             </a>
                             <a href="{{route('fxMmanagement')}}"
                                 class="d-flex align-items-center text-decoration-none small py-2 text-black">
-                                <img src="{{asset('img/icon2.svg')}}" alt="liquidity" class="me-2">
+                                <img src="{{asset('img/icon2.svg')}}" alt="liquidity" class="me-2 navdrpicon">
                                 <span>FX Management Consulting</span>
                             </a>
                             <a href="{{route('NgoFlowOptimization')}}"
                                 class="d-flex align-items-center text-decoration-none small py-2 text-black">
-                                <img src="{{asset('img/icon3.svg')}}" alt="liquidity" class="me-2">
+                                <img src="{{asset('img/icon3.svg')}}" alt="liquidity" class="me-2 navdrpicon">
                                 <span>NGO Flow Optimization</span>
                             </a>
                             <a href="{{route('ESGInvestments')}}"
                                 class="d-flex align-items-center text-decoration-none small py-2 text-black">
-                                <img src="{{asset('img/icon2.svg')}}" alt="liquidity" class="me-2">
+                                <img src="{{asset('img/esgbag.svg')}}" alt="liquidity" class="me-2 navdrpicon">
                                 <span>ESG Investments</span>
                             </a>
                             

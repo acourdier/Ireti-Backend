@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="my-4 d-flex justify-content-center">
-                <a href="{{ route('login') }}"
+                <a href="{{ route('signup') }}"
                     class="green-bg text-white text-uppercase text-decoration-none me-3 px-4 py-2 rounded-3 opacity-hover font-medium">Get
                     Started</a>
             </div>
