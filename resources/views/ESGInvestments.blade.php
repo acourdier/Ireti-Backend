@@ -15,11 +15,11 @@
                     <h1 class="font-bold text-black  display-4 text-center" data-aos="fade-right" data-aos-delay="300">
                         ESG Investments</h1>
                     <p class=" text-center text-center mt-3 fs-5" data-aos="fade-up" data-aos-delay="500">
-                        We provide tailored solutions for funds seeking to invest in ESG projects across Africa. Our
-                        local presence enables our partners to access projects that align with their specific investment
-                        policies and objectives.
-                        Our Investment process is designed to secure our partners investments against an adverse move on
-                        the FX markets while offering a full transparency on the allocation of the funds.
+                        We help our partners to invest in Africa by delivering tailored services, in line with their
+                        investment strategy and policies. Once you have defined your investment objectives, we will
+                        leverage our local presence and find the right projects for your fund. Investing in Africa can
+                        be challenging, and we are here to help and ease the process for you to focus on your investment
+                        strategy.
                     </p>
                 </div>
             </div>
@@ -34,10 +34,12 @@
                 <div class="col-md-6 mt-5 mt-md-0 py-lg-3 ps-md-4" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">The Right Projects</h2>
                     <p class="fs-5">
-                        We source projects that align with the Sustainable Development Goals (SDGs) set
-                        by the United Nations are selected based on your specific investment objectives, including
-                        sector, impact, duration, capital amount, and yield targets. Additionally, we manage the
-                        preliminary due diligence process to optimize time and resources for all parties.
+                        We source projects that align with the Sustainable Development Goals (SDGs) set by the United
+                        Nations.
+                        Projects are selected based on your specific investment objectives, including sector, impact,
+                        duration, capital amount, and yield targets. Additionally, we manage the preliminary due
+                        diligence process to optimize time and resources for all parties.
+
                     </p>
                 </div>
             </div>
