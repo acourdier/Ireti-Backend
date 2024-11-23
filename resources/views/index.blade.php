@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-10 col-sm-8 ps-lg-5  " data-aos="fade-right" data-aos-delay="300">
-                        <img src="{{asset('img/consultation.svg')}}" alt="consultation" class="w-100">
+                        <img src="{{asset('img/rxmanagemnt.svg')}}" alt="consultation" class="w-100">
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center py-5">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center py-5">
-                    <div class="col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
+                    <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                         <h2 class="font-bold fs-2 green-text">ESG Investments</h2>
                         <p>
                             We provide tailored solutions for funds seeking to invest in ESG projects across Africa. Our local presence enables our partners to access projects that align with their specific investment policies and objectives.
@@ -115,8 +115,8 @@
                             More</a>
                         </div>
                     </div>
-                    <div class="col-10 col-sm-8 col-md-5 pe-lg-5" data-aos="fade-up" data-aos-delay="300">
-                        <img src="{{asset('img/main.svg')}}" alt="main " class="w-100">
+                    <div class="col-10 col-sm-8 col-md-6 pe-lg-5" data-aos="fade-up" data-aos-delay="300">
+                        <img src="{{asset('img/esgmain.svg')}}" alt="main " class="w-100">
                     </div>
                 </div>
             </div>
