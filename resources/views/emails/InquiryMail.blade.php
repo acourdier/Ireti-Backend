@@ -99,6 +99,12 @@
                     <p><strong>Share:</strong> {{ $requestMail['uboShare'][$index] }}</p>
                     @endforeach
                     @endif
+                    <h2>Attachments:</h2>
+                    <p><strong>ID Front:</strong> <a href="{{ asset('uploads/' . $requestMail['idFile']) }}">Click here</a></p>
+                    <p><strong>ID Back:</strong> <a href="{{ asset('uploads/' . $requestMail['billFile']) }}">Click here</a></p>
+                    <p><strong>Incorporation File:</strong> <a href="{{ asset('uploads/' . $requestMail['incorporationFile']) }}">Click here</a></p>
+                    <p><strong>Memorandum File:</strong> <a href="{{ asset('uploads/' . $requestMail['memorandumFile']) }}">Click here</a></p>
+                    <p><strong>ID Front:</strong> <a href="{{ asset('uploads/' . $requestMail['resolutionFile']) }}">Click here</a></p>
                 </div>
             </div>
         </div>

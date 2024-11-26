@@ -36,7 +36,7 @@ footer {
     min-height: calc(100dvh - 72px);
 }
 .neg-div {
-    margin-top:-15%;
+    margin-top:-8%;
 }
 .cus-dropdown {
     border: 1px solid #a1c1a2;
@@ -198,6 +198,10 @@ nav .green-text {
 }
 .swal-overlay {
     background-color: transparent;
+  }
+
+  .text-justify {
+    text-align: justify;
   }
 @media screen and (max-width:992px) {
     .cus-dropdown {

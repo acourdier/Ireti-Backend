@@ -37,7 +37,7 @@
                         <h2 class="font-black display-5 green-text d-none d-md-block">Our Global<br>
                             Presence</h2>
                         <h2 class="font-black fs-1 green-text d-md-none">Our Global Presence</h2>
-                        <p>With offices in Europe and Africa, we are strategically located to tackle the lack of
+                        <p class="text-justify">With offices in Europe and Africa, we are strategically located to tackle the lack of
                             Liquidity in certain geographic zones and serve our clients.</p>
                     </div>
                     <div class="col-sm-8 col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="500">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-7 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                         <h2 class="font-bold fs-2 green-text">Liquidity provider</h2>
-                        <p>Experience the next level of trading with Ireti Capital's bespoke liquidity solutions. We
+                        <p class="text-justify">Experience the next level of trading with Ireti Capital's bespoke liquidity solutions. We
                             bring liquidity to the forefront, ensuring you have the tools and resources needed to thrive
                             in the ever-evolving commodities and foreign exchange markets.</p>
                         <div class="mt-4">
@@ -68,7 +68,7 @@
                 <div class="row justify-content-center flex-column-reverse flex-md-row align-items-center py-5">
                     <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-down" data-aos-delay="300">
                         <h2 class="font-bold fs-2 green-text">FX Management Consulting</h2>
-                        <p>Our experienced consultants collaborate closely with companies to assess their FX risks and
+                        <p class="text-justify">Our experienced consultants collaborate closely with companies to assess their FX risks and
                             design tailored strategies for risk mitigation and exposure optimization. By streamlining
                             currency transactions we empower businesses to navigate the complexities of foreign
                             exchange, ensuring resilience, informed decision-making, and strategic advantage in the face
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                         <h2 class="font-bold fs-2 green-text">NGO flow optimization</h2>
-                        <p>At Ireti Capital, we strive to empower NGOs with cost-effective solutions, ensuring that they
+                        <p class="text-justify">At Ireti Capital, we strive to empower NGOs with cost-effective solutions, ensuring that they
                             can allocate more resources directly to their impactful projects. We stand as a dedicated
                             partner, optimizing NGOs operations to enhance the financing of their projects. Our
                             commitment encompasses providing a seamless, secure, and expeditious transaction experience
@@ -104,7 +104,7 @@
                 <div class="row justify-content-center align-items-center py-5">
                     <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                         <h2 class="font-bold fs-2 green-text">ESG Investments</h2>
-                        <p>
+                        <p class="text-justify">
                             We provide tailored solutions for funds seeking to invest in ESG projects across Africa. Our local presence enables our partners to access projects that align with their specific investment policies and objectives.
                             Our Investment process is designed to secure our partners investments against an adverse move on the FX markets while offering a full transparency on the allocation of the funds.
                             

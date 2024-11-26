@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0 py-lg-3 ps-md-4" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Commodity Market Liquidity</h2>
-                    <p class="fs-5">In the realm of commodities, Ireti Capital stands as a trusted source of liquidity.
+                    <p class="fs-5 text-justify">In the realm of commodities, Ireti Capital stands as a trusted source of liquidity.
                         Whether it's
                         agricultural products, energy resources, or precious metals, our liquidity solutions provide
                         market participants with the liquidity needed to execute transactions seamlessly. Our presence
@@ -43,7 +43,7 @@
             <div class="row justify-content-center flex-column-reverse flex-md-row align-items-center py-5">
                 <div class="col-md-6 py-lg-3 mt-5 mt-md-0 pe-md-4" data-aos="fade-up" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text  ">Forex Market Liquidity </h2>
-                    <p class="fs-5">In the Forex market, where constant fluctuations present both opportunities and
+                    <p class="fs-5 text-justify">In the Forex market, where constant fluctuations present both opportunities and
                         challenges, Ireti
                         Capital stands out as a reliable partner. Our expertise lies in offering liquidity that allows
                         traders, businesses, and financial institutions to execute trades efficiently. We understand the
@@ -61,7 +61,7 @@
                 <div class="col-md-6 py-lg-3 mt-5 mt-md-0  ps-md-4" data-aos="fade-down" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text  ">Tailored Solutions for
                         diverse needs</h2>
-                    <p class="fs-5">Recognizing the diverse needs of our clients, we offer tailored liquidity solutions
+                    <p class="fs-5 text-justify">Recognizing the diverse needs of our clients, we offer tailored liquidity solutions
                         accessible
                         through our in-house platform. Whether you are a trader seeking quick execution, a business
                         managing foreign exchange exposures, or an investor navigating commodity markets, Ireti

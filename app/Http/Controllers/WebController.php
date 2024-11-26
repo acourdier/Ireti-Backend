@@ -197,5 +197,8 @@ class WebController extends Controller
             ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
-
+    public function terms(){
+        return view('terms');
+    }
+    
 }

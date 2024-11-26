@@ -18,6 +18,7 @@ Route::controller(WebController::class)->group(function(){
     Route::get('onlineInquiry','onlineInquiry')->name('onlineInquiry');
     Route::get('liquidityProvider','liquidityProvider')->name('liquidityProvider');
     Route::get('NgoFlowOptimization','NgoFlowOptimization')->name('NgoFlowOptimization');
+    Route::get('terms','terms')->name('terms');
 
 });
 

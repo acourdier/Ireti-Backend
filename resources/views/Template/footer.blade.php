@@ -7,7 +7,7 @@
                 </h2>
                 <div class="mt-3">
                     <a href="{{route('/')}}" class="text-decoration-none text-black my-2 d-block">Home</a>
-                    <a href="#" class="text-decoration-none text-black my-2 d-block">Terms</a>
+                    <a href="{{route('terms')}}" class="text-decoration-none text-black my-2 d-block">Terms</a>
                     <a href="{{route('about')}}" class="text-decoration-none text-black my-2 d-block">About Us</a>
                 </div>
             </div>
