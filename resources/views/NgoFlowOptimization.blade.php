@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <h1 class="font-bold text-black  display-4 text-center" data-aos="fade-right" data-aos-delay="300">
                         NGO flow optimization</h1>
-                    <p class=" text-center text-center fs-5" data-aos="fade-up" data-aos-delay="500">
+                    <p class=" text-center fs-5" data-aos="fade-up" data-aos-delay="500">
                         At Ireti Capital, we extend our expertise to NGOs, recognizing the unique challenges they face
                         in optimizing their foreign exchange flows for project financing. Many NGOs are exposed to
                         exotic markets where they lack efficient solutions. Our specialized service in NGO Flow

@@ -26,13 +26,13 @@
         <div class="mycontainer">
             <div class="row justify-content-center py-5">
                 <div class="col-6" data-aos="fade-up" data-aos-delay="400">
-                    <img src="{{ asset('img/platform1.svg') }}" alt="" class="w-100">
+                    <img src="{{ asset('img/platform1.png') }}" alt="" class="w-100 shadow">
                 </div>
                 <div class="col-6" data-aos="fade-right" data-aos-delay="500">
-                    <img src="{{ asset('img/platform2.svg') }}" alt="" class="w-100">
+                    <img src="{{ asset('img/platform2.png') }}" alt="" class="w-100 shadow">
                 </div>
                 <div class="col-6 neg-div" data-aos="fade-down" data-aos-delay="300">
-                    <img src="{{ asset('img/platform3.svg') }}" alt="" class="w-100">
+                    <img src="{{ asset('img/platform3.png') }}" alt="" class="w-100 shadow">
                 </div>
             </div>
             <div class="my-4 d-flex justify-content-center">

@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-right" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Risk mitigation strategies</h2>
-                    <p class="fs-5">For companies without a dedicated FX management team, exposure to market
+                    <p class="fs-5 text-justify">For companies without a dedicated FX management team, exposure to market
                         fluctuations can pose
                         significant risks. Our experienced consultants work closely with businesses to identify
                         potential risks and design tailored strategies that mitigate these risks effectively. Whether
@@ -43,7 +43,7 @@
             <div class="row justify-content-center flex-column-reverse flex-md-row align-items-center py-5">
                 <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-up" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Optimizing Currency flows </h2>
-                    <p class="fs-5">We understand the importance of optimizing currency flows to enhance financial
+                    <p class="fs-5 text-justify">We understand the importance of optimizing currency flows to enhance financial
                         performance. Our
                         FX Management Consulting service is designed to help companies streamline their currency
                         transactions, ensuring efficiency and minimizing unnecessary costs. By identifying opportunities
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-down" data-aos-delay="300">
                     <h2 class="font-semi fs-1 green-text">Hedging solutions</h2>
-                    <p class="fs-5">To protect companies margins and rentability, our consultants develop and
+                    <p class="fs-5 text-justify">To protect companies margins and rentability, our consultants develop and
                         implement
                         customized
                         hedging solutions. These solutions are tailored to the specific needs and risk appetite of each

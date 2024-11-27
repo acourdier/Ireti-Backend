@@ -89,7 +89,7 @@
                             <p class="fs-5 font-bold me-2">Gabriel Olugbenga</p>
                             <p>Founding Partner</p>
                         </div>
-                        <p class="text-center text-sm-start">Prior to co-founding Ireti Capital in 2023, Gabriel spent
+                        <p class="text-justify">Prior to co-founding Ireti Capital in 2023, Gabriel spent
                             over 8 years working at Goldman Sachs in London, New York and Paris in the equity division.
                             As an Executive Director, he was responsible, among other things, for overseeing Goldman
                             Sachs equity trading venue and providing clients within the European Union a solution to
@@ -106,7 +106,7 @@
                             <p class="fs-5 font-bold me-2">Sullivan Joubert</p>
                             <p>Founding Partner</p>
                         </div>
-                        <p class="text-center text-sm-start">After working in corporate finance at the French National
+                        <p class="text-justify">After working in corporate finance at the French National
                             Bank and BNP Paribas Wealth Management, Sullivan had a
                             number of sales and trading experiences with well-known banks and hedge funds. Building on
                             this experience, he

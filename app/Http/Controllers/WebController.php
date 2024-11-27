@@ -7,6 +7,7 @@ use App\Models\Owner;
 use App\Models\Ubo;
 use Illuminate\Http\Request;
 use App\Mail\InquiryMail;
+use App\Mail\InquiryConfirmation;
 use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
@@ -188,6 +189,13 @@ class WebController extends Controller
         }
    
         $requestMail = $request->all();
+        $requestMail['fname'] = $user->fname;
+        $to_email = $user->email;
+
+        $mail = new InquiryConfirmation($requestMail);
+        $data = Mail::to($to_email)
+            ->send($mail);
+
         $to_email = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
@@ -197,5 +205,8 @@ class WebController extends Controller
             ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
-
+    public function terms(){
+        return view('terms');
+    }
+    
 }
