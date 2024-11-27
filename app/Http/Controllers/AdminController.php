@@ -18,6 +18,7 @@ use App\Mail\PaymentUpdate;
 use App\Mail\PaymentApproved;
 use App\Mail\PaymentConfirmation;
 use App\Mail\InvestmentApproved;
+use App\Mail\StatusUpdate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -442,7 +443,17 @@ class AdminController extends Controller
         if ($data) {
             $data->update($request->all());
         }
-
+        $requestMail = $request->all();
+        $to_email =  $data->email;
+        if($request->status==3){
+            $mailstatus = "rejected";
+        }
+        else{
+            $mailstatus = "approved";
+        }
+        $requestMail['mailstatus'] = $mailstatus;
+        $mail = new StatusUpdate($requestMail);
+        $data = Mail::to($to_email)->send($mail);
         return redirect()->route('admin.clients')->with('update', 'Clients Updated Successfully');
     }
 
