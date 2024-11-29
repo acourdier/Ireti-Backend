@@ -40,13 +40,23 @@
                     @if ($requestMail['role'] == 'admin')
                         <p><span class="mb-0 fw-bold">Subject: </span>Payment Update</p>
                         <p class="mb-0">Dear Admin,</p>
-                        <p class="mb-0 mt-3 p2">{{ $requestMail['username'] }} have updated the details of their order.
+                        @if ($requestMail['updateby'] == 'admin')
+                           <p>You have updated the details of {{ $requestMail['username'] }}'s order.
                             Please find below the updated information.</p>
+                        @else
+                         <p class="mb-0 mt-3 p2">{{ $requestMail['username'] }} have updated the details of their order.
+                            Please find below the updated information.</p>
+                        @endif
                     @else
                         <p><span class="mb-0 fw-bold">Subject: </span>Payment Update – Please Review</p>
                         <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
-                        <p class="mb-0 mt-3 p2">We’ve noticed that you’ve updated the details of your order and we’ve
+                        @if ($requestMail['updateby'] == 'admin')
+                        <p class="mb-0 mt-3 p2">Admin have updated the details of your order and we’ve
                             taken this update into consideration. Please find below the updated information.</p>
+                         @else
+                            <p class="mb-0 mt-3 p2">We’ve noticed that you’ve updated the details of your order and we’ve
+                                taken this update into consideration. Please find below the updated information.</p>
+                       @endif
                     @endif
                 </div>
             </div>
