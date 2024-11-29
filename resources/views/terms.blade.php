@@ -245,8 +245,8 @@
                     <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11"
                         data-bs-parent="#termsAccordion">
                         <div class="accordion-body">
-                            These Terms are governed by the laws of [Insert Country/Region]. Any disputes will
-                            be subject to the exclusive jurisdiction of the courts in [Insert Jurisdiction].
+                            These Terms are governed by the laws of France. Any disputes will
+                            be subject to the exclusive jurisdiction of the courts.
                         </div>
                     </div>
                 </div>
