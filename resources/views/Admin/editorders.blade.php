@@ -635,7 +635,6 @@
         sellAmount.disabled = true;
 
         firstcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
             secondcurrency.disabled = false;
             targetPrice.disabled = true;
             currencytb.disabled = true;
@@ -644,10 +643,8 @@
         });
 
         secondcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
             targetPrice.disabled = false;
-            currencytb.disabled = true;
+            currencytb.disabled = false;
             buyamount.disabled = true;
             sellAmount.disabled = true;
             let rate = firstcurrency.value + '/' + secondcurrency.value;
@@ -655,9 +652,6 @@
         });
 
         targetPrice.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
@@ -665,9 +659,6 @@
         });
 
         currencytb.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;

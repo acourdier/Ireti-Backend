@@ -216,7 +216,14 @@ class UserController extends Controller
         ->first();
 
         if ($orderDetails) {
-            $requestMail = $orderDetails;
+            $requestMail = $data;
+
+            $requestMail['id'] = $request->id;
+            $requestMail['username'] =$orderDetails->fname;
+            $requestMail['created_at'] =$orderDetails->created_at;
+            $requestMail['FundType'] =$orderDetails->FundType;
+            $requestMail['updateby'] = 'user';
+
             $to_email = $orderDetails->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');

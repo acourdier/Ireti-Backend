@@ -24,7 +24,7 @@
                                         <div class="col-md-6 d-none">
                                             <input type="text" name="id" value="{{ $orders['id'] }}">
                                         </div>
-                                     
+
                                         <div class="col-md-6">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
@@ -70,7 +70,8 @@
                                             </div>
                                         </div>
 
-                                        <input type="text" value="{{ $orders['currencytb'] }}" name="" id="currencytbdefault" class="d-none">
+                                        <input type="text" value="{{ $orders['currencytb'] }}" name=""
+                                            id="currencytbdefault" class="d-none">
                                         <div class="col-12">
                                             <p class="mt-3 mb-0" id="rate"></p>
                                         </div>
@@ -95,12 +96,13 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                    <p id="rate"></p>
+                                        <p id="rate"></p>
                                     </div>
-                                   
+
                                     <div class="col-12">
                                         <div class="mt-3 d-flex justify-content-end">
-                                       <a href="{{ route('user.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
+                                            <a href="{{ route('user.orders') }}"
+                                                class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
                                             <button type="submit"
                                                 class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Update Order
@@ -109,228 +111,248 @@
                                     </div>
                                 </form>
                             @elseif ($orders['FundType'] == 'Soft Commodities')
-                            <form action="{{ route('user.updateorder') }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 d-none">
-                                        <input type="text" name="id" value="{{ $orders['id'] }}">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="underlying">Select Underlying Commodity</label>
-                                            <select name="underlying" id="underlying" class="form-control">
-                                                @foreach ($softs as $soft)
-                                                <option value="{{ $soft['underlaying']}}"
-                                                    {{ $soft['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
-                                                    {{ $soft['underlaying']}}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                <form action="{{ route('user.updateorder') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6 d-none">
+                                            <input type="text" name="id" value="{{ $orders['id'] }}">
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="country">Country of Origin</label>
-                                            <input type="text" required name="country" id="country" value="{{$orders['country']}}"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="grade">Grade</label>
-                                            <input type="text" required name="grade" id="grade"
-                                                class="form-control" value="{{$orders['grade']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="buysell">Buy/Sell and {{$orders['buysell']}}</label>
-                                            <select name="buysell" id="buysell" class="form-select sel-sellbuy">
-                                                <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
-                                                <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
-                                            </select>
-                                        </div>                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="quantity">Quantity</label>
-                                            <input type="text" required name="quantity" id="quantity"
-                                                class="form-control"  value="{{$orders['quantity']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="unit">Unit of Measurement</label>
-                                            <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>Choose</option>
-                                                <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
-                                                <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
-                                                <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="targetpu">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetpu"
-                                                class="form-control"  value="{{$orders['targetp']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="Incoterm">Incoterm</label>
-                                            <input type="text" required name="Incoterm" id="Incoterm"
-                                                class="form-control"  value="{{$orders['Incoterm']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6" id="buy1">
+                                        <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Buy</label>
-                                                <select  name="currencytb" id="firstbuy" class="form-select">
-                                                @if(!empty($orders['currencytb']))   
-                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
-                                                @else
-                                                <option selected disabled hidden>Choose Currency</option>    
-                                                @endif
-                                                @foreach ($currencies as $currency)
-                                                 @if($orders['currencytb'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
+                                                <label for="underlying">Select Underlying Commodity</label>
+                                                <select name="underlying" id="underlying" class="form-control">
+                                                    @foreach ($softs as $soft)
+                                                        <option value="{{ $soft['underlaying'] }}"
+                                                            {{ $soft['underlaying'] == $orders['underlying'] ? 'selected' : '' }}>
+                                                            {{ $soft['underlaying'] }}
                                                         </option>
-                                                     @endif   
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="country">Country of Origin</label>
+                                                <input type="text" required name="country" id="country"
+                                                    value="{{ $orders['country'] }}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="grade">Grade</label>
+                                                <input type="text" required name="grade" id="grade"
+                                                    class="form-control" value="{{ $orders['grade'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="buysell">Buy/Sell and {{ $orders['buysell'] }}</label>
+                                                <select name="buysell" id="buysell"
+                                                    class="form-select sel-sellbuy">
+                                                    <option value="Buy"
+                                                        {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy
+                                                    </option>
+                                                    <option value="Sell"
+                                                        {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="quantity">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantity"
+                                                    class="form-control" value="{{ $orders['quantity'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="unit">Unit of Measurement</label>
+                                                <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>Choose</option>
+                                                    <option value="Gram"
+                                                        {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
+                                                    <option value="Kg"
+                                                        {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
+                                                    <option value="Ton"
+                                                        {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="targetpu">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpu"
+                                                    class="form-control" value="{{ $orders['targetp'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="Incoterm">Incoterm</label>
+                                                <input type="text" required name="Incoterm" id="Incoterm"
+                                                    class="form-control" value="{{ $orders['Incoterm'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" id="buy1">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to
+                                                    Buy</label>
+                                                <select name="currencytb" id="firstbuy" class="form-select">
+                                                    @if (!empty($orders['currencytb']))
+                                                        <option value="{{ $orders['currencytb'] }}">
+                                                            {{ $orders['currencytb'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencytb'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 d-none" id="sell1">
                                             <div class="mt-3">
-                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to Sell</label>
-                                                <select  name="currencyts" id="firstbuy" class="form-select">
-                                                @if(!empty($orders['currencyts']))    
-                                                <option value="{{ $orders['currencyts'] }}">{{ $orders['currencyts'] }}</option>
-                                                @else
-                                                <option selected disabled hidden>Choose Currency</option>
-                                                @endif
-                                                @foreach ($currencies as $currency)
-
-                                                @if($orders['currencyts'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
-                                                        </option>
-                                                @endif
+                                                <label for="currencytb" id="currencyLabel_1">Choose Currency to
+                                                    Sell</label>
+                                                <select name="currencyts" id="firstbuy" class="form-select">
+                                                    @if (!empty($orders['currencyts']))
+                                                        <option value="{{ $orders['currencyts'] }}">
+                                                            {{ $orders['currencyts'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencyts'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                    <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="details">Additional Details</label>
-                                            <textarea id="details" required name="details" cols="30" rows="5"
-                                                class="form-control">{{$orders['details']}}</textarea>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3 d-flex justify-content-end">
-                                       <a href="{{ route('user.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
-                                        <button type="submit"
-                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Update Order
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            @elseif ($orders['FundType'] == 'Metals')
-                            <form action="{{ route('user.updateorder') }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 d-none">
-                                        <input type="text" name="id" value="{{ $orders['id'] }}">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="underlying">Select Underlying Commodity</label>
-                                            <select name="underlying" id="underlying" class="form-control">
-                                                @foreach ($metals as $metal)
-                                                <option value="{{ $metal['underlaying']}}"
-                                                    {{ $metal['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
-                                                    {{ $metal['underlaying']}}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="country">Country of Origin</label>
-                                            <input type="text" required name="country" id="country" value="{{$orders['country']}}"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="grade">Grade</label>
-                                            <input type="text" required name="grade" id="grade"
-                                                class="form-control" value="{{$orders['grade']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="buysell">Buy/Sell</label>
-                                            <select name="buysell" id="buysell" class="form-select sel-sellbuy2">
-                                                <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy</option>
-                                                <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
-                                            </select>
-                                        </div>                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="quantitym">Quantity</label>
-                                            <input type="text" required name="quantity" id="quantitym"
-                                                class="form-control"  value="{{$orders['quantity']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="unit">Unit of Measurement</label>
-                                            <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>Choose</option>
-                                                <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
-                                                <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
-                                                <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="targetpm">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetpm"
-                                                class="form-control"  value="{{$orders['targetp']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="Incoterm">Incoterm</label>
-                                            <input type="text" required name="Incoterm" id="Incoterm"
-                                                class="form-control"  value="{{$orders['Incoterm']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6" id="buy3">
+                                        <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="currencytb" id="currencyLabel_3">Choose Currency to Buy</label>
-                                                <select id="currencytb" name="currencytb" class="form-select">
-                                                @if(!empty($orders['currencytb']))
-                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
-                                                @else
-                                                <option selected disabled hidden>Choose Currency</option>    
-                                                @endif
-                                                @foreach ($currencies as $currency)
+                                                <label for="details">Additional Details</label>
+                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control">{{ $orders['details'] }}</textarea>
+                                            </div>
+                                        </div>
 
-                                                    @IF($orders['currencytb'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <a href="{{ route('user.orders') }}"
+                                                class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Update Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @elseif ($orders['FundType'] == 'Metals')
+                                <form action="{{ route('user.updateorder') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6 d-none">
+                                            <input type="text" name="id" value="{{ $orders['id'] }}">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="underlying">Select Underlying Commodity</label>
+                                                <select name="underlying" id="underlying" class="form-control">
+                                                    @foreach ($metals as $metal)
+                                                        <option value="{{ $metal['underlaying'] }}"
+                                                            {{ $metal['underlaying'] == $orders['underlying'] ? 'selected' : '' }}>
+                                                            {{ $metal['underlaying'] }}
                                                         </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="country">Country of Origin</label>
+                                                <input type="text" required name="country" id="country"
+                                                    value="{{ $orders['country'] }}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="grade">Grade</label>
+                                                <input type="text" required name="grade" id="grade"
+                                                    class="form-control" value="{{ $orders['grade'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="buysell">Buy/Sell</label>
+                                                <select name="buysell" id="buysell"
+                                                    class="form-select sel-sellbuy2">
+                                                    <option value="Buy"
+                                                        {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy
+                                                    </option>
+                                                    <option value="Sell"
+                                                        {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="quantitym">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantitym"
+                                                    class="form-control" value="{{ $orders['quantity'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="unit">Unit of Measurement</label>
+                                                <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>Choose</option>
+                                                    <option value="Gram"
+                                                        {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
+                                                    <option value="Kg"
+                                                        {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
+                                                    <option value="Ton"
+                                                        {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="targetpm">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpm"
+                                                    class="form-control" value="{{ $orders['targetp'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="Incoterm">Incoterm</label>
+                                                <input type="text" required name="Incoterm" id="Incoterm"
+                                                    class="form-control" value="{{ $orders['Incoterm'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" id="buy3">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_3">Choose Currency to
+                                                    Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                    @if (!empty($orders['currencytb']))
+                                                        <option value="{{ $orders['currencytb'] }}">
+                                                            {{ $orders['currencytb'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencytb'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -338,131 +360,143 @@
                                         </div>
                                         <div class="col-sm-6 d-none" id="sell3">
                                             <div class="mt-3">
-                                                <label for="currencyts" id="currencyLabel_3">Choose Currency to Sell</label>
+                                                <label for="currencyts" id="currencyLabel_3">Choose Currency to
+                                                    Sell</label>
                                                 <select id="currencyts" name="currencyts" class="form-select">
-                                                @if(!empty($orders['currencyts']))
-                                                <option value="{{ $orders['currencyts']}}">{{ $orders['currencyts'] }}</option>
-                                                @else
-                                                <option selected disabled hidden>Choose Currency</option>                
-                                                @endif
-                                                @foreach ($currencies as $currency)
-                                                   @if($orders['currencyts'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
-                                                        </option>
+                                                    @if (!empty($orders['currencyts']))
+                                                        <option value="{{ $orders['currencyts'] }}">
+                                                            {{ $orders['currencyts'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencyts'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
                                                         @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                    <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="details">Additional Details</label>
-                                            <textarea id="details" required name="details" cols="30" rows="5"
-                                                class="form-control">{{$orders['details']}}</textarea>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3 d-flex justify-content-end">
-                                       <a href="{{ route('user.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
-                                        <button type="submit"
-                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Update Order
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            @else
-                            <form action="{{ route('user.updateorder') }}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 d-none">
-                                        <input type="text" name="id" value="{{ $orders['id'] }}">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="underlying">Select Underlying Commodity</label>
-                                            <select name="underlying" id="underlying" class="form-control">
-                                                @foreach ($oils as $oil)
-                                                <option value="{{ $oil['underlaying']}}"
-                                                    {{ $oil['underlaying']== $orders['underlying'] ? 'selected' : '' }}>
-                                                    {{ $oil['underlaying']}}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="country">Country of Origin</label>
-                                            <input type="text" required name="country" id="country" value="{{$orders['country']}}"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="grade">Grade</label>
-                                            <input type="text" required name="grade" id="grade"
-                                                class="form-control" value="{{$orders['grade']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="buysell">Buy/Sell</label>
-                                            <select name="buysell" id="buysell" class="form-select sel-sellbuy1">
-                                                <option value="Buy" {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy </option>
-                                                <option value="Sell" {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell</option>
-                                            </select>
-                                        </div>                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="quantityo">Quantity</label>
-                                            <input type="text" required name="quantity" id="quantityo"
-                                                class="form-control"  value="{{$orders['quantity']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="unit">Unit of Measurement</label>
-                                            <select name="unit" id="unit" class="form-control">
-                                                <option value="choose" selected disabled hidden>Choose</option>
-                                                <option value="Gram" {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
-                                                <option value="Kg" {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
-                                                <option value="Ton" {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="targetpo">Price Target Per Unit</label>
-                                            <input type="text" required name="targetp" id="targetpo"
-                                                class="form-control"  value="{{$orders['targetp']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="Incoterm">Incoterm</label>
-                                            <input type="text" required name="Incoterm" id="Incoterm"
-                                                class="form-control"  value="{{$orders['Incoterm']}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6" id="buy2">
+                                        <div class="col-12">
                                             <div class="mt-3">
-                                                <label for="currencytb" id="currencyLabel_2">Choose Currency to Buy</label>
-                                                <select id="currencytb" name="currencytb" class="form-select">
-                                                @if(!empty($orders['currencytb']))
-                                                <option value="{{ $orders['currencytb']}}">{{ $orders['currencytb'] }}</option>
-                                                @else
-                                                <option selected disabled hidden>Choose Currency</option>
-                                                @endif
-                                                @foreach ($currencies as $currency)
-                                                    @if($orders['currencytb'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
+                                                <label for="details">Additional Details</label>
+                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control">{{ $orders['details'] }}</textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <a href="{{ route('user.orders') }}"
+                                                class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Update Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @else
+                                <form action="{{ route('user.updateorder') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6 d-none">
+                                            <input type="text" name="id" value="{{ $orders['id'] }}">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="underlying">Select Underlying Commodity</label>
+                                                <select name="underlying" id="underlying" class="form-control">
+                                                    @foreach ($oils as $oil)
+                                                        <option value="{{ $oil['underlaying'] }}"
+                                                            {{ $oil['underlaying'] == $orders['underlying'] ? 'selected' : '' }}>
+                                                            {{ $oil['underlaying'] }}
                                                         </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="country">Country of Origin</label>
+                                                <input type="text" required name="country" id="country"
+                                                    value="{{ $orders['country'] }}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="grade">Grade</label>
+                                                <input type="text" required name="grade" id="grade"
+                                                    class="form-control" value="{{ $orders['grade'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="buysell">Buy/Sell</label>
+                                                <select name="buysell" id="buysell"
+                                                    class="form-select sel-sellbuy1">
+                                                    <option value="Buy"
+                                                        {{ $orders['buysell'] == 'Buy' ? 'selected' : '' }}>Buy
+                                                    </option>
+                                                    <option value="Sell"
+                                                        {{ $orders['buysell'] == 'Sell' ? 'selected' : '' }}>Sell
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="quantityo">Quantity</label>
+                                                <input type="text" required name="quantity" id="quantityo"
+                                                    class="form-control" value="{{ $orders['quantity'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="unit">Unit of Measurement</label>
+                                                <select name="unit" id="unit" class="form-control">
+                                                    <option value="choose" selected disabled hidden>Choose</option>
+                                                    <option value="Gram"
+                                                        {{ $orders['unit'] == 'Gram' ? 'selected' : '' }}>Gram</option>
+                                                    <option value="Kg"
+                                                        {{ $orders['unit'] == 'Kg' ? 'selected' : '' }}>KG</option>
+                                                    <option value="Ton"
+                                                        {{ $orders['unit'] == 'Ton' ? 'selected' : '' }}>Ton</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="targetpo">Price Target Per Unit</label>
+                                                <input type="text" required name="targetp" id="targetpo"
+                                                    class="form-control" value="{{ $orders['targetp'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="Incoterm">Incoterm</label>
+                                                <input type="text" required name="Incoterm" id="Incoterm"
+                                                    class="form-control" value="{{ $orders['Incoterm'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" id="buy2">
+                                            <div class="mt-3">
+                                                <label for="currencytb" id="currencyLabel_2">Choose Currency to
+                                                    Buy</label>
+                                                <select id="currencytb" name="currencytb" class="form-select">
+                                                    @if (!empty($orders['currencytb']))
+                                                        <option value="{{ $orders['currencytb'] }}">
+                                                            {{ $orders['currencytb'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencytb'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -470,43 +504,44 @@
                                         </div>
                                         <div class="col-sm-6 d-none" id="sell2">
                                             <div class="mt-3">
-                                                <label for="currencyts" id="currencyLabel_2">Choose Currency to Sell</label>
+                                                <label for="currencyts" id="currencyLabel_2">Choose Currency to
+                                                    Sell</label>
                                                 <select id="currencyts" name="currencyts" class="form-select">
-                                                @if(!empty($orders['currencyts']))   
-                                               
-                                                <option value="{{ $orders['currencyts']}}">{{ $orders['currencyts'] }}</option>
-                                                @else
-                                                    <option selected disabled hidden>Choose Currency</option>
-                                                @endif
-                                                @foreach ($currencies as $currency)
-                                                    @if($orders['currencyts'] != $currency['currency'])
-                                                        <option value="{{ $currency['currency'] }}">
-                                                            {{ $currency['currency'] }}
-                                                        </option>
+                                                    @if (!empty($orders['currencyts']))
+                                                        <option value="{{ $orders['currencyts'] }}">
+                                                            {{ $orders['currencyts'] }}</option>
+                                                    @else
+                                                        <option selected disabled hidden>Choose Currency</option>
+                                                    @endif
+                                                    @foreach ($currencies as $currency)
+                                                        @if ($orders['currencyts'] != $currency['currency'])
+                                                            <option value="{{ $currency['currency'] }}">
+                                                                {{ $currency['currency'] }}
+                                                            </option>
                                                         @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="mt-3">
+                                                <label for="details">Additional Details</label>
+                                                <textarea id="details" required name="details" cols="30" rows="5" class="form-control">{{ $orders['details'] }}</textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     <div class="col-12">
-                                        <div class="mt-3">
-                                            <label for="details">Additional Details</label>
-                                            <textarea id="details" required name="details" cols="30" rows="5"
-                                                class="form-control">{{$orders['details']}}</textarea>
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <a href="{{ route('user.orders') }}"
+                                                class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
+                                            <button type="submit"
+                                                class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
+                                                Update Order
+                                            </button>
                                         </div>
                                     </div>
-                                    
-                                </div>
-                                <div class="col-12">
-                                    <div class="mt-3 d-flex justify-content-end">
-                                       <a href="{{ route('user.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
-                                        <button type="submit"
-                                            class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
-                                            Update Order
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
                             @endif
                         </div>
                     </div>
@@ -552,6 +587,7 @@
             if (parts[1]) parts[1] = parts[1].slice(0, 2);
             input.value = parts.join('.');
         }
+
         function spaceonly(input) {
             let value = input.value.replace(/\s/g, '').replace(/[^0-9.]/g, '');
             let parts = value.split('.');
@@ -565,7 +601,7 @@
         idsForFormatNumbers.forEach(id => {
             const element = document.getElementById(id);
             if (element) {
-                element.addEventListener('input', function (e) {
+                element.addEventListener('input', function(e) {
                     formatNumbers(e.target);
                 });
             }
@@ -574,14 +610,13 @@
         idsForSpaceOnly.forEach(id => {
             const element = document.getElementById(id);
             if (element) {
-                element.addEventListener('input', function (e) {
+                element.addEventListener('input', function(e) {
                     spaceonly(e.target);
                 });
             }
         });
-
     </script>
-    <script>
+      <script>
         let firstcurrency = document.getElementById('firstcurrency');
         let secondcurrency = document.getElementById('secondcurrency');
         let targetPrice = document.getElementById('targetprice');
@@ -598,7 +633,6 @@
         sellAmount.disabled = true;
 
         firstcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
             secondcurrency.disabled = false;
             targetPrice.disabled = true;
             currencytb.disabled = true;
@@ -607,10 +641,8 @@
         });
 
         secondcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
             targetPrice.disabled = false;
-            currencytb.disabled = true;
+            currencytb.disabled = false;
             buyamount.disabled = true;
             sellAmount.disabled = true;
             let rate = firstcurrency.value + '/' + secondcurrency.value;
@@ -618,9 +650,6 @@
         });
 
         targetPrice.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
@@ -628,9 +657,6 @@
         });
 
         currencytb.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
@@ -705,20 +731,20 @@
 
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        let currencyBuy = document.getElementById('firstcurrency');
-        let currencySell = document.getElementById('secondcurrency');
-        let originalSellOptions = Array.from(currencySell.options);
-        currencyBuy.addEventListener('change', function () {
-            let selectedCurrency = this.value;
-            while (currencySell.options.length > 0) {
-                currencySell.remove(0);
-            }
-            originalSellOptions.forEach(option => {
-                if (option.value !== selectedCurrency) {
-                    currencySell.add(new Option(option.text, option.value));
+        document.addEventListener('DOMContentLoaded', function() {
+            let currencyBuy = document.getElementById('firstcurrency');
+            let currencySell = document.getElementById('secondcurrency');
+            let originalSellOptions = Array.from(currencySell.options);
+            currencyBuy.addEventListener('change', function() {
+                let selectedCurrency = this.value;
+                while (currencySell.options.length > 0) {
+                    currencySell.remove(0);
                 }
-            });
+                originalSellOptions.forEach(option => {
+                    if (option.value !== selectedCurrency) {
+                        currencySell.add(new Option(option.text, option.value));
+                    }
+                });
             });
         });
     </script>
@@ -738,98 +764,96 @@
         secondcurrency.addEventListener('change', updatecurrencytb);
         // Initialize with default values
         updatecurrencytb();
-
     </script>
 </body>
 
 </html>
-
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const buysellDropdown = document.querySelector('.sel-sellbuy');  
-    const buyDiv = document.getElementById('buy1');
-    const sellDiv = document.getElementById('sell1');
- 
-    
-    buysellDropdown.addEventListener('change', function() {
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const buysellDropdown = document.querySelector('.sel-sellbuy');
+        const buyDiv = document.getElementById('buy1');
+        const sellDiv = document.getElementById('sell1');
+
+
+        buysellDropdown.addEventListener('change', function() {
+            if (buysellDropdown.value === 'Buy') {
+
+                buyDiv.classList.remove('d-none');
+                sellDiv.classList.add('d-none');
+
+            } else if (buysellDropdown.value === 'Sell') {
+
+                sellDiv.classList.remove('d-none');
+                buyDiv.classList.add('d-none');
+            }
+        });
+
+
         if (buysellDropdown.value === 'Buy') {
-            
             buyDiv.classList.remove('d-none');
             sellDiv.classList.add('d-none');
-           
         } else if (buysellDropdown.value === 'Sell') {
-           
             sellDiv.classList.remove('d-none');
             buyDiv.classList.add('d-none');
         }
     });
 
-    
-    if (buysellDropdown.value === 'Buy') {
-        buyDiv.classList.remove('d-none');
-        sellDiv.classList.add('d-none');
-    } else if (buysellDropdown.value === 'Sell') {
-        sellDiv.classList.remove('d-none');
-        buyDiv.classList.add('d-none');
-    }
-});
+    document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const buysellDropdown = document.querySelector('.sel-sellbuy2');  
-    const buyDiv = document.getElementById('buy3');
-    const sellDiv = document.getElementById('sell3');
+        const buysellDropdown = document.querySelector('.sel-sellbuy2');
+        const buyDiv = document.getElementById('buy3');
+        const sellDiv = document.getElementById('sell3');
 
-    
-    buysellDropdown.addEventListener('change', function() {
+
+        buysellDropdown.addEventListener('change', function() {
+            if (buysellDropdown.value === 'Buy') {
+
+                buyDiv.classList.remove('d-none');
+                sellDiv.classList.add('d-none');
+            } else if (buysellDropdown.value === 'Sell') {
+
+                sellDiv.classList.remove('d-none');
+                buyDiv.classList.add('d-none');
+            }
+        });
+
+
         if (buysellDropdown.value === 'Buy') {
-            
             buyDiv.classList.remove('d-none');
             sellDiv.classList.add('d-none');
         } else if (buysellDropdown.value === 'Sell') {
-           
             sellDiv.classList.remove('d-none');
             buyDiv.classList.add('d-none');
         }
     });
 
-    
-    if (buysellDropdown.value === 'Buy') {
-        buyDiv.classList.remove('d-none');
-        sellDiv.classList.add('d-none');
-    } else if (buysellDropdown.value === 'Sell') {
-        sellDiv.classList.remove('d-none');
-        buyDiv.classList.add('d-none');
-    }
-});
+    document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const buysellDropdown = document.querySelector('.sel-sellbuy1');  
-    const buyDiv = document.getElementById('buy2');
-    const sellDiv = document.getElementById('sell2');
+        const buysellDropdown = document.querySelector('.sel-sellbuy1');
+        const buyDiv = document.getElementById('buy2');
+        const sellDiv = document.getElementById('sell2');
 
-    
-    buysellDropdown.addEventListener('change', function() {
+
+        buysellDropdown.addEventListener('change', function() {
+            if (buysellDropdown.value === 'Buy') {
+
+                buyDiv.classList.remove('d-none');
+                sellDiv.classList.add('d-none');
+            } else if (buysellDropdown.value === 'Sell') {
+
+                sellDiv.classList.remove('d-none');
+                buyDiv.classList.add('d-none');
+            }
+        });
+
+
         if (buysellDropdown.value === 'Buy') {
-            
             buyDiv.classList.remove('d-none');
             sellDiv.classList.add('d-none');
         } else if (buysellDropdown.value === 'Sell') {
-           
             sellDiv.classList.remove('d-none');
             buyDiv.classList.add('d-none');
         }
     });
-
-    
-    if (buysellDropdown.value === 'Buy') {
-        buyDiv.classList.remove('d-none');
-        sellDiv.classList.add('d-none');
-    } else if (buysellDropdown.value === 'Sell') {
-        sellDiv.classList.remove('d-none');
-        buyDiv.classList.add('d-none');
-    }
-});
-</script>    
+</script>
