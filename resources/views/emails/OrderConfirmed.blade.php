@@ -38,12 +38,10 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Order Confirmed!</p>
                         <p class="mb-0">Dear Admin,</p>
                         <p class="mb-0 mt-3 p2">Order of {{ $requestMail['username'] }} has been successfully
                             entered into our system</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Order Confirmed – Thank You!</p>
                         <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
                         <p class="mb-0 mt-3 p2">We’re pleased to inform you that your order has been successfully
                             entered into our system. Thank you for your prompt action!</p>

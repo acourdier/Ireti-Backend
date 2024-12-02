@@ -37,7 +37,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p><span class="mb-0 fw-bold">Subject: </span>Thank You – Due Diligence Form Received</p>
                     <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
                     <p class="mb-0 mt-3 p2">We’re delighted to inform you that your investment request has been filled
                         up.</p>

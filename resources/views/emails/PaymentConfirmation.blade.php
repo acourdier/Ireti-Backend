@@ -38,12 +38,10 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Confirmed Alert</p>
                         <p class="mb-0">Dear Admin,</p>
                         <p class="mb-0 mt-3 p2">Payment of {{ $requestMail['fname'] }} has been successfully
                             entered into our system</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Confirmed - Thank You!</p>
                         <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
                         <p class="mb-0 mt-3 p2">We’re pleased to inform you that your payment has been successfully
                             entered

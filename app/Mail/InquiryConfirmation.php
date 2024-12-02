@@ -35,7 +35,9 @@ class InquiryConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.InquiryConfirmation')->with([
+        return $this->view('emails.InquiryConfirmation')
+        ->subject('Thank You – Due Diligence Form Received')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
     }

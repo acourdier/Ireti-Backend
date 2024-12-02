@@ -110,6 +110,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3 d-flex justify-content-end">
+                                       <a href="{{ route('admin.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
                                             <button type="submit"
                                                 class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                                 Update Order
@@ -251,6 +252,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
+                                       <a href="{{ route('admin.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Update Order
@@ -392,6 +394,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
+                                       <a href="{{ route('admin.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Update Order
@@ -533,6 +536,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mt-3 d-flex justify-content-end">
+                                       <a href="{{ route('admin.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
                                         <button type="submit"
                                             class=" px-4 py-2 border-0 rounded-3 green text-white font-semi">
                                             Update Order
@@ -631,7 +635,6 @@
         sellAmount.disabled = true;
 
         firstcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
             secondcurrency.disabled = false;
             targetPrice.disabled = true;
             currencytb.disabled = true;
@@ -640,10 +643,8 @@
         });
 
         secondcurrency.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
             targetPrice.disabled = false;
-            currencytb.disabled = true;
+            currencytb.disabled = false;
             buyamount.disabled = true;
             sellAmount.disabled = true;
             let rate = firstcurrency.value + '/' + secondcurrency.value;
@@ -651,9 +652,6 @@
         });
 
         targetPrice.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;
@@ -661,9 +659,6 @@
         });
 
         currencytb.addEventListener('input', function() {
-            firstcurrency.disabled = true;
-            secondcurrency.disabled = true;
-            targetPrice.disabled = false;
             currencytb.disabled = false;
             buyamount.disabled = false;
             sellAmount.disabled = false;

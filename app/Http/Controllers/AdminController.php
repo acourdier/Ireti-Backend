@@ -214,14 +214,18 @@ class AdminController extends Controller
             ->first();
     
         if ($orderDetails) {
-            $requestMail = $orderDetails;
+            $requestMail = $data;
             $to_email = $orderDetails->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
             $to_emailAdmin3 = env('ADMIN3_EMAIL');
 
             $requestMail['updateby'] = "admin";
+            $requestMail['id'] = $request->id;
             $requestMail['role'] = "user";
+            $requestMail['username'] =$orderDetails->fname;
+            $requestMail['created_at'] =$orderDetails->created_at;
+            $requestMail['FundType'] =$orderDetails->FundType;
             if ($request->filled == 'Yes') {
                 Mail::to($to_email)->send(new OrderFilled($requestMail));
             }

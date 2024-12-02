@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="row gx-5 justify-content-center position-relative">
-                                        <div class="col-sm-3">
+                                        <div class="col-lg-5 col-xl-4 col-xxl-3">
                                             <div class="mt-3">
                                                 <label for="firstcurrency">Choose First Currency</label>
                                                 <select name="firstcurrency" required id="firstcurrency" class="form-select py-4 fs-5 text-center">
@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
                                         <p class="position-absolute d-none d-sm-block mb-0 fs-2 slash">/</p>
-                                        <div class="col-sm-3">
+                                        <div class="col-lg-5 col-xl-4 col-xxl-3">
                                             <div class="mt-3">
                                                 <label for="secondcurrency">Choose Second Currency</label>
                                                 <select name="secondcurrency" required id="secondcurrency"

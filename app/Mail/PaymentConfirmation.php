@@ -35,9 +35,12 @@ class PaymentConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.PaymentConfirmation')->with([
+        return $this->subject('Payment Confirmed – Thank You!')
+        ->view('emails.PaymentConfirmation')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }

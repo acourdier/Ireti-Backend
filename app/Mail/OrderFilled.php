@@ -35,9 +35,12 @@ class OrderFilled extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.OrderFilled')->with([
+        return $this->subject('Order Approved – Funds to Be Released')
+        ->view('emails.OrderFilled')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }

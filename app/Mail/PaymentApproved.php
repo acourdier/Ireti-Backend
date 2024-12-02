@@ -35,9 +35,12 @@ class PaymentApproved extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.PaymentApproved')->with([
+        return $this->subject('Payment Approved – Funds to Be Released')
+        ->view('emails.PaymentApproved')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }

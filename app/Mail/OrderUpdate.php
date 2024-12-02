@@ -35,9 +35,13 @@ class OrderUpdate extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.OrderUpdate')->with([
+        return $this->subject('Order Update – Please Review')
+        ->view('emails.OrderUpdate')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
+        
     }
 
 }

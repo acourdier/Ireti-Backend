@@ -38,7 +38,6 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update</p>
                         <p class="mb-0">Dear Admin,</p>
                         @if ($requestMail['updateby'] == 'admin')
                            <p>You have updated the details of {{ $requestMail['username'] }}'s order.
@@ -48,11 +47,9 @@
                             Please find below the updated information.</p>
                         @endif
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update – Please Review</p>
                         <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
                         @if ($requestMail['updateby'] == 'admin')
-                        <p class="mb-0 mt-3 p2">Admin have updated the details of your order and we’ve
-                            taken this update into consideration. Please find below the updated information.</p>
+                        <p class="mb-0 mt-3 p2">Your order has been updated by our team. Please find below the updated information..</p>
                          @else
                             <p class="mb-0 mt-3 p2">We’ve noticed that you’ve updated the details of your order and we’ve
                                 taken this update into consideration. Please find below the updated information.</p>
@@ -65,74 +62,111 @@
                     <div class="mt-5 border-top border-bottom border-dark border-3">
                         <p class="mb-0 fw-bold">Order recap : </p>
                         <ul>
-                            <li>
-                                <p class="mb-0 "><span class="fw-bold">Date: </span>{{ $requestMail['created_at'] }}
-                                </p>
-                            </li>
-                            @if ($requestMail['FundType'] == 'FX')
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency pair:
-                                        </span>{{ $requestMail['firstcurrency'] }} /
-                                        {{ $requestMail['secondcurrency'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency Buy:
-                                        </span>{{ $requestMail['currencytb'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Target Exchange Rate:
-                                        </span>{{ $requestMail['targetp'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Amount to buy:
-                                        </span>{{ $requestMail['amountb'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Amount to sell:
-                                        </span>{{ $requestMail['amountts'] }}</p>
-                                </li>
-                            @else
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Underlying:
-                                        </span>{{ $requestMail['underlying'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Country of Origin:
-                                        </span>{{ $requestMail['country'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Grade: </span>{{ $requestMail['grade'] }}
+                            @php
+                            $order = \App\Models\Order::find($requestMail['id']); // Fetch the order record
+                        @endphp
+                        
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Date: </span>
+                                {{ \Carbon\Carbon::parse($requestMail['created_at'])->format('Y-m-d') }}
+                                {{ $order && \Carbon\Carbon::parse($requestMail['created_at'])->format('Y-m-d') != \Carbon\Carbon::parse($order->created_at)->format('Y-m-d') ? '' : '' }}
+                            </p>
+                        </li>
+                        
+                        @if ($requestMail['FundType'] == 'FX')
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Currency pair: </span>
+                                {{ $requestMail['firstcurrency'] ?? $order->firstcurrency }} /
+                                {{ $requestMail['secondcurrency'] ?? $order->secondcurrency }}{{ $order && (isset($requestMail['firstcurrency'], $requestMail['secondcurrency']) && ($requestMail['firstcurrency'] != $order->firstcurrency || $requestMail['secondcurrency'] != $order->secondcurrency)) ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Currency Buy: </span>
+                                {{ $requestMail['currencytb'] ?? $order->currencytb }}{{ $order && isset($requestMail['currencytb']) && $requestMail['currencytb'] != $order->currencytb ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Target Exchange Rate: </span>
+                                {{ $requestMail['targetp'] ?? $order->targetp }}{{ $order && isset($requestMail['targetp']) && $requestMail['targetp'] != $order->targetp ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Amount to buy: </span>
+                                {{ $requestMail['amountb'] ?? $order->amountb }}{{ $order && isset($requestMail['amountb']) && $requestMail['amountb'] != $order->amountb ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Amount to sell: </span>
+                                {{ $requestMail['amountts'] ?? $order->amountts }}{{ $order && isset($requestMail['amountts']) && $requestMail['amountts'] != $order->amountts ? '*' : '' }}
+                            </p>
+                        </li>
+                    @else
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Underlying: </span>
+                                {{ $requestMail['underlying'] ?? '' }}{{ $order && isset($requestMail['underlying']) && $requestMail['underlying'] != $order->underlying ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Country of Origin: </span>
+                                {{ $requestMail['country'] ?? '' }}{{ $order && isset($requestMail['country']) && $requestMail['country'] != $order->country ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Grade: </span>
+                                {{ $requestMail['grade'] ?? '' }}{{ $order && isset($requestMail['grade']) && $requestMail['grade'] != $order->grade ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Quantity: </span>
+                                {{ $requestMail['quantity'] ?? '' }}{{ $order && isset($requestMail['quantity']) && $requestMail['quantity'] != $order->quantity ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Unit of Measurement: </span>
+                                {{ $requestMail['unit'] ?? '' }}{{ $order && isset($requestMail['unit']) && $requestMail['unit'] != $order->unit ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Price Target per Unit: </span>
+                                {{ $requestMail['targetp'] ?? '' }}{{ $order && isset($requestMail['targetp']) && $requestMail['targetp'] != $order->targetp ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            @if($requestMail['buysell'] != $order->buysell )
+                                @if($requestMail['buysell'] == "Buy" )
+                                    <p class="mb-0"><span class="fw-bold">Currency to Buy: </span>
+                                        {{ $requestMail['currencytb'] }}*
                                     </p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Quantity:
-                                        </span>{{ $requestMail['quantity'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Unit of Measurement:
-                                        </span>{{ $requestMail['unit'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Price Target per Unit:
-                                        </span>{{ $requestMail['targetp'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency to Buy:
-                                        </span>{{ $requestMail['currencytb'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Currency to Sell:
-                                        </span>{{ $requestMail['currencyts'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Incoterm:
-                                        </span>{{ $requestMail['Incoterm'] }}</p>
-                                </li>
-                                <li>
-                                    <p class="mb-0"><span class="fw-bold">Additional Details:
-                                        </span>{{ $requestMail['details'] }}</p>
-                                </li>
+                                @else
+                                    <p class="mb-0"><span class="fw-bold">Currency to Sell: </span>
+                                        {{ $requestMail['currencyts'] }}*
+                                    </p>
+                                @endif
+                            @else
+                                @if($requestMail['buysell'] == "Buy" )
+                                    <p class="mb-0"><span class="fw-bold">Currency to Buy: </span>
+                                        {{ $requestMail['currencytb'] ?? '' }}{{ $order && isset($requestMail['currencytb']) && $requestMail['currencytb'] != $order->currencytb ? '*' : '' }}
+                                    </p>
+                                @else
+                                    <p class="mb-0"><span class="fw-bold">Currency to Sell: </span>
+                                        {{ $requestMail['currencytb'] ?? '' }}{{ $order && isset($requestMail['currencytb']) && $requestMail['currencytb'] != $order->currencytb ? '*' : '' }}
+                                    </p>
+                                @endif
                             @endif
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Incoterm: </span>
+                                {{ $requestMail['Incoterm'] ?? '' }}{{ $order && isset($requestMail['Incoterm']) && $requestMail['Incoterm'] != $order->Incoterm ? '*' : '' }}
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mb-0"><span class="fw-bold">Additional Details: </span>
+                                {{ $requestMail['details'] ?? '' }}{{ $order && isset($requestMail['details']) && $requestMail['details'] != $order->details ? '*' : '' }}
+                            </p>
+                        </li>
+                    @endif
+                    
+                        
                         </ul>
                     </div>
                 </div>

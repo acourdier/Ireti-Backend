@@ -38,11 +38,9 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update –  Alert</p>
                         <p class="mb-0">Dear Admin,</p>
                         <p class="mb-0 mt-3 p2">{{ $requestMail['fname'] }} have updated the payment details in their account</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update – Please Review</p>
                         <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
                         <p class="mb-0 mt-3 p2">We’ve noticed that you’ve updated the payment details in your account, and we’ve taken this update into consideration. Please find below the updated information.</p>
                     @endif

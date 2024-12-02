@@ -8,7 +8,7 @@ use App\Models\Order;
 use App\Models\UnderLaying;
 use App\Models\Currency;
 use App\Models\User;
-use App\Mail\OrderConfirmation;
+use App\Mail\OrderConfirmed;
 use App\Mail\OrderUpdate;
 use App\Mail\PaymentConfirmation;
 use App\Mail\PaymentUpdate;
@@ -216,7 +216,14 @@ class UserController extends Controller
         ->first();
 
         if ($orderDetails) {
-            $requestMail = $orderDetails;
+            $requestMail = $data;
+
+            $requestMail['id'] = $request->id;
+            $requestMail['username'] =$orderDetails->fname;
+            $requestMail['created_at'] =$orderDetails->created_at;
+            $requestMail['FundType'] =$orderDetails->FundType;
+            $requestMail['updateby'] = 'user';
+
             $to_email = $orderDetails->email;
             $to_emailAdmin = env('ADMIN_EMAIL');
             $to_emailAdmin2 = env('ADMIN2_EMAIL');
@@ -289,7 +296,7 @@ class UserController extends Controller
         $requestMail['id'] = $orderData->id;
         $requestMail['created_at'] = $orderData->created_at;
         $to_email = auth()->user()->email;
-        $mail = new OrderConfirmation($requestMail);
+        $mail = new OrderConfirmed($requestMail);
         Mail::to($to_email)
             ->send($mail);
 
@@ -297,7 +304,7 @@ class UserController extends Controller
         $to_emailAdmin = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        $mail2 = new OrderConfirmation($requestMail);
+        $mail2 = new OrderConfirmed($requestMail);
         Mail::to($to_emailAdmin)
         ->cc([$to_emailAdmin2, $to_emailAdmin3])
             ->send($mail2);
