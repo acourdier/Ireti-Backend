@@ -35,7 +35,9 @@ class StatusUpdate extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.StatusUpdate')->with([
+        return $this->view('emails.StatusUpdate')
+        ->subject('Application Status Update')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
     }

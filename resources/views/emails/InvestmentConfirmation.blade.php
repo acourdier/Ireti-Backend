@@ -38,12 +38,10 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Investment Confirmed</p>
                         <p class="mb-0">Dear Admin,</p>
                         <p class="mb-0 mt-3 p2">investment query of {{ $requestMail['fname'] }} has been successfully
                             entered into our system</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Investment Confirmed – Thank You!</p>
                         <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
                         <p class="mb-0 mt-3 p2">We’re excited to let you know that your investment query has been
                             successfully entered into our system. Thank you for taking this important step with us! A

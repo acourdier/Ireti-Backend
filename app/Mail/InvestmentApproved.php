@@ -35,9 +35,12 @@ class InvestmentApproved extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.InvestmentApproved')->with([
+        return $this->subject('Investment Approved – Funds to Be Released')
+        ->view('emails.InvestmentApproved')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }

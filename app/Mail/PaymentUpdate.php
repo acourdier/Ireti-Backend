@@ -35,9 +35,12 @@ class PaymentUpdate extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.PaymentUpdate')->with([
+        return $this->subject('Payment Update – Please Review')
+        ->view('emails.PaymentUpdate')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }

@@ -38,7 +38,6 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['role'] == 'admin')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update</p>
                         <p class="mb-0">Dear Admin,</p>
                         @if ($requestMail['updateby'] == 'admin')
                            <p>You have updated the details of {{ $requestMail['username'] }}'s order.
@@ -48,7 +47,6 @@
                             Please find below the updated information.</p>
                         @endif
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Payment Update – Please Review</p>
                         <p class="mb-0">Dear {{ $requestMail['username'] }},</p>
                         @if ($requestMail['updateby'] == 'admin')
                         <p class="mb-0 mt-3 p2">Your order has been updated by our team. Please find below the updated information..</p>

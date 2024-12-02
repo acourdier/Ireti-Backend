@@ -35,9 +35,12 @@ class InvestmentConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.InvestmentConfirmation')->with([
+        return $this->subject('Investment Confirmed – Thank You!')
+        ->view('emails.InvestmentConfirmation')
+        ->with([
             'requestMail' => $this->requestMail,
         ]);
+
     }
 
 }
