@@ -28,6 +28,11 @@
                         <label for="email" class="font-medium fs-5">Email:</label>
                         <input type="email" name="email"
                             class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="email" required>
+                            @if (session('error'))
+                            <div class="alert alert-danger mt-3">
+                                {{ session('error') }}
+                            </div>
+                            @endif
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="phone" class="font-medium fs-5">Phone Number:</label>

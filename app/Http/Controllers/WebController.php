@@ -44,6 +44,9 @@ class WebController extends Controller
         return view('signup');
     }
     public function createuser(Request $Request){
+        if (User::where('email', $Request->email)->exists()) {
+            return redirect()->back()->with('error', 'This email already exist');;
+        }
         $user = User::create($Request->all());
         return redirect()->route('onlineInquiry')->with('userId', $user->id);
     }
