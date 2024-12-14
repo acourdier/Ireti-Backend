@@ -70,6 +70,7 @@
                                 <p class="mb-0">
                                     <span class="fw-bold">Amount:</span>
                                     {{ $requestMail['amount'] }}
+                                    
                                 </p>
                             </li>
                             <li>

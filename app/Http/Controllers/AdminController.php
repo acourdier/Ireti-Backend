@@ -22,7 +22,7 @@ use App\Mail\StatusUpdate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Session;
 class AdminController extends Controller
 {
 
@@ -533,41 +533,66 @@ class AdminController extends Controller
         ->where('payments.id',$id)->first();
         return view('Admin.editpayment',$data,['users'=>$users]);
     }
-    public function updatepayment(Request $request){
+    public function updatepayment(Request $request)
+    {
+       
         $payment = Payment::find($request->id);
+        $getOldbeneficiary=Beneficiaries::find($payment->Beneficiary);
+       
+        if($getOldbeneficiary){
+          
+            Session::put('old_accountname', $getOldbeneficiary->accountname);
+            Session::put('old_accountnumber', $getOldbeneficiary->accountnumber);
+
+        }
         if ($payment) {
-            $payment->update($request->all());
-        }
-
-        $mypayment = Payment::where('id',$request->id)->first();
-        $requestMail = $mypayment;
         
-        $beneficiary = Beneficiaries::find($mypayment->Beneficiary);
-        if ($beneficiary) {
-            $requestMail['accountname'] = $beneficiary->accountname;
-            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+            $oldStatus = $payment->status; 
+            $newStatus = $request->status;
+            Session::put('old_amount', $payment->amount);
+            Session::put('old_currency', $payment->currency);
+
+        
+            $payment->update($request->all());
+
+            if ($oldStatus === $newStatus) {
+            
+                $mypayment = Payment::where('id', $request->id)->first();
+                $requestMail = $mypayment;
+
+            
+                $beneficiary = Beneficiaries::find($mypayment->Beneficiary);
+                if ($beneficiary) {
+                    $requestMail['accountname'] = $beneficiary->accountname;
+                    $requestMail['accountnumber'] = $beneficiary->accountnumber;
+                }
+
+            
+                $user = User::find($mypayment->customer);
+                if ($user) {
+                    $requestMail['fname'] = $user->fname;
+                    $to_email = $user->email;
+
+                    
+                    $requestMail['role'] = "user";
+                    $mail = new PaymentUpdate($requestMail);
+                    Mail::to($to_email)->send($mail);
+                }
+
+        
+                $requestMail['role'] = "admin";
+                $to_emailAdmin = env('ADMIN_EMAIL');
+                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin3 = env('ADMIN3_EMAIL');
+                $mail2 = new PaymentUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send($mail2);
+            }
+        
         }
 
-        $user = User::find($mypayment->customer);
-        if ($user) {
-            $requestMail['fname'] = $user->fname;
-            $to_email = $user->email;
-        }
-
-        $requestMail['role'] = "user";
-        $mail = new PaymentUpdate($requestMail);
-        $data = Mail::to($to_email)
-            ->send($mail);
-
-        $requestMail['role'] = "admin";
-        $to_emailAdmin = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
-        $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        $mail2 = new PaymentUpdate($requestMail);
-        Mail::to($to_emailAdmin)
-        ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            ->send($mail2);
-        return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
+        return redirect()->route('admin.payments')->with('update', 'Payment Updated Successfully');
     }
     public function paymentemail($id){
         $payment = Payment::find($id);

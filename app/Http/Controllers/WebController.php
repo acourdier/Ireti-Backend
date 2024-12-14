@@ -44,12 +44,75 @@ class WebController extends Controller
         return view('signup');
     }
     public function createuser(Request $Request){
+        $Request->validate([
+            'fname' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'password_confirmation' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
         $user = User::create($Request->all());
         return redirect()->route('onlineInquiry')->with('userId', $user->id);
     }
     public function saveInquiry(Request $request){
+
+       
+        $request->validate([
+            'in_fullname' => 'required',
+            'in_position' => 'required',
+            'in_email' => 'required',
+            'in_phone' => 'required',
+            'legalname' => 'required',
+            'tradingname' => 'required',
+            'regNmber' => 'required',
+            'regDate' => 'required',
+            'vat' => 'required',
+            'companylink' => 'required',
+            'corWeb' => 'required',
+            'companyEmail' => 'required',
+            'directors' => 'required',
+            'emp' => 'required',
+            'incorporationCountry' => 'required',
+            'regAdd' => 'required',
+            'regCity' => 'required',
+            'regState' => 'required',
+            'regPostCode' => 'required',
+            'opCountry' => 'required',
+            'opAdd' => 'required',
+            'opCity' => 'required',
+            'opState' => 'required',
+            'opPostCode' => 'required',
+            'industry' => 'required',
+            'serviceDes' => 'required',
+            'salesChannel' => 'required',
+            'webURL1' => 'required',
+            'webURL2' => 'required',
+            'webURL3' => 'required',
+            'other' => 'required',
+            'businessYears' => 'required',
+            'licence' => 'required',
+            'regAuthCountry' => 'required',
+            'regAuthNmbr' => 'required',
+            'regAuthNmbr' => 'required',
+            'refName' => 'required',
+            'idFile' => 'required',
+            'billFile' => 'required',
+            'incorporationFile' => 'required',
+            'memorandumFile' => 'required',
+            'resolutionFile' => 'required',
+            'sign' => 'required',
+            'position' => 'required',
+            'dateAndPlace' => 'required',
+             ], [
+            'refName.required' => 'Please select at least one referral source.',
+        ]);
+
         $user = User::find($request->id);
-    
+          
+       
         if (!$user) {
             return redirect()->back()->with('error', 'User not found');
         }
@@ -60,6 +123,7 @@ class WebController extends Controller
             $photo_destination = public_path('uploads');
             $photo1->move($photo_destination, $photo_name1);
             $user->idFile = $photo_name1;
+           
         }
     
         if ($request->hasFile('billFile')) {
@@ -68,32 +132,36 @@ class WebController extends Controller
             $photo2_destination = public_path('uploads');
             $photo2->move($photo2_destination, $photo2_name);
             $user->billFile = $photo2_name;
+           
         }
-    
+       
         if ($request->hasFile('incorporationFile')) {
             $photo3 = $request->file('incorporationFile');
             $photo3_name = time() . "-" . $photo3->getClientOriginalName();
             $photo3_destination = public_path('uploads');
             $photo3->move($photo3_destination, $photo3_name);
             $user->incorporationFile = $photo3_name;
+            
         }
-    
+        
         if ($request->hasFile('memorandumFile')) {
             $photo4 = $request->file('memorandumFile');
             $photo4_name = time() . "-" . $photo4->getClientOriginalName();
             $photo4_destination = public_path('uploads');
             $photo4->move($photo4_destination, $photo4_name);
             $user->memorandumFile = $photo4_name;
+            
         }
-    
+        
         if ($request->hasFile('resolutionFile')) {
             $photo5 = $request->file('resolutionFile');
             $photo5_name = time() . "-" . $photo5->getClientOriginalName();
             $photo5_destination = public_path('uploads');
             $photo5->move($photo5_destination, $photo5_name);
             $user->resolutionFile = $photo5_name;
+           
         }
-    
+        
         $user->fill($request->except([
             'idFile', 
             'billFile', 
@@ -103,8 +171,9 @@ class WebController extends Controller
         ]));
     
         $user->save();
+       
         $userid = $user->id;
-
+        
         $dirNames = $request->input('dirName');
         $dirCountries = $request->input('dirCountry');
         $dirAddresses = $request->input('dirAddress');
@@ -131,7 +200,7 @@ class WebController extends Controller
                 ]);
             }
         }
-
+        
         $ownerNames = $request->input('ownerName');
         $ownerCountries = $request->input('ownerCountry');
         $ownerAddresses = $request->input('ownerAddress');
@@ -157,9 +226,11 @@ class WebController extends Controller
                     'ownerNationality' => $ownerNationalities[$index],
                     'ownerShare' => $ownerShares[$index],
                 ]);
+
+            
             }
         }
-
+        
         $uboNames = $request->input('uboName');
         $uboCountries = $request->input('uboCountry');
         $uboAddresses = $request->input('uboAddress');
@@ -187,7 +258,7 @@ class WebController extends Controller
                 ]);
             }
         }
-   
+       
         $requestMail = $request->all();
         $requestMail['fname'] = $user->fname;
         $to_email = $user->email;
@@ -196,13 +267,13 @@ class WebController extends Controller
         $data = Mail::to($to_email)
             ->send($mail);
 
-        $to_email = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
-        $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        $mail = new InquiryMail($requestMail);
-        Mail::to($to_email)
-        ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            ->send($mail);
+        // $to_email = env('ADMIN_EMAIL');
+        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        // $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        // $mail = new InquiryMail($requestMail);
+        // Mail::to($to_email)
+        // ->cc([$to_emailAdmin2, $to_emailAdmin3])
+        //     ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
     public function terms(){
