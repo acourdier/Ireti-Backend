@@ -19,6 +19,7 @@ use App\Mail\PaymentApproved;
 use App\Mail\PaymentConfirmation;
 use App\Mail\InvestmentApproved;
 use App\Mail\StatusUpdate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -111,7 +112,7 @@ class AdminController extends Controller
         $currency = $request->all();
         Currency:: create($currency);
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Added a new Currency";
         notification::create([
         'message' => $msg,
@@ -134,7 +135,7 @@ class AdminController extends Controller
             $currency->update($request->all());
         }
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Updated a Currency";
         notification::create([
         'message' => $msg,
@@ -155,7 +156,7 @@ class AdminController extends Controller
         $underlaying = $request->all();
         UnderLaying:: create($underlaying);
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Added a new Commodity";
         notification::create([
         'message' => $msg,
@@ -177,7 +178,7 @@ class AdminController extends Controller
         if ($Commodity) {
             $Commodity->update($request->all());
         }
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Updated a Commodity";
         notification::create([
         'message' => $msg,
@@ -487,7 +488,7 @@ class AdminController extends Controller
         return response()->json($Beneficiaries, 200);
     }
     public function savepayment(Request $request){
-        $userid=auth()->user()->id;
+        $userid=Auth::user()->id;
         $request['userid'] = $userid;
         $payments = $request->all();
         Payment:: create($payments);
@@ -621,7 +622,7 @@ class AdminController extends Controller
         ->first();
 
         if ($data2) {
-            $username=auth()->user()->fname;
+            $username=Auth::user()->fname;
             $status = $data2->status;
             $requestMail = $data2;
             $requestMail['role']="user";
