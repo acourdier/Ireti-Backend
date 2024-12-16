@@ -53,26 +53,30 @@
                         <ul>
                             <li>
                                 <p class="mb-0">
+                                 
                                     <span class="fw-bold">Beneficiary Name:</span>
-                                    {{ $requestMail['accountname'] }}
+                                    {{ $requestMail['accountname'] }}{{ $requestMail['accountname'] != session('old_accountname') ? '*' : '' }}
+
                                 </p>
                             </li>
                             <li>
                                 <p class="mb-0">
+                                
                                     <span class="fw-bold">Beneficiary Number:</span>
-                                    {{ $requestMail['accountnumber'] }}
+                                    {{ $requestMail['accountnumber'] }}{{ $requestMail['accountnumber'] != session('old_accountnumber') ? '*' : '' }}
                                 </p>
                             </li>
                             <li>
                                 <p class="mb-0">
                                     <span class="fw-bold">Amount:</span>
-                                    {{ $requestMail['amount'] }}
+                                 
+                                    {{ $requestMail['amount'] }} {{ $requestMail['amount'] != session('old_amount') ? '*' : '' }}
                                 </p>
                             </li>
                             <li>
                                 <p class="mb-0">
                                     <span class="fw-bold">Currency:</span>
-                                    {{ $requestMail['currency'] }}
+                                    {{ $requestMail['currency'] }}{{ $requestMail['currency'] != session('old_currency') ? '*' : '' }}
                                 </p>
                             </li>
                         </ul>
