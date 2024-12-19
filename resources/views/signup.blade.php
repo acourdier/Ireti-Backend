@@ -22,7 +22,10 @@
                     <div class="col-12 my-2">
                         <label for="fname" class="font-medium fs-5">Full Name:</label>
                         <input type="text" name="fname"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="fname" required>
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="fname" value="{{old('fname')}}" required>
+                            @error('fname')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-12 my-2">
                         <label for="email" class="font-medium fs-5">Email:</label>
@@ -37,33 +40,51 @@
                     <div class="col-md-6 my-2">
                         <label for="phone" class="font-medium fs-5">Phone Number:</label>
                         <input type="tel" name="phone" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="phone" required>
+                            id="phone" value="{{old('phone')}}" required>
+                            @error('phone')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="uname" class="font-medium fs-5">Username:</label>
                         <input type="text" name="username"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="uname" required>
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="uname" value="{{old('username')}}" required>
+                            @error('username')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="pass" class="font-medium fs-5">Password:</label>
                         <input type="password" name="password"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="pass" required>
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="pass" value="{{old('password')}}" required>
+                            @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="cpass" class="font-medium fs-5">Confirm Password:</label>
                         <input type="password" name="password_confirmation"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="cpass" required>
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="cpass" value="{{old('password_confirmation')}}" required>
+                            @error('password_confirmation')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6 my-2">
                         <label for="city" class="font-medium fs-5">City:</label>
                         <input type="text" name="city" class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3"
-                            id="city" required>
+                            id="city" value="{{old('city')}}" required>
+                            @error('city')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="col-md-6 my-2">
                         <label for="country" class="font-medium fs-5">Country:</label>
                         <input type="text" name="country"
-                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="country" required>
+                            class="border border-1 rounded-3 focus-none mt-2 w-100 py-3 px-3" id="country" value="{{old('country')}}" required>
+                            @error('country')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="mt-5 col-6 col-sm-5 col-md-4 col-xl-3">

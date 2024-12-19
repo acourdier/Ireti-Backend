@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\notification;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
 
@@ -529,7 +529,17 @@ class UserController extends Controller
     }
     public function updatepayment(Request $request){
         $payment = Payment::find($request->id);
+        $getOldbeneficiary=Beneficiaries::find($payment->Beneficiary);
+       
+        if($getOldbeneficiary){
+          
+            Session::put('old_accountname', $getOldbeneficiary->accountname);
+            Session::put('old_accountnumber', $getOldbeneficiary->accountnumber);
+
+        }
         if ($payment) {
+            Session::put('old_amount', $payment->amount);
+            Session::put('old_currency', $payment->currency);
             $payment->update($request->all());
         }
 

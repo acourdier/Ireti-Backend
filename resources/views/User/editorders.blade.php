@@ -626,25 +626,25 @@
         let rate = document.getElementById('rate');
         let resetButton = document.getElementById('resetButton');
 
-        secondcurrency.disabled = true;
-        targetPrice.disabled = true;
-        currencytb.disabled = true;
-        buyamount.disabled = true;
-        sellAmount.disabled = true;
+        secondcurrency.disabled = false;
+        targetPrice.disabled = false;
+        currencytb.disabled = false;
+        buyamount.disabled = false;
+        sellAmount.disabled = false;
 
         firstcurrency.addEventListener('input', function() {
             secondcurrency.disabled = false;
-            targetPrice.disabled = true;
-            currencytb.disabled = true;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+            targetPrice.disabled = false;
+            currencytb.disabled = false;
+            buyamount.disabled = false;
+            sellAmount.disabled = false;
         });
 
         secondcurrency.addEventListener('input', function() {
             targetPrice.disabled = false;
             currencytb.disabled = false;
-            buyamount.disabled = true;
-            sellAmount.disabled = true;
+            buyamount.disabled = false;
+            sellAmount.disabled = false;
             let rate = firstcurrency.value + '/' + secondcurrency.value;
             document.getElementById('rate').innerHTML =  'Conversion Rate is ' + rate;
         });

@@ -46,22 +46,34 @@
                                 <div>
                                     <label for="inputtext" class="form-label fw-bold mb-2">Full Name</label>
                                     <input type="text" id="inputtext" class="form-control mb-3" name="in_fullname"
-                                        value="{{old('name')}}" required>
+                                        value="{{old('in_fullname')}}" required>
+                                        @error('in_fullname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="position" class="form-label fw-bold mb-2">Position</label>
                                     <input type="text" id="position" class="form-control mb-3" name="in_position"
                                         value="{{old('in_position')}}" required>
+                                        @error('in_position')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="inputEmail" class="form-label fw-bold mb-2">Email</label>
                                     <input type="email" id="inputEmail" class="form-control mb-3" name="in_email"
                                         value="{{old('in_email')}}" required>
+                                        @error('in_email')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="inputPhone" class="form-label fw-bold mb-2">Phone Number</label>
                                     <input type="tel" id="inputPhone" class="form-control mb-3" name="in_phone"
                                         value="{{old('in_phone')}}" required>
+                                        @error('in_phone')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
@@ -82,52 +94,82 @@
                                     <label for="legalname" class="form-label fw-bold mb-2">Legal Name</label>
                                     <input type="text" id="legalname" class="form-control mb-3"
                                         value="{{old('legalname')}}" name="legalname" required>
+                                        @error('legalname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="tradingname" class="form-label fw-bold mb-2">DBA / Trading Name</label>
                                     <input type="text" id="tradingname" class="form-control mb-3"
                                         value="{{old('tradingname')}}" name="tradingname" required>
+                                        @error('tradingname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regNmber" class="form-label fw-bold mb-2">Registration #</label>
                                     <input type="text" id="regNmber" class="form-control mb-3"
                                         value="{{old('regNmber')}}" name="regNmber" required>
+                                        @error('regNmber')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regDate" class="form-label fw-bold mb-2">Date of Registration</label>
                                     <input type="date" id="regDate" class="form-control mb-3" value="{{old('regDate')}}"
                                         name="regDate" required>
+                                        @error('regDate')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="vat" class="form-label fw-bold mb-2">VAT / TIN ID</label>
                                     <input type="text" id="vat" class="form-control mb-3" value="{{old('vat')}}"
                                         name="vat" required>
+                                        @error('vat')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="companylink" class="form-label fw-bold mb-2">Company Link in a Public
                                         registry </label>
                                     <input type="url" id="companylink" class="form-control mb-3"
                                         value="{{old('companylink')}}" name="companylink" required>
+                                        @error('companylink')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="corWeb" class="form-label fw-bold mb-2">Corporate Website</label>
                                     <input type="text" id="corWeb" class="form-control mb-3" value="{{old('corWeb')}}"
                                         name="corWeb" required>
+                                        @error('corWeb')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="companyEmail" class="form-label fw-bold mb-2">Company Email</label>
                                     <input type="email" id="companyEmail" class="form-control mb-3"
                                         value="{{old('companyEmail')}}" name="companyEmail" required>
+                                        @error('companyEmail')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="directors" class="form-label fw-bold mb-2">Number of Directors</label>
                                     <input type="text" id="directors" class="form-control mb-3"
                                         value="{{old('directors')}}" name="directors" required>
+                                        @error('directors')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="emp" class="form-label fw-bold mb-2">Number of Employees</label>
                                     <input type="text" id="emp" class="form-control mb-3" value="{{old('emp')}}"
                                         name="emp" required>
+                                        @error('emp')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
@@ -148,27 +190,42 @@
                                     <label for="regCountry" class="form-label fw-bold mb-2">Incorporation
                                         Country</label>
                                     <input type="text" id="incorporationCountry" class="form-control mb-3"
-                                        name="incorporationCountry">
+                                        name="incorporationCountry" value="{{old('incorporationCountry')}}" required>
+                                        @error('incorporationCountry')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regAdd" class="form-label fw-bold mb-2">Registered Address</label>
                                     <input type="text" id="regAdd" class="form-control mb-3" value="{{old('regAdd')}}"
                                         name="regAdd" required>
+                                        @error('regAdd')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regCity" class="form-label fw-bold mb-2">Registered City</label>
                                     <input type="text" id="regCity" class="form-control mb-3" value="{{old('regCity')}}"
                                         name="regCity" required>
+                                        @error('regCity')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regState" class="form-label fw-bold mb-2">County / State</label>
                                     <input type="text" id="regState" class="form-control mb-3"
                                         value="{{old('regState')}}" name="regState" required>
+                                        @error('regState')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regPostCode" class="form-label fw-bold mb-2">Registered Postcode</label>
                                     <input type="text" id="regPostCode" class="form-control mb-3"
                                         value="{{old('regPostCode')}}" name="regPostCode" required>
+                                        @error('regPostCode')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div class="d-flex align-items-center mt-4 mb-2">
                                     <input type="checkbox" id="same" class="me-2" onclick="copyAddress()"
@@ -179,26 +236,41 @@
                                     <label for="opCountry" class="form-label fw-bold mb-2">Operating Country </label>
                                     <input type="text" id="opCountry" class="form-control mb-3"
                                         value="{{old('opCountry')}}" name="opCountry" required>
+                                        @error('opCountry')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="opAdd" class="form-label fw-bold mb-2">Operating Address</label>
                                     <input type="text" id="opAdd" class="form-control mb-3" value="{{old('opAdd')}}"
                                         name="opAdd" required>
+                                        @error('opAdd')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="opCity" class="form-label fw-bold mb-2">Operating City</label>
                                     <input type="text" id="opCity" class="form-control mb-3" value="{{old('opCity')}}"
                                         name="opCity" required>
+                                        @error('opCity')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="opCountry" class="form-label fw-bold mb-2">County / State</label>
                                     <input type="text" id="opState" class="form-control mb-3" value="{{old('opState')}}"
                                         name="opState" required>
+                                        @error('opState')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="opPostCode" class="form-label fw-bold mb-2">Operating Postcode</label>
                                     <input type="text" id="opPostCode" class="form-control mb-3"
                                         value="{{old('opPostCode')}}" name="opPostCode" required>
+                                        @error('opPostCode')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
@@ -219,6 +291,9 @@
                                     <label for="industry" class="form-label fw-bold mb-2">Industry</label>
                                     <input type="text" id="industry" class="form-control mb-3"
                                         value="{{old('industry')}}" name="industry" required>
+                                        @error('industry')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="serviceDes" class="form-label fw-bold mb-2">Product/Service
@@ -227,66 +302,99 @@
                                         value="{{old('serviceDes')}}" name="serviceDes"
                                         placeholder="Please describe in detail the product or service you offer, solutions provided by your services or services, and the scope of the product or service, the markets to sell the product and service, as well as the main business partners."
                                         required></textarea>
+                                        @error('serviceDes')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="salesChannel" class="form-label fw-bold mb-2">Sales Channel</label>
                                     <input type="text" id="salesChannel" class="form-control mb-3"
                                         value="{{old('salesChannel')}}" name="salesChannel" required>
+                                        @error('salesChannel')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="web" class="form-label fw-bold mb-2">Website, if online</label>
                                     <input type="text" id="web" class="form-control mb-3" placeholder="URL 1"
-                                        value="{{old('webURL1')}}" name="webURL1">
+                                        value="{{old('webURL1')}}" name="webURL1" required>
                                     <input type="text" id="" class="form-control mb-3" placeholder="URL 2"
-                                        value="{{old('webURL2')}}" name="webURL2">
+                                        value="{{old('webURL2')}}" name="webURL2" required>
                                     <input type="text" id="" class="form-control mb-3" placeholder="URL 3"
-                                        value="{{old('webURL3')}}" name="webURL3">
+                                        value="{{old('webURL3')}}" name="webURL3" required>
+                                        @error('webURL1')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        @error('webURL2')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        @error('webURL3')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="otherweb" class="form-label fw-bold mb-2">Please specify, if
                                         other</label>
                                     <textarea rows="6" id="otherweb" class="form-control mb-3" placeholder="Please "
-                                        name="other">{{old('other')}}</textarea>
+                                        name="other" required>{{old('other')}}</textarea>
+                                        @error('other')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="businessYears" class="form-label fw-bold mb-2">Number of years in
                                         business</label>
                                     <input type="number" id="businessYears" class="form-control mb-3"
-                                        name="businessYears" value="{{old('businessYears')}}">
+                                        name="businessYears" value="{{old('businessYears')}}" required>
+                                        @error('businessYears')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label class="form-label fw-bold mb-2">Is License Required</label>
                                     <div class="d-flex mb-3">
                                         <div class="d-flex me-4">
                                             <input type="radio" name="licence" id="yesLicence" class="me-1" value="yes"
-                                                required>
+                                            {{ old('licence') === 'yes' ? 'checked' : '' }} required>
                                             <label for="yesLicence">Yes</label>
                                         </div>
                                         <div class="d-flex">
                                             <input type="radio" name="licence" id="noLicence" class="me-1" value="no"
-                                                required>
+                                            {{ old('licence') === 'no' ? 'checked' : '' }} required>
                                             <label for="noLicence">No</label>
                                         </div>
                                     </div>
+                                    @error('licence')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <p class="mb-3">If Yes, please specify: </p>
                                 <div>
                                     <label for="regAuthority" class="form-label fw-bold mb-2">Regulatory
                                         Authority</label>
                                     <input type="text" id="regAuthority" class="form-control mb-3"
-                                        value="{{old('regAuthority')}}" name="regAuthority">
+                                        value="{{old('regAuthority')}}" name="regAuthority" required>
+                                        @error('regAuthority')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regAuthCountry" class="form-label fw-bold mb-2">Regulatory Authority
                                         Country</label>
                                     <input type="text" id="regAuthCountry" class="form-control mb-3"
-                                        value="{{old('regAuthCountry')}}" name="regAuthCountry">
+                                        value="{{old('regAuthCountry')}}" name="regAuthCountry" required>
+                                        @error('regAuthCountry')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="regAuthNmbr" class="form-label fw-bold mb-2">Regulatory Registration
                                         #</label>
                                     <input type="text" id="regAuthNmbr" class="form-control mb-3"
-                                        value="{{old('regAuthNmbr')}}" name="regAuthNmbr">
+                                        value="{{old('regAuthNmbr')}}" name="regAuthNmbr" required>
+                                        @error('regAuthNmbr')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
@@ -307,7 +415,7 @@
                                     <div>
                                         <label for="numdirectors" class="form-label fw-bold mb-2">No. of
                                             Directors</label>
-                                        <input type="number" id="numdirectors" class="form-control mb-3">
+                                        <input type="number" id="numdirectors" name="numdirectors" value="{{old('numdirectors')}}" class="form-control mb-3" required>
                                     </div>
                                     <div class="director-main">
 
@@ -331,7 +439,7 @@
                                 <div>
                                     <div>
                                         <label for="numowners" class="form-label fw-bold mb-2">No. of Owners</label>
-                                        <input type="number" id="numowners" class="form-control mb-3">
+                                        <input type="number" id="numowners" name="numowners" value="{{old('numowners')}}" class="form-control mb-3" required>
                                     </div>
                                     <div class="owner-main">
 
@@ -355,7 +463,7 @@
                                 <div>
                                     <div>
                                         <label for="numubo" class="form-label fw-bold mb-2">No. of Owners</label>
-                                        <input type="number" id="numubo" class="form-control mb-3">
+                                        <input type="number" id="numubo" name="numubo" value="{{old('numubo')}}" class="form-control mb-3" required>
                                     </div>
                                     <div class="ubo-main">
 
@@ -378,12 +486,13 @@
                             <div class="accordion-body">
                                 <div class="">
                                     <div>
-                                        <input type="radio" id="companyRef" name="refName">
+                                        <input type="radio" id="companyRef" name="refName" required>
                                         <label for="companyRef" class="form-label fw-bold mb-2">Referred by a company:
                                             Which company?
                                         </label>
+                        
                                     </div>
-                                    <input type="text" class="form-control mb-3 companyRef">
+                                    <input type="text" class="form-control mb-3 companyRef" required>
                                 </div>
                                 <div>
                                     <div>
@@ -418,6 +527,9 @@
                                     <input type="text" class="form-control mb-3 tradeRef">
                                 </div>
                                 <input type="text" name="refDetails" value="" class="refDetails d-none ">
+                                @error('refName')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -441,6 +553,9 @@
                                         front and back of any card used for ID verification or double page of the
                                         passport.</p>
                                     <input type="file" id="idcard" class="form-control mb-3" name="idFile" required>
+                                    @error('idFile')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <p>Proof of home address of Directors and the UBOs: latest Utility, Council Tax or
@@ -448,6 +563,9 @@
                                         Bank statement, not older than 3 months.
                                     </p>
                                     <input type="file" id="Upload2" class="form-control mb-3" name="billFile" required>
+                                    @error('billFile')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="" class="form-label fw-bold mb-2">
@@ -463,6 +581,9 @@
                                         </label>
                                         <input type="file" id="incorporation" class="form-control mb-3"
                                             name="incorporationFile" required>
+                                            @error('incorporationFile')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div>
                                         <label for="memorandum" class="form-label fw-bold mb-2">
@@ -470,6 +591,9 @@
                                         </label>
                                         <input type="file" id="memorandum" class="form-control mb-3"
                                             name="memorandumFile" required>
+                                            @error('memorandumFile')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div>
                                         <label for="boardOfDirRes" class="form-label fw-bold mb-2">
@@ -478,6 +602,9 @@
                                         </label>
                                         <input type="file" id="boardOfDirRes" class="form-control mb-3"
                                             name="resolutionFile" required>
+                                            @error('resolutionFile')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
@@ -542,8 +669,11 @@
                                 <div class="fw-bold d-sm-flex align-items-center">
                                     <label for="specify1" class="mb-0 text-nowrap me-3">If Yes, please
                                         specify:</label>
-                                    <input id="specify1" type="text" class="form-control " name="confirm1Details">
+                                    <input id="specify1" type="text" class="form-control " name="confirm1Details" value="{{old('confirm1Details')}}">
                                 </div>
+                                @error('confirm1Details')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mt-3">
@@ -576,8 +706,11 @@
                                 <div class="fw-bold d-sm-flex align-items-center">
                                     <label for="specify2" class="mb-0 text-nowrap me-3">If Yes, please
                                         specify:</label>
-                                    <input id="specify2" type="text" class="form-control " name="confirm2Details">
+                                    <input id="specify2" type="text" class="form-control " name="confirm2Details" value="{{old('confirm2Details')}}">
                                 </div>
+                                @error('confirm2Details')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mt-3">
@@ -613,19 +746,28 @@
                         </div>
                         <div class=" mb-3">
                             <label for="FormControlTextarea1" class="form-label fw-bold">Signature (Name):</label>
-                            <textarea class="form-control" id="FormControlTextarea1" rows="3" name="sign"></textarea>
+                            <textarea class="form-control" id="FormControlTextarea1" rows="3" name="sign">{{old('sign')}}</textarea>
+                            @error('sign')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="row d-flex mt-3">
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label for="FormControlInput1" class="form-label fw-bold">Position</label>
-                                    <input type="email" class="form-control " id="FormControlInput1" name="position">
+                                    <input type="email" class="form-control " id="FormControlInput1" name="position" value="{{old('position')}}">
+                                    @error('position')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label for="DateInput" class="form-label fw-bold">Date and Place</label>
-                                    <input class="form-control" type="text" id="DateInput" name="dateAndPlace">
+                                    <input class="form-control" type="text" id="DateInput" name="dateAndPlace"  value="{{old('dateAndPlace')}}">
+                                    @error('dateAndPlace')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <input class="form-control d-none" type="number" name="status" value="1" readonly>
@@ -659,39 +801,39 @@
                                 <h2 class="fs-3 fw-bold"> Director ${i + 1} Details</h2>
                                         <div>
                                             <label for="dirName" class="form-label fw-bold mb-2">Full Name</label>
-                                            <input type="text" id="dirName" class="form-control mb-3" name="dirName[]">
+                                            <input type="text" id="dirName" class="form-control mb-3" name="dirName[]" required>
                                         </div>
                                         <div>
                                             <label for="dirCountry" class="form-label fw-bold mb-2">Country / State</label>
-                                            <input type="text" id="dirCountry" class="form-control mb-3" name="dirCountry[]">
+                                            <input type="text" id="dirCountry" class="form-control mb-3" name="dirCountry[]" required>
                                         </div>
                                         <div>
                                             <label for="dirAddress" class="form-label fw-bold mb-2">Address</label>
-                                            <input type="text" id="dirAddress" class="form-control mb-3" name="dirAddress[]">
+                                            <input type="text" id="dirAddress" class="form-control mb-3" name="dirAddress[]" required>
                                         </div>
                                         <div>
                                             <label for="dirCity" class="form-label fw-bold mb-2">City</label>
-                                            <input type="text" id="dirCity" class="form-control mb-3" name="dirCity[]">
+                                            <input type="text" id="dirCity" class="form-control mb-3" name="dirCity[]" required>
                                         </div>
                                         <div>
                                             <label for="dirPostcode" class="form-label fw-bold mb-2">Postcode</label>
-                                            <input type="text" id="dirPostcode" class="form-control mb-3" name="dirPostcode[]">
+                                            <input type="text" id="dirPostcode" class="form-control mb-3" name="dirPostcode[]" required>
                                         </div>
                                         <div>
                                             <label for="dirDOB" class="form-label fw-bold mb-2">DOB</label>
-                                            <input type="date" id="dirDOB" class="form-control mb-3" name="dirDOB[]">
+                                            <input type="date" id="dirDOB" class="form-control mb-3" name="dirDOB[]" required>
                                         </div>
                                         <div>
                                             <label for="dirPassport" class="form-label fw-bold mb-2">Passport #</label>
-                                            <input type="text" id="dirPassport" class="form-control mb-3" name="dirPassport[]">
+                                            <input type="text" id="dirPassport" class="form-control mb-3" name="dirPassport[]" required>
                                         </div>
                                         <div>
                                             <label for="dirExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="date" id="dirExp" class="form-control mb-3" name="dirExp[]">
+                                            <input type="date" id="dirExp" class="form-control mb-3" name="dirExp[]" required>
                                         </div>
                                         <div>
                                             <label for="dirNationality" class="form-label fw-bold mb-2">Nationality</label>
-                                            <input type="text" id="dirNationality" class="form-control mb-3" name="dirNationality[]">
+                                            <input type="text" id="dirNationality" class="form-control mb-3" name="dirNationality[]" required>
                                         </div>
                                     </div>
                         `;
@@ -708,43 +850,43 @@
                                 <h2 class="fs-3 fw-bold"> Owner ${i + 1} Details</h2>
                                         <div>
                                             <label for="ownerName" class="form-label fw-bold mb-2">Full Name</label>
-                                            <input type="text" id="ownerName" class="form-control mb-3" name="ownerName[]">
+                                            <input type="text" id="ownerName" class="form-control mb-3" name="ownerName[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerCountry" class="form-label fw-bold mb-2">Country / State</label>
-                                            <input type="text" id="ownerCountry" class="form-control mb-3" name="ownerCountry[]">
+                                            <input type="text" id="ownerCountry" class="form-control mb-3" name="ownerCountry[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerAddress" class="form-label fw-bold mb-2">Address</label>
-                                            <input type="text" id="ownerAddress" class="form-control mb-3" name="ownerAddress[]">
+                                            <input type="text" id="ownerAddress" class="form-control mb-3" name="ownerAddress[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerCity" class="form-label fw-bold mb-2">City</label>
-                                            <input type="text" id="ownerCity" class="form-control mb-3" name="ownerCity[]">
+                                            <input type="text" id="ownerCity" class="form-control mb-3" name="ownerCity[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerPostcode" class="form-label fw-bold mb-2">Postcode</label>
-                                            <input type="text" id="ownerPostcode" class="form-control mb-3" name="ownerPostcode[]">
+                                            <input type="text" id="ownerPostcode" class="form-control mb-3" name="ownerPostcode[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerDOB" class="form-label fw-bold mb-2">DOB</label>
-                                            <input type="date" id="ownerDOB" class="form-control mb-3" name="ownerDOB[]">
+                                            <input type="date" id="ownerDOB" class="form-control mb-3" name="ownerDOB[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerPassport" class="form-label fw-bold mb-2">Passport #</label>
-                                            <input type="text" id="ownerPassport" class="form-control mb-3" name="ownerPassport[]">
+                                            <input type="text" id="ownerPassport" class="form-control mb-3" name="ownerPassport[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="date" id="ownerExp" class="form-control mb-3" name="ownerExp[]">
+                                            <input type="date" id="ownerExp" class="form-control mb-3" name="ownerExp[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerNationality" class="form-label fw-bold mb-2">Nationality</label>
-                                            <input type="text" id="ownerNationality" class="form-control mb-3" name="ownerNationality[]">
+                                            <input type="text" id="ownerNationality" class="form-control mb-3" name="ownerNationality[]" required>
                                         </div>
                                         <div>
                                             <label for="ownerShare" class="form-label fw-bold mb-2">Share %</label>
-                                            <input type="text" id="ownerShare" class="form-control mb-3" name="ownerShare[]">
+                                            <input type="text" id="ownerShare" class="form-control mb-3" name="ownerShare[]" required>
                                         </div>
                                     </div>
                         `;
@@ -761,43 +903,43 @@
                                 <h2 class="fs-3 fw-bold"> UBO ${i + 1} Details</h2>
                                         <div>
                                             <label for="uboName" class="form-label fw-bold mb-2">Full Name</label>
-                                            <input type="text" id="uboName" class="form-control mb-3" name="uboName[]">
+                                            <input type="text" id="uboName" class="form-control mb-3" name="uboName[]" required>
                                         </div>
                                         <div>
                                             <label for="uboCountry" class="form-label fw-bold mb-2">Country / State</label>
-                                            <input type="text" id="uboCountry" class="form-control mb-3" name="uboCountry[]">
+                                            <input type="text" id="uboCountry" class="form-control mb-3" name="uboCountry[]" required>
                                         </div>
                                         <div>
                                             <label for="uboAddress" class="form-label fw-bold mb-2">Address</label>
-                                            <input type="text" id="uboAddress" class="form-control mb-3" name="uboAddress[]">
+                                            <input type="text" id="uboAddress" class="form-control mb-3" name="uboAddress[]" required>
                                         </div>
                                         <div>
                                             <label for="uboCity" class="form-label fw-bold mb-2">City</label>
-                                            <input type="text" id="uboCity" class="form-control mb-3" name="uboCity[]">
+                                            <input type="text" id="uboCity" class="form-control mb-3" name="uboCity[]" required>
                                         </div>
                                         <div>
                                             <label for="uboPostcode" class="form-label fw-bold mb-2">Postcode</label>
-                                            <input type="text" id="uboPostcode" class="form-control mb-3" name="uboPostcode[]">
+                                            <input type="text" id="uboPostcode" class="form-control mb-3" name="uboPostcode[]" required>
                                         </div>
                                         <div>
                                             <label for="uboDOB" class="form-label fw-bold mb-2">DOB</label>
-                                            <input type="date" id="uboDOB" class="form-control mb-3" name="uboDOB[]">
+                                            <input type="date" id="uboDOB" class="form-control mb-3" name="uboDOB[]" required>
                                         </div>
                                         <div>
                                             <label for="uboPassport" class="form-label fw-bold mb-2">Passport #</label>
-                                            <input type="text" id="uboPassport" class="form-control mb-3" name="uboPassport[]">
+                                            <input type="text" id="uboPassport" class="form-control mb-3" name="uboPassport[]" required>
                                         </div>
                                         <div>
                                             <label for="uboExp" class="form-label fw-bold mb-2">Passport Expiry Date</label>
-                                            <input type="date" id="uboExp" class="form-control mb-3" name="uboExp[]">
+                                            <input type="date" id="uboExp" class="form-control mb-3" name="uboExp[]" required>
                                         </div>
                                         <div>
                                             <label for="uboNationality" class="form-label fw-bold mb-2">Nationality</label>
-                                            <input type="text" id="uboNationality" class="form-control mb-3" name="uboNationality[]">
+                                            <input type="text" id="uboNationality" class="form-control mb-3" name="uboNationality[]" required>
                                         </div>
                                         <div>
                                             <label for="uboShare" class="form-label fw-bold mb-2">Share %</label>
-                                            <input type="text" id="uboShare" class="form-control mb-3" name="uboShare[]">
+                                            <input type="text" id="uboShare" class="form-control mb-3" name="uboShare[]" required>
                                         </div>
                                     </div>
                         `;

@@ -19,10 +19,11 @@ use App\Mail\PaymentApproved;
 use App\Mail\PaymentConfirmation;
 use App\Mail\InvestmentApproved;
 use App\Mail\StatusUpdate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Session;
 class AdminController extends Controller
 {
 
@@ -111,7 +112,7 @@ class AdminController extends Controller
         $currency = $request->all();
         Currency:: create($currency);
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Added a new Currency";
         notification::create([
         'message' => $msg,
@@ -134,7 +135,7 @@ class AdminController extends Controller
             $currency->update($request->all());
         }
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Updated a Currency";
         notification::create([
         'message' => $msg,
@@ -155,7 +156,7 @@ class AdminController extends Controller
         $underlaying = $request->all();
         UnderLaying:: create($underlaying);
 
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Added a new Commodity";
         notification::create([
         'message' => $msg,
@@ -177,7 +178,7 @@ class AdminController extends Controller
         if ($Commodity) {
             $Commodity->update($request->all());
         }
-        $userid = auth()->user()->id;
+        $userid = Auth::user()->id;
         $msg = "Updated a Commodity";
         notification::create([
         'message' => $msg,
@@ -487,7 +488,7 @@ class AdminController extends Controller
         return response()->json($Beneficiaries, 200);
     }
     public function savepayment(Request $request){
-        $userid=auth()->user()->id;
+        $userid=Auth::user()->id;
         $request['userid'] = $userid;
         $payments = $request->all();
         Payment:: create($payments);
@@ -533,41 +534,66 @@ class AdminController extends Controller
         ->where('payments.id',$id)->first();
         return view('Admin.editpayment',$data,['users'=>$users]);
     }
-    public function updatepayment(Request $request){
+    public function updatepayment(Request $request)
+    {
+       
         $payment = Payment::find($request->id);
+        $getOldbeneficiary=Beneficiaries::find($payment->Beneficiary);
+       
+        if($getOldbeneficiary){
+          
+            Session::put('old_accountname', $getOldbeneficiary->accountname);
+            Session::put('old_accountnumber', $getOldbeneficiary->accountnumber);
+
+        }
         if ($payment) {
-            $payment->update($request->all());
-        }
-
-        $mypayment = Payment::where('id',$request->id)->first();
-        $requestMail = $mypayment;
         
-        $beneficiary = Beneficiaries::find($mypayment->Beneficiary);
-        if ($beneficiary) {
-            $requestMail['accountname'] = $beneficiary->accountname;
-            $requestMail['accountnumber'] = $beneficiary->accountnumber;
+            $oldStatus = $payment->status; 
+            $newStatus = $request->status;
+            Session::put('old_amount', $payment->amount);
+            Session::put('old_currency', $payment->currency);
+
+        
+            $payment->update($request->all());
+
+            if ($oldStatus === $newStatus) {
+            
+                $mypayment = Payment::where('id', $request->id)->first();
+                $requestMail = $mypayment;
+
+            
+                $beneficiary = Beneficiaries::find($mypayment->Beneficiary);
+                if ($beneficiary) {
+                    $requestMail['accountname'] = $beneficiary->accountname;
+                    $requestMail['accountnumber'] = $beneficiary->accountnumber;
+                }
+
+            
+                $user = User::find($mypayment->customer);
+                if ($user) {
+                    $requestMail['fname'] = $user->fname;
+                    $to_email = $user->email;
+
+                    
+                    $requestMail['role'] = "user";
+                    $mail = new PaymentUpdate($requestMail);
+                    Mail::to($to_email)->send($mail);
+                }
+
+        
+                $requestMail['role'] = "admin";
+                $to_emailAdmin = env('ADMIN_EMAIL');
+                $to_emailAdmin2 = env('ADMIN2_EMAIL');
+                $to_emailAdmin3 = env('ADMIN3_EMAIL');
+                $mail2 = new PaymentUpdate($requestMail);
+                Mail::to($to_emailAdmin)
+                ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send($mail2);
+            }
+        
         }
 
-        $user = User::find($mypayment->customer);
-        if ($user) {
-            $requestMail['fname'] = $user->fname;
-            $to_email = $user->email;
-        }
-
-        $requestMail['role'] = "user";
-        $mail = new PaymentUpdate($requestMail);
-        $data = Mail::to($to_email)
-            ->send($mail);
-
-        $requestMail['role'] = "admin";
-        $to_emailAdmin = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
-        $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        $mail2 = new PaymentUpdate($requestMail);
-        Mail::to($to_emailAdmin)
-        ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            ->send($mail2);
-        return redirect()->route('admin.payments')->with ('update','Payment Updated Successfully');
+        return redirect()->route('admin.payments')->with('update', 'Payment Updated Successfully');
     }
     public function paymentemail($id){
         $payment = Payment::find($id);
@@ -596,7 +622,7 @@ class AdminController extends Controller
         ->first();
 
         if ($data2) {
-            $username=auth()->user()->fname;
+            $username=Auth::user()->fname;
             $status = $data2->status;
             $requestMail = $data2;
             $requestMail['role']="user";
