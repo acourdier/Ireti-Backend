@@ -270,13 +270,13 @@ class WebController extends Controller
         $data = Mail::to($to_email)
             ->send($mail);
 
-        // $to_email = env('ADMIN_EMAIL');
-        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
-        // $to_emailAdmin3 = env('ADMIN3_EMAIL');
-        // $mail = new InquiryMail($requestMail);
-        // Mail::to($to_email)
-        // ->cc([$to_emailAdmin2, $to_emailAdmin3])
-        //     ->send($mail);
+        $to_email = env('ADMIN_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+        $mail = new InquiryMail($requestMail);
+        Mail::to($to_email)
+        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }
     public function terms(){
