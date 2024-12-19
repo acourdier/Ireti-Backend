@@ -65,7 +65,7 @@
                                             <div class="mt-3">
                                                 <label for="currencytb">Choose Currency to Buy</label>
                                                 <select id="currencytb" name="currencytb" class="form-control">
-                                                    <!-- Options will be dynamically added here -->
+                                                   <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -754,9 +754,7 @@
             let secondCurrencyValue = secondcurrency.value;
 
             currencytb.innerHTML = `
-                <option value="0" hidden>Choose Currency</option>
-                <option value="${firstCurrencyValue}">${firstCurrencyValue}</option>
-                <option value="${secondCurrencyValue}">${secondCurrencyValue}</option>
+                <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
             `;
         }
 
