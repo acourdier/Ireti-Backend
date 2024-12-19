@@ -44,6 +44,9 @@ class WebController extends Controller
         return view('signup');
     }
     public function createuser(Request $Request){
+        if (User::where('email', $Request->email)->exists()) {
+            return redirect()->back()->with('error', 'This email already exist');;
+        }
         $Request->validate([
             'fname' => 'required',
             'email' => 'required|email|unique:users,email',
