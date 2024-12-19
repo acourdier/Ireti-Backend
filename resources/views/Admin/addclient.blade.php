@@ -32,38 +32,59 @@
                                     <div class="col-md-6 my-2">
                                         <label for="fname">Full Name:</label>
                                         <input type="text" name="fname"
-                                            class="form-control" id="fname" required>
+                                            class="form-control" id="fname" value="{{old('fname')}}" required>
+                                            @error('fname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="uname">Username:</label>
                                         <input type="text" name="username"
-                                            class="form-control" id="uname" required>
+                                            class="form-control" id="uname" value="{{old('username')}}" required>
+                                            @error('username')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="email">Email:</label>
                                         <input type="email" name="email"
-                                            class="form-control" id="email" required>
+                                            class="form-control" id="email" value="{{old('email')}}" required>
+                                            @error('email')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="phone">Phone Number:</label>
                                         <input type="tel" name="phone" class="form-control"
-                                            id="phone" required>
+                                            id="phone" value="{{old('phone')}}" required>
+                                            @error('phone')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="city">City:</label>
-                                        <input type="text" name="city" class="form-control"
+                                        <input type="text" name="city" value="{{old('city')}}" class="form-control"
                                             id="city" required>
+                                            @error('city')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                 
                                     <div class="col-md-6 my-2">
                                         <label for="country">Country:</label>
                                         <input type="text" name="country"
-                                            class="form-control" id="country" required>
+                                            class="form-control" id="country" value="{{old('country')}}" required>
+                                            @error('country')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-md-6 my-2">
                                         <label for="pass">Password:</label>
                                         <input type="password" name="password"
                                             class="form-control" id="pass" required>
+                                            @error('password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="col-12">
                                         <div class="mt-3">
