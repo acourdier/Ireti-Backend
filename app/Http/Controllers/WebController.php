@@ -50,7 +50,7 @@ class WebController extends Controller
         $Request->validate([
             'fname' => 'required',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'required',
+            'phone' => 'required|unique:users,phone',
             'username' => 'required',
             'password' => 'required',
             'password_confirmation' => 'required',

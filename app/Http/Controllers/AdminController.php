@@ -432,6 +432,17 @@ class AdminController extends Controller
         return view('Admin.editclient',$data);
     }
     public function saveclient(Request $Request){
+        $Request->validate([
+            'fname' => 'required',
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|unique:users,phone',
+            'city' => 'required',
+            'country' => 'required',
+            'password' => 'required',
+
+          
+        ]);
         User::create($Request->all());
         return redirect()->route('admin.clients')->with('success', 'User Created successfully.');
     }
