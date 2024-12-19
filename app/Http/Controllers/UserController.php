@@ -420,13 +420,13 @@ class UserController extends Controller
         'userid' => $userid,
         ]);
 
-        $username=auth()->user()->fname;
-        $requestMail = $request->all();
-        $requestMail['username'] = $username;
-        $to_email = auth()->user()->email;
-        $mail = new BankAccountMail($requestMail);
-        Mail::to($to_email)
-            ->send($mail);
+        // $username=auth()->user()->fname;
+        // $requestMail = $request->all();
+        // $requestMail['username'] = $username;
+        // $to_email = auth()->user()->email;
+        // $mail = new BankAccountMail($requestMail);
+        // Mail::to($to_email)
+        //     ->send($mail);
 
         return redirect()->route('user.bank')->with('success', 'Bank account added successfully.');
     }
