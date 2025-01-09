@@ -33,7 +33,7 @@
                         <div class="d-flex align-items-center ms-2">
                             <img src="{{ request()->routeIs('admin.underlaying','admin.addCommodity','admin.editCommodity') ? asset('img/inventoryg.svg') : asset('img/inventory.svg') }}"
                                 alt="" class="sicon">
-                            underlying
+                            Underlying
                         </div>
                     </a>
                 </li>

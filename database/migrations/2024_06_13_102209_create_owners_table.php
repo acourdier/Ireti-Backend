@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('owners', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userid');
-            $table->string('ownerName');
-            $table->string('ownerCountry');
-            $table->string('ownerAddress');
-            $table->string('ownerCity');
-            $table->string('ownerPostcode');
-            $table->string('ownerDOB');
-            $table->string('ownerPassport');
-            $table->string('ownerExp');
-            $table->string('ownerNationality');
-            $table->string('ownerShare');
+            $table->string('ownerName')->nullable();
+            $table->string('ownerCountry')->nullable();
+            $table->string('ownerAddress')->nullable();
+            $table->string('ownerCity')->nullable();
+            $table->string('ownerPostcode')->nullable();
+            $table->string('ownerDOB')->nullable();
+            $table->string('ownerPassport')->nullable();
+            $table->string('ownerExp')->nullable();
+            $table->string('ownerNationality')->nullable();
+            $table->string('ownerShare')->nullable();
             $table->timestamps();
         });
     }

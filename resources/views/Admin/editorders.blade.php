@@ -31,10 +31,14 @@
                                                 <select name="firstcurrency" required id="firstcurrency"
                                                     class="form-control">
                                                     @foreach ($currencies as $currency)
+                                                     @if ($orders['secondcurrency'] != $currency['currency'])
+                                                         
+                                                     
                                                         <option value="{{ $currency['currency'] }}"
                                                             {{ $currency['currency'] == $orders['firstcurrency'] ? 'selected' : '' }}>
                                                             {{ $currency['currency'] }}
                                                         </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -45,10 +49,15 @@
                                                 <select name="secondcurrency" required id="secondcurrency"
                                                     class="form-control">
                                                     @foreach ($currencies as $currency)
+
+                                                     @if ($orders['firstcurrency'] != $currency['currency'] )
+                                                         
+                                                    
                                                         <option value="{{ $currency['currency'] }}"
                                                             {{ $currency['currency'] == $orders['secondcurrency'] ? 'selected' : '' }}>
                                                             {{ $currency['currency'] }}
                                                         </option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -93,21 +102,22 @@
                                         <div class="col-12">
 
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                    <p id="rate"></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-3">
-                                            <label for="status">Order Filled</label>
-                                            <select name="filled" id="status" class="form-control">
-                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
-                                                </option>
-                                                <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
-                                                </option>
-                                            </select>
+                                        <div class="col-12">
+                                        <p id="rate"></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <label for="status">Order Filled</label>
+                                                <select name="filled" id="status" class="form-control">
+                                                    <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
+                                                    </option>
+                                                    <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6"></div>
                                     <div class="col-12">
                                         <div class="mt-3 d-flex justify-content-end">
                                        <a href="{{ route('admin.orders') }}" class="bg-grey text-black text-decoration-none px-4 py-2 rounded-3 me-2">Cancel</a>
@@ -733,38 +743,72 @@
 
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        let currencyBuy = document.getElementById('firstcurrency');
-        let currencySell = document.getElementById('secondcurrency');
-        let originalSellOptions = Array.from(currencySell.options);
-        currencyBuy.addEventListener('change', function () {
-            let selectedCurrency = this.value;
-            while (currencySell.options.length > 0) {
-                currencySell.remove(0);
-            }
-            originalSellOptions.forEach(option => {
-                if (option.value !== selectedCurrency) {
-                    currencySell.add(new Option(option.text, option.value));
-                }
-            });
-            });
-        });
+        // document.addEventListener('DOMContentLoaded', function () {
+        // let currencyBuy = document.getElementById('firstcurrency');
+        // let currencySell = document.getElementById('secondcurrency');
+        // let originalSellOptions = Array.from(currencySell.options);
+        // currencyBuy.addEventListener('change', function () {
+        //     let selectedCurrency = this.value;
+        //     while (currencySell.options.length > 0) {
+        //         currencySell.remove(0);
+        //     }
+        //     originalSellOptions.forEach(option => {
+        //         if (option.value !== selectedCurrency) {
+        //             currencySell.add(new Option(option.text, option.value));
+        //         }
+        //     });
+        //     });
+        // });
     </script>
     <script>
+        let onecurrency = document.getElementById('firstcurrency');
+        let twocurrency = document.getElementById('secondcurrency');
+        let initialCurrency = "{{ $orders['currencytb'] }}";
         function updatecurrencytb() {
-            let firstCurrencyValue = firstcurrency.value;
-            let secondCurrencyValue = secondcurrency.value;
+       
+            let firstCurrencyValue = onecurrency.value;
+           
+           
+           
+            if (firstCurrencyValue !== initialCurrency) {
+            currencytb.innerHTML = `
+                <option value="${firstCurrencyValue}">${firstCurrencyValue}</option>
+            `;
+        }else if(firstCurrencyValue == initialCurrency){
 
             currencytb.innerHTML = `
-                <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
+                <option value="${initialCurrency}">${initialCurrency}</option>
             `;
         }
 
-        firstcurrency.addEventListener('change', updatecurrencytb);
-        secondcurrency.addEventListener('change', updatecurrencytb);
-        // Initialize with default values
-        updatecurrencytb();
+        }
+       if(onecurrency.value == initialCurrency){
 
+        onecurrency.addEventListener('change', updatecurrencytb);
+      }
+       
+      function updatesecondcurrencytb() {
+       
+      
+       let secondCurrencyValue = twocurrency.value;
+      
+      
+       if (secondCurrencyValue !== initialCurrency) {
+       currencytb.innerHTML = `
+           <option value="${secondCurrencyValue}">${secondCurrencyValue}</option>
+       `;
+        }else if(secondCurrencyValue == initialCurrency){
+
+       currencytb.innerHTML = `
+           <option value="${initialCurrency}">${initialCurrency}</option>
+       `;
+        }
+
+        }
+        if(twocurrency.value == initialCurrency){
+
+            twocurrency.addEventListener('change', updatesecondcurrencytb);
+            }
     </script>
 </body>
 

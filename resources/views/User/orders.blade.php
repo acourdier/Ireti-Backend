@@ -89,6 +89,14 @@
                                                                 Edit
                                                             </a>
                                                         </li>
+
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ 'UserCancelOrder/' . $order['id'] }}">
+                                                                <i class="fa-regular text-muted me-2 fa-circle-xmark"></i>
+                                                                Cancel
+                                                            </a>
+                                                        </li>
                                                         @endif
                                                         <li>
                                                             <a class="dropdown-item"

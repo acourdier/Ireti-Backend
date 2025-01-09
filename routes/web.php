@@ -52,6 +52,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::post('updateorder','updateorder')->name('admin.updateorder');
             Route::get('editorders/{id}','editorders')->name('admin.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('admin.orderdeatils');
+            Route::get('CancelOrder/{id}','CancelOrder')->name('admin.CancelOrder');
+
 
 
             Route::get('investment','investment')->name('admin.investment');
@@ -122,6 +124,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::post('updateorder','updateorder')->name('user.updateorder');
             Route::get('editorders/{id}','editorders')->name('user.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
+            Route::get('UserCancelOrder/{id}','UserCancelOrder')->name('user.UserCancelOrder');
+
             Route::get('payments','payments')->name('user.payments');
 
             Route::get('addpayment','addpayment')->name('user.addpayment');

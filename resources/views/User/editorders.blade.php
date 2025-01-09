@@ -65,7 +65,9 @@
                                             <div class="mt-3">
                                                 <label for="currencytb">Choose Currency to Buy</label>
                                                 <select id="currencytb" name="currencytb" class="form-control">
-                                                   <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
+                                                  
+                                                    <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
+                                               
                                                 </select>
                                             </div>
                                         </div>
@@ -731,37 +733,72 @@
 
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let currencyBuy = document.getElementById('firstcurrency');
-            let currencySell = document.getElementById('secondcurrency');
-            let originalSellOptions = Array.from(currencySell.options);
-            currencyBuy.addEventListener('change', function() {
-                let selectedCurrency = this.value;
-                while (currencySell.options.length > 0) {
-                    currencySell.remove(0);
-                }
-                originalSellOptions.forEach(option => {
-                    if (option.value !== selectedCurrency) {
-                        currencySell.add(new Option(option.text, option.value));
-                    }
-                });
-            });
-        });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     let currencyBuy = document.getElementById('firstcurrency');
+        //     let currencySell = document.getElementById('secondcurrency');
+        //     let originalSellOptions = Array.from(currencySell.options);
+        //     currencyBuy.addEventListener('change', function() {
+        //         let selectedCurrency = this.value;
+        //         while (currencySell.options.length > 0) {
+        //             currencySell.remove(0);
+        //         }
+        //         originalSellOptions.forEach(option => {
+        //             if (option.value !== selectedCurrency) {
+        //                 currencySell.add(new Option(option.text, option.value));
+        //             }
+        //         });
+        //     });
+        // });
     </script>
     <script>
+        let onecurrency = document.getElementById('firstcurrency');
+        let twocurrency = document.getElementById('secondcurrency');
+        let initialCurrency = "{{ $orders['currencytb'] }}";
         function updatecurrencytb() {
-            let firstCurrencyValue = firstcurrency.value;
-            let secondCurrencyValue = secondcurrency.value;
+       
+            let firstCurrencyValue = onecurrency.value;
+           
+           
+           
+            if (firstCurrencyValue !== initialCurrency) {
+            currencytb.innerHTML = `
+                <option value="${firstCurrencyValue}">${firstCurrencyValue}</option>
+            `;
+        }else if(firstCurrencyValue == initialCurrency){
 
             currencytb.innerHTML = `
-                <option value="{{ $orders['currencytb'] }}">{{ $orders['currencytb'] }}</option>
+                <option value="${initialCurrency}">${initialCurrency}</option>
             `;
         }
 
-        firstcurrency.addEventListener('change', updatecurrencytb);
-        secondcurrency.addEventListener('change', updatecurrencytb);
-        // Initialize with default values
-        updatecurrencytb();
+        }
+       if(onecurrency.value == initialCurrency){
+
+        onecurrency.addEventListener('change', updatecurrencytb);
+      }
+       
+      function updatesecondcurrencytb() {
+       
+      
+       let secondCurrencyValue = twocurrency.value;
+      
+      
+       if (secondCurrencyValue !== initialCurrency) {
+       currencytb.innerHTML = `
+           <option value="${secondCurrencyValue}">${secondCurrencyValue}</option>
+       `;
+        }else if(secondCurrencyValue == initialCurrency){
+
+       currencytb.innerHTML = `
+           <option value="${initialCurrency}">${initialCurrency}</option>
+       `;
+        }
+
+        }
+        if(twocurrency.value == initialCurrency){
+
+            twocurrency.addEventListener('change', updatesecondcurrencytb);
+            }
     </script>
 </body>
 

@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('directors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userid');
-            $table->string('dirName');
-            $table->string('dirCountry');
-            $table->string('dirAddress');
-            $table->string('dirCity');
-            $table->string('dirPostcode');
-            $table->string('dirDOB');
-            $table->string('dirPassport');
-            $table->string('dirExp');
-            $table->string('dirNationality');
+            $table->string('dirName')->nullable();
+            $table->string('dirCountry')->nullable();
+            $table->string('dirAddress')->nullable();
+            $table->string('dirCity')->nullable();
+            $table->string('dirPostcode')->nullable();
+            $table->string('dirDOB')->nullable();
+            $table->string('dirPassport')->nullable();
+            $table->string('dirExp')->nullable();
+            $table->string('dirNationality')->nullable();
             $table->timestamps();
         });
     }

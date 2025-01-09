@@ -32,7 +32,12 @@ class WebController extends Controller
     }
     public function onlineInquiry(){
         $userId = session('userId');
-        return view('onlineInquiry', compact('userId'));
+        $fullName=session('fname'); 
+        $email=session('email');
+        $phone=session('phone');
+
+       
+        return view('onlineInquiry', compact('userId','fullName','email','phone'));
     }
     public function platform(){
         return view('platform');
@@ -51,72 +56,37 @@ class WebController extends Controller
             'fname' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|unique:users,phone',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'password' => 'required',
             'password_confirmation' => 'required',
             'city' => 'required',
             'country' => 'required',
         ]);
         $user = User::create($Request->all());
-        return redirect()->route('onlineInquiry')->with('userId', $user->id);
+        session([
+            'userId' => $user->id,
+            'fname' => $user->fname,
+            'email' => $user->email,
+            'phone' => $user->phone,
+
+        ]);
+        return redirect()->route('onlineInquiry');
     }
     public function saveInquiry(Request $request){
 
        
         $request->validate([
             'in_fullname' => 'required',
-            'in_position' => 'required',
             'in_email' => 'required',
             'in_phone' => 'required',
-            'legalname' => 'required',
-            'tradingname' => 'required',
-            'regNmber' => 'required',
-            'regDate' => 'required',
-            'vat' => 'required',
-            'companylink' => 'required',
-            'corWeb' => 'required',
-            'companyEmail' => 'required',
-            'directors' => 'required',
-            'emp' => 'required',
-            'incorporationCountry' => 'required',
-            'regAdd' => 'required',
-            'regCity' => 'required',
-            'regState' => 'required',
-            'regPostCode' => 'required',
-            'opCountry' => 'required',
-            'opAdd' => 'required',
-            'opCity' => 'required',
-            'opState' => 'required',
-            'opPostCode' => 'required',
-            'industry' => 'required',
-            'serviceDes' => 'required',
-            'salesChannel' => 'required',
-            'webURL1' => 'required',
-            'webURL2' => 'required',
-            'webURL3' => 'required',
-            'other' => 'required',
-            'businessYears' => 'required',
-            'licence' => 'required',
-            'regAuthCountry' => 'required',
-            'regAuthNmbr' => 'required',
-            'regAuthNmbr' => 'required',
-            'refName' => 'required',
-            'idFile' => 'required',
-            'billFile' => 'required',
-            'incorporationFile' => 'required',
-            'memorandumFile' => 'required',
-            'resolutionFile' => 'required',
             'sign' => 'required',
-            'position' => 'required',
-            'dateAndPlace' => 'required',
-             ], [
-            'refName.required' => 'Please select at least one referral source.',
-        ]);
+             ]);
 
         $user = User::find($request->id);
           
        
         if (!$user) {
+       
             return redirect()->back()->with('error', 'User not found');
         }
     
