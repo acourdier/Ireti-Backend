@@ -51,45 +51,53 @@
                     <p><strong>Incorporation Country:</strong> {{ $requestMail['incorporationCountry'] }}</p>
 
                     <h2>Director Details:</h2>
-                    @if(isset($requestMail) && is_array($requestMail) && isset($requestMail['dirName']) && is_array($requestMail['dirName']))
+                    @if (isset($requestMail) &&
+                            is_array($requestMail) &&
+                            isset($requestMail['dirName']) &&
+                            is_array($requestMail['dirName']))
 
-                            @foreach($requestMail['dirName'] as $index => $dirName)
+                        @foreach ($requestMail['dirName'] as $index => $dirName)
+                            <h3>Director {{ $index + 1 }}:</h3>
+                            <p><strong>Name:</strong> {{ $dirName }}</p>
+                            <p><strong>Country:</strong> {{ $requestMail['dirCountry'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Address:</strong> {{ $requestMail['dirAddress'][$index] ?? 'N/A' }}</p>
+                            <p><strong>City:</strong> {{ $requestMail['dirCity'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Postcode:</strong> {{ $requestMail['dirPostcode'][$index] ?? 'N/A' }}</p>
+                            <p><strong>DOB:</strong> {{ $requestMail['dirDOB'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Passport:</strong> {{ $requestMail['dirPassport'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Experience:</strong> {{ $requestMail['dirExp'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Nationality:</strong> {{ $requestMail['dirNationality'][$index] ?? 'N/A' }}</p>
+                        @endforeach
 
-                                <h3>Director {{ $index + 1 }}:</h3>
-                                <p><strong>Name:</strong> {{ $dirName }}</p>
-                                <p><strong>Country:</strong> {{ $requestMail['dirCountry'][$index] ?? 'N/A' }}</p>
-                                <p><strong>Address:</strong> {{ $requestMail['dirAddress'][$index] ?? 'N/A' }}</p>
-                                <p><strong>City:</strong> {{ $requestMail['dirCity'][$index] ?? 'N/A' }}</p>
-                                <p><strong>Postcode:</strong> {{ $requestMail['dirPostcode'][$index] ?? 'N/A' }}</p>
-                                <p><strong>DOB:</strong> {{ $requestMail['dirDOB'][$index] ?? 'N/A' }}</p>
-                                <p><strong>Passport:</strong> {{ $requestMail['dirPassport'][$index] ?? 'N/A' }}</p>
-                                <p><strong>Experience:</strong> {{ $requestMail['dirExp'][$index] ?? 'N/A' }}</p>
-                                <p><strong>Nationality:</strong> {{ $requestMail['dirNationality'][$index] ?? 'N/A' }}</p>
-
-                            @endforeach
-
-                        @endif
+                    @endif
                     <h2>Owner Details:</h2>
-                    @if(isset($requestMail) && is_array($requestMail) && isset($requestMail['ownerName']) && is_array($requestMail['ownerName']))
-                    @foreach($requestMail['ownerName'] as $index => $ownerName)
-                        <h3>Owner {{ $index + 1 }}:</h3>
-                        <p><strong>Name:</strong> {{ $ownerName }}</p>
-                        <p><strong>Country:</strong> {{ $requestMail['ownerCountry'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Address:</strong> {{ $requestMail['ownerAddress'][$index] ?? 'N/A' }}</p>
-                        <p><strong>City:</strong> {{ $requestMail['ownerCity'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Postcode:</strong> {{ $requestMail['ownerPostcode'][$index] ?? 'N/A' }}</p>
-                        <p><strong>DOB:</strong> {{ $requestMail['ownerDOB'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Passport:</strong> {{ $requestMail['ownerPassport'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Experience:</strong> {{ $requestMail['ownerExp'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Nationality:</strong> {{ $requestMail['ownerNationality'][$index] ?? 'N/A' }}</p>
-                        <p><strong>Share:</strong> {{ $requestMail['ownerShare'][$index] ?? 'N/A' }}</p>
-                    @endforeach
-                @endif
+                    @if (isset($requestMail) &&
+                            is_array($requestMail) &&
+                            isset($requestMail['ownerName']) &&
+                            is_array($requestMail['ownerName']))
+                        @foreach ($requestMail['ownerName'] as $index => $ownerName)
+                            <h3>Owner {{ $index + 1 }}:</h3>
+                            <p><strong>Name:</strong> {{ $ownerName }}</p>
+                            <p><strong>Country:</strong> {{ $requestMail['ownerCountry'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Address:</strong> {{ $requestMail['ownerAddress'][$index] ?? 'N/A' }}</p>
+                            <p><strong>City:</strong> {{ $requestMail['ownerCity'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Postcode:</strong> {{ $requestMail['ownerPostcode'][$index] ?? 'N/A' }}</p>
+                            <p><strong>DOB:</strong> {{ $requestMail['ownerDOB'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Passport:</strong> {{ $requestMail['ownerPassport'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Experience:</strong> {{ $requestMail['ownerExp'][$index] ?? 'N/A' }}</p>
+                            <p><strong>Nationality:</strong> {{ $requestMail['ownerNationality'][$index] ?? 'N/A' }}
+                            </p>
+                            <p><strong>Share:</strong> {{ $requestMail['ownerShare'][$index] ?? 'N/A' }}</p>
+                        @endforeach
+                    @endif
 
                     <!-- Displaying UBO details -->
                     <h2>UBO Details:</h2>
-                    @if(isset($requestMail) && is_array($requestMail) && isset($requestMail['uboName']) && is_array($requestMail['uboName']))
-                        @foreach($requestMail['uboName'] as $index => $uboName)
+                    @if (isset($requestMail) &&
+                            is_array($requestMail) &&
+                            isset($requestMail['uboName']) &&
+                            is_array($requestMail['uboName']))
+                        @foreach ($requestMail['uboName'] as $index => $uboName)
                             <h3>UBO {{ $index + 1 }}:</h3>
                             <p><strong>Name:</strong> {{ $uboName }}</p>
                             <p><strong>Country:</strong> {{ $requestMail['uboCountry'][$index] ?? 'N/A' }}</p>
@@ -104,11 +112,50 @@
                         @endforeach
                     @endif
                     <h2>Attachments:</h2>
-                    <p><strong>ID Front:</strong> <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['idFile']) }}">Click here</a></p>
-                    <p><strong>ID Back:</strong> <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['billFile']) }}">Click here</a></p>
-                    <p><strong>Incorporation File:</strong> <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['incorporationFile']) }}">Click here</a></p>
-                    <p><strong>Memorandum File:</strong> <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['memorandumFile']) }}">Click here</a></p>
-                    <p><strong>ResolutionFile:</strong> <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['resolutionFile']) }}">Click here</a></p>
+                    <p><strong>ID Front:</strong>
+                        @if (isset($requestMail['idFile']))
+                            <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['idFile']) }}">Click
+                                here</a>
+                        @else
+                            not found !
+                        @endif
+
+                    </p>
+                    <p><strong>ID Back:</strong>
+                        @if (isset($requestMail['billFile']))
+                            <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['billFile']) }}">Click
+                                here</a>
+                        @else
+                            not found !
+                        @endif
+                    </p>
+                    <p><strong>Incorporation File:</strong>
+                        @if (isset($requestMail['incorporationFile']))
+                            <a
+                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['incorporationFile']) }}">Click
+                                here</a>
+                        @else
+                            not found !
+                        @endif
+                    </p>
+                    <p><strong>Memorandum File:</strong>
+                        @if (isset($requestMail['memorandumFile']))
+                            <a
+                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['memorandumFile']) }}">Click
+                                here</a>
+                        @else
+                            not found !
+                        @endif
+                    </p>
+                    <p><strong>ResolutionFile:</strong>
+                        @if (isset($requestMail['resolutionFile']))
+                            <a
+                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['resolutionFile']) }}">Click
+                                here</a>
+                        @else
+                            not found !
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
