@@ -35,7 +35,7 @@
                 <div class="col-lg-11 bg-white p-4 mailshadow rounded-4">
                     <h1 class="fs-3">{{ $requestMail['in_fullname'] }} has sent an inquiry" </h1>
                     <p><strong>In Fullname:</strong> {{ $requestMail['in_fullname'] }}</p>
-                    <p><strong>In Position:</strong> {{ $requestMail['in_position'] }}</p>
+                    <p><strong>In Position:</strong> {{ $requestMail['position'] }}</p>
                     <p><strong>In Email:</strong> {{ $requestMail['in_email'] }}</p>
                     <p><strong>In Phone:</strong> {{ $requestMail['in_phone'] }}</p>
                     <p><strong>Legal Name:</strong> {{ $requestMail['legalname'] }}</p>
