@@ -338,6 +338,20 @@ class AdminController extends Controller
         return redirect()->route('admin.orders')->with('update', 'Email Sent Successfully');
     }
 
+    public function CancelOrder(Request $request){
+
+        $order = Order::find($request->id);
+        if (!$order) {
+            return redirect()->route('admin.orders')->withErrors('Order not found');
+        }
+        
+        $order->filled = 'Cancel';
+        $order->save();
+
+        return redirect()->route('admin.orders')->with('update', 'Order cancelled  Successfully');
+
+    }
+
 
 
     public function investment(){

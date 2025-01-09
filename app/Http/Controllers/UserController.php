@@ -224,17 +224,17 @@ class UserController extends Controller
             $requestMail['FundType'] =$orderDetails->FundType;
             $requestMail['updateby'] = 'user';
 
-            $to_email = $orderDetails->email;
-            $to_emailAdmin = env('ADMIN_EMAIL');
-            $to_emailAdmin2 = env('ADMIN2_EMAIL');
-            $to_emailAdmin3 = env('ADMIN3_EMAIL');
-            $requestMail['role'] = "user";
-            Mail::to($to_email)->send(new OrderUpdate($requestMail));
+            // $to_email = $orderDetails->email;
+            // $to_emailAdmin = env('ADMIN_EMAIL');
+            // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+            // $to_emailAdmin3 = env('ADMIN3_EMAIL');
+            // $requestMail['role'] = "user";
+            // Mail::to($to_email)->send(new OrderUpdate($requestMail));
 
-            $requestMail['role'] = "admin";
-            Mail::to($to_emailAdmin)
-                ->cc([$to_emailAdmin2, $to_emailAdmin3])
-                ->send(new OrderUpdate($requestMail));
+            // $requestMail['role'] = "admin";
+            // Mail::to($to_emailAdmin)
+            //     ->cc([$to_emailAdmin2, $to_emailAdmin3])
+            //     ->send(new OrderUpdate($requestMail));
             if (isset($data['quantity']) && $data['quantity'] != null) {
                 $quantity = str_replace(' ', '', $data['quantity']);
                 $targetPrice = str_replace(' ', '', $data['targetp']);
@@ -309,6 +309,20 @@ class UserController extends Controller
         ->cc([$to_emailAdmin2, $to_emailAdmin3])
             ->send($mail2);
         return redirect()->route('user.orders')->with('success', 'Product validate successfully.');
+    }
+
+    public function UserCancelOrder(Request $request){
+
+        $order = Order::find($request->id);
+        if (!$order) {
+            return redirect()->route('user.orders')->withErrors('Order not found');
+        }
+        
+        $order->filled = 'Cancel';
+        $order->save();
+
+        return redirect()->route('user.orders')->with('update', 'Order cancelled  Successfully');
+
     }
 
     public function investment(){

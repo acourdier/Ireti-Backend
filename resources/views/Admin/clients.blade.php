@@ -55,11 +55,11 @@
                                                     <span class="{{ $statusClass }}">{{ $status }}</span>
                                                 </td>
                                                 <td class="text-secondary align-middle">
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="{{ 'editclient/' . $user['id'] }}"><i
-                                                            class="fa-solid fa-pen-to-square text-secondary pointer me-3"></i></a>
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <a class="me-3" href="{{ 'editclient/' . $user['id'] }}"><i
+                                                            class="fa-solid fa-pen-to-square text-secondary pointer"></i></a>
                                                         <a href="{{ 'Deleteuser/' . $user['id'] }}"><i
-                                                            class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                            class="fa-solid fa-trash text-secondary pointer"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

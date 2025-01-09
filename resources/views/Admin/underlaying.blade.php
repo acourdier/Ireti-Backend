@@ -44,9 +44,9 @@
                                                 <td>{{$UnderLaying['Type']}}</td>
                                                 <td>{{$UnderLaying['underlaying']}}</td>
                                                 <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="{{ 'deleteCommodity/' . $UnderLaying['id'] }}"><i
-                                                                class="fa-solid fa-trash text-secondary pointer me-3"></i></a>
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <a class="me-3" href="{{ 'deleteCommodity/' . $UnderLaying['id'] }}"><i
+                                                                class="fa-solid fa-trash text-secondary pointer"></i></a>
                                                         <a href="{{ 'editCommodity/' . $UnderLaying['id'] }}">
                                                             <i class="fa-solid text-muted fa-pen-to-square"></i>
                                                         </a>

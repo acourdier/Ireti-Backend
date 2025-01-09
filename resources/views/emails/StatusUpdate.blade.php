@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-12">
                     @if ($requestMail['mailstatus'] == 'rejected')
-                        <p><span class="mb-0 fw-bold">Subject: </span>Application Status – Unable to Proceed</p>
+                        {{-- <p><span class="mb-0 fw-bold">Subject: </span>Application Status – Unable to Proceed</p> --}}
                         <p class="mb-0">Dear  {{ $requestMail['fname'] }},</p>
                         <p class="mb-0 mt-3 p2">Thank you for your interest in Ireti Capital and for submitting your
                             application. After careful review, we regret to inform you that we are unable to proceed
@@ -47,7 +47,7 @@
                             questions or would like further clarification, please feel free to reach out to us.</p>
                         <p>We appreciate your understanding and wish you the best in your endeavors.</p>
                     @else
-                        <p><span class="mb-0 fw-bold">Subject: </span>Application Status – Approved</p>
+                        {{-- <p><span class="mb-0 fw-bold">Subject: </span>Application Status – Approved</p> --}}
                         <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
                         <p class="mb-0 mt-3 p2">Thank you for your interest in Ireti Capital and for submitting your
                             application. We are delighted to inform you that your application has been successfully

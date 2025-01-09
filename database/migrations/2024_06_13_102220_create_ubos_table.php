@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('ubos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userid');
-            $table->string('uboName');
-            $table->string('uboCountry');
-            $table->string('uboAddress');
-            $table->string('uboCity');
-            $table->string('uboPostcode');
-            $table->string('uboDOB');
-            $table->string('uboPassport');
-            $table->string('uboExp');
-            $table->string('uboNationality');
-            $table->string('uboShare');
+            $table->string('uboName')->nullable();
+            $table->string('uboCountry')->nullable();
+            $table->string('uboAddress')->nullable();
+            $table->string('uboCity')->nullable();
+            $table->string('uboPostcode')->nullable();
+            $table->string('uboDOB')->nullable();
+            $table->string('uboPassport')->nullable();
+            $table->string('uboExp')->nullable();
+            $table->string('uboNationality')->nullable();
+            $table->string('uboShare')->nullable();
             $table->timestamps();
         });
     }
