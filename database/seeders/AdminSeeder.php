@@ -49,7 +49,7 @@ class AdminSeeder extends Seeder
         User::create([
             'fname' => 'Trading Ireticapital',
             'email' => 'trading@ireticapital.com',
-            'phone'=>"03200000000",
+            'phone'=>"03300000000",
             'username' => 'Trading Ireticapital',
             'password' => Hash::make('AZERTY'),
             'city'=> 'sialkot',
