@@ -15,10 +15,10 @@ class AdminSeeder extends Seeder
     {
         User::create([
             'fname' => 'Admin',
-            'email' => 'admin@example.com',
+            'email' => 'shakaibishfaq1@gmail.com',
             'phone'=>"03000000000",
             'username' => 'admin',
-            'password' => Hash::make('aszx1234'),
+            'password' => Hash::make('AZERTY'),
             'city'=> 'Daska',
             'role' => '0',
             'country' => 'Pakistan',
@@ -29,7 +29,7 @@ class AdminSeeder extends Seeder
             'email' => 'Sullivan.joubert@ireticapital.com',
             'phone'=>"03100000000",
             'username' => 'Sullivan Joubert',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('AZERTY'),
             'city'=> 'sialkot',
             'role' => '0',
             'country' => 'Pakistan',
@@ -40,7 +40,18 @@ class AdminSeeder extends Seeder
             'email' => 'Gabriel.olugbenga@ireticapital.com',
             'phone'=>"03200000000",
             'username' => 'Gabriel Olugbenga',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('AZERTY'),
+            'city'=> 'sialkot',
+            'role' => '0',
+            'country' => 'Pakistan',
+
+        ]);
+        User::create([
+            'fname' => 'Trading Ireticapital',
+            'email' => 'trading@ireticapital.com',
+            'phone'=>"03200000000",
+            'username' => 'Trading Ireticapital',
+            'password' => Hash::make('AZERTY'),
             'city'=> 'sialkot',
             'role' => '0',
             'country' => 'Pakistan',
