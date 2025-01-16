@@ -318,8 +318,8 @@ class UserController extends Controller
             return redirect()->route('user.orders')->withErrors('Order not found');
         }
         
-        $order->filled = 'Cancel';
-        $order->save();
+       
+        $order->delete();
 
         return redirect()->route('user.orders')->with('update', 'Order cancelled  Successfully');
 
