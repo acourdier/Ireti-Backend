@@ -244,9 +244,7 @@ class WebController extends Controller
 
         $to_email = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
-        $to_emailAdmin2 ='sagar.sabir@fabtechsol.com';
-
-        $to_emailAdmin3 = env('ADMIN3_EMAIL');
+       $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
         ->cc($to_emailAdmin2)
