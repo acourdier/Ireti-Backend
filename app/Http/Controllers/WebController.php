@@ -96,6 +96,8 @@ class WebController extends Controller
             $photo_destination = public_path('uploads');
             $photo1->move($photo_destination, $photo_name1);
             $user->idFile = $photo_name1;
+            session()->flush();
+            session(['idFile' => $photo_name1]);
            
         }
     
@@ -105,6 +107,8 @@ class WebController extends Controller
             $photo2_destination = public_path('uploads');
             $photo2->move($photo2_destination, $photo2_name);
             $user->billFile = $photo2_name;
+            session()->flush();
+            session(['billFile' => $photo2_name]);
            
         }
        
@@ -114,7 +118,8 @@ class WebController extends Controller
             $photo3_destination = public_path('uploads');
             $photo3->move($photo3_destination, $photo3_name);
             $user->incorporationFile = $photo3_name;
-            
+            session()->flush();
+            session(['incorporationFile' => $photo3_name]);
         }
         
         if ($request->hasFile('memorandumFile')) {
@@ -123,7 +128,8 @@ class WebController extends Controller
             $photo4_destination = public_path('uploads');
             $photo4->move($photo4_destination, $photo4_name);
             $user->memorandumFile = $photo4_name;
-            
+            session()->flush();
+            session(['memorandumFile' => $photo4_name]);
         }
         
         if ($request->hasFile('resolutionFile')) {
@@ -132,7 +138,8 @@ class WebController extends Controller
             $photo5_destination = public_path('uploads');
             $photo5->move($photo5_destination, $photo5_name);
             $user->resolutionFile = $photo5_name;
-           
+            session()->flush();
+            session(['resolutionFile' => $photo5_name]);
         }
         
         $user->fill($request->except([
@@ -242,10 +249,11 @@ class WebController extends Controller
 
         $to_email = env('ADMIN_EMAIL');
         $to_emailAdmin2 = env('ADMIN2_EMAIL');
+
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail = new InquiryMail($requestMail);
         Mail::to($to_email)
-        ->cc([$to_emailAdmin2, $to_emailAdmin3])
+        ->cc($to_emailAdmin2)
             ->send($mail);
         return redirect('/login')->with('success', 'We will get back to you soon to finalize your onboarding.');
     }

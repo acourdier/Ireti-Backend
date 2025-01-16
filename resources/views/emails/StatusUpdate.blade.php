@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-12">
                     <p class="mb-0">Best regards,</p>
-                    <p class="mb-0">Ireti Investment Team</p>
+                    <p class="mb-0">Ireti Onboarding Team</p>
                 </div>
             </div>
     </section>
