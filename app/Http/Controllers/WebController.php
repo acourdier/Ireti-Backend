@@ -86,14 +86,13 @@ class WebController extends Controller
        
             return redirect()->back()->with('error', 'User not found');
         }
-    
+        session()->forget(['idFile', 'billFile', 'incorporationFile', 'memorandumFile', 'resolutionFile']);
         if ($request->hasFile('idFile')) {
             $photo1 = $request->file('idFile');
             $photo_name1 = time() . "-" . $photo1->getClientOriginalName();
             $photo_destination = public_path('uploads');
             $photo1->move($photo_destination, $photo_name1);
             $user->idFile = $photo_name1;
-            session()->flush();
             session(['idFile' => $photo_name1]);
            
         }
@@ -104,7 +103,6 @@ class WebController extends Controller
             $photo2_destination = public_path('uploads');
             $photo2->move($photo2_destination, $photo2_name);
             $user->billFile = $photo2_name;
-            session()->flush();
             session(['billFile' => $photo2_name]);
            
         }
@@ -115,7 +113,6 @@ class WebController extends Controller
             $photo3_destination = public_path('uploads');
             $photo3->move($photo3_destination, $photo3_name);
             $user->incorporationFile = $photo3_name;
-            session()->flush();
             session(['incorporationFile' => $photo3_name]);
         }
         
@@ -125,7 +122,6 @@ class WebController extends Controller
             $photo4_destination = public_path('uploads');
             $photo4->move($photo4_destination, $photo4_name);
             $user->memorandumFile = $photo4_name;
-            session()->flush();
             session(['memorandumFile' => $photo4_name]);
         }
         
@@ -135,7 +131,6 @@ class WebController extends Controller
             $photo5_destination = public_path('uploads');
             $photo5->move($photo5_destination, $photo5_name);
             $user->resolutionFile = $photo5_name;
-            session()->flush();
             session(['resolutionFile' => $photo5_name]);
         }
         
@@ -245,7 +240,8 @@ class WebController extends Controller
             ->send($mail);
 
         $to_email = env('ADMIN_EMAIL');
-        $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin2 ='sagar.sabir@fabtechsol.com';
 
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
         $mail = new InquiryMail($requestMail);
