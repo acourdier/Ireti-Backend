@@ -345,12 +345,21 @@ class AdminController extends Controller
         if (!$order) {
             return redirect()->route('admin.orders')->withErrors('Order not found');
         }
-        $order->delete();
+        
+        $order->filled = 'Cancel';
+        $order->save();
 
         return redirect()->route('admin.orders')->with('update', 'Order cancelled  Successfully');
 
     }
+    public function DeleteOrder(Request $request){
 
+        $order = Order::find($request->id)->delete();
+        
+
+        return redirect()->route('admin.orders')->with('update', 'Order cancelled  Successfully');
+
+    }
 
 
     public function investment(){

@@ -86,7 +86,15 @@
                                                                 </a>
                                                             </li>
                                                             @endif
-
+                                                            @if ($order['filled'] == 'Cancel')
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'DeleteOrder/' . $order['id'] }}">
+                                                                    <i class="fa-regular text-muted me-2 fa-trash-can"></i>
+                                                                    Delete
+                                                                </a>
+                                                            </li>
+                                                            @endif
                                                             <li>
                                                                 <a class="dropdown-item"
                                                                     href="{{ 'orderdeatils/' . $order['id'] }}">

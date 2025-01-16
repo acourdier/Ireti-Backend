@@ -53,6 +53,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
             Route::get('editorders/{id}','editorders')->name('admin.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('admin.orderdeatils');
             Route::get('CancelOrder/{id}','CancelOrder')->name('admin.CancelOrder');
+            Route::get('DeleteOrder/{id}','DeleteOrder')->name('admin.DeleteOrder');
+
 
 
 
@@ -125,6 +127,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
             Route::get('editorders/{id}','editorders')->name('user.editorders');
             Route::get('orderdeatils/{id}','orderdeatils')->name('user.orderdeatils');
             Route::get('UserCancelOrder/{id}','UserCancelOrder')->name('user.UserCancelOrder');
+            Route::get('UserDeleteOrder/{id}','UserDeleteOrder')->name('user.UserDeleteOrder');
+
 
             Route::get('payments','payments')->name('user.payments');
 
