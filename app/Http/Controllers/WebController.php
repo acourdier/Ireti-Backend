@@ -240,7 +240,7 @@ class WebController extends Controller
             ->send($mail);
 
         $to_email = env('ADMIN_EMAIL');
-        // $to_emailAdmin2 = env('ADMIN2_EMAIL');
+        $to_emailAdmin2 = env('ADMIN2_EMAIL');
         $to_emailAdmin2 ='sagar.sabir@fabtechsol.com';
 
         $to_emailAdmin3 = env('ADMIN3_EMAIL');
