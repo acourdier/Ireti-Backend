@@ -113,47 +113,47 @@
                     @endif
                     <h2>Attachments:</h2>
                     <p><strong>ID Front:</strong>
-                        @if (isset($requestMail['idFile']))
-                            <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['idFile']) }}">Click
+                        @if (session('idFile'))
+                        <a href="{{ asset('https://ireticapital.com/uploads/' . session('idFile')) }}">Click
                                 here</a>
                         @else
-                            not found !
+                            not found!
                         @endif
 
                     </p>
                     <p><strong>ID Back:</strong>
-                        @if (isset($requestMail['billFile']))
-                            <a href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['billFile']) }}">Click
+                        @if (session('billFile'))
+                            <a href="{{ asset('https://ireticapital.com/uploads/' . session('billFile')) }}">Click
                                 here</a>
                         @else
-                            not found !
+                            not found!
                         @endif
                     </p>
                     <p><strong>Incorporation File:</strong>
-                        @if (isset($requestMail['incorporationFile']))
+                        @if (session('incorporationFile'))
                             <a
-                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['incorporationFile']) }}">Click
+                                href="{{ asset('https://ireticapital.com/uploads/' . session('incorporationFile')) }}">Click
                                 here</a>
                         @else
-                            not found !
+                            not found!
                         @endif
                     </p>
                     <p><strong>Memorandum File:</strong>
-                        @if (isset($requestMail['memorandumFile']))
+                        @if (session('memorandumFile'))
                             <a
-                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['memorandumFile']) }}">Click
+                                href="{{ asset('https://ireticapital.com/uploads/' . session('memorandumFile')) }}">Click
                                 here</a>
                         @else
-                            not found !
+                            not found!
                         @endif
                     </p>
                     <p><strong>ResolutionFile:</strong>
-                        @if (isset($requestMail['resolutionFile']))
+                        @if (session('memorandumFile'))
                             <a
-                                href="{{ asset('https://ireticapital.com/uploads/' . $requestMail['resolutionFile']) }}">Click
+                                href="{{ asset('https://ireticapital.com/uploads/' . session('memorandumFile')) }}">Click
                                 here</a>
                         @else
-                            not found !
+                            not found!
                         @endif
                     </p>
                 </div>

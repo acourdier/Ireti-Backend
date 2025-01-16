@@ -38,9 +38,6 @@
             <div class="row">
                 <div class="col-12">
                     <p class="mb-0">Dear {{ $requestMail['fname'] }},</p>
-                    <p class="mb-0 mt-3 p2">We’re delighted to inform you that your investment request has been filled
-                        up.</p>
-
                 </div>
             </div>
             <div class="row p3">
