@@ -324,7 +324,14 @@ class UserController extends Controller
         return redirect()->route('user.orders')->with('update', 'Order cancelled  Successfully');
 
     }
+    public function UserDeleteOrder(Request $request){
 
+        $order = Order::find($request->id)->delete();
+        
+
+        return redirect()->route('user.orders')->with('update', 'Order cancelled  Successfully');
+
+    }
     public function investment(){
         $userId = auth()->id();
         $data = Investment::where('userid', $userId)->orderBy('id', 'desc')->get();

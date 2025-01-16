@@ -352,7 +352,14 @@ class AdminController extends Controller
         return redirect()->route('admin.orders')->with('update', 'Order cancelled  Successfully');
 
     }
+    public function DeleteOrder(Request $request){
 
+        $order = Order::find($request->id)->delete();
+        
+
+        return redirect()->route('admin.orders')->with('update', 'Order cancelled  Successfully');
+
+    }
 
 
     public function investment(){
