@@ -22,6 +22,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <th>User Name</th>
                                                 <th>Product</th>
                                                 <th>Currency Pair</th>
                                                 <th>Amount to Buy</th>
@@ -38,6 +39,7 @@
                                         <tbody>
                                             @foreach ($orders as $order)
                                             <tr class="align-middle">
+                                                <td>{{$order['fname']}}</td>
                                                 <td>
                                                     <div>
                                                         <p class="mb-0 font-semi">{{ $order['FundType'] !== null && $order['FundType'] !== '' ? $order['FundType'] : '/' }}</p>

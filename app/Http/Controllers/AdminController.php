@@ -57,7 +57,9 @@ class AdminController extends Controller
             $totalOrdersData[$monthIndex] = $order->totalOrders;
             $totalConvertedData[$monthIndex] = $order->totalConverted;
         }
-        $data = Order::where('status', 1)->orderBy('id', 'desc')->paginate(5);
+        $data = Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
+        ->select('users.fname','orders.*')
+        ->orderBy('id', 'desc')->paginate(5);
         $counttotalorders = Order::where('status', 1)
         ->where('filled', 'No')
         ->count();
