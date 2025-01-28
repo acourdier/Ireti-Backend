@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <p class="font-semi small mb-0">Product Type</p>
-                                   
+                                    <p class="mb-0 small">{{ $orderData->FundType }}</p>
                                 </div>
                                 @if(isset($orderData['FundType']) && $orderData['FundType']== "FX")
                                     <div class="d-flex justify-content-between align-items-center mt-3">
