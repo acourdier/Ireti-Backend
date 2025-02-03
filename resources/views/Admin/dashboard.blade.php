@@ -56,7 +56,7 @@
                                                     0% <i class="fa-solid mx-1 text-muted fa-arrow-right"></i>
                                                 @endif
                                             </span>
-                                            Last Month Payments
+                                            Last Month Filled Orders
                                         </p>
                                     </div>
                                 </div>
@@ -138,6 +138,22 @@
                                                                     href="{{ 'editorders/' . $order['id'] }}">
                                                                     <i class="fa-solid text-muted me-2 fa-pen-to-square"></i>
                                                                     Edit
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'CancelOrder/' . $order['id'] }}">
+                                                                    <i class="fa-regular text-muted me-2 fa-circle-xmark"></i>
+                                                                    Cancel
+                                                                </a>
+                                                            </li>
+                                                            @endif
+                                                            @if ($order['filled'] == 'Cancel')
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ 'DeleteOrder/' . $order['id'] }}">
+                                                                    <i class="fa-regular text-muted me-2 fa-trash-can"></i>
+                                                                    Delete
                                                                 </a>
                                                             </li>
                                                             @endif

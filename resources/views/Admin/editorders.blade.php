@@ -109,7 +109,7 @@
                                             <div class="mt-3">
                                                 <label for="status">Order Filled</label>
                                                 <select name="filled" id="status" class="form-control">
-                                                    <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
+                                                    <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>Yes
                                                     </option>
                                                     <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
                                                     </option>
@@ -205,7 +205,7 @@
                                         <div class="mt-3">
                                             <label for="status">Order Filled</label>
                                             <select name="filled" id="status" class="form-control">
-                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
+                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>Yes
                                                 </option>
                                                 <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
                                                 </option>
@@ -347,7 +347,7 @@
                                         <div class="mt-3">
                                             <label for="status">Order Filled</label>
                                             <select name="filled" id="status" class="form-control">
-                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
+                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>Yes
                                                 </option>
                                                 <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
                                                 </option>
@@ -489,7 +489,7 @@
                                         <div class="mt-3">
                                             <label for="status">Order Filled</label>
                                             <select name="filled" id="status" class="form-control">
-                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>YES
+                                                <option value="Yes" {{ $orders['filled'] == 'YES' ? 'selected' : '' }}>Yes
                                                 </option>
                                                 <option value="No" {{ $orders['filled'] == 'No' ? 'selected' : '' }}>No
                                                 </option>
