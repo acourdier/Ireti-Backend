@@ -237,16 +237,16 @@ class AdminController extends Controller
             }
 
             $requestMail['role'] = "admin";
-            // if ($request->filled == 'Yes') {
-            //     Mail::to($to_emailAdmin)
-            //         ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            //         ->send(new OrderFilled($requestMail));
-            //     }
-            // else {
-            //     Mail::to($to_emailAdmin)
-            //         ->cc([$to_emailAdmin2, $to_emailAdmin3])
-            //         ->send(new OrderUpdate($requestMail));
-            //     }
+            if ($request->filled == 'Yes') {
+                Mail::to($to_emailAdmin)
+                    ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send(new OrderFilled($requestMail));
+                }
+            else {
+                Mail::to($to_emailAdmin)
+                    ->cc([$to_emailAdmin2, $to_emailAdmin3])
+                    ->send(new OrderUpdate($requestMail));
+                }
             }
     
             if (isset($data['quantity']) && $data['quantity'] != null) {
