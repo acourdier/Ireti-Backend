@@ -19,6 +19,7 @@ use App\Models\notification;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
@@ -35,11 +36,28 @@ class UserController extends Controller
             ->where('userid', $userId)
             ->count();
     
-        $sumfilledorders = Order::where('status', 1)
-            ->where('userid', $userId)
-            ->sum('converted');
-        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
-    
+            $sumFilledorders = Order::where('status', 1)
+                    ->where('userid', $userId)
+                    ->get(['converted']);
+
+                $sum = 0;
+
+                foreach ($sumFilledorders as $order) {
+                    
+                    $cleanedConverted = (float) str_replace(' ', '', $order->converted);
+                    
+                   
+                    $sum += $cleanedConverted;
+
+                   
+                    // var_dump($cleanedConverted);
+                }
+
+              
+              
+           
+        $sumfilledordersFormatted = number_format($sum, 2, '.', ' ');
+     
         $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
             ->where('userid', $userId)
             ->where('status', 1)
