@@ -94,6 +94,7 @@
                                                 <th>Target Price</th>
                                                 <th>Order Date</th>
                                                 <th>Order Filled</th>
+                                                <th>Amount in USD</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -126,6 +127,7 @@
                                                         {{ $order['filled'] !== null && $order['filled'] !== '' ? $order['filled'] : '/' }}
                                                     </button>
                                                 </td>
+                                                <td>{{ $order['converted'] !== null && $order['converted'] !== '' ? $order['converted'] : '/' }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <i class="fa-solid fa-ellipsis-vertical pointer"
