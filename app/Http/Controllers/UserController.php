@@ -58,7 +58,7 @@ class UserController extends Controller
            
         $sumfilledordersFormatted = number_format($sum, 2, '.', ' ');
      
-        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(REPLACE(converted, " ", "")) as totalConverted, count(*) as totalOrders')
             ->where('userid', $userId)
             ->where('status', 1)
             ->groupBy('month')
@@ -74,8 +74,9 @@ class UserController extends Controller
         foreach ($ordersPerMonth as $order) {
             $monthIndex = $order->month - 1; 
             $totalOrdersData[$monthIndex] = $order->totalOrders;
-            $totalConvertedData[$monthIndex] = $order->totalConverted;
+            $totalConvertedData[$monthIndex] = number_format($order->totalConverted, 2, '.', '');
         }
+       
         $data = Order::where('userid', $userId)->where('status', 1)->orderBy('id', 'desc')->paginate(5);
         $counttotalorders = Order::where('status', 1)
         ->where('filled', 'No')

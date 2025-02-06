@@ -37,10 +37,21 @@ class AdminController extends Controller
             ->count();
     
         $sumfilledorders = Order::where('status', 1)
-            ->sum('converted');
-        $sumfilledordersFormatted = number_format($sumfilledorders, 2, '.', ' ');
+            ->get(['converted']);
+            $sum = 0;
+            foreach ($sumfilledorders as $order) {
+                    
+                $cleanedConverted = (float) str_replace(' ', '', $order->converted);
+                
+               
+                $sum += $cleanedConverted;
+
+               
+                // var_dump($cleanedConverted);
+            }
+        $sumfilledordersFormatted = number_format($sum, 2, '.', ' ');
     
-        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(converted) as totalConverted, count(*) as totalOrders')
+        $ordersPerMonth = Order::selectRaw('MONTH(created_at) as month, sum(REPLACE(converted, " ", "")) as totalConverted, count(*) as totalOrders')
             ->where('status', 1)
             ->groupBy('month')
             ->orderBy('month')
@@ -55,7 +66,7 @@ class AdminController extends Controller
         foreach ($ordersPerMonth as $order) {
             $monthIndex = $order->month - 1; 
             $totalOrdersData[$monthIndex] = $order->totalOrders;
-            $totalConvertedData[$monthIndex] = $order->totalConverted;
+            $totalConvertedData[$monthIndex] = number_format($order->totalConverted, 2, '.', '');
         }
         $data = Order::leftjoin('users','orders.userid','=','users.id')->where('orders.status', 1)
         ->select('users.fname','orders.*')
