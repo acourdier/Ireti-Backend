@@ -305,7 +305,7 @@ class AdminController extends Controller
         $amount = str_replace([' ', ','], '', $amount);
         $amount = (float)$amount;
         $currency = strtoupper($currency);
-        $apiKey = '97e863686f8794bb8cce15cf';
+        $apiKey = env('EXCHANGE_RATE_API_KEY');
         $exchangeRateAPI = "https://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$currency}";
     
         $response = Http::get($exchangeRateAPI);
