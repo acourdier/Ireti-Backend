@@ -1,0 +1,36 @@
+services:
+  app:
+    container_name: app-local
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      args:
+        REPO_PATH: .
+    ports:
+      - "8000:9000"
+    depends_on:
+      - db
+    env_file:
+      - ../.env
+    environment:
+      - INITIAL_SETUP=true
+    command: >
+      /bin/bash -c "php artisan serve --host=0.0.0.0 --port=9000"
+    # volumes:
+    #   - ../:/srv/app
+    restart: always
+
+  db:
+    container_name: db-local
+    image: mysql:lts-oraclelinux9
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "13306:3306"
+    volumes:
+      - ireti_db:/var/lib/mysql
+    restart: always
+
+volumes:
+  ireti_db:
